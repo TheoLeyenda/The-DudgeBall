@@ -69,6 +69,10 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+        if(mapaActual == "Laberinto")
+        {
+            TextRonda.text = "";
+        }
         if(historia && !supervivencia)
         {
             if(muertes >= limiteMuertes)

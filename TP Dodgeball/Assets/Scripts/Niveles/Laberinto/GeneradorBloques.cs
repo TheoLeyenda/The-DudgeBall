@@ -10,18 +10,29 @@ public class GeneradorBloques : MonoBehaviour {
     private float randomInstanciar;
     public float ancho;
     public float alto;
-    public float valorY; 
+    public float valorY;
+    private PoolObject poolObject;
+    public PoolPelota poolCubitos;
+    int cont = 0;
     // ESTO TEORICAMENTE FUNCIONARIA (PROBAR LUEGO)
     private void Start()
     {
         for (int i = 1; i < ancho; i++)
         {
-            for (int j = 1; j < alto; i++)
+            for (int j = 1; j < alto; j++)
             {
                 if(i % 2 == 0 && j %2 != 0)
                 {
                     randomInstanciar = Random.Range(1, 100);
                     if(randomInstanciar >= 60)
+                    {
+                        Instantiate(bloques, new Vector3(i,valorY,j), Quaternion.identity);
+                    }
+                }
+                if(j % 2 == 0)
+                {
+                    randomInstanciar = Random.Range(1, 100);
+                    if (randomInstanciar >= 60)
                     {
                         Instantiate(bloques, new Vector3(i,valorY,j), Quaternion.identity);
                     }
