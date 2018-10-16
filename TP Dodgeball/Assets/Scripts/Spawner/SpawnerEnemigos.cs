@@ -19,6 +19,7 @@ public class SpawnerEnemigos : MonoBehaviour {
     public float IncrementoCreacion;
     private int TOPE_MAXIMO;
     public int tipoEnemigo;
+    public int patronEnemigo;
 	void Start () {
         auxDileyCreacion = dileyCreacion;
         TOPE_CREACION = cantEnemigosInicial;
@@ -52,6 +53,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                     go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
                     corredor.Prendido();
+                    corredor.PatronDeMovimiento = patronEnemigo;
                     if(GameManager.GetGameManager().GetRonda()>0)
                     {
                         corredor.SumarVelocidad();
@@ -66,6 +68,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                     go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
                     tirador.Prendido();
+                    tirador.tipoPatron = patronEnemigo;
                     if (GameManager.GetGameManager().GetRonda() > 1)
                     {
                         tirador.SumarVelocidad();

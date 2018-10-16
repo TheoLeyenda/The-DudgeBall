@@ -21,6 +21,9 @@ public class CheckCurva : MonoBehaviour {
 
     public bool todasDirecciones;
 
+    public bool todoMenosDerecha;
+    public bool todoMenosIzquierda;
+
     private float centerX;
     private float centerZ;
     private Vector3 pos;
@@ -159,6 +162,44 @@ public class CheckCurva : MonoBehaviour {
                 {
                     //Izquierda
                     other.transform.Rotate(0, 270, 0);
+                }
+                if (opcion >= 2)
+                {
+                    //Derecha
+                    other.transform.Rotate(0, 90, 0);
+                }
+            }
+            if(todoMenosDerecha)
+            {
+                float opcion = Random.Range(0, 3);
+                if (opcion >= 0 && opcion < 1)
+                {
+                    //Arriba
+                    //no pasa nada porque sigue el mismo rumbo;
+                }
+                if (opcion >= 1 && opcion < 2)
+                {
+                    //Izquierda
+                    other.transform.Rotate(0, 270, 0);
+                }
+                if (opcion >= 2)
+                {
+                    //abajo
+                    other.transform.Rotate(0, 180, 0);
+                }
+            }
+            if(todoMenosIzquierda)
+            {
+                float opcion = Random.Range(0, 3);
+                if (opcion >= 0 && opcion < 1)
+                {
+                    //Arriba
+                    //no pasa nada porque sigue el mismo rumbo;
+                }
+                if (opcion >= 1 && opcion < 2)
+                {
+                    //abajo
+                    other.transform.Rotate(0, 180, 0);
                 }
                 if (opcion >= 2)
                 {
