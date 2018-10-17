@@ -228,8 +228,14 @@ public class Corredor : Enemigo {
 
         }
     }
-    
-private void OnTriggerExit(Collider other)
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Corredor" || collision.gameObject.tag == "Tirador" && PatronDeMovimiento == 1)
+        {
+            collision.gameObject.transform.Rotate(0, 180, 0);
+        }
+    }
+    private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Piso")
         {
