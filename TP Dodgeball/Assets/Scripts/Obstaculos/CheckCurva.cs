@@ -24,6 +24,9 @@ public class CheckCurva : MonoBehaviour {
     public bool todoMenosDerecha;
     public bool todoMenosIzquierda;
 
+    public bool DerechaIzquierda;
+    public bool ArribaAbajo;
+
     private float centerX;
     private float centerZ;
     private Vector3 pos;
@@ -37,10 +40,37 @@ public class CheckCurva : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
+
         if(other.tag == "Corredor" || other.tag == "Tirador")
         {
-           
-            other.transform.position = new Vector3(transform.position.x, other.transform.position.y, transform.position.z);
+            if(ArribaAbajo)
+            {
+                float opcion = Random.Range(0, 2);
+                if(opcion >= 1)
+                {
+                    //no pasa nada porque sigue el mismo rumbo
+                }
+                if (opcion >= 0 && opcion < 1)
+                {
+                    //Abajo
+                    other.transform.Rotate(0, -180, 0);
+                }
+            }
+            if(DerechaIzquierda)
+            {
+                float opcion = Random.Range(0, 2);
+                if (opcion >= 1)
+                {
+                    //Izquierda
+                    other.transform.Rotate(0, 270, 0);
+                }
+                if (opcion >= 0 && opcion < 1)
+                {
+                    //Derecha
+                    other.transform.Rotate(0, 90, 0);
+                }
+            }
+            //other.transform.position = new Vector3(transform.position.x, other.transform.position.y, transform.position.z);
             if (abajo)
             {
                 //Abajo

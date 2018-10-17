@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class Corredor : Enemigo {
+public class Corredor : Enemigo
+{
 
     // Use this for initialization
     public float auxVida;
@@ -18,6 +19,7 @@ public class Corredor : Enemigo {
     private float dileyInsta;
     public float MaxVelocidad;
     public int PatronDeMovimiento;
+    public float rangoDoblar;
 
     public PoolPelota poolPoderInmune;
     public PoolPelota poolDoblePuntuacion;
@@ -55,10 +57,11 @@ public class Corredor : Enemigo {
         efectoMusica.SetActive(false);
         poolObject = GetComponent<PoolObject>();
     }
-    void Update() {
+    void Update()
+    {
         if (Jugador.GetJugador() != null)
         {
-            if(!Jugador.GetJugador().GetActivarInstaKill())
+            if (!Jugador.GetJugador().GetActivarInstaKill())
             {
                 dileyInsta = 1;
             }
@@ -68,13 +71,13 @@ public class Corredor : Enemigo {
             }
             if (!Jugador.GetJugador().GetInstaKill() && Jugador.GetJugador().GetActivarInstaKill())
             {
-               
+
                 vida = auxVida;
-                if(dileyInsta > 0)
+                if (dileyInsta > 0)
                 {
                     dileyInsta = dileyInsta - Time.deltaTime;
                 }
-                if(dileyInsta <= 0)
+                if (dileyInsta <= 0)
                 {
                     Jugador.GetJugador().SetActivarInstaKill(false);
                 }
@@ -83,14 +86,14 @@ public class Corredor : Enemigo {
         EstaMuerto();
         updateHP();
         if (GetEstadoEnemigo() != EstadoEnemigo.congelado && GetEstadoEnemigo() != EstadoEnemigo.bailando)
-        {  
+        {
             Movimiento();
         }
-        if(GetMuerto())
+        if (GetMuerto())
         {
             // Seguir configurando la probabilidad de aparicion de los powers ups
-            float auxiliar = Random.Range(1,100);
-            if (auxiliar > 0 && auxiliar <=8)
+            float auxiliar = Random.Range(1, 100);
+            if (auxiliar > 0 && auxiliar <= 8)
             {
                 GameObject go = poolPoderInmune.GetObject();
                 if (go != null)
@@ -100,7 +103,7 @@ public class Corredor : Enemigo {
                     go.transform.rotation = transform.rotation;
                 }
             }
-            if(auxiliar >12 && auxiliar<=25)
+            if (auxiliar > 12 && auxiliar <= 25)
             {
                 GameObject go = poolDoblePuntuacion.GetObject();
                 if (go != null)
@@ -110,7 +113,7 @@ public class Corredor : Enemigo {
                     go.transform.rotation = transform.rotation;
                 }
             }
-            if(auxiliar >30 && auxiliar <=35)
+            if (auxiliar > 30 && auxiliar <= 35)
             {
                 GameObject go = poolInstaKill.GetObject();
                 if (go != null)
@@ -122,7 +125,7 @@ public class Corredor : Enemigo {
             }
             if (Jugador.GetJugador().GetDoblePuntuacion())
             {
-                Jugador.GetJugador().SumarPuntos(50*2);
+                Jugador.GetJugador().SumarPuntos(50 * 2);
             }
             else
             {
@@ -134,7 +137,7 @@ public class Corredor : Enemigo {
                 GameManager.GetGameManager().RestarEnemigoEnPantalla();
             }
             SetMuerto(false);
-            if(!estoyEnPool)
+            if (!estoyEnPool)
             {
                 gameObject.SetActive(false);
             }
@@ -150,7 +153,7 @@ public class Corredor : Enemigo {
                 SetRotarY(20);
                 Rotar();
             }
-            if(GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.active)
+            if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.active)
             {
                 efectoFuego = efectoFuego + Time.deltaTime;
                 if (efectoFuego >= 1)
@@ -159,7 +162,7 @@ public class Corredor : Enemigo {
                     {
                         if (Jugador.GetJugador().GetDoblePuntuacion())
                         {
-                            Jugador.GetJugador().SumarPuntos(5*2);
+                            Jugador.GetJugador().SumarPuntos(5 * 2);
                         }
                         else
                         {
@@ -171,24 +174,24 @@ public class Corredor : Enemigo {
                 }
             }
             timeEstado = timeEstado - Time.deltaTime;
-          
+
         }
-        if(timeEstado <= 0)
+        if (timeEstado <= 0)
         {
-            if(GetEstadoEnemigo()  == EstadoEnemigo.congelado)
+            if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
             {
                 velocidad = auxVelocidad;
                 SetEstadoEnemigo(EstadoEnemigo.normal);
             }
-            if(GetEstadoEnemigo() == EstadoEnemigo.bailando)
+            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
             {
                 SetEstadoEnemigo(EstadoEnemigo.normal);
             }
-            if(GetEstadoEnemigo() == EstadoEnemigo.quemado)
+            if (GetEstadoEnemigo() == EstadoEnemigo.quemado)
             {
                 SetEstadoEnemigo(EstadoEnemigo.normal);
-                
-            }            
+
+            }
         }
         if (GetEstadoEnemigo() != EstadoEnemigo.quemado && GetEstadoEnemigo() != EstadoEnemigo.bailando)
         {
@@ -203,36 +206,15 @@ public class Corredor : Enemigo {
             efectoMusica.SetActive(false);
         }
     }
-    public void Movimiento()
-    {
-        if (Jugador.GetJugador() != null)
-        {
-            if (PatronDeMovimiento == 0)
-            {
-                rig.velocity = Vector3.zero;
-                rig.angularVelocity = Vector3.zero;
-
-                transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x, transform.position.y, Jugador.GetJugador().transform.position.z));
-                // si no esta colicionando con el piso que esto no se ejecute
-                if (!GetTocandoSuelo())
-                {
-                    transform.position += transform.forward * Time.deltaTime * velocidad;
-                }
-            }
-        }
-        if (PatronDeMovimiento == 1)
-        {
-            rig.velocity = Vector3.zero;
-            rig.angularVelocity = Vector3.zero;
-            transform.position += transform.forward * Time.deltaTime * velocidad;
-
-        }
-    }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Corredor" || collision.gameObject.tag == "Tirador" && PatronDeMovimiento == 1)
+        if (collision.gameObject.tag == "Corredor" || collision.gameObject.tag == "Tirador" && PatronDeMovimiento == 1)
         {
             collision.gameObject.transform.Rotate(0, 180, 0);
+        }
+        if(collision.gameObject.tag == "Pared")
+        {
+            transform.Rotate(0, 90, 0);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -256,7 +238,7 @@ public class Corredor : Enemigo {
                 EstaMuerto();
                 if (Jugador.GetJugador().GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(10*2);
+                    Jugador.GetJugador().SumarPuntos(10 * 2);
                 }
                 else
                 {
@@ -264,13 +246,13 @@ public class Corredor : Enemigo {
                 }
             }
         }
-        if(other.gameObject.tag == "PelotaDeHielo")
+        if (other.gameObject.tag == "PelotaDeHielo")
         {
             if (Jugador.GetJugador() != null)
             {
                 if (Jugador.GetJugador().GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(10*2);
+                    Jugador.GetJugador().SumarPuntos(10 * 2);
                 }
                 else
                 {
@@ -297,7 +279,7 @@ public class Corredor : Enemigo {
             {
                 if (Jugador.GetJugador().GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(10*2);
+                    Jugador.GetJugador().SumarPuntos(10 * 2);
                 }
                 else
                 {
@@ -330,7 +312,7 @@ public class Corredor : Enemigo {
             EstaMuerto();
 
         }
-        if(other.gameObject.tag == "PelotaDeFuego")
+        if (other.gameObject.tag == "PelotaDeFuego")
         {
             if (GetEstadoEnemigo() != EstadoEnemigo.quemado)
             {
@@ -345,22 +327,22 @@ public class Corredor : Enemigo {
         }
         if (other.gameObject.tag == "PelotaExplociva")
         {
-            if(Jugador.GetJugador() != null)
+            if (Jugador.GetJugador() != null)
             {
                 if (Jugador.GetJugador().GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(20*2);
+                    Jugador.GetJugador().SumarPuntos(20 * 2);
                 }
                 else
                 {
                     Jugador.GetJugador().SumarPuntos(20);
                 }
-                vida = vida - (GetDanioBolaExplociva()+ Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
+                vida = vida - (GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
             }
             EstaMuerto();
 
         }
-       
+
     }
     public void SetVelocidad(float _velocidad)
     {
@@ -386,4 +368,47 @@ public class Corredor : Enemigo {
             auxVelocidad = velocidad;
         }
     }
+    public void Movimiento()
+    {
+        if (Jugador.GetJugador() != null)
+        {
+            if (PatronDeMovimiento == 0)
+            {
+                rig.velocity = Vector3.zero;
+                rig.angularVelocity = Vector3.zero;
+
+                transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x, transform.position.y, Jugador.GetJugador().transform.position.z));
+                // si no esta colicionando con el piso que esto no se ejecute
+                if (!GetTocandoSuelo())
+                {
+                    transform.position += transform.forward * Time.deltaTime * velocidad;
+                }
+            }
+        }
+        if (PatronDeMovimiento == 1)
+        {
+            rig.velocity = Vector3.zero;
+            rig.angularVelocity = Vector3.zero;
+            transform.position += transform.forward * Time.deltaTime * velocidad;
+            //RaycastHit hit;
+            //if (Physics.Raycast(fpsCamara.transform.position, fpsCamara.transform.forward, out hit, rango))
+            //{
+
+            //}
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, rangoDoblar))
+            {
+                float opcion = Random.Range(0, 2);
+                if (opcion >= 1)
+                {
+                    transform.Rotate(0, 90, 0);
+                }
+                else
+                {
+                    transform.Rotate(0, -90, 0);
+                }
+            }
+        }
+    }
 }
+   

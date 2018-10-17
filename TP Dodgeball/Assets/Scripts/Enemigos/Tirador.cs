@@ -21,6 +21,7 @@ public class Tirador : Enemigo {
     private float efectoFuego;
     private Rigidbody rig;
     private float dileyInsta;
+    public float rangoDoblar;
 
     public PoolPelota poolPoderInmune;
     public PoolPelota poolDoblePuntuacion;
@@ -222,6 +223,24 @@ public class Tirador : Enemigo {
             rig.velocity = Vector3.zero;
             rig.angularVelocity = Vector3.zero;
             transform.position += transform.forward * Time.deltaTime * velocidad;
+            //RaycastHit hit;
+            //if (Physics.Raycast(fpsCamara.transform.position, fpsCamara.transform.forward, out hit, rango))
+            //{
+
+            //}
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, rangoDoblar))
+            {
+                float opcion = Random.Range(0,2);
+                if (opcion >= 1)
+                {
+                    transform.Rotate(0, 90, 0);
+                }
+                else
+                {
+                    transform.Rotate(0, -90, 0);
+                }
+            }
         }
     }
     public void TirarBola()
@@ -349,6 +368,25 @@ public class Tirador : Enemigo {
                 vida = vida - (GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
             }
 
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Corredor" || collision.gameObject.tag == "Tirador" && tipoPatron == 1)
+        {
+            collision.gameObject.transform.Rotate(0, 180, 0);
+        }
+        if (collision.gameObject.tag == "Pared")
+        {
+            float opcion = Random.Range(0, 2);
+            if (opcion >= 1)
+            {
+                transform.Rotate(0, 90, 0);
+            }
+            else
+            {
+                transform.Rotate(0, -90, 0);
+            }
         }
     }
     public void SetVelocidad(float _velocidad)
