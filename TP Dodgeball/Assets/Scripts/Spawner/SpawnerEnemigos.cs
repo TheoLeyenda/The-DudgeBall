@@ -20,20 +20,20 @@ public class SpawnerEnemigos : MonoBehaviour {
     private int TOPE_MAXIMO;
     public int tipoEnemigo;
     public int patronEnemigo;
-	void Start () {
+    void Start() {
         auxDileyCreacion = dileyCreacion;
         TOPE_CREACION = cantEnemigosInicial;
         enFuncionamiento = true;
-        TOPE_MAXIMO = poolEnemigo.count-50;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if(GameManager.GetGameManager().cantEnemigosEnPantalla <= 0)
+        TOPE_MAXIMO = poolEnemigo.count - 50;
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (GameManager.GetGameManager().cantEnemigosEnPantalla <= 0)
         {
             GameManager.GetGameManager().SetEntrarRonda(true);
         }
-        if (enFuncionamiento && TOPE_CREACION < TOPE_MAXIMO)
+        if (enFuncionamiento && TOPE_CREACION < TOPE_MAXIMO && GameManager.GetGameManager().supervivencia)
         {
             if (dileyCreacion > 0)
             {
@@ -54,14 +54,14 @@ public class SpawnerEnemigos : MonoBehaviour {
                     go.transform.rotation = transform.rotation;
                     corredor.Prendido();
                     corredor.PatronDeMovimiento = patronEnemigo;
-                    if(GameManager.GetGameManager().GetRonda()>0)
+                    if (GameManager.GetGameManager().GetRonda() > 0)
                     {
                         corredor.SumarVelocidad();
                     }
-                   
-                    
+
+
                 }
-                if(tipoEnemigo == 2)
+                if (tipoEnemigo == 2)
                 {
                     GameObject go = poolEnemigo.GetObject();
                     Tirador tirador = go.GetComponent<Tirador>();
@@ -83,7 +83,51 @@ public class SpawnerEnemigos : MonoBehaviour {
                 enFuncionamiento = false;
             }
         }
-	}
+        if (enFuncionamiento && GameManager.GetGameManager().historia)
+        {
+            if (dileyCreacion > 0)
+            {
+                dileyCreacion = dileyCreacion - Time.deltaTime;
+            }
+            if (dileyCreacion <= 0)
+            {
+                if (GameManager.GetGameManager() != null)
+                {
+                    GameManager.GetGameManager().SumarEnemigoEnPantalla();
+                }
+                creaciones++;
+                if (tipoEnemigo == 1)
+                {
+                    GameObject go = poolEnemigo.GetObject();
+                    Corredor corredor = go.GetComponent<Corredor>();
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
+                    go.transform.rotation = transform.rotation;
+                    corredor.Prendido();
+                    corredor.PatronDeMovimiento = patronEnemigo;
+                    if (GameManager.GetGameManager().GetRonda() > 0)
+                    {
+                        corredor.SumarVelocidad();
+                    }
+
+
+                }
+                if (tipoEnemigo == 2)
+                {
+                    GameObject go = poolEnemigo.GetObject();
+                    Tirador tirador = go.GetComponent<Tirador>();
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
+                    go.transform.rotation = transform.rotation;
+                    tirador.Prendido();
+                    tirador.tipoPatron = patronEnemigo;
+                    if (GameManager.GetGameManager().GetRonda() > 1)
+                    {
+                        tirador.SumarVelocidad();
+                    }
+                }
+                dileyCreacion = auxDileyCreacion;
+            }
+        }
+    }
     public void SetEnFuncionamiento(bool _enFuncionamiento)
     {
         enFuncionamiento = _enFuncionamiento;

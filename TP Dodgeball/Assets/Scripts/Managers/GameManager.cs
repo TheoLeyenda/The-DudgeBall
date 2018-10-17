@@ -59,15 +59,18 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        for(int i = 0; i< spawnersEnemigos.Length; i++)
+        if (supervivencia)
         {
-            if(cantEnemigosEnPantalla <= 0)
+            for (int i = 0; i < spawnersEnemigos.Length; i++)
             {
-                spawnersEnemigos[i].SetEnFuncionamiento(true);
-                if (entrarRonda)
+                if (cantEnemigosEnPantalla <= 0)
                 {
-                    SumarRonda();
-                    entrarRonda = false;
+                    spawnersEnemigos[i].SetEnFuncionamiento(true);
+                    if (entrarRonda)
+                    {
+                        SumarRonda();
+                        entrarRonda = false;
+                    }
                 }
             }
         }
