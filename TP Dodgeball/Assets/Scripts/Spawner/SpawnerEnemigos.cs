@@ -15,6 +15,9 @@ public class SpawnerEnemigos : MonoBehaviour {
     public float rangoX;
     public float rangoZ;
     private int creaciones;
+    private int creacionesLocales;
+    public int cantCrearLocal;
+    public float velocidadCreacion;
     private bool enFuncionamiento;
     public float IncrementoCreacion;
     private int TOPE_MAXIMO;
@@ -83,7 +86,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                 enFuncionamiento = false;
             }
         }
-        if (enFuncionamiento && GameManager.GetGameManager().historia)
+        if (enFuncionamiento && GameManager.GetGameManager().historia && creaciones < cantCrearLocal)
         {
             if (dileyCreacion > 0)
             {
@@ -91,10 +94,6 @@ public class SpawnerEnemigos : MonoBehaviour {
             }
             if (dileyCreacion <= 0)
             {
-                if (GameManager.GetGameManager() != null)
-                {
-                    GameManager.GetGameManager().SumarEnemigoEnPantalla();
-                }
                 creaciones++;
                 if (tipoEnemigo == 1)
                 {
@@ -103,6 +102,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                     go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
                     corredor.Prendido();
+                    corredor.velocidad = velocidadCreacion;
                     corredor.PatronDeMovimiento = patronEnemigo;
                     if (GameManager.GetGameManager().GetRonda() > 0)
                     {
@@ -118,6 +118,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                     go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
                     tirador.Prendido();
+                    tirador.velocidad = velocidadCreacion;
                     tirador.tipoPatron = patronEnemigo;
                     if (GameManager.GetGameManager().GetRonda() > 1)
                     {
