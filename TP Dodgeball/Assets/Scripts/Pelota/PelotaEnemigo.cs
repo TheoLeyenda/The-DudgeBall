@@ -47,7 +47,7 @@ public class PelotaEnemigo : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag != "Player" && other.tag != "GeneradorPelotaEnemigo" && other.tag != "Tirador")
+        if(other.tag != "Player" && other.tag != "GeneradorPelotaEnemigo" && other.tag != "Tirador" && other.tag != "Corredor")
         {
             if (poolObject != null)
             {

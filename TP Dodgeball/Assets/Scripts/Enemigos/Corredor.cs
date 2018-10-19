@@ -20,6 +20,7 @@ public class Corredor : Enemigo
     public float MaxVelocidad;
     public int PatronDeMovimiento;
     public float rangoDoblar;
+    public float rangoVisionEnemigo;
 
     public PoolPelota poolPoderInmune;
     public PoolPelota poolDoblePuntuacion;
@@ -93,7 +94,7 @@ public class Corredor : Enemigo
         {
             // Seguir configurando la probabilidad de aparicion de los powers ups
             float auxiliar = Random.Range(1, 100);
-            if (auxiliar > 0 && auxiliar <= 8)
+            if (auxiliar > 90 && auxiliar <= 94)
             {
                 GameObject go = poolPoderInmune.GetObject();
                 if (go != null)
@@ -390,24 +391,24 @@ public class Corredor : Enemigo
             rig.velocity = Vector3.zero;
             rig.angularVelocity = Vector3.zero;
             transform.position += transform.forward * Time.deltaTime * velocidad;
-            //RaycastHit hit;
-            //if (Physics.Raycast(fpsCamara.transform.position, fpsCamara.transform.forward, out hit, rango))
-            //{
 
-            //}
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, rangoDoblar))
             {
-                float opcion = Random.Range(0, 2);
-                if (opcion >= 1)
+                if (hit.collider.gameObject.tag != "PoderInmune" && hit.collider.gameObject.tag != "DoblePuntuacion" && hit.collider.gameObject.tag != "InstaKill" && hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.tag != "PelotaComun" && hit.collider.gameObject.tag != "MiniPelota" && hit.collider.gameObject.tag != "PelotaDeHielo" && hit.collider.gameObject.tag != "PelotaDeFuego" && hit.collider.gameObject.tag != "PelotaDanzarina")
                 {
-                    transform.Rotate(0, 90, 0);
-                }
-                else
-                {
-                    transform.Rotate(0, -90, 0);
+                    float opcion = Random.Range(0, 2);
+                    if (opcion >= 1)
+                    {
+                        transform.Rotate(0, 90, 0);
+                    }
+                    else
+                    {
+                        transform.Rotate(0, -90, 0);
+                    }
                 }
             }
+
         }
     }
 }

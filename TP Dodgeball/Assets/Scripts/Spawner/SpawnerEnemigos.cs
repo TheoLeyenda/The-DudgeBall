@@ -15,19 +15,19 @@ public class SpawnerEnemigos : MonoBehaviour {
     public float rangoX;
     public float rangoZ;
     private int creaciones;
-    private int creacionesLocales;
-    public int cantCrearLocal;
     public float velocidadCreacion;
     private bool enFuncionamiento;
     public float IncrementoCreacion;
     private int TOPE_MAXIMO;
     public int tipoEnemigo;
     public int patronEnemigo;
+    public float rangoVisionEnemigo;
     void Start() {
         auxDileyCreacion = dileyCreacion;
         TOPE_CREACION = cantEnemigosInicial;
         enFuncionamiento = true;
         TOPE_MAXIMO = poolEnemigo.count - 50;
+        dileyCreacion = 0;
     }
 
     // Update is called once per frame
@@ -56,6 +56,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                     go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
                     corredor.Prendido();
+                    corredor.rangoVisionEnemigo = rangoVisionEnemigo;
                     corredor.PatronDeMovimiento = patronEnemigo;
                     if (GameManager.GetGameManager().GetRonda() > 0)
                     {
@@ -71,6 +72,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                     go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
                     tirador.Prendido();
+                    tirador.rangoVisionEnemigo = rangoVisionEnemigo;
                     tirador.tipoPatron = patronEnemigo;
                     if (GameManager.GetGameManager().GetRonda() > 1)
                     {
@@ -86,7 +88,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                 enFuncionamiento = false;
             }
         }
-        if (enFuncionamiento && GameManager.GetGameManager().historia && creaciones < cantCrearLocal)
+        if (enFuncionamiento && GameManager.GetGameManager().historia)
         {
             if (dileyCreacion > 0)
             {
@@ -94,7 +96,6 @@ public class SpawnerEnemigos : MonoBehaviour {
             }
             if (dileyCreacion <= 0)
             {
-                creaciones++;
                 if (tipoEnemigo == 1)
                 {
                     GameObject go = poolEnemigo.GetObject();
