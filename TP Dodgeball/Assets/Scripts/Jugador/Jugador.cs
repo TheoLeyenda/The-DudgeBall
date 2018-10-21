@@ -85,7 +85,7 @@ public class Jugador : MonoBehaviour {
     private float contDoblePuntuacion;
     private float contInstaKill;
     private float dileyActivacion;
-
+    
     public void AumentarVida()
     {
         powerUpAumentarVida = true;
@@ -588,5 +588,33 @@ public class Jugador : MonoBehaviour {
     public void SetActivarInstaKill(bool _InstaKill)
     {
         activoInstaKill = _InstaKill;
+    }
+    public bool GetPowerUpAumentarVida()
+    {
+        return powerUpAumentarVida;
+    }
+    public bool GetPowerUpChalecoAntiGolpes()
+    {
+        return powerUpChalecoAntiGolpes;
+    }
+    public float GetContInmune()
+    {
+        return contInmune;
+    }
+    public bool GetInmune()
+    {
+        return Inmune;
+    }
+    public float GetContDoblePuntuacion()
+    {
+        return contDoblePuntuacion;
+    }
+    public float GetContInstaKill()
+    {
+        return contInstaKill;
+    }
+    public float GetDileyActivacion()
+    {
+        return dileyActivacion;
     }
 }

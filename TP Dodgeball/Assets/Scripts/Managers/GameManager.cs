@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour {
     private bool entrarRonda;
     [HideInInspector]
     public bool pasarNivel = false;
+    public static GameManager GetGameManager()
+    {
+        return instanciaGameManager;
+    }
     private void Awake()
     {
         //entrarRonda = true;
@@ -35,7 +39,7 @@ public class GameManager : MonoBehaviour {
         }
         else if (instanciaGameManager != null)
         {
-            Destroy(gameObject);
+            this.gameObject.SetActive(false);            
         }
     }
     private void Start()
@@ -126,10 +130,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-    public static GameManager GetGameManager()
-    {
-        return instanciaGameManager;
-    }
+    
     public void SetEnemigosEnPantalla(int enemigosEnPantalla)
     {
         cantEnemigosEnPantalla = enemigosEnPantalla;
