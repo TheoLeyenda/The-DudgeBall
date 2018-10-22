@@ -27,7 +27,8 @@ public class PelotaExpliciva : MonoBehaviour {
     private bool contar;
     private void Start()
     {
-        SphereCollider esfera = EsferaColicionadora;
+        //SI ALGO SE ROMPE CON LA BOMBA DESCOMENTAR ESTA LINEA
+        //SphereCollider esfera = EsferaColicionadora;
     }
     private void OnEnable()
     {

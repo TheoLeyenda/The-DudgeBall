@@ -154,7 +154,7 @@ public class Corredor : Enemigo
                 SetRotarY(20);
                 Rotar();
             }
-            if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.active)
+            if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.activeSelf)
             {
                 efectoFuego = efectoFuego + Time.deltaTime;
                 if (efectoFuego >= 1)
