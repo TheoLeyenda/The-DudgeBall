@@ -48,6 +48,7 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
         public float contDoblePuntuacion;
         public float contInstaKill;
         public float dileyActivacion;
+        public int oportunidades;
     }
 
     [HideInInspector]
@@ -77,6 +78,7 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
         DatosJugador.contDoblePuntuacion = jugador.GetContDoblePuntuacion();
         DatosJugador.contInstaKill = jugador.GetContInstaKill();
         DatosJugador.dileyActivacion = jugador.GetDileyActivacion();
+        DatosJugador.oportunidades = jugador.oportunidades;
     }
    
 

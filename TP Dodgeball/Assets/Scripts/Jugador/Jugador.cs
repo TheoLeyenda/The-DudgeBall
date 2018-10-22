@@ -39,6 +39,7 @@ public class Jugador : MonoBehaviour {
     public Text textVida;
     public Text textPuntos;
     public Text textBlindaje;
+    public Text TextOportunidades;
 
     private int municionPelotaDeHielo = 0;
     private int municionPelotaDeFuego = 0;
@@ -251,29 +252,35 @@ public class Jugador : MonoBehaviour {
         {
             //definido en enemigo
         }
-        textVida.text = "Vida: " + (int)vida;
-        textPuntos.text = "Puntos: " + puntos;
+        textVida.text = "VIDA: " + (int)vida;
+        textPuntos.text = "PUNTOS: " + puntos;
+        if (oportunidades > -1 && TextOportunidades != null)
+        {
+            TextOportunidades.text = "OPORTUNIDADES: " + oportunidades;
+        }
         if(textBlindaje != null)
         {
             textBlindaje.text = "Blindaje:" + (int)blindaje;
         }
         if (vida <= 0)
         {
-            if (vida <= 0 && oportunidades <= 0)
+            oportunidades = oportunidades - 1;
+            if (vida <= 0 && oportunidades < 0)
             {
                 SceneManager.LoadScene("GameOver");
+                gameObject.SetActive(false);
             }
             else
             {
                 if (posRespawn != null)
                 {
                     transform.position = posRespawn.position;
-                    oportunidades = oportunidades - 1;
                     vida = 100;
                 }
                 else
                 {
                     SceneManager.LoadScene("GameOver");
+                    gameObject.SetActive(false);
                 }
             }
         }

@@ -96,11 +96,11 @@ public class GameManager : MonoBehaviour {
         {
             if (TextRonda != null)
             {
-                TextRonda.text = "Ronda: " + Ronda;
+                TextRonda.text = "RONDA: " + Ronda;
             }
             if (TextRondaAndroid != null)
             {
-                TextRondaAndroid.text = "Ronda: " + Ronda;
+                TextRondaAndroid.text = "RONDA: " + Ronda;
             }
             if (mapaActual == "Arena(Supervivencia)")
             {
