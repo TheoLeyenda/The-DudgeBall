@@ -27,6 +27,8 @@ public class Jugador : MonoBehaviour {
     public bool jugadorWindows;
     public bool jugadorAndroid;
     public Rigidbody rigJugador;
+    public int oportunidades;
+    public Transform posRespawn;
 
     private float danioAdicionalPelotaComun;
     private float danioAdicionalPelotaHielo;
@@ -63,7 +65,7 @@ public class Jugador : MonoBehaviour {
     public GameObject desbloqueadoExplosiva;
 
     private bool powerUpAumentarVida;
-    private bool powerUpChalecoAntiGolpes;
+    public bool powerUpChalecoAntiGolpes;
     private bool powerUpDobleDanio;
 
     public GameObject logoBlindaje;
@@ -257,7 +259,23 @@ public class Jugador : MonoBehaviour {
         }
         if (vida <= 0)
         {
-            SceneManager.LoadScene("GameOver");
+            if (vida <= 0 && oportunidades <= 0)
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+            else
+            {
+                if (posRespawn != null)
+                {
+                    transform.position = posRespawn.position;
+                    oportunidades = oportunidades - 1;
+                    vida = 100;
+                }
+                else
+                {
+                    SceneManager.LoadScene("GameOver");
+                }
+            }
         }
         if (textMunicionPelotaDeHielo != null)
         {
@@ -282,7 +300,11 @@ public class Jugador : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.tag == "ZonaRespawn")
+        {
+            posRespawn = other.gameObject.transform;
+            other.gameObject.SetActive(false);
+        }
         if(other.tag == "PoderInmune")
         {
             other.gameObject.SetActive(false);

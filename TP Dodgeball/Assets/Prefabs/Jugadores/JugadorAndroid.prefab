@@ -1457,7 +1457,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470205743444268}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -32.677357, y: -10.495934, z: 2.2121212}
+  m_LocalPosition: {x: -10.73798, y: 18.032637, z: 41.605606}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4065022229228940}
@@ -2856,6 +2856,8 @@ MonoBehaviour:
   jugadorWindows: 0
   jugadorAndroid: 1
   rigJugador: {fileID: 54271660246528544}
+  oportunidades: 0
+  posRespawn: {fileID: 4149835820998730}
   textVida: {fileID: 114515369842329738}
   textPuntos: {fileID: 114599505572840720}
   textBlindaje: {fileID: 114033230824359206}
@@ -2874,6 +2876,7 @@ MonoBehaviour:
   desbloqueadoDanzarina: {fileID: 1086429872738368}
   desbloqueadoFragmentadora: {fileID: 1098105543462594}
   desbloqueadoExplosiva: {fileID: 1682645276413936}
+  powerUpChalecoAntiGolpes: 1
   logoBlindaje: {fileID: 1273709035311602}
   logoDobleDanio: {fileID: 1327307856826502}
   EnTienda: 0
