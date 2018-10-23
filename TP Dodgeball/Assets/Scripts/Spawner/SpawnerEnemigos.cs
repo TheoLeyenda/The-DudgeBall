@@ -22,12 +22,16 @@ public class SpawnerEnemigos : MonoBehaviour {
     public int tipoEnemigo;
     public int patronEnemigo;
     public float rangoVisionEnemigo;
+    public bool EvitarCreacionInstantanea;
     void Start() {
         auxDileyCreacion = dileyCreacion;
         TOPE_CREACION = cantEnemigosInicial;
         enFuncionamiento = true;
         TOPE_MAXIMO = poolEnemigo.count - 50;
-        dileyCreacion = 0;
+        if (!EvitarCreacionInstantanea)
+        {
+            dileyCreacion = 0;
+        }
     }
 
     // Update is called once per frame

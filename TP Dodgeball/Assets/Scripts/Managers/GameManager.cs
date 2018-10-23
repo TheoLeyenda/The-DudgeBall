@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
     private bool entrarRonda;
     [HideInInspector]
     public bool pasarNivel = false;
+
     public static GameManager GetGameManager()
     {
         return instanciaGameManager;
@@ -78,13 +79,16 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+
         if(mapaActual == "Laberinto")
         {
             if (TextRonda != null)
             {
                 TextRonda.text = "";
             }
+
         }
+
         if(historia && !supervivencia && pasarNivel == true)
         {
             if(muertes >= limiteMuertes)
