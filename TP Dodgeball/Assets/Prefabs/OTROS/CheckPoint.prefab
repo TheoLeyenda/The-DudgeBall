@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4670287607145006}
   - component: {fileID: 95434573734978264}
   - component: {fileID: 65289428741051222}
+  - component: {fileID: 114181959472549352}
   m_Layer: 0
   m_Name: CheckPoint
   m_TagString: ZonaRespawn
@@ -116,9 +117,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1561107723486474}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -31.780003, y: 0.6000004, z: -17.93}
-  m_LocalScale: {x: 0.5000005, y: 0.5, z: 0.5000005}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -41.136517, y: -0.50736237, z: 11.34063}
+  m_LocalScale: {x: 0.50000167, y: 0.5, z: 0.50000167}
   m_Children:
   - {fileID: 4315653535337632}
   - {fileID: 4873501765897900}
@@ -302,6 +303,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114181959472549352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1561107723486474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7392ed018b66a4cb2a5888735ebbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsActivar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  objectsDesactivar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!137 &137105560065141520
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -346,8 +372,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: -0.0000071525574, y: 0.2144165, z: -0.0002746582}
-    m_Extent: {x: 0.5000005, y: 0.8493955, z: 0.00026893528}
+    m_Center: {x: 0, y: 0.21442413, z: -0.00036621094}
+    m_Extent: {x: 0.5000005, y: 0.84939307, z: 0.0002689345}
   m_DirtyAABB: 0
 --- !u!138 &138392382891108618
 FixedJoint:
