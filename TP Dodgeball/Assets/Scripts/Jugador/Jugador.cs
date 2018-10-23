@@ -260,7 +260,7 @@ public class Jugador : MonoBehaviour {
         }
         if(textBlindaje != null)
         {
-            textBlindaje.text = "Blindaje:" + (int)blindaje;
+            textBlindaje.text = "BLINDAJE:" + (int)blindaje;
         }
         if (vida <= 0)
         {
@@ -310,7 +310,7 @@ public class Jugador : MonoBehaviour {
         if(other.tag == "ZonaRespawn")
         {
             posRespawn = other.gameObject.transform;
-            other.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
         }
         if(other.tag == "PoderInmune")
         {
