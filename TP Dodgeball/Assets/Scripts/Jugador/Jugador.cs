@@ -307,10 +307,13 @@ public class Jugador : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
+        if(other.tag == "RompeObjetos")
+        {
+            SceneManager.LoadScene("GameOver");
+        }
         if(other.tag == "ZonaRespawn")
         {
             posRespawn = other.gameObject.transform;
-            //other.gameObject.SetActive(false);
         }
         if(other.tag == "PoderInmune")
         {
@@ -421,6 +424,13 @@ public class Jugador : MonoBehaviour {
     public static Jugador GetJugador()
     {
         return instanciaJugador;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Roca")
+        {
+            vida = 0;
+        }
     }
     private void OnCollisionStay(Collision collision)
     {

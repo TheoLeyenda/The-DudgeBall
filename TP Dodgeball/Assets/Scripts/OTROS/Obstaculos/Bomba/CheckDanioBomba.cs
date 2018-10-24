@@ -10,9 +10,16 @@ public class CheckDanioBomba : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            if(Jugador.GetJugador() != null)
+            if (Jugador.GetJugador() != null)
             {
-                Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                if (Jugador.GetJugador().blindaje > 0)
+                {
+                    Jugador.GetJugador().blindaje = 0;
+                }
+                else
+                {
+                    Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                }
             }
         }
     }
