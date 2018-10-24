@@ -6,9 +6,13 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
 
     // Use this for initialization
     private static EstructuraDatosAuxiliares estructuraDatosAuxiliares;
+    [HideInInspector]
+    public bool Guardar;
+    [HideInInspector]
+    public bool soloUnaVez= true;
     private void Awake()
     {
-        //entrarRonda = true;
+        DontDestroyOnLoad(gameObject);
         if (estructuraDatosAuxiliares == null)
         {
             estructuraDatosAuxiliares = this;
@@ -22,7 +26,6 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
     {
         return estructuraDatosAuxiliares;
     }
-
 
     public struct datosJugador
     {
@@ -54,7 +57,7 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
     [HideInInspector]
     public datosJugador DatosJugador;
 
-    public void setValoresDatosJugador(Jugador jugador)
+    public void SetDatosJugador(Jugador jugador)
     {
         DatosJugador.TOPE_MUNICION = jugador.GetTOPEMUNICION();
         DatosJugador.vida = jugador.vida;
@@ -80,6 +83,31 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
         DatosJugador.dileyActivacion = jugador.GetDileyActivacion();
         DatosJugador.oportunidades = jugador.oportunidades;
     }
-   
+
+    public void SetValoresDelJugador(Jugador jugador)
+    {
+        jugador.SetTOPEMUNICION(DatosJugador.TOPE_MUNICION);
+        jugador.vida = DatosJugador.vida;
+        jugador.maxVida = DatosJugador.maxVida;
+        jugador.blindaje = DatosJugador.blindaje;
+        jugador.tipoPelota = DatosJugador.tipoPelota;
+        jugador.SetPuntos(DatosJugador.puntos);
+        jugador.SetMunicionPelotaDeHielo(DatosJugador.municionPelotaDeHielo);
+        jugador.SetMunicionPelotaDeFuego(DatosJugador.municionPelotaDeFuego);
+        jugador.SetMunicionFragmentadora(DatosJugador.municionPelotaFragmentadora);
+        jugador.SetMunicionDanzarina(DatosJugador.municionPelotaDanzarina);
+        jugador.SetMunicionExplociva(DatosJugador.municionPelotaExplosiva);
+        jugador.SetChalecoAntiGolpes(DatosJugador.powerUpChalecoAntiGolpes);
+        jugador.SetDobleDanio(DatosJugador.powerUpDobleDanio);
+        jugador.SetInmune(DatosJugador.Inmune);
+        jugador.SetDoblePuntuacion(DatosJugador.doblePuntuacion);
+        jugador.SetInstaKill(DatosJugador.InstaKill);
+        jugador.SetActivarInstaKill(DatosJugador.activoInstaKill);
+        jugador.SetCountInmune(DatosJugador.contInmune);
+        jugador.SetCountDoblePuntiacion(DatosJugador.contDoblePuntuacion);
+        jugador.SetCountInstaKill(DatosJugador.contInstaKill);
+        jugador.SetDileyActivacion(DatosJugador.dileyActivacion);
+        jugador.oportunidades = DatosJugador.oportunidades;
+    }
 
 }

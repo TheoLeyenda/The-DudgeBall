@@ -114,6 +114,7 @@ public class Jugador : MonoBehaviour {
         puntos = puntos - _puntos;
     }
     void Start() {
+        
         EnTienda = false;
         contInmune = 0;
         danioAdicionalPelotaComun = 0;
@@ -132,6 +133,15 @@ public class Jugador : MonoBehaviour {
         instanciaJugador = this;
         tipoPelota = 1;
         municionPelotaDeHielo = 0;
+        //Debug.Log(vida);
+        if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().soloUnaVez)
+        {
+            EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().soloUnaVez = false;
+        }
+        else
+        {
+            EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetValoresDelJugador(Jugador.GetJugador());
+        }
     }
 
     // Update is called once per frame
@@ -313,6 +323,7 @@ public class Jugador : MonoBehaviour {
         }
         if(other.tag == "ZonaRespawn")
         {
+            EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetDatosJugador(Jugador.GetJugador());
             posRespawn = other.gameObject.transform;
         }
         if(other.tag == "PoderInmune")
@@ -429,7 +440,14 @@ public class Jugador : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Roca")
         {
-            vida = 0;
+            if (blindaje > 0)
+            {
+                blindaje = 0;
+            }
+            else
+            {
+                vida = 0;
+            }
         }
     }
     private void OnCollisionStay(Collision collision)
@@ -539,6 +557,70 @@ public class Jugador : MonoBehaviour {
     public void RestarMunicionHielo()
     {
         municionPelotaDeHielo = municionPelotaDeHielo - 1;
+    }
+    public void SetTOPEMUNICION(int topeMunicion)
+    {
+        TOPE_MUNICION = topeMunicion;
+    }
+    public void SetMunicionPelotaDeHielo(int municion)
+    {
+        municionPelotaDeHielo = municion;
+    }
+    public void SetMunicionPelotaDeFuego(int municion)
+    {
+        municionPelotaDeFuego = municion;
+    }
+    public void SetMunicionDanzarina(int municion)
+    {
+        municionPelotaDanzarina = municion;
+    }
+    public void SetMunicionFragmentadora(int municion)
+    {
+        municionPelotaExplosiva = municion;
+    }
+    public void SetChalecoAntiGolpes(bool _chalecoAntiGolpes)
+    {
+        powerUpChalecoAntiGolpes = _chalecoAntiGolpes;
+    }
+    public void SetDobleDanio(bool _dobleDanio)
+    {
+        powerUpDobleDanio = _dobleDanio;
+    }
+    public void SetInmune(bool _inmune)
+    {
+        Inmune = _inmune;
+    }
+    public void SetDoblePuntuacion(bool _doblePuntuacion)
+    {
+        doblePuntuacion = _doblePuntuacion;
+    }
+    public void SetInstaKill(bool _instaKill)
+    {
+        InstaKill = _instaKill;
+    }
+    public void SetCountInmune(float _contInmune)
+    {
+        contInmune = _contInmune;
+    }
+    public void SetCountDoblePuntiacion(float _countDoblePuntuacion)
+    {
+        contDoblePuntuacion = _countDoblePuntuacion;
+    }
+    public void SetMunicionExplociva(int municion)
+    {
+        municionPelotaExplosiva = municion;
+    }
+    public void SetDileyActivacion(float diley)
+    {
+        dileyActivacion = diley;
+    }
+    public void SetCountInstaKill(float _contInstaKill)
+    {
+        contInstaKill = _contInstaKill;
+    }
+    public void SetPuntos(int _puntos)
+    {
+        puntos = _puntos;
     }
     public void RestarMunicionFragmentadora()
     {
