@@ -66,7 +66,7 @@ public class Jugador : MonoBehaviour {
     public GameObject desbloqueadoExplosiva;
 
     private bool powerUpAumentarVida;
-    public bool powerUpChalecoAntiGolpes;
+    private bool powerUpChalecoAntiGolpes;
     private bool powerUpDobleDanio;
 
     public GameObject logoBlindaje;
@@ -122,7 +122,7 @@ public class Jugador : MonoBehaviour {
         danioAdicionalPelotaExplosiva = 0;
         danioAdicionalPelotaFuego = 0;
         danioAdicionalPelotaHielo = 0;
-        blindaje = 0;
+        //blindaje = 0;
         if (textBlindaje != null)
         {
             textBlindaje.gameObject.SetActive(false);
@@ -251,7 +251,7 @@ public class Jugador : MonoBehaviour {
             powerUpAumentarVida = false;
 
         }
-        if(powerUpChalecoAntiGolpes)
+        if(powerUpChalecoAntiGolpes || blindaje>0)
         {
             logoBlindaje.SetActive(true);
             textBlindaje.gameObject.SetActive(true);
