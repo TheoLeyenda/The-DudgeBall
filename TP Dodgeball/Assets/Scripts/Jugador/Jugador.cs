@@ -134,13 +134,16 @@ public class Jugador : MonoBehaviour {
         tipoPelota = 1;
         municionPelotaDeHielo = 0;
         //Debug.Log(vida);
-        if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().soloUnaVez)
+        if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares() != null)
         {
-            EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().soloUnaVez = false;
-        }
-        else
-        {
-            EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetValoresDelJugador(Jugador.GetJugador());
+            if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().soloUnaVez)
+            {
+                EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().soloUnaVez = false;
+            }
+            else
+            {
+                EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetValoresDelJugador(Jugador.GetJugador());
+            }
         }
     }
 
@@ -323,7 +326,10 @@ public class Jugador : MonoBehaviour {
         }
         if(other.tag == "ZonaRespawn")
         {
-            EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetDatosJugador(Jugador.GetJugador());
+            if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares() != null)
+            {
+                EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetDatosJugador(Jugador.GetJugador());
+            }
             posRespawn = other.gameObject.transform;
         }
         if(other.tag == "PoderInmune")
@@ -449,6 +455,7 @@ public class Jugador : MonoBehaviour {
                 vida = 0;
             }
         }
+        
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -472,6 +479,10 @@ public class Jugador : MonoBehaviour {
     private void OnTriggerStay(Collider other)
     {
         //AQUI RESIVO DAÑO
+        if (other.gameObject.tag == "ObjetoDestruible")
+        {
+            other.gameObject.SetActive(false);
+        }
         if (!Inmune)
         {
             if (other.tag == "Pinchos")

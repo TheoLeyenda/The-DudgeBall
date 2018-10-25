@@ -8,11 +8,16 @@ public class ActivarDesactivarGameObjects : MonoBehaviour {
     // Use this for initialization
     public GameObject[] objectsActivar;
     public GameObject[] objectsDesactivar;
+    public bool hacerloSolido;
     public void Activar()
     {
         for (int i = 0; i < objectsActivar.Length; i++)
         {
             objectsActivar[i].SetActive(true);
+            if (hacerloSolido)
+            {
+                objectsActivar[i].GetComponent<BoxCollider>().isTrigger = false;
+            }
         }
         for(int i = 0; i< objectsDesactivar.Length; i++)
         {
@@ -24,6 +29,15 @@ public class ActivarDesactivarGameObjects : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
+            Activar();
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Entre");
+        if (collision.gameObject.tag == "Player")
+        {
+            
             Activar();
         }
     }
