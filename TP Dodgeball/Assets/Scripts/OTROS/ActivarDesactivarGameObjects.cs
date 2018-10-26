@@ -27,13 +27,4 @@ public class ActivarDesactivarGameObjects : MonoBehaviour {
             Activar();
         }
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Entre");
-        if (collision.gameObject.tag == "Player")
-        {
-            
-            Activar();
-        }
-    }
 }

@@ -12,7 +12,10 @@ public class CheckVivoMuertoSpawnerEnemigo : MonoBehaviour {
         if(unaVez)
         {
             unaVez = false;
-            LaberintoManager.GetLaberintoManager().SumarSpawnerDestruidos(zona);
+            if (LaberintoManager.GetLaberintoManager() != null)
+            {
+                LaberintoManager.GetLaberintoManager().SumarSpawnerDestruidos(zona);
+            }
         }
     }
 }
