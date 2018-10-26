@@ -66,7 +66,7 @@ public class Jugador : MonoBehaviour {
     public GameObject desbloqueadoExplosiva;
 
     private bool powerUpAumentarVida;
-    private bool powerUpChalecoAntiGolpes;
+    public bool powerUpChalecoAntiGolpes;
     private bool powerUpDobleDanio;
 
     public GameObject logoBlindaje;
@@ -127,13 +127,14 @@ public class Jugador : MonoBehaviour {
         {
             textBlindaje.gameObject.SetActive(false);
         }
+        Inmune = false;
         contar = true;
         puntos = 0;
         textVida.text = ""+((int)vida);
         instanciaJugador = this;
         tipoPelota = 1;
         municionPelotaDeHielo = 0;
-        //Debug.Log(vida);
+        Debug.Log(vida);
         if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares() != null)
         {
             if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().soloUnaVez)
@@ -254,7 +255,7 @@ public class Jugador : MonoBehaviour {
             powerUpAumentarVida = false;
 
         }
-        if(powerUpChalecoAntiGolpes || blindaje>0)
+        if(powerUpChalecoAntiGolpes)
         {
             logoBlindaje.SetActive(true);
             textBlindaje.gameObject.SetActive(true);
@@ -494,6 +495,17 @@ public class Jugador : MonoBehaviour {
                 else
                 {
                     vida = vida - pinchos.danio;
+                }
+            }
+            if (other.gameObject.tag == "Corredor")
+            {
+                if (blindaje > 0)
+                {
+                    blindaje = blindaje - 1;
+                }
+                else
+                {
+                    vida = vida - 1;
                 }
             }
         }

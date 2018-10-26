@@ -71,7 +71,17 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
         DatosJugador.municionPelotaDanzarina = jugador.GetMunicionPelotaDanzarina();
         DatosJugador.municionPelotaExplosiva = jugador.GetMunicionPelotaExplosiva();
         DatosJugador.powerUpAumentarVida = jugador.GetPowerUpAumentarVida();
-        DatosJugador.powerUpChalecoAntiGolpes = jugador.GetPowerUpChalecoAntiGolpes();
+        if (Jugador.GetJugador() != null)
+        {
+            if(Jugador.GetJugador().blindaje> 0)
+            {
+                DatosJugador.powerUpChalecoAntiGolpes = true;
+            }
+            else
+            {
+                DatosJugador.powerUpChalecoAntiGolpes = false;
+            }
+        }
         DatosJugador.powerUpDobleDanio = jugador.GetPowerUpDobleDanio();
         DatosJugador.Inmune = jugador.GetInmune();
         DatosJugador.doblePuntuacion = jugador.GetDoblePuntuacion();

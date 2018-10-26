@@ -368,6 +368,10 @@ Prefab:
       propertyPath: rangoVisionEnemigo
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
   m_IsPrefabAsset: 0
@@ -608,6 +612,10 @@ Prefab:
         type: 2}
       propertyPath: rangoVisionEnemigo
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
@@ -11508,6 +11516,10 @@ Prefab:
       propertyPath: rangoVisionEnemigo
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
   m_IsPrefabAsset: 0
@@ -11675,6 +11687,7 @@ MonoBehaviour:
   objectsDesactivar:
   - {fileID: 114203164}
   - {fileID: 927365975}
+  hacerloSolido: 0
 --- !u!65 &532952024
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11978,6 +11991,10 @@ Prefab:
       propertyPath: jugadorWindows
       value: 
       objectReference: {fileID: 1132594410}
+    - target: {fileID: 1632990167407614, guid: 3f3868e96ab38e947b3e5f3b718db7e8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f3868e96ab38e947b3e5f3b718db7e8, type: 2}
   m_IsPrefabAsset: 0
@@ -22850,7 +22867,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4159275932243670, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -24.13
+      value: -23.8
       objectReference: {fileID: 0}
     - target: {fileID: 4159275932243670, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -22858,7 +22875,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4159275932243670, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5.61
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4159275932243670, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
       propertyPath: m_LocalRotation.x
@@ -22948,6 +22965,16 @@ Prefab:
         type: 2}
       propertyPath: blindaje
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114110077433928234, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: vida
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114110077433928234, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: powerUpChalecoAntiGolpes
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
@@ -25017,6 +25044,10 @@ Prefab:
         type: 2}
       propertyPath: rangoVisionEnemigo
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
@@ -30625,6 +30656,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
   m_IsPrefabAsset: 0
@@ -30761,6 +30796,10 @@ Prefab:
         type: 2}
       propertyPath: rangoVisionEnemigo
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
@@ -31090,6 +31129,10 @@ Prefab:
     - target: {fileID: 4225745922300136, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
@@ -37871,6 +37914,7 @@ MonoBehaviour:
   - {fileID: 994700637}
   - {fileID: 762533990}
   - {fileID: 300478743}
+  hacerloSolido: 0
 --- !u!1 &1888329645
 GameObject:
   m_ObjectHideFlags: 0
@@ -38164,6 +38208,10 @@ Prefab:
     - target: {fileID: 4225745922300136, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_RootOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
@@ -38707,6 +38755,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 5fe9e47038dc79e4dba1d4f2006dece3,
         type: 3}
+    - target: {fileID: 114281892796754896, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: powerUpChalecoAntiGolpes
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7315278db52f9a42a0a2eef308e8161, type: 2}
   m_IsPrefabAsset: 0

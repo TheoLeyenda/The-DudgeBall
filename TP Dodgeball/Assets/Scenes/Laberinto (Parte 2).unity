@@ -325,7 +325,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4431143135737604, guid: c93b570c65dcecc44a67c31646c42aeb, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114283535170924054, guid: c93b570c65dcecc44a67c31646c42aeb,
         type: 2}
@@ -664,6 +664,86 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CerrarTienda
       objectReference: {fileID: 0}
+    - target: {fileID: 114048312867788452, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114048312867788452, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114534401701536748, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114534401701536748, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114753884148765052, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114753884148765052, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114989770139194688, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114989770139194688, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114113104008482064, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114113104008482064, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114926994431098596, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114926994431098596, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114161861012832588, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114161861012832588, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114237138082313474, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114237138082313474, guid: 41cda1ae51cbd36489338f57488d7dc4,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
   m_IsPrefabAsset: 0
@@ -769,6 +849,86 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: AbrirCamvasTienda
+      objectReference: {fileID: 0}
+    - target: {fileID: 114187713877540322, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114187713877540322, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114320357413833138, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114320357413833138, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114568247768119148, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114568247768119148, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114619410769397262, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114619410769397262, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114894809708024970, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114894809708024970, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114582278521409584, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114582278521409584, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114650616412030924, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114650616412030924, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114084426860697630, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2140046737}
+    - target: {fileID: 114084426860697630, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Comprar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7315278db52f9a42a0a2eef308e8161, type: 2}
@@ -941,7 +1101,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1257770240
 Prefab:
