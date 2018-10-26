@@ -134,7 +134,6 @@ public class Jugador : MonoBehaviour {
         instanciaJugador = this;
         tipoPelota = 1;
         municionPelotaDeHielo = 0;
-        Debug.Log(vida);
         if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares() != null)
         {
             if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().soloUnaVez)

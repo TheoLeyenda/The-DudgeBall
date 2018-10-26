@@ -15,7 +15,7 @@ public class LaberintoManager : MonoBehaviour
     public Text objetivoAndroid;
     public GameObject imagenTiradorAndroid;
     public GameObject imagenCorredorAndroid;
-    public int ZonaActual = 0;
+    public int ZonaActual;
 
     private static LaberintoManager instanciaLaberintoManager;
     // Use this for initialization
@@ -49,15 +49,18 @@ public class LaberintoManager : MonoBehaviour
         switch (ZonaActual)
         {
             case 0:
-                CheckZona1();
+                CheckZona0();
                 break;
             case 1:
-                CheckZona2();
+                CheckZona1();
                 break;
             case 2:
-                CheckZona3();
+                CheckZona2();
                 break;
             case 3:
+                CheckZona3();
+                break;
+            case 4:
                 CheckZona4();
                 break;
         }
@@ -67,7 +70,7 @@ public class LaberintoManager : MonoBehaviour
     {
         cantSpawnersDestruidosPorZona[zona]++;
     }
-    public void CheckZona1()
+    public void CheckZona0()
     {
         if (Jugador.GetJugador().jugadorWindows)
         {
@@ -108,7 +111,7 @@ public class LaberintoManager : MonoBehaviour
             }
         }
     }
-    public void CheckZona2()
+    public void CheckZona1()
     {
         if (Jugador.GetJugador().jugadorWindows)
         {
@@ -149,7 +152,7 @@ public class LaberintoManager : MonoBehaviour
             }
         }
     }
-    public void CheckZona3()
+    public void CheckZona2()
     {
         if (Jugador.GetJugador().jugadorWindows)
         {
@@ -190,7 +193,7 @@ public class LaberintoManager : MonoBehaviour
             }
         }
     }
-    public void CheckZona4()
+    public void CheckZona3()
     {
         if (Jugador.GetJugador().jugadorWindows)
         {
@@ -230,5 +233,47 @@ public class LaberintoManager : MonoBehaviour
                 }
             }
         }
-    }//MISMO CODIGO CAMBIO LOS SUB INDICES DE LOS ARRAYS(PARA COPIARLO Y GENERAR EL SIGUIENTE CHECKZONA COPIAR PEGAR Y CAMBIAR ESTOS SUB INDICES)
+    }
+    public void CheckZona4()
+    {
+        if (Jugador.GetJugador().jugadorWindows)
+        {
+            if (objetivoWindows != null && imagenCorredorWindows != null && imagenTiradorWindows != null)
+            {
+                objetivoWindows.text = cantSpawnersDestruidosPorZona[4] + "/" + cantSpawnersPorZona[4];
+                imagenCorredorWindows.SetActive(true);
+                imagenTiradorWindows.SetActive(true);
+            }
+            if (Jugador.GetJugador().jugadorAndroid)
+            {
+                if (objetivoAndroid != null && imagenCorredorAndroid != null && imagenTiradorAndroid != null)
+                {
+                    objetivoAndroid.text = cantSpawnersDestruidosPorZona[4] + "/" + cantSpawnersPorZona[4] + " " + imagenCorredorAndroid + " " + imagenTiradorAndroid;
+                    imagenCorredorAndroid.SetActive(true);
+                    imagenTiradorAndroid.SetActive(true);
+                }
+            }
+            if (cantSpawnersPorZona[4] <= cantSpawnersDestruidosPorZona[4])
+            {
+                ZonaActual++;
+                if (puertas[4] != null)
+                {
+                    puertas[4].SetActive(false);
+                }
+                if (Jugador.GetJugador().jugadorWindows)
+                {
+                    objetivoWindows.text = " ";
+                    imagenCorredorWindows.SetActive(false);
+                    imagenTiradorWindows.SetActive(false);
+                }
+                if (Jugador.GetJugador().jugadorAndroid)
+                {
+                    objetivoAndroid.text = " ";
+                    imagenCorredorAndroid.SetActive(false);
+                    imagenTiradorAndroid.SetActive(false);
+                }
+            }
+        }
+    }
+    //MISMO CODIGO CAMBIO LOS SUB INDICES DE LOS ARRAYS(PARA COPIARLO Y GENERAR EL SIGUIENTE CHECKZONA COPIAR PEGAR Y CAMBIAR ESTOS SUB INDICES)
 }
