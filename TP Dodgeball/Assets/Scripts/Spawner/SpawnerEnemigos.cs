@@ -102,13 +102,15 @@ public class SpawnerEnemigos : MonoBehaviour {
             {
                 if (tipoEnemigo == 1)
                 {
+                    
                     GameObject go = poolEnemigo.GetObject();
                     Corredor corredor = go.GetComponent<Corredor>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), 0, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
                     corredor.Prendido();
                     corredor.velocidad = velocidadEnemigo;
                     corredor.PatronDeMovimiento = patronEnemigo;
+                   
                     if (GameManager.GetGameManager().GetRonda() > 0)
                     {
                         corredor.SumarVelocidad();
@@ -120,7 +122,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                 {
                     GameObject go = poolEnemigo.GetObject();
                     Tirador tirador = go.GetComponent<Tirador>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), 0, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
                     tirador.Prendido();
                     tirador.velocidad = velocidadEnemigo;

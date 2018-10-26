@@ -153,8 +153,8 @@ GameObject:
   - component: {fileID: 4037735106990678}
   - component: {fileID: 114335460605476496}
   - component: {fileID: 65782127713651144}
-  - component: {fileID: 114896843710353756}
   - component: {fileID: 114433916577720632}
+  - component: {fileID: 114896843710353756}
   - component: {fileID: 114623894331334960}
   m_Layer: 0
   m_Name: SpawnerEnemigoTiradorVisible
@@ -364,15 +364,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375511096941506}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 15.09, y: 19.46, z: 51.58}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -19.6, y: 19.46, z: 2.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4336549284294112}
   - {fileID: 4469213465256140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4050603343676712
 Transform:
   m_ObjectHideFlags: 1
@@ -1012,7 +1012,7 @@ MonoBehaviour:
   dileyCreacion: 30
   rangoX: 0
   rangoZ: 0
-  velocidadEnemigo: 2
+  velocidadEnemigo: 3
   IncrementoCreacion: 2
   tipoEnemigo: 2
   patronEnemigo: 1
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a67ae44706447446abecff1958f2c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zona: 2
+  zona: 0
 --- !u!114 &114896843710353756
 MonoBehaviour:
   m_ObjectHideFlags: 1

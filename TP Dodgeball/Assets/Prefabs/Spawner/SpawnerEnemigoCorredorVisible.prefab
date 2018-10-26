@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 114357528562018418}
   - component: {fileID: 65070037355188606}
   - component: {fileID: 114471561585266810}
+  - component: {fileID: 114415103357349048}
   m_Layer: 0
   m_Name: SpawnerEnemigoCorredorVisible
   m_TagString: SpawnerEnemigo
@@ -326,8 +327,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197206476974330}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.2006226, y: 19.46, z: -4.7}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -18.8, y: 19.46, z: 7.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4878438714552276}
@@ -336,7 +337,7 @@ Transform:
   - {fileID: 4312769897302094}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4175284005422334
 Transform:
   m_ObjectHideFlags: 1
@@ -767,11 +768,12 @@ MonoBehaviour:
   dileyCreacion: 30
   rangoX: 0
   rangoZ: 0
-  velocidadCreacion: 3
+  velocidadEnemigo: 3
   IncrementoCreacion: 1
   tipoEnemigo: 1
   patronEnemigo: 1
   rangoVisionEnemigo: 100
+  EvitarCreacionInstantanea: 0
 --- !u!114 &114357528562018418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -803,7 +805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pelota: {fileID: 1191930640314322, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
-  count: 50
+  count: 75
 --- !u!114 &114396542579211580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -817,6 +819,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pelota: {fileID: 1134810615268926, guid: f1edec69d96a9e54382f31568f44e217, type: 2}
   count: 3
+--- !u!114 &114415103357349048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1197206476974330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a67ae44706447446abecff1958f2c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zona: 0
 --- !u!114 &114471561585266810
 MonoBehaviour:
   m_ObjectHideFlags: 1
