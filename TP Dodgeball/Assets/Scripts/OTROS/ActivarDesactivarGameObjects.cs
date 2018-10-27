@@ -12,11 +12,17 @@ public class ActivarDesactivarGameObjects : MonoBehaviour {
     {
         for (int i = 0; i < objectsActivar.Length; i++)
         {
-            objectsActivar[i].SetActive(true);
+            if (objectsActivar[i] != null)
+            {
+                objectsActivar[i].SetActive(true);
+            }
         }
         for(int i = 0; i< objectsDesactivar.Length; i++)
         {
-            objectsDesactivar[i].SetActive(false);
+            if (objectsDesactivar[i] != null)
+            {
+                objectsDesactivar[i].SetActive(false);
+            }
         }
         gameObject.SetActive(false);
     }
