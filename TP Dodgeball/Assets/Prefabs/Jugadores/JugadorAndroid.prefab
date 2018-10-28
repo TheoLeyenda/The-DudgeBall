@@ -5183,6 +5183,7 @@ MonoBehaviour:
   menuOpciones: {fileID: 1570196274429462}
   menuArmas: {fileID: 1652146445297762}
   menuControles: {fileID: 1847242688161668}
+  menuObjetivo: {fileID: 1488547528615414}
 --- !u!114 &114509707555517938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6669,7 +6670,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114193647098287176}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114500439527572440}
+        m_MethodName: ActivarMenuObjetivo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114789712163247974

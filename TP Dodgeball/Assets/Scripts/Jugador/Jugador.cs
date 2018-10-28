@@ -328,7 +328,14 @@ public class Jugador : MonoBehaviour {
         {
             if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares() != null)
             {
+                
                 EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetDatosJugador(Jugador.GetJugador());
+                if (blindaje > 0)
+                {
+                    EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().DatosJugador.blindaje = blindaje;
+                    logoBlindaje.SetActive(true);
+                    textBlindaje.gameObject.SetActive(true);
+                }
             }
             posRespawn = other.gameObject.transform;
         }
