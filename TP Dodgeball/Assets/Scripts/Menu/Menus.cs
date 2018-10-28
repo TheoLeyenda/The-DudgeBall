@@ -10,6 +10,7 @@ public class Menus : MonoBehaviour {
     public GameObject menuArmas;
     public GameObject menuControles;
     public GameObject menuObjetivo;
+    public GameObject menuMapa;
     private bool activar_Desactivar;
     void Start() {
         activar_Desactivar = false;
@@ -65,6 +66,7 @@ public class Menus : MonoBehaviour {
                     menuOpciones.SetActive(false);
                     menuControles.SetActive(false);
                     menuObjetivo.SetActive(false);
+                    menuMapa.SetActive(false);
                     if (GameManager.GetGameManager() != null)
                     {
                         GameManager.GetGameManager().pausa = true;
@@ -82,6 +84,7 @@ public class Menus : MonoBehaviour {
                     menuOpciones.SetActive(false);
                     menuControles.SetActive(false);
                     menuObjetivo.SetActive(false);
+                    menuMapa.SetActive(false);
                     if (GameManager.GetGameManager() != null)
                     {
                         GameManager.GetGameManager().pausa = true;
@@ -90,6 +93,7 @@ public class Menus : MonoBehaviour {
             }
         }
     }
+   
     public void ActivarMenuControles()
     {
         if(menuControles != null)
@@ -98,6 +102,7 @@ public class Menus : MonoBehaviour {
             menuPausa.SetActive(false);
             menuOpciones.SetActive(false);
             menuObjetivo.SetActive(false);
+            menuMapa.SetActive(false);
             if (GameManager.GetGameManager() != null)
             {
                 GameManager.GetGameManager().pausa = true;
@@ -124,6 +129,7 @@ public class Menus : MonoBehaviour {
             menuOpciones.SetActive(true);
             menuControles.SetActive(false);
             menuObjetivo.SetActive(false);
+            menuMapa.SetActive(false);
             if (GameManager.GetGameManager() != null)
             {
                 GameManager.GetGameManager().pausa = true;
@@ -138,6 +144,7 @@ public class Menus : MonoBehaviour {
             menuOpciones.SetActive(false);
             menuControles.SetActive(false);
             menuObjetivo.SetActive(false);
+            menuMapa.SetActive(false);
             if (GameManager.GetGameManager() != null)
             {
                 GameManager.GetGameManager().pausa = true;
@@ -152,11 +159,26 @@ public class Menus : MonoBehaviour {
             menuPausa.SetActive(false);
             menuOpciones.SetActive(false);
             menuControles.SetActive(false);
+            menuMapa.SetActive(false);
             if (GameManager.GetGameManager() != null)
             {
                 GameManager.GetGameManager().pausa = true;
             }
         }
     }
-
+    public void ActivarMenuMapa()
+    {
+        if(menuPausa != null)
+        {
+            menuObjetivo.SetActive(false);
+            menuPausa.SetActive(false);
+            menuOpciones.SetActive(false);
+            menuControles.SetActive(false);
+            menuMapa.SetActive(true);
+        }
+        if (GameManager.GetGameManager() != null)
+        {
+            GameManager.GetGameManager().pausa = true;
+        }
+    }
 }
