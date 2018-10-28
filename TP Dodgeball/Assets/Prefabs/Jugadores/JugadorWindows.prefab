@@ -789,7 +789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1346497431011844
 GameObject:
   m_ObjectHideFlags: 1
@@ -2108,7 +2108,7 @@ Transform:
   - {fileID: 4035797066655752}
   - {fileID: 4259129697234212}
   m_Father: {fileID: 4159275932243670}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4159275932243670
 Transform:
@@ -2121,11 +2121,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4093099236373242}
+  - {fileID: 4660218038739938}
   - {fileID: 4324727514633436}
   - {fileID: 4699404334652284}
   - {fileID: 224247643875102954}
   - {fileID: 4153505149556354}
-  - {fileID: 4660218038739938}
   - {fileID: 4251196174462892}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -2223,7 +2223,7 @@ Transform:
   - {fileID: 4909828209848378}
   - {fileID: 4221857866015526}
   m_Father: {fileID: 4159275932243670}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4607836375717896
 Transform:
@@ -2249,7 +2249,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4159275932243670}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4671675538283380
 Transform:
@@ -2275,7 +2275,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4159275932243670}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4736398439089546
 Transform:
@@ -3980,6 +3980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96414841caf2cc5429e542697538c203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuGeneral: {fileID: 0}
   menuPausa: {fileID: 1166600922389632}
   menuOpciones: {fileID: 1770173056181480}
   menuArmas: {fileID: 0}
@@ -7070,6 +7071,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camaraPrincipal: {fileID: 1637703172250808}
   camaraSecundaria: {fileID: 1340951559857536}
+  cosasEnPantalla:
+  - {fileID: 1867182855065890}
+  - {fileID: 1809068432086258}
+  - {fileID: 1332908090529044}
+  - {fileID: 1972656958118236}
+  - {fileID: 1145772677974906}
+  - {fileID: 1205172325929664}
+  - {fileID: 1691129007219654}
+  - {fileID: 1176652860267852}
 --- !u!114 &114924633558098186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8876,7 +8886,7 @@ RectTransform:
   - {fileID: 224305510542334870}
   - {fileID: 224110995578481076}
   m_Father: {fileID: 4159275932243670}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

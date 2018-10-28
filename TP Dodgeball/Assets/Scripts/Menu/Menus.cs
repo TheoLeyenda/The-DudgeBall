@@ -5,6 +5,7 @@ using UnityEngine;
 public class Menus : MonoBehaviour {
 
     // Use this for initialization
+    public GameObject menuGeneral;
     public GameObject menuPausa;
     public GameObject menuOpciones;
     public GameObject menuArmas;
@@ -26,7 +27,17 @@ public class Menus : MonoBehaviour {
         {
             ActivarMenuPausa();
         }
+        if(Jugador.GetJugador().jugadorAndroid)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
         ControlCursor(activar_Desactivar);
+    }
+    public void DesbloquearCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     public void ControlCursor(bool Activar_o_Desactivar)
     {
@@ -45,12 +56,38 @@ public class Menus : MonoBehaviour {
         }
         else
         {
-            if (Jugador.GetJugador() != null)
+            if (Jugador.GetJugador() != null && Jugador.GetJugador().jugadorAndroid == false)
             {
                 Jugador.GetJugador().enPausa = false;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
+        }
+    }
+    public void ActivarMenuGeneral()
+    {
+        menuGeneral.SetActive(true);
+        menuPausa.SetActive(true);
+        menuOpciones.SetActive(false);
+        menuControles.SetActive(false);
+        menuObjetivo.SetActive(false);
+        menuMapa.SetActive(false);
+        if (GameManager.GetGameManager() != null)
+        {
+            GameManager.GetGameManager().pausa = true;
+        }
+    }
+    public void DesactivarMenuGeneral()
+    {
+        menuGeneral.SetActive(false);
+        menuPausa.SetActive(false);
+        menuOpciones.SetActive(false);
+        menuControles.SetActive(false);
+        menuObjetivo.SetActive(false);
+        menuMapa.SetActive(false);
+        if (GameManager.GetGameManager() != null)
+        {
+            GameManager.GetGameManager().pausa = false;
         }
     }
     public void ActivarMenuPausa()

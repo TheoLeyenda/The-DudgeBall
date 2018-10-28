@@ -7,6 +7,7 @@ public class CambioCamara : MonoBehaviour {
     // Use this for initialization
     public GameObject camaraPrincipal;
     public GameObject camaraSecundaria;
+    public GameObject[] cosasEnPantalla;
 	void Start () {
 		
 	}
@@ -21,6 +22,16 @@ public class CambioCamara : MonoBehaviour {
         {
             camaraPrincipal.SetActive(true);
             camaraSecundaria.SetActive(false);
+            if (cosasEnPantalla != null)
+            {
+                for (int i = 0; i < cosasEnPantalla.Length; i++)
+                {
+                    if (cosasEnPantalla[i] != null)
+                    {
+                        cosasEnPantalla[i].SetActive(true);
+                    }
+                }
+            }
         }
     }
     public void PrenderCamaraSecundaria()
@@ -29,6 +40,16 @@ public class CambioCamara : MonoBehaviour {
         {
             camaraSecundaria.SetActive(true);
             camaraPrincipal.SetActive(false);
+            if (cosasEnPantalla != null)
+            {
+                for (int i = 0; i < cosasEnPantalla.Length; i++)
+                {
+                    if (cosasEnPantalla[i] != null && cosasEnPantalla[i].activeSelf == true)
+                    {
+                        cosasEnPantalla[i].SetActive(false);
+                    }
+                }
+            }
         }
     }
 }

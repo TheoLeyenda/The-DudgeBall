@@ -167,6 +167,11 @@ public class Jugador : MonoBehaviour {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+        if(jugadorAndroid && Input.GetKey(KeyCode.Mouse0))
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
     void Update() {
         if(Input.GetKey(KeyCode.Escape))
