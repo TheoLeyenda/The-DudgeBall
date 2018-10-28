@@ -8,6 +8,8 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class Jugador : MonoBehaviour {
 
     // Use this for initialization
+    [HideInInspector]
+    public bool enPausa;
     private static Jugador instanciaJugador;
     private int TOPE_MUNICION = 500;
     public float vida;
@@ -150,12 +152,12 @@ public class Jugador : MonoBehaviour {
     // Update is called once per frame
     public void ControlCursor()
     {
-        if (EnTienda || jugadorAndroid)
+        if (EnTienda || jugadorAndroid || enPausa)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-        if (!EnTienda && !jugadorAndroid)
+        if (!EnTienda && !jugadorAndroid && !enPausa)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

@@ -10,7 +10,9 @@ public class Menus : MonoBehaviour {
     public GameObject menuArmas;
     public GameObject menuControles;
     public GameObject menuObjetivo;
+    private bool activar_Desactivar;
     void Start() {
+        activar_Desactivar = false;
         if (menuPausa != null)
         {
             menuPausa.SetActive(false);
@@ -19,21 +21,71 @@ public class Menus : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+		if(Input.GetKeyDown(KeyCode.P))
+        {
+            ActivarMenuPausa();
+        }
+        ControlCursor(activar_Desactivar);
+    }
+    public void ControlCursor(bool Activar_o_Desactivar)
+    {
+        if (Activar_o_Desactivar)
+        {
+            if (Jugador.GetJugador() != null)
+            {
+                if (Jugador.GetJugador().jugadorWindows)
+                {
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    Jugador.GetJugador().enPausa = true;
+                   
+                }
+            }
+        }
+        else
+        {
+            if (Jugador.GetJugador() != null)
+            {
+                Jugador.GetJugador().enPausa = false;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+    }
     public void ActivarMenuPausa()
     {
-        if (menuArmas != null)
+        activar_Desactivar = true;
+        if (menuArmas != null && Jugador.GetJugador() != null)
         {
-            if (menuPausa != null && menuOpciones != null && menuArmas.activeSelf == false)
+            if (Jugador.GetJugador().jugadorAndroid)
             {
-                menuPausa.SetActive(true);
-                menuOpciones.SetActive(false);
-                menuControles.SetActive(false);
-                menuObjetivo.SetActive(false);
-                if (GameManager.GetGameManager() != null)
+                if (menuPausa != null && menuOpciones != null && menuArmas.activeSelf == false)
                 {
-                    GameManager.GetGameManager().pausa = true;
+                    menuPausa.SetActive(true);
+                    menuOpciones.SetActive(false);
+                    menuControles.SetActive(false);
+                    menuObjetivo.SetActive(false);
+                    if (GameManager.GetGameManager() != null)
+                    {
+                        GameManager.GetGameManager().pausa = true;
+                    }
+                }
+            }
+        }
+        if(Jugador.GetJugador() != null)
+        {
+            if(Jugador.GetJugador().jugadorWindows)
+            {
+                if (menuPausa != null && menuOpciones != null)
+                {
+                    menuPausa.SetActive(true);
+                    menuOpciones.SetActive(false);
+                    menuControles.SetActive(false);
+                    menuObjetivo.SetActive(false);
+                    if (GameManager.GetGameManager() != null)
+                    {
+                        GameManager.GetGameManager().pausa = true;
+                    }
                 }
             }
         }
@@ -54,6 +106,7 @@ public class Menus : MonoBehaviour {
     }
     public void DesactivarMenuPausa()
     {
+        activar_Desactivar = false;
         if (menuPausa != null && menuOpciones != null)
         {
             menuPausa.SetActive(false);
