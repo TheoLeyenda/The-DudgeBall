@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class SalirAplicacion : MonoBehaviour {
 
-	// Use this for initialization
+    // Use this for initialization
+    public bool DesactivarUpdate;
 	void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        if (!DesactivarUpdate)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     public void salirApp()

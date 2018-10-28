@@ -23,4 +23,15 @@ public class PasajeDeNivel : MonoBehaviour {
             }
         }
     }
+    public void pasarNivel(string nivel)
+    {
+        if (nivel != null && !NivelPorNumero)
+        {
+            SceneManager.LoadScene(nivel);
+        }
+        if (NivelPorNumero)
+        {
+            SceneManager.LoadScene(numeroNivel);
+        }
+    }
 }

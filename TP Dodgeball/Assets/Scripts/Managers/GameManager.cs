@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour {
     private bool entrarRonda;
     [HideInInspector]
     public bool pasarNivel = false;
+    [HideInInspector]
+    public bool pausa;
 
     public static GameManager GetGameManager()
     {
@@ -64,6 +66,14 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if(pausa)
+        {
+            Time.timeScale = 0;
+        }
+        if(!pausa)
+        {
+            Time.timeScale = 1;
+        }
         if (supervivencia)
         {
             for (int i = 0; i < spawnersEnemigos.Length; i++)

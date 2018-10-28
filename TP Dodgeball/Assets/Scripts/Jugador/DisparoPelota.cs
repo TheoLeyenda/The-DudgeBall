@@ -214,7 +214,10 @@ public class DisparoPelota : MonoBehaviour {
         {
             panelArmas.SetActive(true);
             contador = contador + 1;
-            Time.timeScale = 0;
+            if (GameManager.GetGameManager() != null)
+            {
+                GameManager.GetGameManager().pausa = true;
+            }
         }
         if(contador == 1)
         {
@@ -223,7 +226,11 @@ public class DisparoPelota : MonoBehaviour {
         if(contador == -1)
         {
             contador = 0;
-            Time.timeScale = 1;
+            if (GameManager.GetGameManager() != null)
+            {
+                GameManager.GetGameManager().pausa = false;
+            }
+            //Time.timeScale = 1;
         }
     }
     public bool GetEstaDisparando()

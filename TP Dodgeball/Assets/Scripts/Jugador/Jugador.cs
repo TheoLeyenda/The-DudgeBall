@@ -459,7 +459,6 @@ public class Jugador : MonoBehaviour {
     }
     private void OnCollisionStay(Collision collision)
     {
-        //AQUI RESIVO DAÑO
         if (!Inmune)
         {
             if (collision.gameObject.tag == "Corredor")
@@ -478,7 +477,6 @@ public class Jugador : MonoBehaviour {
     }
     private void OnTriggerStay(Collider other)
     {
-        //AQUI RESIVO DAÑO
         if (other.gameObject.tag == "ObjetoDestruible")
         {
             other.gameObject.SetActive(false);

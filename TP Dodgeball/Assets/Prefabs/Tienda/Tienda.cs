@@ -85,13 +85,13 @@ public class Tienda : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(camvasTiendaAndroid.activeSelf == true || camvasTiendaWindows.activeSelf == true)
+        if(camvasTiendaAndroid.activeSelf == true || camvasTiendaWindows.activeSelf == true && GameManager.GetGameManager() != null)
         {
-            Time.timeScale = 0;
+            GameManager.GetGameManager().pausa = true;
         }
         else
         {
-            Time.timeScale = 1;
+            //GameManager.GetGameManager().pausa = false;
         }
        
     }
@@ -138,7 +138,10 @@ public class Tienda : MonoBehaviour
             }
 
         }
-        Time.timeScale = 0;
+        if (GameManager.GetGameManager() != null)
+        {
+            GameManager.GetGameManager().pausa = true;
+        }
     }
     public void CerrarTienda()
     {
@@ -160,7 +163,10 @@ public class Tienda : MonoBehaviour
                 menuArmasAndroid.SetActive(false);
             }
         }
-        Time.timeScale = 1;
+        if (GameManager.GetGameManager() != null)
+        {
+            GameManager.GetGameManager().pausa = false;
+        }
         //que resiva el camvas de la tienda y la apague
     }
     public void Comprar(int queComprar)

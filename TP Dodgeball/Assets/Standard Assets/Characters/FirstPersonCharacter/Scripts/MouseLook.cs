@@ -33,23 +33,18 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         public void LookRotation(Transform character, Transform camera)
         {
+#if UNITY_STANDALONE
             //PARA LA COMPU USAR ESTO
             //float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
             //float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
-            //m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
-            //m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
-#if UNITY_STANDALONE
-            //PARA LA COMPU USAR ESTO
-            float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
-            float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
-            m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
-            m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
+            //m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
+            //m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
             //-----------------------------------
             //PARA CELULAR USAR ESTO
-            //float yRot = LookAxis.x * XSensitivity;
-            //float xRot = LookAxis.y * YSensitivity;
-            //m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
-            //m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
+            float yRot = LookAxis.x * XSensitivity;
+            float xRot = LookAxis.y * YSensitivity;
+            m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
+            m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
 #elif UNITY_EDITOR
             //(descomentar esto en caso que se quiera probar para windows)
             //float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
