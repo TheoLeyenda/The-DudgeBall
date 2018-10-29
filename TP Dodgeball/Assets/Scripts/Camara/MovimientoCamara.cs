@@ -50,5 +50,42 @@ public class MovimientoCamara : MonoBehaviour {
         dir = new Vector3(x, y, z);
         camara.transform.position = dir;
     }
+    public void Subir()
+    {
+        y++;
+        dir = new Vector3(x, y, z);
+        camara.transform.position = dir;
+    }
+    public void Bajar()
+    {
+        y--;
+        dir = new Vector3(x, y, z);
+        camara.transform.position = dir;
+    }
+    public void MoverAdelante()
+    {
+        z++;
+        dir = new Vector3(x, y, z);
+        camara.transform.position = dir;
+    }
+    public void MoverAtras()
+    {
+        z--;
+        dir = new Vector3(x, y, z);
+        camara.transform.position = dir;
+    }
+    public void MoverIzquierda()
+    {
+        x--;
+        Debug.Log(x);
+        dir = new Vector3(x, y, z);
+        camara.transform.position = dir;
+    }
+    public void MoverDerecha()
+    {
+        x++;
+        dir = new Vector3(x, y, z);
+        camara.transform.position = dir;
+    }
 }
 
