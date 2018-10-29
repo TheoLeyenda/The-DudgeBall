@@ -77,7 +77,6 @@ public class MovimientoCamara : MonoBehaviour {
     public void MoverIzquierda()
     {
         x--;
-        Debug.Log(x);
         dir = new Vector3(x, y, z);
         camara.transform.position = dir;
     }
