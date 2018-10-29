@@ -80,6 +80,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1087878306964198
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4072165781920632}
+  - component: {fileID: 114890926886061656}
+  m_Layer: 0
+  m_Name: ControladorDeTiempo (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1088256746054762
 GameObject:
   m_ObjectHideFlags: 1
@@ -766,6 +782,23 @@ GameObject:
   - component: {fileID: 114048312867788452}
   m_Layer: 5
   m_Name: Danzarina
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1339638367627046
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224313853685819786}
+  - component: {fileID: 222395699445520562}
+  - component: {fileID: 114051940239109938}
+  m_Layer: 5
+  m_Name: Tiempo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2077,6 +2110,20 @@ Transform:
   m_Father: {fileID: 4153505149556354}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4072165781920632
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087878306964198}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -14.224387, y: -585.6735, z: 1918.9695}
+  m_LocalScale: {x: 1.032258, y: 1.032258, z: 1.032258}
+  m_Children:
+  - {fileID: 224313853685819786}
+  m_Father: {fileID: 224247643875102954}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4093099236373242
 Transform:
   m_ObjectHideFlags: 1
@@ -3056,6 +3103,39 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114051940239109938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1339638367627046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 1:00
 --- !u!114 &114059126192964022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3329,7 +3409,7 @@ MonoBehaviour:
   enPausa: 0
   vida: 100
   maxVida: 100
-  blindaje: 100
+  blindaje: 0
   tipoPelota: 1
   contar: 0
   PelotaComunEnemigo: {fileID: 114021322212508882, guid: 4d98a32d261867c4a9d779440981ca97,
@@ -3342,7 +3422,7 @@ MonoBehaviour:
   jugadorWindows: 1
   jugadorAndroid: 0
   rigJugador: {fileID: 54174228304250180}
-  oportunidades: 3
+  oportunidades: 0
   posRespawn: {fileID: 4159275932243670}
   textVida: {fileID: 114267029412191732}
   textPuntos: {fileID: 114136501266789964}
@@ -3363,7 +3443,7 @@ MonoBehaviour:
   desbloqueadoDanzarina: {fileID: 1312442825207154}
   desbloqueadoFragmentadora: {fileID: 1247687772240220}
   desbloqueadoExplosiva: {fileID: 1687068525477528}
-  powerUpChalecoAntiGolpes: 1
+  powerUpChalecoAntiGolpes: 0
   logoBlindaje: {fileID: 1905644572320412}
   logoDobleDanio: {fileID: 1677067920010458}
   EnTienda: 0
@@ -7063,6 +7143,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Button
+--- !u!114 &114890926886061656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087878306964198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca216f383d3ec144783720f6270cabfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiempo: {fileID: 114051940239109938}
+  minutos: 1
+  segundos: 0
 --- !u!114 &114905355118552430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8031,6 +8125,13 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1885004625103438}
   m_CullTransparentMesh: 0
+--- !u!222 &222395699445520562
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1339638367627046}
+  m_CullTransparentMesh: 0
 --- !u!222 &222398418713399334
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -8603,7 +8704,7 @@ RectTransform:
   - {fileID: 224897871254212110}
   - {fileID: 224103770058772278}
   m_Father: {fileID: 224247643875102954}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8886,6 +8987,7 @@ RectTransform:
   - {fileID: 224881773466407684}
   - {fileID: 224898990066237466}
   - {fileID: 224305510542334870}
+  - {fileID: 4072165781920632}
   - {fileID: 224110995578481076}
   m_Father: {fileID: 4159275932243670}
   m_RootOrder: 4
@@ -9059,6 +9161,24 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224313853685819786
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1339638367627046}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1859.0018}
+  m_LocalScale: {x: 0.9687505, y: 0.96875, z: 0.9687505}
+  m_Children: []
+  m_Father: {fileID: 4072165781920632}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 105.9, y: 646.5}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224324590443036210
 RectTransform:
