@@ -11,12 +11,16 @@ public class MyScript : MonoBehaviour {
     public FixedTouchField TouchField;
 	void Start () {
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        var fps = GetComponent<RigidbodyFirstPersonController>();
-        fps.RunAxis = MoveJoystick.inputVector;
-        fps.JumpAxis = JumpButton.Pressed;
-        fps.mouseLook.LookAxis = TouchField.TouchDist;
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (MoveJoystick.gameObject.activeSelf == true)
+        {
+            var fps = GetComponent<RigidbodyFirstPersonController>();
+            fps.RunAxis = MoveJoystick.inputVector;
+            fps.JumpAxis = JumpButton.Pressed;
+            fps.mouseLook.LookAxis = TouchField.TouchDist;
+        }
+    }
 }
