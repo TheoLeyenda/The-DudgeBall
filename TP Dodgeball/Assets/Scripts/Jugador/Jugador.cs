@@ -378,7 +378,7 @@ public class Jugador : MonoBehaviour {
             {
                 desbloqueadoHielo.SetActive(true);
             }
-            //Destroy(other.gameObject);// destruyo la municion cada vez que la toco 
+            other.gameObject.SetActive(false);
         }
         if (other.tag == "PickUpFuego")
         {
@@ -392,7 +392,7 @@ public class Jugador : MonoBehaviour {
             {
                 desbloqueadoFuego.SetActive(true);
             }
-            //Destroy(other.gameObject);// destruyo la municion cada vez que la toco 
+            other.gameObject.SetActive(false);
         }
         if (other.tag == "PickUpDanzarina")
         {
@@ -406,7 +406,7 @@ public class Jugador : MonoBehaviour {
             {
                 desbloqueadoDanzarina.SetActive(true);
             }
-            //Destroy(other.gameObject);// destruyo la municion cada vez que la toco 
+            other.gameObject.SetActive(false);
         }
         if (other.tag == "PickUpFragmentadora")
         {
@@ -420,7 +420,7 @@ public class Jugador : MonoBehaviour {
             {
                 desbloqueadoFragmentadora.SetActive(true);
             }
-            //Destroy(other.gameObject);// destruyo la municion cada vez que la toco 
+            other.gameObject.SetActive(false);
         }
         if (other.tag == "PickUpExplosivo")
         {
@@ -434,8 +434,17 @@ public class Jugador : MonoBehaviour {
             {
                 desbloqueadoExplosiva.SetActive(true);
             }
+            other.gameObject.SetActive(false);
         }
-
+        if(other.tag == "PickUpVida")
+        {
+            vida = vida + 50;
+            if(vida>maxVida)
+            {
+                vida = maxVida;
+            }
+            other.gameObject.SetActive(false);
+        }
         //AQUI RESIVO DAÑO
         if (other.tag == "PelotaEnemigoComun")
         {
