@@ -327,7 +327,7 @@ Transform:
   - {fileID: 1652953949}
   - {fileID: 1752790589}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!43 &83168001
 Mesh:
@@ -2242,7 +2242,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4276590937018434, guid: 80c086db8f168ba4eba50bc7bf44b626, type: 2}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 114842823547543208, guid: 80c086db8f168ba4eba50bc7bf44b626,
         type: 2}
@@ -2539,7 +2539,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4090562596036312, guid: fce5e48f1247de34ca66774637c6ec29, type: 2}
       propertyPath: m_RootOrder
-      value: 28
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 135124308941781200, guid: fce5e48f1247de34ca66774637c6ec29,
         type: 2}
@@ -5186,6 +5186,10 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 21.3
       objectReference: {fileID: 0}
+    - target: {fileID: 1604698532157322, guid: ec31fd386a4d26f4ab5a12a38cfd1634, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec31fd386a4d26f4ab5a12a38cfd1634, type: 2}
   m_IsPrefabAsset: 0
@@ -6196,7 +6200,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1169566912
 Prefab:
@@ -7872,7 +7876,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4367237355040074, guid: 7af88a0a8fc086147aed5d1a23bc8b58, type: 2}
       propertyPath: m_RootOrder
-      value: 31
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1768908056352022, guid: 7af88a0a8fc086147aed5d1a23bc8b58, type: 2}
       propertyPath: m_Name
@@ -9681,7 +9685,7 @@ Transform:
   - {fileID: 1696209745}
   - {fileID: 268192419}
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &2096338648
 Mesh:
