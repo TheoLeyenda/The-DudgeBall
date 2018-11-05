@@ -188,7 +188,7 @@ public class Tiburon : Enemigo {
 
                 //if (diff.magnitude < 0.5f)
                 //{
-                    //id++;
+                    
                     if (id >= waypoints.Length)
                     {
                         id = 0;
@@ -229,6 +229,11 @@ public class Tiburon : Enemigo {
     public void Retirarse()
     {
         estados = States.Nadando;
+        id++;
+        if (id >= waypoints.Length)
+        {
+            id = 0;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -373,7 +378,7 @@ public class Tiburon : Enemigo {
         if (other.tag == "WaypointRandom")
         {
             float random = Random.Range(1, 100);
-            if (random > 90)
+            if (random >= 80)
             {
                 estados = States.Atacar;
             }
