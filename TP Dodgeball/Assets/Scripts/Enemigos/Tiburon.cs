@@ -28,6 +28,7 @@ public class Tiburon : Enemigo {
     public float potenciaAtaque;
     public float reducirPotenciaAtaque;
     public float reducirDanioPelotaComun;
+    public float aumentarDanioPelotaFuego;
     public float velMovimiento;
     public Transform[] waypoints;
     public PoolPelota pool;
@@ -113,7 +114,7 @@ public class Tiburon : Enemigo {
                         {
                             Jugador.GetJugador().SumarPuntos(5);
                         }
-                        vida = vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego());
+                        vida = vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego() + aumentarDanioPelotaFuego);
                     }
                     efectoFuego = 0;
                 }
@@ -131,17 +132,22 @@ public class Tiburon : Enemigo {
             {
                 velAtaque = auxVelAtaque;
                 velMovimiento = auxVelMovimiento;
+                efectoCongelado.SetActive(false);
+                efectoQuemado.SetActive(false);
+                efectoMusica.SetActive(false);
                 
             }
             if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
             {
                 efectoMusica.SetActive(false);
                 efectoQuemado.SetActive(false);
+                efectoCongelado.SetActive(false);
             }
             if (GetEstadoEnemigo() == EstadoEnemigo.quemado)
             {
                 efectoQuemado.SetActive(false);
                 efectoMusica.SetActive(false);
+                efectoCongelado.SetActive(false);
             }
         }
     }
@@ -244,7 +250,7 @@ public class Tiburon : Enemigo {
             {
                 if (Jugador.GetJugador() != null)
                 {
-                    vida = vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun()+ reducirDanioPelotaComun);
+                    vida = vida - ((GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun()) - reducirDanioPelotaComun);
                     EstaMuerto();
                     if (Jugador.GetJugador().GetDoblePuntuacion())
                     {
@@ -382,7 +388,7 @@ public class Tiburon : Enemigo {
             {
                 estados = States.Atacar;
             }
-            else
+            if(random < 80)
             {
                 id++;
                 if (id >= waypoints.Length)
@@ -390,6 +396,7 @@ public class Tiburon : Enemigo {
                     id = 0;
                 }
             }
+            random = 0;
         }
         if(other.tag == "Waypoint")
         {
