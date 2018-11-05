@@ -28,6 +28,8 @@ public class Tiburon : Enemigo {
     public float potenciaAtaque;
     public float reducirPotenciaAtaque;
     public float reducirDanioPelotaComun;
+    public float reducirDanioPelotaExplociva;
+    public float reducirDanioPelotaFragmentadora;
     public float aumentarDanioPelotaFuego;
     public float velMovimiento;
     public Transform[] waypoints;
@@ -79,6 +81,10 @@ public class Tiburon : Enemigo {
         updateHP();
         if (GetMuerto())
         {
+            if(Jugador.GetJugador()!= null)
+            {
+                Jugador.GetJugador().SumarPuntos(250);
+            }
             if (!estoyEnPool)
             {
                 gameObject.SetActive(false);
@@ -135,6 +141,7 @@ public class Tiburon : Enemigo {
                 efectoCongelado.SetActive(false);
                 efectoQuemado.SetActive(false);
                 efectoMusica.SetActive(false);
+                SetEstadoEnemigo(EstadoEnemigo.normal);
                 
             }
             if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
@@ -142,12 +149,14 @@ public class Tiburon : Enemigo {
                 efectoMusica.SetActive(false);
                 efectoQuemado.SetActive(false);
                 efectoCongelado.SetActive(false);
+                SetEstadoEnemigo(EstadoEnemigo.normal);
             }
             if (GetEstadoEnemigo() == EstadoEnemigo.quemado)
             {
                 efectoQuemado.SetActive(false);
                 efectoMusica.SetActive(false);
                 efectoCongelado.SetActive(false);
+                SetEstadoEnemigo(EstadoEnemigo.normal);
             }
         }
     }
@@ -188,18 +197,12 @@ public class Tiburon : Enemigo {
             {
                 Vector3 target = waypoints[id].position;
                 transform.LookAt(target);
-                transform.position = transform.position + transform.forward * Time.deltaTime * velMovimiento;
-
-                //Vector3 diff = target - this.transform.position;
-
-                //if (diff.magnitude < 0.5f)
-                //{
-                    
-                    if (id >= waypoints.Length)
-                    {
-                        id = 0;
-                    }
-                //}
+                transform.position = transform.position + transform.forward * Time.deltaTime * velMovimiento; 
+                if (id >= waypoints.Length)
+                {
+                    id = 0;
+                }
+                
             }
         }
         else
@@ -302,7 +305,7 @@ public class Tiburon : Enemigo {
                     {
                         Jugador.GetJugador().SumarPuntos(10);
                     }
-                    vida = vida - (GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota());
+                    vida = vida - ((GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota())- reducirDanioPelotaFragmentadora);
                     EstaMuerto();
                 }
             }
@@ -355,7 +358,7 @@ public class Tiburon : Enemigo {
                     {
                         Jugador.GetJugador().SumarPuntos(20);
                     }
-                    vida = vida - (GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
+                    vida = vida - ((GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva()) - reducirDanioPelotaExplociva);
                 }
                 EstaMuerto();
 

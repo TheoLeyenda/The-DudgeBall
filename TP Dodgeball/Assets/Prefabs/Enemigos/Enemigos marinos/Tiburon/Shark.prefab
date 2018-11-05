@@ -785,7 +785,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1606325774012982}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 9.31, z: 2.64}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
@@ -793,7 +793,7 @@ Transform:
   - {fileID: 4335400147782502}
   m_Father: {fileID: 4339672055951576}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4853712920490520
 Transform:
   m_ObjectHideFlags: 1
@@ -1134,8 +1134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531df2bfc704ab84a87a71d729edd39b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 500
-  maxVida: 500
+  vida: 800
+  maxVida: 800
   BarraVida: {fileID: 1107945258414180}
   marcoBarra: {fileID: 1790700222770966}
   efectoQuemado: {fileID: 1633843050699624}
@@ -1143,8 +1143,12 @@ MonoBehaviour:
   efectoMusica: {fileID: 1950011815682802}
   estoyEnPool: 0
   danio: 35
-  potenciaAtaque: 2
-  reducirAtaque: 0
+  potenciaAtaque: 2.5
+  reducirPotenciaAtaque: 10
+  reducirDanioPelotaComun: 15
+  reducirDanioPelotaExplociva: 25
+  reducirDanioPelotaFragmentadora: 3.3
+  aumentarDanioPelotaFuego: 15
   velMovimiento: 20
   waypoints:
   - {fileID: 0}
@@ -1153,6 +1157,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  pool: {fileID: 0}
+  puntoDebil: {fileID: 65494979318600610}
 --- !u!198 &198073299054340698
 ParticleSystem:
   m_ObjectHideFlags: 1
