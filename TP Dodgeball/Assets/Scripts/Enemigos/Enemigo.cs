@@ -72,9 +72,12 @@ public class Enemigo : MonoBehaviour {
     }
     public void updateHP()
     {
-        float z = (float)vida / (float)maxVida;
-        Vector3 ScaleBar = new Vector3(1, 1, z);
-        BarraVida.transform.localScale = ScaleBar;
+        if (BarraVida != null)
+        {
+            float z = (float)vida / (float)maxVida;
+            Vector3 ScaleBar = new Vector3(1, 1, z);
+            BarraVida.transform.localScale = ScaleBar;
+        }
     }
     public void EstaMuerto()
     {
