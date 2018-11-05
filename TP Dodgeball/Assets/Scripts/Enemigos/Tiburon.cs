@@ -26,7 +26,8 @@ public class Tiburon : Enemigo {
     }
     public float danio;
     public float potenciaAtaque;
-    public float reducirAtaque;
+    public float reducirPotenciaAtaque;
+    public float reducirDanioPelotaComun;
     public float velMovimiento;
     public Transform[] waypoints;
     public PoolPelota pool;
@@ -53,7 +54,7 @@ public class Tiburon : Enemigo {
             potenciaAtaque = 1;
         }
         velAtaque = velMovimiento * potenciaAtaque;
-        velAtaque = velAtaque - reducirAtaque;
+        velAtaque = velAtaque - reducirPotenciaAtaque;
         auxVelAtaque = velAtaque;
         auxVelMovimiento = velMovimiento;
     }
@@ -66,7 +67,7 @@ public class Tiburon : Enemigo {
             potenciaAtaque = 1;
         }
         velAtaque = velMovimiento * potenciaAtaque;
-        velAtaque = velAtaque - reducirAtaque;
+        velAtaque = velAtaque - reducirPotenciaAtaque;
         auxVelAtaque = velAtaque;
         auxVelMovimiento = velMovimiento;
     }
@@ -116,6 +117,11 @@ public class Tiburon : Enemigo {
                     }
                     efectoFuego = 0;
                 }
+                if(GetEstadoEnemigo() == EstadoEnemigo.congelado)
+                {
+                    velAtaque = 0;
+                    velMovimiento = 0;
+                }
             }
             timeEstado = timeEstado - Time.deltaTime;
         }
@@ -125,15 +131,17 @@ public class Tiburon : Enemigo {
             {
                 velAtaque = auxVelAtaque;
                 velMovimiento = auxVelMovimiento;
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                
             }
             if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
             {
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                efectoMusica.SetActive(false);
+                efectoQuemado.SetActive(false);
             }
             if (GetEstadoEnemigo() == EstadoEnemigo.quemado)
             {
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                efectoQuemado.SetActive(false);
+                efectoMusica.SetActive(false);
             }
         }
     }
@@ -181,10 +189,10 @@ public class Tiburon : Enemigo {
                 //if (diff.magnitude < 0.5f)
                 //{
                     //id++;
-                    //if (id >= waypoints.Length)
-                    //{
-                        //id = 0;
-                    //}
+                    if (id >= waypoints.Length)
+                    {
+                        id = 0;
+                    }
                 //}
             }
         }
@@ -231,7 +239,7 @@ public class Tiburon : Enemigo {
             {
                 if (Jugador.GetJugador() != null)
                 {
-                    vida = vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun());
+                    vida = vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun()+ reducirDanioPelotaComun);
                     EstaMuerto();
                     if (Jugador.GetJugador().GetDoblePuntuacion())
                     {
@@ -260,8 +268,8 @@ public class Tiburon : Enemigo {
                 EstaMuerto();
                 if (velMovimiento > 0 || velAtaque > 0)
                 {
-                    velMovimiento = velMovimiento - 0.2f;
-                    velAtaque = velAtaque - 0.2f;
+                    velMovimiento = velMovimiento - 20f;
+                    velAtaque = velAtaque - 20f;
                     //velMovimiento = 0;
                 }
                 if (velMovimiento <= 0 || velAtaque <= 0)
