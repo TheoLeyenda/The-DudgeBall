@@ -29,7 +29,14 @@ public class Tiburon : Enemigo {
     public float reducirAtaque;
     public float velMovimiento;
     public Transform[] waypoints;
+    public PoolPelota pool;
+    public BoxCollider puntoDebil;
 
+    private PoolObject poolObject;
+    private float auxVelAtaque;
+    private float auxVelMovimiento;
+    private float timeEstado;
+    private float efectoFuego;
     private States estados;
     private Events eventos;
     private int id = 0;
@@ -37,8 +44,20 @@ public class Tiburon : Enemigo {
     private float velAtaque;
     private Vector3 posJugador;
     //private FSM fsm;
-
-    void Start ()
+    public void Prendido()
+    {
+        rig = GetComponent<Rigidbody>();
+        estados = States.Nadando;
+        if (potenciaAtaque <= 0)
+        {
+            potenciaAtaque = 1;
+        }
+        velAtaque = velMovimiento * potenciaAtaque;
+        velAtaque = velAtaque - reducirAtaque;
+        auxVelAtaque = velAtaque;
+        auxVelMovimiento = velMovimiento;
+    }
+    void Start()
     {
         rig = GetComponent<Rigidbody>();
         estados = States.Nadando;
@@ -48,23 +67,74 @@ public class Tiburon : Enemigo {
         }
         velAtaque = velMovimiento * potenciaAtaque;
         velAtaque = velAtaque - reducirAtaque;
-        /*fsm = new FSM((int)States.Count, (int)Events.Count, (int)States.Nadando);
-
-        fsm.SetRelation((int)States.Nadando, (int)Events.EnVista, (int)States.Seguir);
-        fsm.SetRelation((int)States.Seguir, (int)Events.EnRangoDeAtaque, (int)States.Atacar);
-        fsm.SetRelation((int)States.Seguir, (int)Events.FueraDeVista, (int)States.Nadando);
-        fsm.SetRelation((int)States.Atacar, (int)Events.FueraDelRangoDeAtaque, (int)States.Seguir);
-        fsm.SetRelation((int)States.Atacar, (int)Events.LuegoDeAtacar, (int)States.Retirse);
-        fsm.SetRelation((int)States.Retirse, (int)Events.VolviendoQuieto, (int)States.Nadando);*/
+        auxVelAtaque = velAtaque;
+        auxVelMovimiento = velMovimiento;
     }
 	
 	// Update is called once per frame
 	void Update () {
         UpdateStates();
         updateHP();
+        if (GetMuerto())
+        {
+            if (!estoyEnPool)
+            {
+                gameObject.SetActive(false);
+            }
+            if (estoyEnPool)
+            {
+                poolObject.Resiclarme();
+            }
+        }
         if (estados != States.Atacar)
         {
             UpdatePositionPlayer();
+        }
+        if (timeEstado > 0)
+        {
+            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
+            {
+                SetRotarY(20);
+                Rotar();
+            }
+            if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.activeSelf)
+            {
+                efectoFuego = efectoFuego + Time.deltaTime;
+                if (efectoFuego >= 1)
+                {
+                    if (Jugador.GetJugador() != null)
+                    {
+                        if (Jugador.GetJugador().GetDoblePuntuacion())
+                        {
+                            Jugador.GetJugador().SumarPuntos(5 * 2);
+                        }
+                        else
+                        {
+                            Jugador.GetJugador().SumarPuntos(5);
+                        }
+                        vida = vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego());
+                    }
+                    efectoFuego = 0;
+                }
+            }
+            timeEstado = timeEstado - Time.deltaTime;
+        }
+        if (timeEstado <= 0)
+        {
+            if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
+            {
+                velAtaque = auxVelAtaque;
+                velMovimiento = auxVelMovimiento;
+                SetEstadoEnemigo(EstadoEnemigo.normal);
+            }
+            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
+            {
+                SetEstadoEnemigo(EstadoEnemigo.normal);
+            }
+            if (GetEstadoEnemigo() == EstadoEnemigo.quemado)
+            {
+                SetEstadoEnemigo(EstadoEnemigo.normal);
+            }
         }
     }
     public void UpdateStates()
@@ -94,6 +164,10 @@ public class Tiburon : Enemigo {
     }
     public void Nadar()
     {
+        if (puntoDebil != null)
+        {
+            puntoDebil.enabled = false;
+        }
         if (waypoints.Length > 0)
         {
             if (waypoints[id] != null)
@@ -129,6 +203,10 @@ public class Tiburon : Enemigo {
     }
     public void Atacar()
     {
+        if (puntoDebil != null)
+        {
+            puntoDebil.enabled = true;
+        }
         if(Jugador.GetJugador() != null)
         {
             transform.LookAt(posJugador);
@@ -147,6 +225,123 @@ public class Tiburon : Enemigo {
 
     private void OnTriggerEnter(Collider other)
     {
+        if (puntoDebil.enabled == true)
+        {
+            if (other.gameObject.tag == "PelotaComun")
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    vida = vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun());
+                    EstaMuerto();
+                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    {
+                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().SumarPuntos(10);
+                    }
+                }
+            }
+            if (other.gameObject.tag == "PelotaDeHielo")
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    {
+                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().SumarPuntos(10);
+                    }
+                    vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo());
+                }
+                EstaMuerto();
+                if (velMovimiento > 0 || velAtaque > 0)
+                {
+                    velMovimiento = velMovimiento - 0.2f;
+                    velAtaque = velAtaque - 0.2f;
+                    //velMovimiento = 0;
+                }
+                if (velMovimiento <= 0 || velAtaque <= 0)
+                {
+                    SetEstadoEnemigo(EstadoEnemigo.congelado);
+                    efectoCongelado.SetActive(true);
+                    timeEstado = 2.5f;//tiempo por el cual el enemigo "Corredor" estara congelado
+                }
+            }
+            if (other.gameObject.tag == "MiniPelota")
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    {
+                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().SumarPuntos(10);
+                    }
+                    vida = vida - (GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota());
+                    EstaMuerto();
+                }
+            }
+            if (other.gameObject.tag == "PelotaDanzarina")
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    {
+                        Jugador.GetJugador().SumarPuntos(5 * 2);
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().SumarPuntos(5);
+                    }
+                }
+                if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+                {
+                    timeEstado = 1.5f;//tiempo por el cual el enemigo estara bailando
+                }
+                SetEstadoEnemigo(EstadoEnemigo.bailando);
+                efectoMusica.SetActive(true);
+                vida = vida - GetDanioBolaDanzarina();
+                EstaMuerto();
+
+            }
+            if (other.gameObject.tag == "PelotaDeFuego")
+            {
+                if (GetEstadoEnemigo() != EstadoEnemigo.quemado)
+                {
+                    timeEstado = 7;
+                }
+                if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+                {
+                    SetEstadoEnemigo(EstadoEnemigo.quemado);
+                }
+                efectoQuemado.SetActive(true);
+                velMovimiento = auxVelMovimiento;
+                velAtaque = auxVelAtaque;
+            }
+            if (other.gameObject.tag == "PelotaExplociva")
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    {
+                        Jugador.GetJugador().SumarPuntos(20 * 2);
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().SumarPuntos(20);
+                    }
+                    vida = vida - (GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
+                }
+                EstaMuerto();
+
+            }
+        }
         if (other.tag == "Player")
         {
             estados = States.Retirse;
@@ -157,7 +352,14 @@ public class Tiburon : Enemigo {
             }
             if(Jugador.GetJugador() != null)
             {
-                Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                if (Jugador.GetJugador().blindaje > 0)
+                {
+                    Jugador.GetJugador().blindaje = Jugador.GetJugador().blindaje - danio;
+                }
+                else
+                {
+                    Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                }
             }
         }
         if (other.tag == "WaypointRandom")

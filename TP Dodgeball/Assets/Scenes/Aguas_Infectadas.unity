@@ -449,9 +449,43 @@ Prefab:
       propertyPath: waypoints.Array.data[5]
       value: 
       objectReference: {fileID: 2138397403}
+    - target: {fileID: 114828137431100288, guid: 614ddd88aff9ec34c80bc8c189cfe51e,
+        type: 2}
+      propertyPath: puntoDebil
+      value: 
+      objectReference: {fileID: 1459718721}
+    - target: {fileID: 1621448690310892, guid: 614ddd88aff9ec34c80bc8c189cfe51e, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65494979318600610, guid: 614ddd88aff9ec34c80bc8c189cfe51e,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114828137431100288, guid: 614ddd88aff9ec34c80bc8c189cfe51e,
+        type: 2}
+      propertyPath: vida
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 114828137431100288, guid: 614ddd88aff9ec34c80bc8c189cfe51e,
+        type: 2}
+      propertyPath: maxVida
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 114828137431100288, guid: 614ddd88aff9ec34c80bc8c189cfe51e,
+        type: 2}
+      propertyPath: potenciaAtaque
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 614ddd88aff9ec34c80bc8c189cfe51e, type: 2}
   m_IsPrefabAsset: 0
+--- !u!65 &1459718721 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 65494979318600610, guid: 614ddd88aff9ec34c80bc8c189cfe51e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1459718716}
 --- !u!1001 &1686086796
 Prefab:
   m_ObjectHideFlags: 0
