@@ -132,7 +132,10 @@ public class Corredor : Enemigo
             {
                 Jugador.GetJugador().SumarPuntos(50);
             }
-            GameManager.GetGameManager().SumarMuertes();
+            if (GameManager.GetGameManager() != null)
+            {
+                GameManager.GetGameManager().SumarMuertes();
+            }
             if (GameManager.GetGameManager() != null && estoyEnPool)
             {
                 GameManager.GetGameManager().RestarEnemigoEnPantalla();

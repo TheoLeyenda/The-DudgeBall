@@ -14,22 +14,43 @@ public class PelotaEnemigo : MonoBehaviour {
     public float danio;
     private Rigidbody rigBola;
     public GameObject generador;
+    public bool pelotaTinta;
     public void Disparar() {
         //rigBola = GetComponent<Rigidbody>();
         //rigBola.AddRelativeForce(-generador.transform.forward * potencia, ForceMode.Impulse);
-        rigBola = GetComponent<Rigidbody>();
-        rigBola.velocity = Vector3.zero;
-        rigBola.angularVelocity = Vector3.zero;
-        rigBola.AddRelativeForce(-generador.transform.forward * potencia, ForceMode.Impulse);
-        poolObject = GetComponent<PoolObject>();
-        if (!tiempoAuxiliarHabilitado)
+        if (!pelotaTinta)
         {
-            tiempoAuxiliarHabilitado = true;
-            auxTiempoVida = tiempoVida;
+            rigBola = GetComponent<Rigidbody>();
+            rigBola.velocity = Vector3.zero;
+            rigBola.angularVelocity = Vector3.zero;
+            rigBola.AddRelativeForce(-generador.transform.forward * potencia, ForceMode.Impulse);
+            poolObject = GetComponent<PoolObject>();
+            if (!tiempoAuxiliarHabilitado)
+            {
+                tiempoAuxiliarHabilitado = true;
+                auxTiempoVida = tiempoVida;
+            }
+            if (tiempoVida <= 0)
+            {
+                tiempoVida = auxTiempoVida;
+            }
         }
-        if (tiempoVida <= 0)
+        if(pelotaTinta)
         {
-            tiempoVida = auxTiempoVida;
+            rigBola = GetComponent<Rigidbody>();
+            rigBola.velocity = Vector3.zero;
+            rigBola.angularVelocity = Vector3.zero;
+            rigBola.AddForce(-generador.transform.forward * potencia, ForceMode.Impulse);
+            poolObject = GetComponent<PoolObject>();
+            if (!tiempoAuxiliarHabilitado)
+            {
+                tiempoAuxiliarHabilitado = true;
+                auxTiempoVida = tiempoVida;
+            }
+            if (tiempoVida <= 0)
+            {
+                tiempoVida = auxTiempoVida;
+            }
         }
     }
 	
@@ -47,7 +68,7 @@ public class PelotaEnemigo : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag != "Player" && other.tag != "GeneradorPelotaEnemigo" && other.tag != "Tirador" && other.tag != "Corredor")
+        if (other.tag != "Player" && other.tag != "GeneradorPelotaEnemigo" && other.tag != "Tirador" && other.tag != "Corredor" && other.tag != "PelotaDeTinta" && other.tag != "Kraken" && other.tag != "TraspasablePorPelotaTinta")
         {
             if (poolObject != null)
             {
