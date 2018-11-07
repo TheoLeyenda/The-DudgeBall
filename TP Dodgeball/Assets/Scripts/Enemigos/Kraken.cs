@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class Kraken : Enemigo {
 
-    // Use this for initialization
-    private States estados;
-    private PoolObject poolObject;
-    private Rigidbody rig;
-    private Vector3 posJugador;
-    private int id = 0;
-    private float auxFuerzaImpulsoMov;
-    private float auxDileyImpulso;
-    private int tipoAtaque;
-    private float auxDileyDisparo;
-    private float auxTiempoDisparando;
-
-    public float tiempoDisparando;
-    public float dileyDisparo;
-    public GameObject[] generadorPelota;
-    public PoolPelota poolPelotasDeTinta;
-    public float dileyImpulso;
-    public float FuerzaImpulsoMov;
-    public Transform[] waypoints;
-
+    public struct DatosRotacion
+    {
+        public float rotacionX;
+        public float rotacionY;
+        public float rotacionZ;
+    }
+    public enum ROTACION
+    {
+        RotNormal = 0,
+        RotAtaque,
+        Count
+    }
     public enum States
     {
-        
+
         Nadando = 0,
         Atacar,
         Retirse,
@@ -44,14 +36,38 @@ public class Kraken : Enemigo {
         Count
     }
 
+    // Use this for initialization
+    private States estados;
+    private PoolObject poolObject;
+    private Rigidbody rig;
+    private Vector3 posJugador;
+    private int id = 0;
+    private float auxFuerzaImpulsoMov;
+    private float auxDileyImpulso;
+    private int tipoAtaque;
+    private float auxDileyDisparo;
+    private float auxTiempoDisparando;
+    private DatosRotacion datRotacion;
+    private ROTACION EstadoRotacion; 
+
+    public float tiempoDisparando;
+    public float dileyDisparo;
+    public GameObject[] generadorPelota;
+    public PoolPelota poolPelotasDeTinta;
+    public float dileyImpulso;
+    public float FuerzaImpulsoMov;
+    public Transform[] waypoints;
+
     void Start () {
+
         auxTiempoDisparando = tiempoDisparando;
         tiempoDisparando = 0;
         auxDileyDisparo = dileyDisparo;
         auxDileyImpulso = dileyImpulso;
         auxFuerzaImpulsoMov = FuerzaImpulsoMov;
         id = 0;
-        estados = States.Nadando;
+        //estados = States.Nadando;
+        EstadoRotacion = ROTACION.RotNormal;
         rig = GetComponent<Rigidbody>();
 	}
 	
@@ -59,7 +75,7 @@ public class Kraken : Enemigo {
 	void Update () {
         updateHP();
         UpdateStates();
-        
+        UpdateRotacion();
     }
     public void TirarBola()
     {
@@ -84,6 +100,18 @@ public class Kraken : Enemigo {
     {
         tiempoDisparando = auxTiempoDisparando;
     }
+    public void UpdateRotacion()
+    {
+        switch((int)EstadoRotacion)
+        {
+            case (int)ROTACION.RotNormal:
+                SetDatosRotacion(0, 90, 0);
+                break;
+            case (int)ROTACION.RotAtaque:
+                SetDatosRotacion(-90, 90, 0);
+                break;
+        }
+    }
     public void UpdateStates()
     {
         switch ((int)estados)
@@ -99,8 +127,16 @@ public class Kraken : Enemigo {
                 break;
         }
     }
+    public void SetDatosRotacion(float x, float y, float z)
+    {
+        datRotacion.rotacionX = x;
+        datRotacion.rotacionY = y;
+        datRotacion.rotacionZ = z;
+        gameObject.transform.rotation = new Quaternion(x, y, z,Quaternion.identity.w);
+    }
     public void Nadar()
     {
+        EstadoRotacion = ROTACION.RotNormal;
         if (waypoints.Length > 0)
         {
             if (waypoints[id] != null)
@@ -163,8 +199,15 @@ public class Kraken : Enemigo {
     {
         //FALTA HACER QUE EL KRAKEN VAYA HACIA AL JUGADOR Y LE DE UNA OSTIA QUE LO DEJE AL OTRO LADO DEL MAPA(QUE LE APLIQUE UNA FUERZA AL JUGADOR QUE LO
         //SAQUE VOLANTO), LUEGO DE ESTO HACER QUE EL KRAKEN PASE AL ESTADO  RETIRARSE
+        
         if(tipoAtaque == 1)
         {
+            EstadoRotacion = ROTACION.RotAtaque;
+            if (Jugador.GetJugador() != null)
+            {
+                transform.LookAt(Jugador.GetJugador().transform.position);
+            }
+            EstadoRotacion = ROTACION.RotAtaque;
             if (dileyDisparo <= 0)
             {
                 dileyDisparo = auxDileyDisparo;

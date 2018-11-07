@@ -835,7 +835,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4905281786675360, guid: de0ddf8038143234eae26bfac3adae12, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.4
+      value: 13.83
       objectReference: {fileID: 0}
     - target: {fileID: 4905281786675360, guid: de0ddf8038143234eae26bfac3adae12, type: 2}
       propertyPath: m_LocalPosition.z
@@ -926,6 +926,14 @@ Prefab:
       propertyPath: waypoints.Array.data[11]
       value: 
       objectReference: {fileID: 25578556}
+    - target: {fileID: 4905281786675360, guid: de0ddf8038143234eae26bfac3adae12, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905281786675360, guid: de0ddf8038143234eae26bfac3adae12, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de0ddf8038143234eae26bfac3adae12, type: 2}
   m_IsPrefabAsset: 0
