@@ -73,7 +73,6 @@ public class Kraken : Enemigo {
                 {
                     GameObject go = poolPelotasDeTinta.GetObject();
                     PelotaEnemigo pelota = go.GetComponent<PelotaEnemigo>();
-                    generadorPelota[i].transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x, transform.position.y, Jugador.GetJugador().transform.position.z));
                     go.transform.position = generadorPelota[i].transform.position;
                     go.transform.rotation = generadorPelota[i].transform.rotation;
                     pelota.Disparar();
