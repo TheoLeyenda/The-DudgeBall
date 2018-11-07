@@ -75,5 +75,42 @@ public class PelotaEnemigo : MonoBehaviour {
                 poolObject.Resiclarme();
             }
         }
+        if (Jugador.GetJugador() != null)
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                if (!Jugador.GetJugador().GetInmune())
+                {
+                    if (Jugador.GetJugador().blindaje > 0)
+                    {
+                        Jugador.GetJugador().blindaje = Jugador.GetJugador().blindaje - danio;
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                    }
+                }
+            }
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (Jugador.GetJugador() != null)
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+                if (!Jugador.GetJugador().GetInmune())
+                {
+                    if (Jugador.GetJugador().blindaje > 0)
+                    {
+                        Jugador.GetJugador().blindaje = Jugador.GetJugador().blindaje - danio;
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                    }
+                }
+            }
+        }
     }
 }

@@ -102,7 +102,7 @@ public class Tiburon : Enemigo {
         {
             if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
             {
-                SetRotarY(20);
+                SetRotarY(90);
                 Rotar();
             }
             if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.activeSelf)
@@ -121,6 +121,7 @@ public class Tiburon : Enemigo {
                             Jugador.GetJugador().SumarPuntos(5);
                         }
                         vida = vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego() + aumentarDanioPelotaFuego);
+                        EstaMuerto();
                     }
                     efectoFuego = 0;
                 }

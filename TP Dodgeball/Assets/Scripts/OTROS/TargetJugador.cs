@@ -11,7 +11,7 @@ public class TargetJugador : MonoBehaviour {
     {
         if(Jugador.GetJugador() != null)
         {
-            transform.LookAt(Jugador.GetJugador().transform.position);
+            transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x,Jugador.GetJugador().transform.position.y,Jugador.GetJugador().transform.position.z));
         }
     }
 }

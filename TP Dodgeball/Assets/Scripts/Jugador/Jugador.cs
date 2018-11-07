@@ -20,7 +20,6 @@ public class Jugador : MonoBehaviour {
     private int puntos;
     [HideInInspector]
     public bool contar;
-    public PelotaEnemigo PelotaComunEnemigo;
     public Enemigo corredor;
     public Enemigo tirador;
     public Enemigo tiradorEstatico;
@@ -446,20 +445,7 @@ public class Jugador : MonoBehaviour {
             other.gameObject.SetActive(false);
         }
         //AQUI RESIVO DAÑO
-        if (other.tag == "PelotaEnemigoComun")
-        {
-            if (!Inmune)
-            {
-                if (blindaje > 0)
-                {
-                    blindaje = blindaje - PelotaComunEnemigo.danio;
-                }
-                else
-                {
-                    vida = vida - PelotaComunEnemigo.danio;
-                }
-            }
-        }
+        
     }
     public static Jugador GetJugador()
     {
