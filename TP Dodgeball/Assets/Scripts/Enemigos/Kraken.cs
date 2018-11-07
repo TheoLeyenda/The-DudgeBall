@@ -161,7 +161,8 @@ public class Kraken : Enemigo {
     }
     public void Atacar(int tipoAtaque)
     {
-        Debug.Log("Tipo de ataque:" + tipoAtaque);
+        //FALTA HACER QUE EL KRAKEN VAYA HACIA AL JUGADOR Y LE DE UNA OSTIA QUE LO DEJE AL OTRO LADO DEL MAPA(QUE LE APLIQUE UNA FUERZA AL JUGADOR QUE LO
+        //SAQUE VOLANTO), LUEGO DE ESTO HACER QUE EL KRAKEN PASE AL ESTADO  RETIRARSE
         if(tipoAtaque == 1)
         {
             if (dileyDisparo <= 0)
@@ -177,7 +178,12 @@ public class Kraken : Enemigo {
     }
     public void Retirarse()
     {
-
+        estados = States.Nadando;
+        id++;
+        if (id >= waypoints.Length)
+        {
+            id = 0;
+        }
     }
     public void UpdatePositionPlayer()
     {
