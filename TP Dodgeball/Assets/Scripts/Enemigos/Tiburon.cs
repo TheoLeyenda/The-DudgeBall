@@ -79,6 +79,11 @@ public class Tiburon : Enemigo {
 	void Update () {
         UpdateStates();
         updateHP();
+        if (estados != States.Atacar)
+        {
+            UpdatePositionPlayer();
+        }
+
         if (GetMuerto())
         {
             if(Jugador.GetJugador()!= null)
@@ -94,10 +99,7 @@ public class Tiburon : Enemigo {
                 poolObject.Resiclarme();
             }
         }
-        if (estados != States.Atacar)
-        {
-            UpdatePositionPlayer();
-        }
+
         if (timeEstado > 0)
         {
             if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
@@ -133,6 +135,7 @@ public class Tiburon : Enemigo {
             }
             timeEstado = timeEstado - Time.deltaTime;
         }
+
         if (timeEstado <= 0)
         {
             if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
