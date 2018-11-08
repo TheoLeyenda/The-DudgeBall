@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pirania : MonoBehaviour {
+public class Pirania : Enemigo {
 
     // Use this for initialization
     public enum States
@@ -31,8 +31,18 @@ public class Pirania : MonoBehaviour {
         if (activarPirania)
         {
             UpdateStates();
+           
         }
-	}
+        if (GetMuerto())
+        {
+            if (!estoyEnPool)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+
+
+    }
     public void UpdateStates()
     {
 
@@ -109,5 +119,71 @@ public class Pirania : MonoBehaviour {
                 Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
             }
         }
+        if (other.gameObject.tag == "PelotaComun")
+        {
+            if (Jugador.GetJugador() != null)
+            {
+                vida = vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun());
+                EstaMuerto();
+                if (Jugador.GetJugador().GetDoblePuntuacion())
+                {
+                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                }
+                else
+                {
+                    Jugador.GetJugador().SumarPuntos(10);
+                }
+            }
+        }
+        if (other.gameObject.tag == "PelotaDeHielo")
+        {
+            if (Jugador.GetJugador() != null)
+            {
+                if (Jugador.GetJugador().GetDoblePuntuacion())
+                {
+                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                }
+                else
+                {
+                    Jugador.GetJugador().SumarPuntos(10);
+                }
+                vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo());
+            }
+            EstaMuerto();
+        }
+        if (other.gameObject.tag == "MiniPelota")
+        {
+            if (Jugador.GetJugador() != null)
+            {
+                if (Jugador.GetJugador().GetDoblePuntuacion())
+                {
+                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                }
+                else
+                {
+                    Jugador.GetJugador().SumarPuntos(10);
+                }
+                vida = vida - (GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota());
+                EstaMuerto();
+            }
+        } 
+        /*if (other.gameObject.tag == "PelotaExplociva")
+        {
+            if (Jugador.GetJugador() != null)
+            {
+                if (Jugador.GetJugador().GetDoblePuntuacion())
+                {
+                    Jugador.GetJugador().SumarPuntos(20 * 2);
+                }
+                else
+                {
+                    Jugador.GetJugador().SumarPuntos(20);
+                }
+                vida = vida - (GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
+            }
+            EstaMuerto();
+
+        }*/
     }
+
 }
