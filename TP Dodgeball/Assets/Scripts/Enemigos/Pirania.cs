@@ -99,4 +99,15 @@ public class Pirania : MonoBehaviour {
             }
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        
+        if(other.tag == "Player")
+        {
+            if (Jugador.GetJugador() != null)
+            {
+                Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+            }
+        }
+    }
 }
