@@ -47,10 +47,10 @@ public class Pelota : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.tag != "PelotaDeTinta")
-        {
+        //if (other.tag != "PelotaDeTinta")
+        //{
             tiempoVida = 0;
-        }
+        //}
     }
     public float GetTiempoVida()
     {

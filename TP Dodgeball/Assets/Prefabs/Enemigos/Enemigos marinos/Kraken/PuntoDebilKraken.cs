@@ -7,7 +7,7 @@ public class PuntoDebilKraken : Enemigo {
     // Use this for initialization
     private float timeEstado;
     private float efectoFuego;
-    public Enemigo kraken;
+    public Kraken kraken;
 	void Start () {
 		
 	}
@@ -36,7 +36,7 @@ public class PuntoDebilKraken : Enemigo {
                         {
                             Jugador.GetJugador().SumarPuntos(5);
                         }
-                        kraken.vida = kraken.vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego());
+                        kraken.vida = kraken.vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego() + kraken.danioAumentadoPelotaFuego);
                         kraken.EstaMuerto();
                     }
                     efectoFuego = 0;
@@ -61,7 +61,7 @@ public class PuntoDebilKraken : Enemigo {
         {
             if (Jugador.GetJugador() != null)
             {
-                kraken.vida = kraken.vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun());
+                kraken.vida = kraken.vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun() + kraken.danioAumentadoPelotaComun);
                 kraken.EstaMuerto();
                 if (Jugador.GetJugador().GetDoblePuntuacion())
                 {

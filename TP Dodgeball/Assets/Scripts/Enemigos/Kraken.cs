@@ -13,7 +13,8 @@ public class Kraken : Enemigo {
     public enum ROTACION
     {
         RotNormal = 0,
-        RotAtaque,
+        RotAtaque1,
+        RotAtaque2,
         Count
     }
     public enum States
@@ -41,7 +42,14 @@ public class Kraken : Enemigo {
     private float timeEstado;
     //private float auxImpulsoDeAtaque;
     private float efectoFuego;
+    private float auxDileyMovIzquierda;
+    private float auxDileyMovDerecha;
 
+    public float danioAumentadoPelotaComun;
+    public float danioAumentadoPelotaFuego;
+    public float movHorizontal;
+    public float DileyMovDerecha;
+    public float DileyMovIzquierda;
     public float tiempoDisparando;
     public float dileyDisparo;
     public GameObject[] generadorPelota;
@@ -51,10 +59,13 @@ public class Kraken : Enemigo {
     public float FuerzaImpulsoMov;
     public BoxCollider puntoDebil;
     public BoxCollider puntoMedioDelCuerpo;
+    public float potenciaAtaque;
     //public float impulsoDeAtaque;
 
     void Start () {
-        //auxImpulsoDeAtaque = impulsoDeAtaque;
+        auxDileyMovDerecha = DileyMovDerecha;
+        auxDileyMovIzquierda = DileyMovIzquierda;
+        DileyMovDerecha = 0;
         auxTiempoDisparando = tiempoDisparando;
         tiempoDisparando = 0;
         auxDileyDisparo = dileyDisparo;
@@ -68,10 +79,18 @@ public class Kraken : Enemigo {
 	
 	// Update is called once per frame
 	void Update () {
-        updateHP();
-        UpdateStates();
-        UpdateRotacion();
-        CheckMuerto();
+        if (Time.timeScale > 0)
+        {
+            if (tiempoDisparando <= 0)
+            {
+                tipoAtaque = 2;
+            }
+            updateHP();
+            UpdateStates();
+            UpdateRotacion();
+            UpdatePositionPlayer();
+            CheckMuerto();
+        }
         //CheckEstados();
     }
     public void CheckMuerto()
@@ -92,51 +111,7 @@ public class Kraken : Enemigo {
             }
         }
     }
-    /*public void CheckEstados()
-    {
-        if (timeEstado > 0)
-        {
-            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
-            {
-                SetRotarY(20);
-                Rotar();
-            }
-            if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.activeSelf)
-            {
-                efectoFuego = efectoFuego + Time.deltaTime;
-                if (efectoFuego >= 1)
-                {
-                    if (Jugador.GetJugador() != null)
-                    {
-                        if (Jugador.GetJugador().GetDoblePuntuacion())
-                        {
-                            Jugador.GetJugador().SumarPuntos(5 * 2);
-                        }
-                        else
-                        {
-                            Jugador.GetJugador().SumarPuntos(5);
-                        }
-                        vida = vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego());
-                    }
-                    efectoFuego = 0;
-                }
-                if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
-                {
-                   FuerzaImpulsoMov = 0;
-                }
-            }
-            timeEstado = timeEstado - Time.deltaTime;
-        }
-        if (timeEstado <= 0)
-        {
-            
-            if (GetEstadoEnemigo() == EstadoEnemigo.quemado)
-            {
-                efectoQuemado.SetActive(false);
-                SetEstadoEnemigo(EstadoEnemigo.normal);
-            }
-        }
-    }*/
+   
     public void TirarBola()
     {
         
@@ -156,6 +131,7 @@ public class Kraken : Enemigo {
             }
         }
     }
+    
     public void ActivarDisparo()
     {
         tiempoDisparando = auxTiempoDisparando;
@@ -166,8 +142,11 @@ public class Kraken : Enemigo {
         {
             case (int)ROTACION.RotNormal:
                 break;
-            case (int)ROTACION.RotAtaque:
-                SetDatosRotacion(transform.rotation.x +(-90), 0, 0);
+            case (int)ROTACION.RotAtaque1:
+                SetDatosRotacion();
+                break;
+            case (int)ROTACION.RotAtaque2:
+                SetDatosRotacion();
                 break;
         }
     }
@@ -186,14 +165,20 @@ public class Kraken : Enemigo {
                 break;
         }
     }
-    public void SetDatosRotacion(float x, float y, float z)
+    public void SetDatosRotacion()
     {
-        datRotacion.rotacionX = x;
-        datRotacion.rotacionY = y;
-        datRotacion.rotacionZ = z;
+
         if (Jugador.GetJugador() != null)
         {
-            transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x, transform.position.y+90,Jugador.GetJugador().transform.position.z));
+            if (tipoAtaque == 1)
+            {
+                transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x, transform.position.y + 90, Jugador.GetJugador().transform.position.z));
+            }
+            if (tipoAtaque == 2)
+            {
+                transform.LookAt(posJugador);
+                
+            }
         }
     }
     public void Nadar()
@@ -227,12 +212,14 @@ public class Kraken : Enemigo {
                         float randomTipoAtaque = Random.Range(1, 100);
                         if(randomTipoAtaque<60)
                         {
+                           
                             tipoAtaque = 1;
                             ActivarDisparo();
                             estados = States.Atacar;
                         }
                         if(randomTipoAtaque >=60)
                         {
+                           
                             tipoAtaque = 2;
                             estados = States.Atacar;
                         }
@@ -263,12 +250,17 @@ public class Kraken : Enemigo {
     {
         //FALTA HACER QUE EL KRAKEN VAYA HACIA AL JUGADOR Y LE DE UNA OSTIA QUE LO DEJE AL OTRO LADO DEL MAPA(QUE LE APLIQUE UNA FUERZA AL JUGADOR QUE LO
         //SAQUE VOLANTO), LUEGO DE ESTO HACER QUE EL KRAKEN PASE AL ESTADO  RETIRARSE
+        if (transform.position.y <= Jugador.GetJugador().transform.position.y)
+        {
+            estados = States.Retirse;
+        }
         puntoMedioDelCuerpo.enabled = false;
         puntoDebil.enabled = true;
+
         if (tipoAtaque == 1)
-        { 
-            
-            EstadoRotacion = ROTACION.RotAtaque;
+        {
+
+            EstadoRotacion = ROTACION.RotAtaque1;
             if (dileyDisparo <= 0)
             {
                 dileyDisparo = auxDileyDisparo;
@@ -278,6 +270,34 @@ public class Kraken : Enemigo {
             {
                 dileyDisparo = dileyDisparo - Time.deltaTime;
             }
+            if (DileyMovDerecha > 0)
+            {
+                transform.position = transform.position + transform.right * Time.deltaTime * movHorizontal;
+                DileyMovDerecha = DileyMovDerecha - Time.deltaTime;
+                if (DileyMovDerecha <= 0)
+                {
+                    DileyMovIzquierda = auxDileyMovIzquierda;
+                    DileyMovDerecha = 0;
+                }
+            }
+
+            if (DileyMovIzquierda > 0)
+            {
+                transform.position = transform.position + transform.right * Time.deltaTime * -movHorizontal;
+                DileyMovIzquierda = DileyMovIzquierda - Time.deltaTime;
+                if (DileyMovIzquierda <= 0)
+                {
+                    DileyMovDerecha = auxDileyMovDerecha;
+                    DileyMovIzquierda = 0;
+                }
+            }
+
+        }
+        
+        if (tipoAtaque == 2)
+        {
+            EstadoRotacion = ROTACION.RotAtaque2;
+            transform.position = transform.position + transform.forward * Time.deltaTime * (FuerzaImpulsoMov*potenciaAtaque);
         }
     }
     public void Retirarse()
@@ -293,8 +313,8 @@ public class Kraken : Enemigo {
     {
         if (Jugador.GetJugador() != null)
         {
-            posJugador = Jugador.GetJugador().transform.position;
+            posJugador = new Vector3(Jugador.GetJugador().transform.position.x+7,Jugador.GetJugador().transform.position.y-5, Jugador.GetJugador().transform.position.z);
         }
     }
-   
+
 }
