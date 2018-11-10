@@ -72,7 +72,7 @@ Torpedos.
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(estados);
+        Debug.Log(id);
         updateHP();
         UpdateStates();
     }
@@ -116,20 +116,18 @@ Torpedos.
     // TAG PARA ENTRAR EN "Patrullar()" = "WaypointPatrullaje"
     public void Patrullar()
     {
-        //Debug.Log("Patrullar");
         puntoDebilActivado = false;
         if (waypoints.Length > 0)
         {
+            if (id >= waypoints.Length)
+            {
+                id = 0;
+            }
             if (waypoints[id] != null)
             {
                 Vector3 target = waypoints[id].position;
                 transform.LookAt(target);
                 transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
-                if (id >= waypoints.Length)
-                {
-                    id = 0;
-                }
-
             }
         }
 
@@ -140,8 +138,20 @@ Torpedos.
     // TAG PARA ENTRAR EN "PatrullarBulnerable()" = "WaypointPatrullarBulnerable"
     public void PatrullarBulnerable()
     {
-        //Debug.Log("PatrullarBulnerable");
         puntoDebilActivado = true;
+        if (waypoints.Length > 0)
+        {
+            if (id >= waypoints.Length)
+            {
+                id = 0;
+            }
+            if (waypoints[id] != null)
+            {
+                Vector3 target = waypoints[id].position;
+                transform.LookAt(target);
+                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+            }
+        }
     }
 
     //PatrullarDisparando: el jugador mientras pasa por los distintos waypoints
@@ -149,8 +159,20 @@ Torpedos.
     //TAG PARA ENTRAR EN "PatrullaDisparando()" = "WaypointPatrullarDisparando"
     public void PatrullarDisparando()
     {
-       // Debug.Log("PatrullarDisparando");
         puntoDebilActivado = true;
+        if (waypoints.Length > 0)
+        {
+            if (id >= waypoints.Length)
+            {
+                id = 0;
+            }
+            if (waypoints[id] != null)
+            {
+                Vector3 target = waypoints[id].position;
+                transform.LookAt(target);
+                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+            }
+        }
     }
 
     //AtacarTorpedos: el submarino pasa a este estado cuando pasa
@@ -159,8 +181,22 @@ Torpedos.
     //TAG PARA ENTRAR EN "AtacarTorpedos()" = "WaypointAtacarTorpedos"
     public void AtacarTorpedos()
     {
-        //Debug.Log("AtacarTorpedos");
         puntoDebilActivado = true;
+        if (waypoints.Length > 0)
+        {
+            if (id >= waypoints.Length)
+            {
+                id = 0;
+            }
+            if (waypoints[id] != null)
+            {
+                Vector3 target = waypoints[id].position;
+                transform.LookAt(target);
+                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+                
+
+            }
+        }
     }
 
     //Seguir: el submarino sigue al jugador mientras dispara torpedos y
@@ -171,12 +207,17 @@ Torpedos.
     {
         Debug.Log("Seguir");
         puntoDebilActivado = true;
+        if(Jugador.GetJugador() != null)
+        {
+            transform.LookAt(Jugador.GetJugador().transform.position);
+        }
+        transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+        // FALTA HACER QUE MIENTRAS SIGA ATAQUE.
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "WaypointPatrullaje")
         {
-            Debug.Log("Entre");
             estados = States.Patrullar;
             if (id >= waypoints.Length)
             {
