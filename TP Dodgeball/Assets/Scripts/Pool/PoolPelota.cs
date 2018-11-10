@@ -28,6 +28,10 @@ public class PoolPelota : MonoBehaviour {
     // Update is called once per frame
     void Update () {
     }
+    public List<GameObject> GetListPelotasComunes()
+    {
+        return PelotasComunes;
+    }
     public GameObject GetObject()
     {
         GameObject go = PelotasComunes[id];
@@ -52,5 +56,9 @@ public class PoolPelota : MonoBehaviour {
     public void SumarId()
     {
         id = id + 1;
+    }
+    public int GetId()
+    {
+        return id;
     }
 }

@@ -34,13 +34,16 @@ Torpedos.
         Quieto,
     }
 
-    public PoolPelota pool;
+    public PoolPelota poolTorpedos;
+    public float dileyDisparoTorpedos;
     public float VelocidadMov;
     public Transform[] waypoints;
+    public GameObject[] GeneradorTorpedos;
     public States estados;
     public GameObject particulasBurbujas;
 
     private int id;
+    private float auxDileyDisparoTorpedos;
     private bool puntoDebilActivado;
     private PoolObject poolObject;
     private Rigidbody rig;
@@ -48,6 +51,25 @@ Torpedos.
     public void Prendido()
     {
         //PONER LO MISMO QUE EN EL "START();".
+        id = 0;
+        poolObject = GetComponent<PoolObject>();
+        if (efectoCongelado != null)
+        {
+            efectoCongelado.SetActive(false);
+        }
+        if (efectoQuemado != null)
+        {
+            efectoQuemado.SetActive(false);
+        }
+        if (efectoMusica != null)
+        {
+            efectoMusica.SetActive(false);
+        }
+        rig = GetComponent<Rigidbody>();
+        rig.velocity = Vector3.zero;
+        rig.angularVelocity = Vector3.zero;
+        SetEstadoEnemigo(EstadoEnemigo.normal);
+        auxDileyDisparoTorpedos = dileyDisparoTorpedos;
     }
     void Start () {
         id = 0;
@@ -68,11 +90,11 @@ Torpedos.
         rig.velocity = Vector3.zero;
         rig.angularVelocity = Vector3.zero;
         SetEstadoEnemigo(EstadoEnemigo.normal);
+        auxDileyDisparoTorpedos = dileyDisparoTorpedos;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(id);
         updateHP();
         UpdateStates();
     }
@@ -194,7 +216,25 @@ Torpedos.
                 transform.LookAt(target);
                 transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
                 
-
+                if(dileyDisparoTorpedos> 0)
+                {
+                    dileyDisparoTorpedos = dileyDisparoTorpedos - Time.deltaTime;
+                }
+                if(dileyDisparoTorpedos<= 0)
+                {
+                    for (int i = 0; i < GeneradorTorpedos.Length; i++)
+                    {
+                        if (GeneradorTorpedos[i].activeSelf == true && poolTorpedos.GetId() <= poolTorpedos.count)
+                        {
+                            GameObject go = poolTorpedos.GetObject();
+                            Torpedo torpedo = go.GetComponent<Torpedo>();
+                            go.transform.position = GeneradorTorpedos[i].transform.position;
+                            go.transform.rotation = GeneradorTorpedos[i].transform.rotation;
+                            torpedo.Prendido();
+                        }
+                    }
+                    dileyDisparoTorpedos = auxDileyDisparoTorpedos;
+                }
             }
         }
     }
