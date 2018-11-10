@@ -223,8 +223,9 @@ Torpedos.
                 if(dileyDisparoTorpedos<= 0)
                 {
                     for (int i = 0; i < GeneradorTorpedos.Length; i++)
-                    {
-                        if (GeneradorTorpedos[i].activeSelf == true && poolTorpedos.GetId() <= poolTorpedos.count)
+                    {                                                           // esta condicion del GetId() 
+                                                                             //sirve para que no se pase del array
+                        if (GeneradorTorpedos[i].activeSelf == true && poolTorpedos.GetId() < poolTorpedos.count)
                         {
                             GameObject go = poolTorpedos.GetObject();
                             Torpedo torpedo = go.GetComponent<Torpedo>();
@@ -304,5 +305,8 @@ Torpedos.
                 id++;
             }
         }
+/*
+FALTA HACER QUE EL SUBMARINO SE PUEDA MORIR Y CALIBRARLO PARA QUE EL DAÑO QUE RESIVA POR PELOTA (pelota comun,pelota explociva, pelota de hielo y fragmentadora) SEA MUY BAJO.
+*/
     }
 }
