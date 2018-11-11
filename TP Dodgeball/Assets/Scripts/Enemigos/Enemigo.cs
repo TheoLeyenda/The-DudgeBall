@@ -53,6 +53,7 @@ public class Enemigo : MonoBehaviour {
             }
            
         }
+        
     }
     public void Esquivar(int lado, float velocidad, float velAgregado)//tiempo = 1 y tiempoFinal = 2
     {

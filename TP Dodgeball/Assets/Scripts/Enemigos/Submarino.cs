@@ -43,6 +43,9 @@ Torpedos.
     public GameObject particulasBurbujas;
 
     private int id;
+    private float auxVelocidadMov;
+    private float timeEstado;
+    private float efectoFuego;
     private float auxDileyDisparoTorpedos;
     private bool puntoDebilActivado;
     private PoolObject poolObject;
@@ -70,6 +73,7 @@ Torpedos.
         rig.angularVelocity = Vector3.zero;
         SetEstadoEnemigo(EstadoEnemigo.normal);
         auxDileyDisparoTorpedos = dileyDisparoTorpedos;
+        
     }
     void Start () {
         id = 0;
@@ -91,12 +95,79 @@ Torpedos.
         rig.angularVelocity = Vector3.zero;
         SetEstadoEnemigo(EstadoEnemigo.normal);
         auxDileyDisparoTorpedos = dileyDisparoTorpedos;
+        auxVelocidadMov = VelocidadMov;
     }
 	
 	// Update is called once per frame
 	void Update () {
         updateHP();
         UpdateStates();
+        if (puntoDebilActivado)
+        {
+            CheckMuerto();
+        }
+        if (timeEstado > 0)
+        {
+            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
+            {
+                SetRotarY(90);
+                Rotar();
+            }
+            if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.activeSelf)
+            {
+                efectoFuego = efectoFuego + Time.deltaTime;
+                if (efectoFuego >= 1)
+                {
+                    if (Jugador.GetJugador() != null)
+                    {
+                        if (Jugador.GetJugador().GetDoblePuntuacion())
+                        {
+                            Jugador.GetJugador().SumarPuntos(5 * 2);
+                        }
+                        else
+                        {
+                            Jugador.GetJugador().SumarPuntos(5);
+                        }
+                        vida = vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego());
+                        EstaMuerto();
+                    }
+                    efectoFuego = 0;
+                }
+                if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
+                {
+                    VelocidadMov = 0;
+                }
+            }
+            timeEstado = timeEstado - Time.deltaTime;
+        }
+
+        if (timeEstado <= 0)
+        {
+            if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
+            {
+
+                VelocidadMov = auxVelocidadMov;
+                efectoCongelado.SetActive(false);
+                efectoQuemado.SetActive(false);
+                efectoMusica.SetActive(false);
+                SetEstadoEnemigo(EstadoEnemigo.normal);
+
+            }
+            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
+            {
+                efectoMusica.SetActive(false);
+                efectoQuemado.SetActive(false);
+                efectoCongelado.SetActive(false);
+                SetEstadoEnemigo(EstadoEnemigo.normal);
+            }
+            if (GetEstadoEnemigo() == EstadoEnemigo.quemado)
+            {
+                efectoQuemado.SetActive(false);
+                efectoMusica.SetActive(false);
+                efectoCongelado.SetActive(false);
+                SetEstadoEnemigo(EstadoEnemigo.normal);
+            }
+        }
     }
 
     public void UpdateStates()
@@ -133,6 +204,8 @@ Torpedos.
             particulasBurbujas.SetActive(false);
         }
     }
+   
+    //(HECHO)
     //Patrullar: patrulla moviéndose por los distintos waypoints(no tiene activo
     //Su punto débil)
     // TAG PARA ENTRAR EN "Patrullar()" = "WaypointPatrullaje"
@@ -154,7 +227,7 @@ Torpedos.
         }
 
     }
-
+    //(HECHO)
     //PatrullarBulnerable: en este estado el submarino patrulla pero tiene su
     //Punto débil activo.
     // TAG PARA ENTRAR EN "PatrullarBulnerable()" = "WaypointPatrullarBulnerable"
@@ -176,27 +249,8 @@ Torpedos.
         }
     }
 
-    //PatrullarDisparando: el jugador mientras pasa por los distintos waypoints
-    //Dispara balas hacia el jugador(tiene activa su punto débil)
-    //TAG PARA ENTRAR EN "PatrullaDisparando()" = "WaypointPatrullarDisparando"
-    public void PatrullarDisparando()
-    {
-        puntoDebilActivado = true;
-        if (waypoints.Length > 0)
-        {
-            if (id >= waypoints.Length)
-            {
-                id = 0;
-            }
-            if (waypoints[id] != null)
-            {
-                Vector3 target = waypoints[id].position;
-                transform.LookAt(target);
-                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
-            }
-        }
-    }
-
+    
+    //(HECHO)
     //AtacarTorpedos: el submarino pasa a este estado cuando pasa
     //Por un waypoints especifico(tiene activo su punto débil), dispara sus
     //Torpedos.
@@ -239,21 +293,85 @@ Torpedos.
             }
         }
     }
-
+    //(HECHO)
     //Seguir: el submarino sigue al jugador mientras dispara torpedos y
     //Si el jugador esta por el costado del submarino le dispara balas
     //(Tiene activo su punto débil)
     //Para entrar en "Seguir()" CONFIGURARLO PARA QUE ENTRE CUANDO ESTES EN MODO "SUPERVIVENCIA"
     public void Seguir()
     {
-        Debug.Log("Seguir");
         puntoDebilActivado = true;
         if(Jugador.GetJugador() != null)
         {
             transform.LookAt(Jugador.GetJugador().transform.position);
         }
         transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+        if (dileyDisparoTorpedos > 0)
+        {
+            dileyDisparoTorpedos = dileyDisparoTorpedos - Time.deltaTime;
+        }
+        if (dileyDisparoTorpedos <= 0)
+        {
+            for (int i = 0; i < GeneradorTorpedos.Length; i++)
+            {                                                           // esta condicion del GetId() 
+                                                                        //sirve para que no se pase del array
+                if (GeneradorTorpedos[i].activeSelf == true && poolTorpedos.GetId() < poolTorpedos.count)
+                {
+                    GameObject go = poolTorpedos.GetObject();
+                    Torpedo torpedo = go.GetComponent<Torpedo>();
+                    go.transform.position = GeneradorTorpedos[i].transform.position;
+                    go.transform.rotation = GeneradorTorpedos[i].transform.rotation;
+                    torpedo.Prendido();
+                }
+            }
+            dileyDisparoTorpedos = auxDileyDisparoTorpedos;
+        }
         // FALTA HACER QUE MIENTRAS SIGA ATAQUE.
+    }
+
+
+    //PatrullarDisparando: el jugador mientras pasa por los distintos waypoints
+    //Dispara balas hacia el jugador(tiene activa su punto débil)
+    //TAG PARA ENTRAR EN "PatrullaDisparando()" = "WaypointPatrullarDisparando"
+    public void PatrullarDisparando()
+    {
+        puntoDebilActivado = true;
+        if (waypoints.Length > 0)
+        {
+            if (id >= waypoints.Length)
+            {
+                id = 0;
+            }
+            if (waypoints[id] != null)
+            {
+                Vector3 target = waypoints[id].position;
+                transform.LookAt(target);
+                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+            }
+        }
+    }
+
+
+    public void CheckMuerto()
+    {
+        if (vida <= 0)
+        {
+            if (GetMuerto())
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    Jugador.GetJugador().SumarPuntos(250);
+                }
+                if (!estoyEnPool)
+                {
+                    gameObject.SetActive(false);
+                }
+                if (estoyEnPool)
+                {
+                    poolObject.Resiclarme();
+                }
+            }
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -305,8 +423,125 @@ Torpedos.
                 id++;
             }
         }
-/*
-FALTA HACER QUE EL SUBMARINO SE PUEDA MORIR Y CALIBRARLO PARA QUE EL DAÑO QUE RESIVA POR PELOTA (pelota comun,pelota explociva, pelota de hielo y fragmentadora) SEA MUY BAJO.
-*/
+        if (puntoDebilActivado)
+        {
+            if (other.gameObject.tag == "PelotaComun")
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    vida = vida - ((GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun()));
+                    EstaMuerto();
+                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    {
+                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().SumarPuntos(10);
+                    }
+                }
+            }
+            if (other.gameObject.tag == "PelotaDeHielo")
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    {
+                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().SumarPuntos(10);
+                    }
+                    vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo());
+                }
+                EstaMuerto();
+                if (VelocidadMov > 0)
+                {
+                    VelocidadMov = VelocidadMov - 5;
+
+                    //velMovimiento = 0;
+                }
+                if (VelocidadMov <= 0)
+                {
+                    SetEstadoEnemigo(EstadoEnemigo.congelado);
+                    efectoCongelado.SetActive(true);
+                    timeEstado = 2.5f;//tiempo por el cual el enemigo "Corredor" estara congelado
+                }
+            }
+            if (other.gameObject.tag == "MiniPelota")
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    {
+                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().SumarPuntos(10);
+                    }
+                    vida = vida - ((GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota()));
+                    EstaMuerto();
+                }
+            }
+            if (other.gameObject.tag == "PelotaDanzarina")
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    {
+                        Jugador.GetJugador().SumarPuntos(5 * 2);
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().SumarPuntos(5);
+                    }
+                }
+                if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+                {
+                    timeEstado = 1.5f;//tiempo por el cual el enemigo estara bailando
+                }
+                SetEstadoEnemigo(EstadoEnemigo.bailando);
+                efectoMusica.SetActive(true);
+                vida = vida - GetDanioBolaDanzarina();
+                EstaMuerto();
+
+            }
+            if (other.gameObject.tag == "PelotaDeFuego")
+            {
+                if (GetEstadoEnemigo() != EstadoEnemigo.quemado)
+                {
+                    timeEstado = 7;
+                }
+                if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+                {
+                    SetEstadoEnemigo(EstadoEnemigo.quemado);
+                }
+                efectoQuemado.SetActive(true);
+                VelocidadMov = auxVelocidadMov;
+            }
+            if (other.gameObject.tag == "PelotaExplociva")
+            {
+                if (Jugador.GetJugador() != null)
+                {
+                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    {
+                        Jugador.GetJugador().SumarPuntos(20 * 2);
+                    }
+                    else
+                    {
+                        Jugador.GetJugador().SumarPuntos(20);
+                    }
+                    vida = vida - ((GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva()));
+                }
+                EstaMuerto();
+
+            }
+        }
     }
+    /*
+        *FALTA CALIBRARLO PARA QUE EL DAÑO QUE RESIVA POR PELOTA (pelota comun,pelota explociva, pelota de hielo y fragmentadora) SEA MUY BAJO.
+        *FALTA HACER LA FUNCION
+    */
 }

@@ -148,11 +148,11 @@ public class Torpedo : Enemigo {
                 EstaMuerto();
                 if (Jugador.GetJugador().GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    Jugador.GetJugador().SumarPuntos(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    Jugador.GetJugador().SumarPuntos(1);
                 }
             }
         }
@@ -162,11 +162,11 @@ public class Torpedo : Enemigo {
             {
                 if (Jugador.GetJugador().GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    Jugador.GetJugador().SumarPuntos(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    Jugador.GetJugador().SumarPuntos(1);
                 }
                 vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo());
             }
@@ -190,11 +190,11 @@ public class Torpedo : Enemigo {
             {
                 if (Jugador.GetJugador().GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    Jugador.GetJugador().SumarPuntos(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    Jugador.GetJugador().SumarPuntos(1);
                 }
                 vida = vida - (GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota());
                 EstaMuerto();
@@ -206,11 +206,11 @@ public class Torpedo : Enemigo {
             {
                 if (Jugador.GetJugador().GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(5 * 2);
+                    Jugador.GetJugador().SumarPuntos(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(5);
+                    Jugador.GetJugador().SumarPuntos(1);
                 }
             }
             if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
@@ -229,11 +229,11 @@ public class Torpedo : Enemigo {
             {
                 if (Jugador.GetJugador().GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(20 * 2);
+                    Jugador.GetJugador().SumarPuntos(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(20);
+                    Jugador.GetJugador().SumarPuntos(1);
                 }
                 vida = vida - (GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
             }
