@@ -41,6 +41,7 @@ Torpedos.
     public GameObject[] GeneradorTorpedos;
     public States estados;
     public GameObject particulasBurbujas;
+    public TorretaSubmarino[] torretas;
 
     private int id;
     private float auxVelocidadMov;
@@ -211,6 +212,13 @@ Torpedos.
     // TAG PARA ENTRAR EN "Patrullar()" = "WaypointPatrullaje"
     public void Patrullar()
     {
+        for(int i = 0; i< torretas.Length; i++)
+        {
+            if(torretas[i] != null)
+            {
+                torretas[i].SetDisparar(false);
+            }
+        }
         puntoDebilActivado = false;
         if (waypoints.Length > 0)
         {
@@ -233,6 +241,13 @@ Torpedos.
     // TAG PARA ENTRAR EN "PatrullarBulnerable()" = "WaypointPatrullarBulnerable"
     public void PatrullarBulnerable()
     {
+        for (int i = 0; i < torretas.Length; i++)
+        {
+            if (torretas[i] != null)
+            {
+                torretas[i].SetDisparar(false);
+            }
+        }
         puntoDebilActivado = true;
         if (waypoints.Length > 0)
         {
@@ -257,6 +272,13 @@ Torpedos.
     //TAG PARA ENTRAR EN "AtacarTorpedos()" = "WaypointAtacarTorpedos"
     public void AtacarTorpedos()
     {
+        for (int i = 0; i < torretas.Length; i++)
+        {
+            if (torretas[i] != null)
+            {
+                torretas[i].SetDisparar(false);
+            }
+        }
         puntoDebilActivado = true;
         if (waypoints.Length > 0)
         {
@@ -300,6 +322,13 @@ Torpedos.
     //Para entrar en "Seguir()" CONFIGURARLO PARA QUE ENTRE CUANDO ESTES EN MODO "SUPERVIVENCIA"
     public void Seguir()
     {
+        for (int i = 0; i < torretas.Length; i++)
+        {
+            if (torretas[i] != null)
+            {
+                torretas[i].SetDisparar(false);
+            }
+        }
         puntoDebilActivado = true;
         if(Jugador.GetJugador() != null)
         {
@@ -329,12 +358,19 @@ Torpedos.
         // FALTA HACER QUE MIENTRAS SIGA ATAQUE.
     }
 
-
+    //(HECHO)
     //PatrullarDisparando: el jugador mientras pasa por los distintos waypoints
     //Dispara balas hacia el jugador(tiene activa su punto débil)
     //TAG PARA ENTRAR EN "PatrullaDisparando()" = "WaypointPatrullarDisparando"
     public void PatrullarDisparando()
     {
+        for (int i = 0; i < torretas.Length; i++)
+        {
+            if (torretas[i] != null)
+            {
+                torretas[i].SetDisparar(true);
+            }
+        }
         puntoDebilActivado = true;
         if (waypoints.Length > 0)
         {
@@ -540,8 +576,7 @@ Torpedos.
             }
         }
     }
-    /*
-        *FALTA CALIBRARLO PARA QUE EL DAÑO QUE RESIVA POR PELOTA (pelota comun,pelota explociva, pelota de hielo y fragmentadora) SEA MUY BAJO.
-        *FALTA HACER LA FUNCION
-    */
 }
+/*
+       *FALTA CALIBRARLO PARA QUE EL DAÑO QUE RESIVA POR PELOTA (pelota comun,pelota explociva, pelota de hielo y fragmentadora) SEA MUY BAJO.
+*/
