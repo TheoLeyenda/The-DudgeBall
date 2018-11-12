@@ -240,5 +240,12 @@ public class Torpedo : Enemigo {
             EstaMuerto();
 
         }
+        if(other.gameObject.tag == "Player")
+        {
+            if(Jugador.GetJugador() != null)
+            {
+                Jugador.GetJugador().vida = Jugador.GetJugador().vida - Danio;
+            }
+        }
     }
 }

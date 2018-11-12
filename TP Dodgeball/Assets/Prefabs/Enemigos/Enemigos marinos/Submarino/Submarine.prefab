@@ -1201,7 +1201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1427883445806892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2, y: 5.91, z: -11}
+  m_LocalPosition: {x: -0.8, y: 8.94, z: 5.4}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 4417715232034846}
@@ -3259,8 +3259,11 @@ MonoBehaviour:
   GeneradorTorpedos:
   - {fileID: 1321185958942754}
   - {fileID: 1970696858738660}
-  estados: 1
+  estados: 0
   particulasBurbujas: {fileID: 1312300969985324}
+  torretas:
+  - {fileID: 114504568876105520}
+  - {fileID: 114634212064582198}
 --- !u!135 &135378168481160522
 SphereCollider:
   m_ObjectHideFlags: 1

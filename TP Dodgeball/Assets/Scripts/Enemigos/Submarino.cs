@@ -31,6 +31,7 @@ Torpedos.
         PatrullarDisparando,
         Seguir,
         AtacarTorpedos,
+        AtacarConTodo,
         Quieto,
     }
 
@@ -101,6 +102,7 @@ Torpedos.
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(estados + "id:" +id);
         updateHP();
         UpdateStates();
         if (puntoDebilActivado)
@@ -189,6 +191,9 @@ Torpedos.
                 break;
             case (int)States.AtacarTorpedos:
                 AtacarTorpedos();
+                break;
+            case (int)States.AtacarConTodo:
+                AtacarConTodo();
                 break;
             case (int)States.Quieto:
                 Quieto();
@@ -387,6 +392,52 @@ Torpedos.
         }
     }
 
+    public void AtacarConTodo()
+    {
+        for (int i = 0; i < torretas.Length; i++)
+        {
+            if (torretas[i] != null)
+            {
+                torretas[i].SetDisparar(true);
+            }
+        }
+        puntoDebilActivado = true;
+        if (waypoints.Length > 0)
+        {
+            if (id >= waypoints.Length)
+            {
+                id = 0;
+            }
+            if (waypoints[id] != null)
+            {
+                Vector3 target = waypoints[id].position;
+                transform.LookAt(target);
+                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+
+                if (dileyDisparoTorpedos > 0)
+                {
+                    dileyDisparoTorpedos = dileyDisparoTorpedos - Time.deltaTime;
+                }
+                if (dileyDisparoTorpedos <= 0)
+                {
+                    for (int i = 0; i < GeneradorTorpedos.Length; i++)
+                    {                                                           // esta condicion del GetId() 
+                                                                                //sirve para que no se pase del array
+                        if (GeneradorTorpedos[i].activeSelf == true && poolTorpedos.GetId() < poolTorpedos.count)
+                        {
+                            GameObject go = poolTorpedos.GetObject();
+                            Torpedo torpedo = go.GetComponent<Torpedo>();
+                            go.transform.position = GeneradorTorpedos[i].transform.position;
+                            go.transform.rotation = GeneradorTorpedos[i].transform.rotation;
+                            torpedo.Prendido();
+                        }
+                    }
+                    dileyDisparoTorpedos = auxDileyDisparoTorpedos;
+                }
+            }
+        }
+    }
+
 
     public void CheckMuerto()
     {
@@ -414,6 +465,18 @@ Torpedos.
         if (other.tag == "WaypointPatrullaje")
         {
             estados = States.Patrullar;
+            if (id >= waypoints.Length)
+            {
+                id = 0;
+            }
+            else
+            {
+                id++;
+            }
+        }
+        if(other.tag == "WaypointAtacarConTodo")
+        {
+            estados = States.AtacarConTodo;
             if (id >= waypoints.Length)
             {
                 id = 0;
