@@ -43,6 +43,10 @@ Torpedos.
     public States estados;
     public GameObject particulasBurbujas;
     public TorretaSubmarino[] torretas;
+    public float ReducirDanioPelotaComun;
+    public float ReducirDanioPelotaHielo;
+    public float ReducirDanioMiniPelota;
+    public float ReducirDanioExplocivo;
 
     private int id;
     private float auxVelocidadMov;
@@ -528,7 +532,7 @@ Torpedos.
             {
                 if (Jugador.GetJugador() != null)
                 {
-                    vida = vida - ((GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun()));
+                    vida = vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun() - ReducirDanioPelotaComun);
                     EstaMuerto();
                     if (Jugador.GetJugador().GetDoblePuntuacion())
                     {
@@ -552,7 +556,7 @@ Torpedos.
                     {
                         Jugador.GetJugador().SumarPuntos(10);
                     }
-                    vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo());
+                    vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo()-ReducirDanioPelotaHielo);
                 }
                 EstaMuerto();
                 if (VelocidadMov > 0)
@@ -580,7 +584,7 @@ Torpedos.
                     {
                         Jugador.GetJugador().SumarPuntos(10);
                     }
-                    vida = vida - ((GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota()));
+                    vida = vida - (GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota() - ReducirDanioMiniPelota);
                     EstaMuerto();
                 }
             }
@@ -632,7 +636,7 @@ Torpedos.
                     {
                         Jugador.GetJugador().SumarPuntos(20);
                     }
-                    vida = vida - ((GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva()));
+                    vida = vida - ((GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva()) - ReducirDanioExplocivo);
                 }
                 EstaMuerto();
 
