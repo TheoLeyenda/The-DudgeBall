@@ -8,9 +8,13 @@ public class CambioCamara : MonoBehaviour {
     public GameObject camaraPrincipal;
     public GameObject camaraSecundaria;
     public GameObject[] cosasEnPantalla;
+    public GameObject sombrero;
 	void Start () {
-		
-	}
+        if (sombrero != null)
+        {
+            sombrero.SetActive(false);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -18,6 +22,10 @@ public class CambioCamara : MonoBehaviour {
 	}
     public void PrenderCamaraPrincipal()
     {
+        if (sombrero != null)
+        {
+            sombrero.SetActive(false);
+        }
         if(camaraPrincipal != null)
         {
             camaraPrincipal.SetActive(true);
@@ -36,6 +44,10 @@ public class CambioCamara : MonoBehaviour {
     }
     public void PrenderCamaraSecundaria()
     {
+        if (sombrero != null)
+        {
+            sombrero.SetActive(true);
+        }
         if(camaraSecundaria != null)
         {
             camaraSecundaria.SetActive(true);

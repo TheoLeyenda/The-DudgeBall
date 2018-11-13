@@ -105,8 +105,7 @@ Torpedos.
     }
 	
 	// Update is called once per frame
-	void Update () {
-        Debug.Log(estados + "id:" +id);
+	void Update () { 
         updateHP();
         UpdateStates();
         if (puntoDebilActivado)
