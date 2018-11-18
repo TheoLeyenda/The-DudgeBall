@@ -70,10 +70,6 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if(verificarVictoria)
-        {
-            VerificarVictoria();
-        }
         if(pausa)
         {
             Time.timeScale = 0;
@@ -148,9 +144,15 @@ public class GameManager : MonoBehaviour {
     {
         if(Ronda >= RondaVictoria)
         {
-            supervivencia = false;
-            historia = true;
             victoria = true;
+            for (int i = 0; i < spawnersEnemigos.Length; i++)
+            {
+                if(spawnersEnemigos[i] != null)
+                {
+                    spawnersEnemigos[i].SetEnFuncionamiento(false);
+                    spawnersEnemigos[i].gameObject.SetActive(false);
+                }
+            }
         }
     }
     public void MostrarRonda()

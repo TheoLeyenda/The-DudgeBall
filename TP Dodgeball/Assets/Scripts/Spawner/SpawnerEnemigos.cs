@@ -37,9 +37,14 @@ public class SpawnerEnemigos : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if(GameManager.GetGameManager().verificarVictoria)
+        {
+            GameManager.GetGameManager().VerificarVictoria();
+        }
         if (GameManager.GetGameManager().cantEnemigosEnPantalla <= 0)
         {
             GameManager.GetGameManager().SetEntrarRonda(true);
+            
         }
         if (enFuncionamiento && TOPE_CREACION < TOPE_MAXIMO && GameManager.GetGameManager().supervivencia && GameManager.GetGameManager().GetVictoria() == false && poolEnemigo.GetId() < poolEnemigo.count)
         {
