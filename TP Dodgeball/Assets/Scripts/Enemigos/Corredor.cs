@@ -368,7 +368,7 @@ public class Corredor : Enemigo
     {
         if (velocidad < MaxVelocidad)
         {
-            velocidad = velocidad + Random.Range(0.01f, 1.5f);
+            velocidad = velocidad + Random.Range(0.01f, 1f);
             auxVelocidad = velocidad;
         }
     }

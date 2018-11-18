@@ -23,6 +23,7 @@ public class SpawnerEnemigos : MonoBehaviour {
     public int patronEnemigo;
     public float rangoVisionEnemigo;
     public bool EvitarCreacionInstantanea;
+    public bool activarCreacionEscalada;
     void Start() {
         auxDileyCreacion = dileyCreacion;
         TOPE_CREACION = cantEnemigosInicial;
@@ -40,7 +41,7 @@ public class SpawnerEnemigos : MonoBehaviour {
         {
             GameManager.GetGameManager().SetEntrarRonda(true);
         }
-        if (enFuncionamiento && TOPE_CREACION < TOPE_MAXIMO && GameManager.GetGameManager().supervivencia)
+        if (enFuncionamiento && TOPE_CREACION < TOPE_MAXIMO && GameManager.GetGameManager().supervivencia && GameManager.GetGameManager().GetVictoria() == false && poolEnemigo.GetId() < poolEnemigo.count)
         {
             if (dileyCreacion > 0)
             {
@@ -57,7 +58,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                 {
                     GameObject go = poolEnemigo.GetObject();
                     Corredor corredor = go.GetComponent<Corredor>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX),0, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
                     corredor.Prendido();
                     corredor.rangoVisionEnemigo = rangoVisionEnemigo;
@@ -73,7 +74,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                 {
                     GameObject go = poolEnemigo.GetObject();
                     Tirador tirador = go.GetComponent<Tirador>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), transform.position.y, Random.Range(0, rangoZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), 0, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
                     tirador.Prendido();
                     tirador.rangoVisionEnemigo = rangoVisionEnemigo;
@@ -92,7 +93,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                 enFuncionamiento = false;
             }
         }
-        if (enFuncionamiento && GameManager.GetGameManager().historia)
+        if (enFuncionamiento && GameManager.GetGameManager().historia && activarCreacionEscalada == false && GameManager.GetGameManager().GetVictoria() == false && poolEnemigo.GetId() < poolEnemigo.count)
         {
             if (dileyCreacion > 0)
             {
@@ -100,9 +101,10 @@ public class SpawnerEnemigos : MonoBehaviour {
             }
             if (dileyCreacion <= 0)
             {
+                
                 if (tipoEnemigo == 1)
                 {
-                    
+
                     GameObject go = poolEnemigo.GetObject();
                     Corredor corredor = go.GetComponent<Corredor>();
                     go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), 0, Random.Range(0, rangoZ));
@@ -110,7 +112,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                     corredor.Prendido();
                     corredor.velocidad = velocidadEnemigo;
                     corredor.PatronDeMovimiento = patronEnemigo;
-                   
+
                     if (GameManager.GetGameManager().GetRonda() > 0)
                     {
                         corredor.SumarVelocidad();
@@ -132,6 +134,7 @@ public class SpawnerEnemigos : MonoBehaviour {
                         tirador.SumarVelocidad();
                     }
                 }
+                
                 dileyCreacion = auxDileyCreacion;
             }
         }

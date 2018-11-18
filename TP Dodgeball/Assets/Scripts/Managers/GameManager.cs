@@ -17,11 +17,15 @@ public class GameManager : MonoBehaviour {
     private int Ronda;
     public bool supervivencia;
     public bool historia;
+    public bool verificarRonda;
+    public bool verificarVictoria;
+    public int RondaVictoria;
     private int muertes;
     public int limiteMuertes;
     public string mapaActual;
     public string mapaSiguiente;
     private bool entrarRonda;
+    private bool victoria;
     [HideInInspector]
     public bool pasarNivel = false;
     [HideInInspector]
@@ -66,6 +70,10 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if(verificarVictoria)
+        {
+            VerificarVictoria();
+        }
         if(pausa)
         {
             Time.timeScale = 0;
@@ -101,29 +109,19 @@ public class GameManager : MonoBehaviour {
 
         if(historia && !supervivencia && pasarNivel == true)
         {
-            if(muertes >= limiteMuertes)
+            MostrarRonda();
+            /*if(muertes >= limiteMuertes)
             {
                 SceneManager.LoadScene(mapaSiguiente);
-            }
+            }*/
         }
         if(!historia && supervivencia)
         {
-            if (TextRonda != null)
-            {
-                TextRonda.text = "RONDA: " + Ronda;
-            }
-            if (TextRondaAndroid != null)
-            {
-                TextRondaAndroid.text = "RONDA: " + Ronda;
-            }
+            MostrarRonda();
             if (mapaActual == "Arena(Supervivencia)")
             {
                 if (spawnersEnemigos[4] != null && spawnersEnemigos[5] != null && spawnersEnemigos[6] != null && spawnersEnemigos[7] != null)
                 {
-                    //spawnersEnemigos[4].gameObject.SetActive(false);
-                    //spawnersEnemigos[5].gameObject.SetActive(false);
-                    //spawnersEnemigos[6].gameObject.SetActive(false);
-                    //spawnersEnemigos[7].gameObject.SetActive(false);
                     if (Ronda % 5 == 0)
                     {
                         spawnersEnemigos[4].gameObject.SetActive(true);
@@ -142,9 +140,30 @@ public class GameManager : MonoBehaviour {
             }
         }
 	}
-
-
-    
+    public bool GetVictoria()
+    {
+        return victoria;
+    }
+    public void VerificarVictoria()
+    {
+        if(Ronda >= RondaVictoria)
+        {
+            supervivencia = false;
+            historia = true;
+            victoria = true;
+        }
+    }
+    public void MostrarRonda()
+    {
+        if (TextRonda != null)
+        {
+            TextRonda.text = "RONDA: " + Ronda;
+        }
+        if (TextRondaAndroid != null)
+        {
+            TextRondaAndroid.text = "RONDA: " + Ronda;
+        }
+    }
     public void SetEnemigosEnPantalla(int enemigosEnPantalla)
     {
         cantEnemigosEnPantalla = enemigosEnPantalla;
