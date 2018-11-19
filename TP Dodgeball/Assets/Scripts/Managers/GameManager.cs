@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public int cantEnemigosEnPantalla;
     public SpawnerEnemigos[] spawnersEnemigos;
+    public TiradorEstatico[] torretas;
     private bool Empiezo;
     private static GameManager instanciaGameManager;
     private int Ronda;
@@ -26,6 +27,8 @@ public class GameManager : MonoBehaviour {
     public string mapaSiguiente;
     private bool entrarRonda;
     private bool victoria;
+    private int cantTorretasEnPantalla;
+    private bool unaVezPorRonda;
     [HideInInspector]
     public bool pasarNivel = false;
     [HideInInspector]
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour {
         //entrarRonda = true;
         Ronda = 1;
         muertes = 0;
+        unaVezPorRonda = false;
         if (instanciaGameManager == null)
         {
             instanciaGameManager = this;
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         cantEnemigosEnPantalla = 0;
-        if (!historia && supervivencia )
+        if (!historia && supervivencia)
         {
             if (mapaActual == "Arena(Supervivencia)")
             {
@@ -65,12 +69,24 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+        if (torretas != null)
+        {
+            for(int i = 0; i<torretas.Length; i++)
+            {
+                if(torretas[i] != null)
+                {
+                    torretas[i].gameObject.SetActive(false);
+                }
+            }
+        }
     }
 
 
     // Update is called once per frame
     void Update () {
-        if(pausa)
+        CheckTorreta();
+        VerificarVictoria();
+        if (pausa)
         {
             Time.timeScale = 0;
         }
@@ -80,16 +96,29 @@ public class GameManager : MonoBehaviour {
         }
         if (supervivencia)
         {
+
             for (int i = 0; i < spawnersEnemigos.Length; i++)
             {
-                if (cantEnemigosEnPantalla <= 0)
+                
+                if (cantEnemigosEnPantalla <= 0 && cantTorretasEnPantalla <= 0)
                 {
+                    
                     spawnersEnemigos[i].SetEnFuncionamiento(true);
                     if (entrarRonda)
                     {
+                        unaVezPorRonda = true;
                         SumarRonda();
                         entrarRonda = false;
                     }
+                }
+                if (mapaActual == "Arena(Historia)" && unaVezPorRonda)
+                {
+                    VerificarVictoria();
+                    if (!victoria)
+                    {
+                        ActivacionTorretas();
+                    }
+                    unaVezPorRonda = false;
                 }
             }
         }
@@ -102,7 +131,7 @@ public class GameManager : MonoBehaviour {
             }
 
         }
-
+        
         if(historia && !supervivencia && pasarNivel == true)
         {
             MostrarRonda();
@@ -136,6 +165,47 @@ public class GameManager : MonoBehaviour {
             }
         }
 	}
+    public void ActivacionTorretas()
+    {
+        if (Ronda == 2)
+        {
+            torretas[0].gameObject.SetActive(true);
+            torretas[1].gameObject.SetActive(true);
+        }
+        if (Ronda == 3)
+        {
+            torretas[0].gameObject.SetActive(true);
+            torretas[1].gameObject.SetActive(true);
+            torretas[2].gameObject.SetActive(true);
+            torretas[3].gameObject.SetActive(true);
+        }
+        if (Ronda == 4)
+        {
+            torretas[4].gameObject.SetActive(true);
+            torretas[5].gameObject.SetActive(true);
+            torretas[6].gameObject.SetActive(true);
+            torretas[7].gameObject.SetActive(true);
+            torretas[8].gameObject.SetActive(true);
+            torretas[9].gameObject.SetActive(true);
+            torretas[10].gameObject.SetActive(true);
+            torretas[11].gameObject.SetActive(true);
+        }
+        if (Ronda >= 5)
+        {
+            torretas[0].gameObject.SetActive(true);
+            torretas[1].gameObject.SetActive(true);
+            torretas[2].gameObject.SetActive(true);
+            torretas[3].gameObject.SetActive(true);
+            torretas[4].gameObject.SetActive(true);
+            torretas[5].gameObject.SetActive(true);
+            torretas[6].gameObject.SetActive(true);
+            torretas[7].gameObject.SetActive(true);
+            torretas[8].gameObject.SetActive(true);
+            torretas[9].gameObject.SetActive(true);
+            torretas[10].gameObject.SetActive(true);
+            torretas[11].gameObject.SetActive(true);
+        }
+    }
     public bool GetVictoria()
     {
         return victoria;
@@ -151,6 +221,24 @@ public class GameManager : MonoBehaviour {
                 {
                     spawnersEnemigos[i].SetEnFuncionamiento(false);
                     spawnersEnemigos[i].gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+    public void CheckTorreta()
+    {
+        if (torretas != null)
+        {
+            cantTorretasEnPantalla = torretas.Length;
+            for (int i = 0; i < torretas.Length; i++)
+            {
+                if (torretas[i] != null)
+                {
+                    if (torretas[i].gameObject.activeSelf == false && cantTorretasEnPantalla > 0)
+                    {
+                        cantTorretasEnPantalla--;
+                    }
+                    
                 }
             }
         }

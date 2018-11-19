@@ -19,7 +19,8 @@ public class TiradorEstatico : Enemigo
     private float efectoFuego;
     private Rigidbody rig;
     private float dileyInsta;
-
+    public int tipoMovimiento;
+    public float danio;
     void Start()
     {
         dileyInsta = 1;
@@ -32,7 +33,11 @@ public class TiradorEstatico : Enemigo
         efectoMusica.SetActive(false);
         rig = GetComponent<Rigidbody>();
     }
-
+    private void OnEnable()
+    {
+        vida = maxVida;
+        SetMuerto(false);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -138,7 +143,14 @@ public class TiradorEstatico : Enemigo
     {
         if (Jugador.GetJugador() != null)
         {
-            transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x, transform.position.y, Jugador.GetJugador().transform.position.z));
+            if (tipoMovimiento == 0)
+            {
+                transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x, transform.position.y, Jugador.GetJugador().transform.position.z));
+            }
+            if(tipoMovimiento == 1)
+            {
+                transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x, Jugador.GetJugador().transform.position.y, Jugador.GetJugador().transform.position.z));
+            }
         }
     }
     public void TirarBola()
@@ -149,6 +161,7 @@ public class TiradorEstatico : Enemigo
         go.transform.position = generadorPelota.transform.position;
         go.transform.rotation = generadorPelota.transform.rotation;
         pelota.Disparar();
+        pelota.danio = danio;
     }
     private void OnTriggerEnter(Collider other)
     {

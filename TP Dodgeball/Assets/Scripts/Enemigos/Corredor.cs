@@ -47,7 +47,9 @@ public class Corredor : Enemigo
         dileyInsta = 1;
         SetEsquivar(false);
         SetEstadoEnemigo(EstadoEnemigo.normal);
+        SetMuerto(false);
         vida = auxVida;
+        vida = maxVida;
         rig = GetComponent<Rigidbody>();
         rig.velocity = Vector3.zero;
         rig.angularVelocity = Vector3.zero;

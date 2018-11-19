@@ -44,7 +44,6 @@ public class SpawnerEnemigos : MonoBehaviour {
         if (GameManager.GetGameManager().cantEnemigosEnPantalla <= 0)
         {
             GameManager.GetGameManager().SetEntrarRonda(true);
-            
         }
         if (enFuncionamiento && TOPE_CREACION < TOPE_MAXIMO && GameManager.GetGameManager().supervivencia && GameManager.GetGameManager().GetVictoria() == false && poolEnemigo.GetId() < poolEnemigo.count)
         {
@@ -72,8 +71,6 @@ public class SpawnerEnemigos : MonoBehaviour {
                     {
                         corredor.SumarVelocidad();
                     }
-
-
                 }
                 if (tipoEnemigo == 2)
                 {
