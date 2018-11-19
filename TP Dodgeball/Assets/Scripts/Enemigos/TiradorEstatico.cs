@@ -161,7 +161,10 @@ public class TiradorEstatico : Enemigo
         go.transform.position = generadorPelota.transform.position;
         go.transform.rotation = generadorPelota.transform.rotation;
         pelota.Disparar();
-        pelota.danio = danio;
+        if (danio > 0)
+        {
+            pelota.danio = danio;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

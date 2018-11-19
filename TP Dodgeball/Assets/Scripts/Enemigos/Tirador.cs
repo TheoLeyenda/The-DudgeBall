@@ -23,6 +23,8 @@ public class Tirador : Enemigo {
     private float dileyInsta;
     public float rangoDoblar;
     public float rangoVisionEnemigo;
+    public float danio;
+    public float potenciaDisparo;
 
     public PoolPelota poolPoderInmune;
     public PoolPelota poolDoblePuntuacion;
@@ -252,6 +254,14 @@ public class Tirador : Enemigo {
         PelotaEnemigo pelota = go.GetComponent<PelotaEnemigo>();
         go.transform.position = generadorPelota.transform.position;
         go.transform.rotation = generadorPelota.transform.rotation;
+        if (danio > 0)
+        {
+            pelota.danio = danio;
+        }
+        if (potenciaDisparo > 0)
+        {
+            pelota.potencia = potenciaDisparo;
+        }
         pelota.Disparar();
     }
     private void OnTriggerEnter(Collider other)

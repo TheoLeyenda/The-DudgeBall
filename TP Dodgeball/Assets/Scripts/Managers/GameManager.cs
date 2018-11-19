@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     public CambiarMaterialPuertas cambiarMaterial;
     public SpawnerEnemigos[] spawnersEnemigos;
     public TiradorEstatico[] torretas;
+    public SpawnerTrampa[] trampas;
     private bool Empiezo;
     private static GameManager instanciaGameManager;
     private int Ronda;
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour {
     [HideInInspector]
     public bool pausa;
     public GameObject puerta;
+    public GameObject corazon;
+    public GameObject blindaje;
 
     public static GameManager GetGameManager()
     {
@@ -115,12 +118,48 @@ public class GameManager : MonoBehaviour {
                 }
                 if (mapaActual == "Arena(Historia)" && unaVezPorRonda)
                 {
+                    if (corazon != null && blindaje != null)
+                    {
+                        corazon.SetActive(false);
+                        blindaje.SetActive(false);
+                    }
                     VerificarVictoria();
                     if (!victoria)
                     {
                         ActivacionTorretas();
                     }
                     unaVezPorRonda = false;
+                    if(Ronda == 2)
+                    {
+                        for (int j = 0; j < trampas.Length; j++)
+                        {
+                            if (trampas[j] != null)
+                            {
+                                trampas[j].gameObject.SetActive(true);
+                            }
+                        }
+                    }
+                    if(Ronda == 4)
+                    {
+                        spawnersEnemigos[4].gameObject.SetActive(true);
+                        spawnersEnemigos[5].gameObject.SetActive(true);
+                        spawnersEnemigos[6].gameObject.SetActive(false);
+                        spawnersEnemigos[7].gameObject.SetActive(false);
+                    }
+                    if(Ronda == 5)
+                    {
+                        spawnersEnemigos[4].gameObject.SetActive(false);
+                        spawnersEnemigos[5].gameObject.SetActive(false);
+                        spawnersEnemigos[6].gameObject.SetActive(true);
+                        spawnersEnemigos[7].gameObject.SetActive(true);
+                    }
+                    if(Ronda == 6)
+                    {
+                        spawnersEnemigos[4].gameObject.SetActive(true);
+                        spawnersEnemigos[5].gameObject.SetActive(true);
+                        spawnersEnemigos[6].gameObject.SetActive(true);
+                        spawnersEnemigos[7].gameObject.SetActive(true);
+                    }
                 }
             }
         }
@@ -169,19 +208,19 @@ public class GameManager : MonoBehaviour {
 	}
     public void ActivacionTorretas()
     {
-        if (Ronda == 2)
+        if (Ronda == 3)
         {
             torretas[0].gameObject.SetActive(true);
             torretas[1].gameObject.SetActive(true);
         }
-        if (Ronda == 3)
+        if (Ronda == 4)
         {
             torretas[0].gameObject.SetActive(true);
             torretas[1].gameObject.SetActive(true);
             torretas[2].gameObject.SetActive(true);
             torretas[3].gameObject.SetActive(true);
         }
-        if (Ronda == 4)
+        if (Ronda == 5)
         {
             torretas[4].gameObject.SetActive(true);
             torretas[5].gameObject.SetActive(true);
@@ -192,7 +231,7 @@ public class GameManager : MonoBehaviour {
             torretas[10].gameObject.SetActive(true);
             torretas[11].gameObject.SetActive(true);
         }
-        if (Ronda >= 5)
+        if (Ronda >= 6)
         {
             torretas[0].gameObject.SetActive(true);
             torretas[1].gameObject.SetActive(true);
@@ -217,6 +256,8 @@ public class GameManager : MonoBehaviour {
         if(Ronda >= RondaVictoria)
         {
             victoria = true;
+            corazon.SetActive(true);
+            blindaje.SetActive(true);
             for (int i = 0; i < spawnersEnemigos.Length; i++)
             {
                 if(spawnersEnemigos[i] != null)
@@ -227,7 +268,6 @@ public class GameManager : MonoBehaviour {
             }
             cambiarMaterial.CambiarMaterial();
             puerta.GetComponent<BoxCollider>().enabled = true;
-
         }
     }
     public void CheckTorreta()
@@ -243,7 +283,6 @@ public class GameManager : MonoBehaviour {
                     {
                         cantTorretasEnPantalla--;
                     }
-                    
                 }
             }
         }

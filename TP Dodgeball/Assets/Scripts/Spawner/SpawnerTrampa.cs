@@ -10,20 +10,27 @@ public class SpawnerTrampa : MonoBehaviour {
     public float RangoX;
     public float RangoZ;
     public int cantidad;
+    public bool generarAlEmpezar;
     void Start () {
-        for (int i = 0; i < cantidad; i++)
+        
+        if (generarAlEmpezar)
         {
-            Generar();
+            for (int i = 0; i < cantidad; i++)
+            {
+                Generar();
+            }
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
     public void Generar()
     {
         GameObject go = poolEnemigo.GetObject();
-        go.transform.position = new Vector3(Random.Range(-RangoX, RangoX), transform.position.y, Random.Range(-RangoZ, RangoZ));
+        float x = Random.Range(-RangoX, RangoX);
+        float z = Random.Range(-RangoZ, RangoZ);
+        go.transform.position = new Vector3(transform.position.x+x, transform.position.y, transform.position.z+z);
     }
 }

@@ -31,6 +31,7 @@ public class LaberintoManager : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
+        Jugador.GetJugador().oportunidades = 3;
     }
     public static LaberintoManager GetLaberintoManager()
     {

@@ -6638,7 +6638,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 67ac3c995a3da8b48a483270b343f60e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9002ea2d89477ec4caf854d11a1ec253, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15644,11 +15644,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1353881061985218, guid: 28ac52a365097af4da991e78e4f6497e,
     type: 2}
   m_PrefabInternal: {fileID: 1431801379}
---- !u!4 &1111566558 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4657469996818346, guid: 28ac52a365097af4da991e78e4f6497e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1431801379}
 --- !u!1 &1112167965
 GameObject:
   m_ObjectHideFlags: 0
@@ -22176,6 +22171,10 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28ac52a365097af4da991e78e4f6497e, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &1431801380 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1431801379}
 --- !u!1001 &1433952953
 Prefab:
   m_ObjectHideFlags: 0
@@ -26418,12 +26417,12 @@ Prefab:
     - target: {fileID: 224484533098602458, guid: c7315278db52f9a42a0a2eef308e8161,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224631001785615754, guid: c7315278db52f9a42a0a2eef308e8161,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1228964454088918, guid: c7315278db52f9a42a0a2eef308e8161, type: 2}
       propertyPath: m_IsActive
@@ -26470,6 +26469,12 @@ Prefab:
       propertyPath: sombrero
       value: 
       objectReference: {fileID: 1277886163}
+    - target: {fileID: 114000124853788318, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9002ea2d89477ec4caf854d11a1ec253,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7315278db52f9a42a0a2eef308e8161, type: 2}
   m_IsPrefabAsset: 0
@@ -30721,7 +30726,7 @@ Transform:
   m_LocalPosition: {x: 0.722806, y: 0.76913905, z: 0.35658836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1111566558}
+  - {fileID: 1431801380}
   - {fileID: 753027196}
   m_Father: {fileID: 432958042}
   m_RootOrder: 2

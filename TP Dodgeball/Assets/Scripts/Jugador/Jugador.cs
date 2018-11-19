@@ -326,6 +326,11 @@ public class Jugador : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
+        if(other.tag == "PickUpChalecoAntiGolpes")
+        {
+            powerUpChalecoAntiGolpes = true;
+            other.gameObject.SetActive(false);
+        }
         if(other.tag == "RompeObjetos")
         {
             SceneManager.LoadScene("GameOver");

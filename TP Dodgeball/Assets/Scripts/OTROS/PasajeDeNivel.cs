@@ -13,6 +13,17 @@ public class PasajeDeNivel : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
+            if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares() != null)
+            {
+
+                EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetDatosJugador(Jugador.GetJugador());
+                if (Jugador.GetJugador().blindaje > 0)
+                {
+                    EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().DatosJugador.blindaje = Jugador.GetJugador().blindaje;
+                    Jugador.GetJugador().logoBlindaje.SetActive(true);
+                    Jugador.GetJugador().textBlindaje.gameObject.SetActive(true);
+                }
+            }
             if (nivel != null && !NivelPorNumero)
             {
                 SceneManager.LoadScene(nivel);

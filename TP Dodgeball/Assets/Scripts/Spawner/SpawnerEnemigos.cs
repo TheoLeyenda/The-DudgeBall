@@ -21,6 +21,8 @@ public class SpawnerEnemigos : MonoBehaviour {
     private int TOPE_MAXIMO;
     public int tipoEnemigo;
     public int patronEnemigo;
+    public float danioTirador;
+    public float potenciaTirador;
     public float rangoVisionEnemigo;
     public bool EvitarCreacionInstantanea;
     public bool activarCreacionEscalada;
@@ -37,7 +39,6 @@ public class SpawnerEnemigos : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Debug.Log(GameManager.GetGameManager().cantEnemigosEnPantalla);
         if(GameManager.GetGameManager().verificarVictoria)
         {
             GameManager.GetGameManager().VerificarVictoria();
@@ -82,6 +83,14 @@ public class SpawnerEnemigos : MonoBehaviour {
                     tirador.Prendido();
                     tirador.rangoVisionEnemigo = rangoVisionEnemigo;
                     tirador.tipoPatron = patronEnemigo;
+                    if (danioTirador > 0)
+                    {
+                        tirador.danio = danioTirador;
+                    }
+                    if(potenciaTirador> 0)
+                    {
+                        tirador.potenciaDisparo = potenciaTirador;
+                    }
                     if (GameManager.GetGameManager().GetRonda() > 1)
                     {
                         tirador.SumarVelocidad();
@@ -115,13 +124,10 @@ public class SpawnerEnemigos : MonoBehaviour {
                     corredor.Prendido();
                     corredor.velocidad = velocidadEnemigo;
                     corredor.PatronDeMovimiento = patronEnemigo;
-
                     if (GameManager.GetGameManager().GetRonda() > 0)
                     {
                         corredor.SumarVelocidad();
                     }
-
-
                 }
                 if (tipoEnemigo == 2)
                 {
@@ -129,6 +135,14 @@ public class SpawnerEnemigos : MonoBehaviour {
                     Tirador tirador = go.GetComponent<Tirador>();
                     go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), 0, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
+                    if (danioTirador > 0)
+                    {
+                        tirador.danio = danioTirador;
+                    }
+                    if (potenciaTirador > 0)
+                    {
+                        tirador.potenciaDisparo = potenciaTirador;
+                    }
                     tirador.Prendido();
                     tirador.velocidad = velocidadEnemigo;
                     tirador.tipoPatron = patronEnemigo;
