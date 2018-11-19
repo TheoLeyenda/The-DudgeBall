@@ -28,7 +28,7 @@ public class SpawnerEnemigos : MonoBehaviour {
         auxDileyCreacion = dileyCreacion;
         TOPE_CREACION = cantEnemigosInicial;
         enFuncionamiento = true;
-        TOPE_MAXIMO = poolEnemigo.count - 50;
+        TOPE_MAXIMO = poolEnemigo.count;
         if (!EvitarCreacionInstantanea)
         {
             dileyCreacion = 0;
@@ -37,6 +37,7 @@ public class SpawnerEnemigos : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        Debug.Log(GameManager.GetGameManager().cantEnemigosEnPantalla);
         if(GameManager.GetGameManager().verificarVictoria)
         {
             GameManager.GetGameManager().VerificarVictoria();
