@@ -32,4 +32,13 @@ public class CambiarMaterialPuertas : MonoBehaviour {
             gameObject.SetActive(false);
         }
     }
+    public void CambiarMaterial()
+    {
+        if (nuevoMaterial != null && objetaAcambiarMaterial != null)
+        {
+            objetaAcambiarMaterial.SetActive(true);
+            objetaAcambiarMaterial.GetComponent<MeshRenderer>().sharedMaterial = nuevoMaterial;
+            EmpezarContar = true;
+        }
+    }
 }

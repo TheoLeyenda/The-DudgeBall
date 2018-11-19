@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
     public Text TextRondaAndroid;
     [HideInInspector]
     public int cantEnemigosEnPantalla;
+    public CambiarMaterialPuertas cambiarMaterial;
     public SpawnerEnemigos[] spawnersEnemigos;
     public TiradorEstatico[] torretas;
     private bool Empiezo;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour {
     public bool pasarNivel = false;
     [HideInInspector]
     public bool pausa;
+    public GameObject puerta;
 
     public static GameManager GetGameManager()
     {
@@ -85,7 +87,7 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         CheckTorreta();
-        VerificarVictoria();
+        //VerificarVictoria();
         if (pausa)
         {
             Time.timeScale = 0;
@@ -223,6 +225,9 @@ public class GameManager : MonoBehaviour {
                     spawnersEnemigos[i].gameObject.SetActive(false);
                 }
             }
+            cambiarMaterial.CambiarMaterial();
+            puerta.GetComponent<BoxCollider>().enabled = true;
+
         }
     }
     public void CheckTorreta()
