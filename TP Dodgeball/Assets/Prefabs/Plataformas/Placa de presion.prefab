@@ -9,47 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1282916775804684}
+  m_RootGameObject: {fileID: 1348852713842432}
   m_IsPrefabAsset: 1
---- !u!1 &1282916775804684
+--- !u!1 &1348852713842432
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4154359301821598}
-  - component: {fileID: 33372623965211538}
-  - component: {fileID: 23472710234283522}
-  - component: {fileID: 65991697118237152}
-  - component: {fileID: 114557078724743642}
-  - component: {fileID: 54223193184102362}
+  - component: {fileID: 4734708687748096}
+  - component: {fileID: 33602498624068082}
+  - component: {fileID: 23858302200151530}
+  - component: {fileID: 65604251041549200}
+  - component: {fileID: 111432999215953190}
   m_Layer: 0
-  m_Name: Plataforma-MovIzqDer
-  m_TagString: Plataforma
+  m_Name: Placa de presion
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4154359301821598
+--- !u!4 &4734708687748096
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1282916775804684}
+  m_GameObject: {fileID: 1348852713842432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.61, y: 20.5, z: 8.83}
-  m_LocalScale: {x: 6, y: 0.9, z: 6}
+  m_LocalPosition: {x: 122, y: 99.646, z: -178.5}
+  m_LocalScale: {x: 4, y: 0.1, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23472710234283522
+--- !u!23 &23858302200151530
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1282916775804684}
+  m_GameObject: {fileID: 1348852713842432}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -59,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 223649a200d60384e9c06bde61d57259, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,52 +78,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33372623965211538
+--- !u!33 &33602498624068082
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1282916775804684}
+  m_GameObject: {fileID: 1348852713842432}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54223193184102362
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1282916775804684}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 118
-  m_CollisionDetection: 0
---- !u!65 &65991697118237152
+--- !u!65 &65604251041549200
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1282916775804684}
+  m_GameObject: {fileID: 1348852713842432}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114557078724743642
-MonoBehaviour:
+--- !u!111 &111432999215953190
+Animation:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1282916775804684}
+  m_GameObject: {fileID: 1348852713842432}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3323629393aeadc44901e8de2cb59ece, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arribaAbajo: 0
-  izquierdaDerecha: 1
-  Distancia: 4
-  vel: 40
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

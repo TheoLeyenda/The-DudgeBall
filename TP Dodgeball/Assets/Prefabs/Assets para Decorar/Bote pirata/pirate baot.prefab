@@ -21,12 +21,13 @@ GameObject:
   - component: {fileID: 4704371953604078}
   - component: {fileID: 33771228959682574}
   - component: {fileID: 23469957608113538}
+  - component: {fileID: 65551001212006652}
   m_Layer: 0
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1856799048628154
 GameObject:
@@ -42,7 +43,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4521779190016904
 Transform:
@@ -50,14 +51,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1856799048628154}
-  m_LocalRotation: {x: -0.08052145, y: 0.033353075, z: 0.3812272, w: 0.9203639}
-  m_LocalPosition: {x: -44.07, y: -0.58, z: -5.48}
+  m_LocalRotation: {x: -0.077308126, y: 0.04024406, z: 0.4599915, w: 0.8836355}
+  m_LocalPosition: {x: 168.28377, y: 98.53001, z: -152.14299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4704371953604078}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -10, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: -10, y: 0, z: 55}
 --- !u!4 &4704371953604078
 Transform:
   m_ObjectHideFlags: 1
@@ -113,6 +114,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1817994413401250}
   m_Mesh: {fileID: 4300000, guid: 7b54a7f250dcae6488ce1cfc26a6d88a, type: 3}
+--- !u!65 &65551001212006652
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1817994413401250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.094817, y: 13.265415, z: 20.408249}
+  m_Center: {x: -0.09586579, y: 13.202276, z: 0.53120416}
 --- !u!65 &65933251285815476
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -123,5 +136,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 7.3498154, y: 7.753441, z: 21.459501}
+  m_Center: {x: -0.25564647, y: 2.954805, z: -2.4937277}
