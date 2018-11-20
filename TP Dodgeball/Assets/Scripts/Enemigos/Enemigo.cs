@@ -19,7 +19,7 @@ public class Enemigo : MonoBehaviour {
     private EstadoEnemigo estadoEnemigo;
     private float danioBolaComun = 30;
     private float danioBolaDeHielo = 5;
-    private float danioMiniBolas = 10;
+    private float danioMiniBolas = 18;
     private float danioBolaDanzarina = 0;
     private float danioBolaDeFuego = 10;
     private float danioBolaExplociva = 50;

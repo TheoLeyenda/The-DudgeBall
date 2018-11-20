@@ -5,7 +5,7 @@ using UnityEngine;
 public class GestorSpawnerPickUp : MonoBehaviour {
 
     // Use this for initialization
-    public SpawnerPickUps[] spawnersPickUps;
+    public GameObject[] spawnersPickUps;
     private int tipoPickUp;
     public float dileyActivacion;
     public float AuxDileyActivacion;
@@ -25,10 +25,11 @@ public class GestorSpawnerPickUp : MonoBehaviour {
         }
         if (Jugador.GetJugador() != null)
         {
-            if (dileyActivacion <= 0 && Jugador.GetJugador().contar)
+            if (dileyActivacion <= 0 )
             {
-                tipoPickUp = Random.Range(1, 5);
-                if (tipoPickUp == 1)
+                tipoPickUp = Random.Range(0, 4);
+                Debug.Log(tipoPickUp);
+                if (tipoPickUp == 0)
                 {
                     spawnersPickUps[4].gameObject.SetActive(false);
                     spawnersPickUps[3].gameObject.SetActive(false);
@@ -36,7 +37,7 @@ public class GestorSpawnerPickUp : MonoBehaviour {
                     spawnersPickUps[1].gameObject.SetActive(false);
                     spawnersPickUps[0].gameObject.SetActive(true);
                 }
-                if (tipoPickUp == 2)
+                if (tipoPickUp == 1)
                 {
                     spawnersPickUps[4].gameObject.SetActive(false);
                     spawnersPickUps[3].gameObject.SetActive(false);
@@ -44,7 +45,7 @@ public class GestorSpawnerPickUp : MonoBehaviour {
                     spawnersPickUps[1].gameObject.SetActive(true);
                     spawnersPickUps[0].gameObject.SetActive(false);
                 }
-                if (tipoPickUp == 3)
+                if (tipoPickUp == 2)
                 {
                     spawnersPickUps[4].gameObject.SetActive(false);
                     spawnersPickUps[3].gameObject.SetActive(false);
@@ -52,7 +53,7 @@ public class GestorSpawnerPickUp : MonoBehaviour {
                     spawnersPickUps[1].gameObject.SetActive(false);
                     spawnersPickUps[0].gameObject.SetActive(false);
                 }
-                if (tipoPickUp == 4)
+                if (tipoPickUp == 3)
                 {
                     spawnersPickUps[4].gameObject.SetActive(false);
                     spawnersPickUps[3].gameObject.SetActive(true);
@@ -60,16 +61,16 @@ public class GestorSpawnerPickUp : MonoBehaviour {
                     spawnersPickUps[1].gameObject.SetActive(false);
                     spawnersPickUps[0].gameObject.SetActive(false);
                 }
-                if (tipoPickUp == 5)
+                if (tipoPickUp == 4)
                 {
-                    spawnersPickUps[4].gameObject.SetActive(true);
+                    //spawnersPickUps[4].gameObject.SetActive(true);
                     spawnersPickUps[3].gameObject.SetActive(false);
                     spawnersPickUps[2].gameObject.SetActive(false);
                     spawnersPickUps[1].gameObject.SetActive(false);
                     spawnersPickUps[0].gameObject.SetActive(false);
                 }
                 dileyActivacion = AuxDileyActivacion;
-                Jugador.GetJugador().contar = false;
+                
             }
         }
         

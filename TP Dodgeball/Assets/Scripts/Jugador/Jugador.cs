@@ -442,7 +442,7 @@ public class Jugador : MonoBehaviour {
         }
         if(other.tag == "PickUpVida")
         {
-            vida = vida + 50;
+            vida = vida + 100;
             if(vida>maxVida)
             {
                 vida = maxVida;
