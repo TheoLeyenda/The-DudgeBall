@@ -173,7 +173,19 @@ public class Jugador : MonoBehaviour {
         }
     }
     void Update() {
-        if(Input.GetKey(KeyCode.Escape))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 1.5f))
+        {
+            //if (hit.collider.tag == "Plataforma")
+            //{
+                //transform.SetParent(hit.collider.gameObject.transform,false);
+            //}
+            //else
+            //{
+                //transform.SetParent(null,false);
+            //}
+        }
+        if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
             //LeanRodrigez98
@@ -458,6 +470,7 @@ public class Jugador : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision collision)
     {
+        
         if (collision.gameObject.tag == "Roca")
         {
             if (blindaje > 0)
@@ -471,8 +484,10 @@ public class Jugador : MonoBehaviour {
         }
         
     }
+
     private void OnCollisionStay(Collision collision)
     {
+        
         if (!Inmune)
         {
             if (collision.gameObject.tag == "Corredor")

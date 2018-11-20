@@ -28,7 +28,6 @@ public class GestorSpawnerPickUp : MonoBehaviour {
             if (dileyActivacion <= 0 )
             {
                 tipoPickUp = Random.Range(0, 4);
-                Debug.Log(tipoPickUp);
                 if (tipoPickUp == 0)
                 {
                     spawnersPickUps[4].gameObject.SetActive(false);
