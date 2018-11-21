@@ -13,21 +13,27 @@ public class Pirania : Enemigo {
     }
     private int id = 0;
 
+    
     public States estados;
     public float velocidadAtaque;
     public float velocidadMovimiento;
     public float danio;
     public bool activarPirania;
+    private Vector3 puntoInicio;
+    private Quaternion rotacionInicio;
     public Transform[] waypoints;
     public Transform waypointJugadorAndroid;
     public Transform waypointJugadorWindows;
+    private Jugador instanceJugador;
     void Start () {
-
+        instanceJugador = Jugador.instanciaJugador;
+        puntoInicio = transform.position;
+        rotacionInicio = transform.rotation;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-       
+      
         if (activarPirania)
         {
             UpdateStates();
@@ -40,8 +46,22 @@ public class Pirania : Enemigo {
                 gameObject.SetActive(false);
             }
         }
-
-
+    }
+    public void SetPosicionInicio(Vector3 posInicial)
+    {
+        puntoInicio = posInicial;
+    }
+    public void SetRotacionInicio(Quaternion rotInicial)
+    {
+        rotacionInicio = rotInicial;
+    }
+    public Vector3 GetPuntoInicio()
+    {
+        return puntoInicio;
+    }
+    public Quaternion GetRotacionInicio()
+    {
+        return rotacionInicio;
     }
     public void UpdateStates()
     {
@@ -54,6 +74,20 @@ public class Pirania : Enemigo {
             case (int)States.Atacar:
                 Atacar();
                 break;
+        }
+    }
+    public void SetWaypoint(Transform waypointPosition)
+    {
+        if(Jugador.instanciaJugador != null)
+        {
+            if(instanceJugador.jugadorAndroid)
+            {
+                waypointJugadorAndroid = waypointPosition;
+            }
+            if(instanceJugador.jugadorWindows)
+            {
+                waypointJugadorWindows = waypointPosition;
+            }
         }
     }
     public void Atacar()

@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114397300859063798}
   m_Layer: 0
   m_Name: Piranha
-  m_TagString: Untagged
+  m_TagString: Pirania
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,10 +124,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4179dea088640e4cac81cfc571e5b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 0
+  maxVida: 0
+  BarraVida: {fileID: 0}
+  marcoBarra: {fileID: 0}
+  efectoQuemado: {fileID: 0}
+  efectoCongelado: {fileID: 0}
+  efectoMusica: {fileID: 0}
+  estoyEnPool: 0
   estados: 0
   velocidadAtaque: 0
   velocidadMovimiento: 0
   danio: 0
   activarPirania: 0
   waypoints: []
-  waypointJugador: {fileID: 0}
+  waypointJugadorAndroid: {fileID: 0}
+  waypointJugadorWindows: {fileID: 0}

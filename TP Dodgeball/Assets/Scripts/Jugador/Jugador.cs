@@ -10,7 +10,7 @@ public class Jugador : MonoBehaviour {
     // Use this for initialization
     [HideInInspector]
     public bool enPausa;
-    private static Jugador instanciaJugador;
+    public static Jugador instanciaJugador;
     private int TOPE_MUNICION = 500;
     public float vida;
     public float maxVida;
@@ -89,7 +89,10 @@ public class Jugador : MonoBehaviour {
     private float contDoblePuntuacion;
     private float contInstaKill;
     private float dileyActivacion;
-    
+    private void Awake()
+    {
+        instanciaJugador = this;
+    }
     public void AumentarVida()
     {
         powerUpAumentarVida = true;
@@ -464,6 +467,7 @@ public class Jugador : MonoBehaviour {
         //AQUI RESIVO DAÑO
         
     }
+    //COMENTARLO
     public static Jugador GetJugador()
     {
         return instanciaJugador;

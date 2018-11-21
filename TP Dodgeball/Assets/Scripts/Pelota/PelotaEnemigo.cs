@@ -15,15 +15,34 @@ public class PelotaEnemigo : MonoBehaviour {
     private Rigidbody rigBola;
     public GameObject generador;
     public bool pelotaTinta;
+    public bool flecha;
     public void Disparar() {
         if (!pelotaTinta)
         {
-            //rigBola = GetComponent<Rigidbody>();
-            //rigBola.AddRelativeForce(-generador.transform.forward * potencia, ForceMode.Impulse);
+            
             rigBola = GetComponent<Rigidbody>();
             rigBola.velocity = Vector3.zero;
             rigBola.angularVelocity = Vector3.zero;
             rigBola.AddRelativeForce(-generador.transform.forward * potencia, ForceMode.Impulse);
+            poolObject = GetComponent<PoolObject>();
+            if (!tiempoAuxiliarHabilitado)
+            {
+                tiempoAuxiliarHabilitado = true;
+                auxTiempoVida = tiempoVida;
+            }
+            if (tiempoVida <= 0)
+            {
+                tiempoVida = auxTiempoVida;
+            }
+        }
+        if(flecha)
+        {
+            rigBola = GetComponent<Rigidbody>();
+            rigBola.velocity = Vector3.zero;
+            rigBola.angularVelocity = Vector3.zero;
+            
+            rigBola.AddRelativeForce(-generador.transform.forward * potencia, ForceMode.Impulse);
+            //transform.Rotate(0, 90, 0);
             poolObject = GetComponent<PoolObject>();
             if (!tiempoAuxiliarHabilitado)
             {
@@ -95,6 +114,13 @@ public class PelotaEnemigo : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision collision)
     {
+        //if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "GeneradorPelotaEnemigo" && collision.gameObject.tag != "Tirador" && collision.gameObject.tag != "Corredor" && collision.gameObject.tag != "PelotaDeTinta" && collision.gameObject.tag != "Kraken" && collision.gameObject.tag != "TraspasablePorPelotaTinta")
+        //{
+            //if (poolObject != null)
+            //{
+                //poolObject.Resiclarme();
+            //}
+        //}
         if (Jugador.GetJugador() != null)
         {
             if (collision.gameObject.tag == "Player")

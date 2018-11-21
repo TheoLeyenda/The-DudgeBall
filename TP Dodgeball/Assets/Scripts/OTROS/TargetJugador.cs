@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetJugador : MonoBehaviour {
-
+    public float ElevarVista;
 	void Update () {
         TargetearJugador();
 	}
@@ -11,7 +11,7 @@ public class TargetJugador : MonoBehaviour {
     {
         if(Jugador.GetJugador() != null)
         {
-            transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x,Jugador.GetJugador().transform.position.y,Jugador.GetJugador().transform.position.z));
+            transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x,Jugador.GetJugador().transform.position.y+ ElevarVista,Jugador.GetJugador().transform.position.z));
         }
     }
 }

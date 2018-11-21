@@ -19,22 +19,46 @@ public class EnjambreDePiranias : MonoBehaviour {
     public bool volverPuntoInicio;
     public Transform[] waypoints;
     public Pirania[] pirania;
-    public Vector3 puntoInicio;
+    private Vector3 puntoInicio;
+    private Quaternion rotacionInicio;
     public float velocidadMovimiento;
     private bool autodestrucion;
-
-    public void UpdateStates()
+    void Start()
     {
-        if(volverPuntoInicio)
+        puntoInicio = transform.position;
+        rotacionInicio = transform.rotation;
+        if (pirania.Length > 0)
         {
-            if(Jugador.GetJugador() != null)
+            for (int i = 0; i < pirania.Length; i++)
             {
-                if(Jugador.GetJugador().vida <= 0)
+                if (pirania[i] != null)
+                {
+                    pirania[i].activarPirania = false;
+                }
+            }
+            autodestrucion = false;
+        }
+    }
+    void Update()
+    {
+        if (volverPuntoInicio)
+        {
+            if (Jugador.GetJugador() != null)
+            {
+                if (Jugador.GetJugador().vida <= 0)
                 {
                     VolverPuntoInicio();
                 }
             }
         }
+        if (!autodestrucion)
+        {
+            UpdateStates();
+        }
+    }
+    public void UpdateStates()
+    {
+        
         switch ((int)estados)
         {
             case (int)States.Nadando:
@@ -77,7 +101,15 @@ public class EnjambreDePiranias : MonoBehaviour {
     {
         transform.position = puntoInicio;
         estados = States.Nadando;
+        autodestrucion = false;
         id = 0;
+        transform.rotation = rotacionInicio;
+        for(int i = 0; i< pirania.Length; i++)
+        {
+            pirania[i].transform.position = pirania[i].GetPuntoInicio();
+            pirania[i].transform.rotation = pirania[i].GetRotacionInicio();
+            pirania[i].activarPirania = false;
+        }
     }
     public void Seguir()
     {
@@ -88,25 +120,7 @@ public class EnjambreDePiranias : MonoBehaviour {
             transform.position = transform.position + transform.forward * Time.deltaTime * velocidadMovimiento;
         }
     }
-    void Start () {
-        if (pirania.Length > 0)
-        {
-            for (int i = 0; i < pirania.Length; i++)
-            {
-                if (pirania[i] != null)
-                {
-                    pirania[i].activarPirania = false;
-                }
-            }
-            autodestrucion = false;
-        }
-	}
-	
+    
 	// Update is called once per frame
-	void Update () {
-        if (!autodestrucion)
-        {
-            UpdateStates();
-        }
-	}
+	
 }
