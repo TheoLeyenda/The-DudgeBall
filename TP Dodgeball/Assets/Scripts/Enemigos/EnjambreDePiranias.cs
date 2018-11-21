@@ -16,14 +16,25 @@ public class EnjambreDePiranias : MonoBehaviour {
     public States estados;
     private int id = 0;
 
+    public bool volverPuntoInicio;
     public Transform[] waypoints;
     public Pirania[] pirania;
+    public Vector3 puntoInicio;
     public float velocidadMovimiento;
     private bool autodestrucion;
 
     public void UpdateStates()
     {
-
+        if(volverPuntoInicio)
+        {
+            if(Jugador.GetJugador() != null)
+            {
+                if(Jugador.GetJugador().vida <= 0)
+                {
+                    VolverPuntoInicio();
+                }
+            }
+        }
         switch ((int)estados)
         {
             case (int)States.Nadando:
@@ -62,7 +73,12 @@ public class EnjambreDePiranias : MonoBehaviour {
             }
         }
     }
-    
+    public void VolverPuntoInicio()
+    {
+        transform.position = puntoInicio;
+        estados = States.Nadando;
+        id = 0;
+    }
     public void Seguir()
     {
         if (Jugador.GetJugador() != null)
