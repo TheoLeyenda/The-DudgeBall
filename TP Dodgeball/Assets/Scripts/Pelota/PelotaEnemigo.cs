@@ -17,7 +17,7 @@ public class PelotaEnemigo : MonoBehaviour {
     public bool pelotaTinta;
     public bool flecha;
     public void Disparar() {
-        if (!pelotaTinta)
+        if (!pelotaTinta && !flecha)
         {
             
             rigBola = GetComponent<Rigidbody>();
@@ -41,8 +41,7 @@ public class PelotaEnemigo : MonoBehaviour {
             rigBola.velocity = Vector3.zero;
             rigBola.angularVelocity = Vector3.zero;
             
-            rigBola.AddRelativeForce(-generador.transform.forward * potencia, ForceMode.Impulse);
-            //transform.Rotate(0, 90, 0);
+            rigBola.AddRelativeForce(generador.transform.up * potencia, ForceMode.Impulse);
             poolObject = GetComponent<PoolObject>();
             if (!tiempoAuxiliarHabilitado)
             {

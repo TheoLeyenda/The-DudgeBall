@@ -33952,19 +33952,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4427006271707608, guid: 55c78b9dbe0506e4da40e8bdeda16cd2, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4427006271707608, guid: 55c78b9dbe0506e4da40e8bdeda16cd2, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4427006271707608, guid: 55c78b9dbe0506e4da40e8bdeda16cd2, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4427006271707608, guid: 55c78b9dbe0506e4da40e8bdeda16cd2, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4427006271707608, guid: 55c78b9dbe0506e4da40e8bdeda16cd2, type: 2}
       propertyPath: m_RootOrder
@@ -33997,11 +33997,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4427006271707608, guid: 55c78b9dbe0506e4da40e8bdeda16cd2, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4427006271707608, guid: 55c78b9dbe0506e4da40e8bdeda16cd2, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55c78b9dbe0506e4da40e8bdeda16cd2, type: 2}
@@ -39789,13 +39789,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2027201485}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 884591932}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!1 &2028666410
 GameObject:
   m_ObjectHideFlags: 0
