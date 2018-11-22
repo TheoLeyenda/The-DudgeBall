@@ -11,6 +11,8 @@ public class PlacaDePresion : MonoBehaviour {
     public Enemigo Enemigo;
     public PuertaRejas puerta;
     public bool checkAbrirPuerta;
+    public bool activarPorCubo;
+    public bool activarPorJugador;
     private bool unaVez;
 	void Start () {
         animacion = GetComponent<Animation>();
@@ -39,20 +41,44 @@ public class PlacaDePresion : MonoBehaviour {
 	}
     private void OnCollisionEnter(Collision collision)
     {
-        animacion.clip = AnimationClip;
-        animacion.Play();
-        for (int i = 0; i < objectosApagar.Length; i++)
+        if (activarPorCubo)
         {
-            objectosApagar[i].SetActive(false);
+            if (collision.gameObject.tag == "CuboActivador")
+            {
+                animacion.clip = AnimationClip;
+                animacion.Play();
+                for (int i = 0; i < objectosApagar.Length; i++)
+                {
+                    objectosApagar[i].SetActive(false);
+                }
+                if (Enemigo != null)
+                {
+                    Enemigo.gameObject.SetActive(true);
+                }
+            }
         }
-        if (Enemigo != null)
+        if(activarPorJugador)
         {
-            Enemigo.gameObject.SetActive(true);
+            if (collision.gameObject.tag == "Player")
+            {
+                animacion.clip = AnimationClip;
+                animacion.Play();
+                for (int i = 0; i < objectosApagar.Length; i++)
+                {
+                    objectosApagar[i].SetActive(false);
+                }
+                if (Enemigo != null)
+                {
+                    Enemigo.gameObject.SetActive(true);
+                }
+            }
         }
     }
     private void OnCollisionExit(Collision collision)
     {
-        animacion.transform.localScale = new Vector3(transform.localScale.x,0.1f,transform.localScale.z);
+        
+        animacion.transform.localScale = new Vector3(transform.localScale.x, 0.1f, transform.localScale.z);
+
     }
 
 }

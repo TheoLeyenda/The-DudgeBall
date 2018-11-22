@@ -113,13 +113,13 @@ public class PelotaEnemigo : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision collision)
     {
-        //if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "GeneradorPelotaEnemigo" && collision.gameObject.tag != "Tirador" && collision.gameObject.tag != "Corredor" && collision.gameObject.tag != "PelotaDeTinta" && collision.gameObject.tag != "Kraken" && collision.gameObject.tag != "TraspasablePorPelotaTinta")
-        //{
-            //if (poolObject != null)
-            //{
-                //poolObject.Resiclarme();
-            //}
-        //}
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "GeneradorPelotaEnemigo" && collision.gameObject.tag != "Tirador" && collision.gameObject.tag != "Corredor" && collision.gameObject.tag != "PelotaDeTinta" && collision.gameObject.tag != "Kraken" && collision.gameObject.tag != "TraspasablePorPelotaTinta")
+        {
+            if (poolObject != null)
+            {
+                tiempoVida = 0.1f;
+            }
+        }
         if (Jugador.GetJugador() != null)
         {
             if (collision.gameObject.tag == "Player")

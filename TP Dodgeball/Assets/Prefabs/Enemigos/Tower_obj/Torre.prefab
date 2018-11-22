@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23622675304053414}
   - component: {fileID: 114357614314025822}
   - component: {fileID: 54868850137797474}
+  - component: {fileID: 65728480472688864}
   m_Layer: 0
   m_Name: Torre
   m_TagString: Untagged
@@ -95,6 +96,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1591250572986792
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4349627112840938}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1592890489245802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4678994285730516}
+  - component: {fileID: 114409119625735398}
+  m_Layer: 0
+  m_Name: Generador
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1696724509061800
 GameObject:
   m_ObjectHideFlags: 1
@@ -156,9 +188,23 @@ Transform:
   - {fileID: 4088156726743534}
   - {fileID: 4480720361737094}
   - {fileID: 4944768597059584}
+  - {fileID: 4678994285730516}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4349627112840938
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1591250572986792}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4678994285730516}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!4 &4392813285866766
 Transform:
   m_ObjectHideFlags: 1
@@ -204,7 +250,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455489514571534}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 6.301, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -212,6 +258,20 @@ Transform:
   - {fileID: 4392813285866766}
   m_Father: {fileID: 4310873338417942}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!4 &4678994285730516
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1592890489245802}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7080002, y: 4.861, z: -0.048000336}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4349627112840938}
+  m_Father: {fileID: 4310873338417942}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4944768597059584
 Transform:
@@ -311,7 +371,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5c15e8472a5fdd34cbab0c44ebeade20, type: 2}
+  - {fileID: 2100000, guid: 61f2f24344a6da1499003c6596193cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -367,6 +427,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &65728480472688864
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1061614970310414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.6671004, y: 4.5727367, z: 3.539566}
+  m_Center: {x: 0.15322813, y: 3.202054, z: 0.60804623}
 --- !u!114 &114357614314025822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -387,10 +459,22 @@ MonoBehaviour:
   efectoMusica: {fileID: 0}
   estoyEnPool: 0
   flechas: {fileID: 114523940692832418}
-  dilayDisparo: 1
-  danio: 20
-  potenciaFlecha: 50
-  generadorPelota: {fileID: 0}
+  dilayDisparo: 0.5
+  danio: 40
+  potenciaFlecha: 65
+  generadorPelota: {fileID: 1591250572986792}
+--- !u!114 &114409119625735398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1592890489245802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf70c54f18d21746b6c91bf25e5d03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElevarVista: 0.4
 --- !u!114 &114523940692832418
 MonoBehaviour:
   m_ObjectHideFlags: 1

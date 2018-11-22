@@ -607,7 +607,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1513855456260026}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.1, y: 15.5, z: 18.878922}
+  m_LocalPosition: {x: 5.21, y: 28.2, z: -95.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4370208761878554}
@@ -1142,7 +1142,7 @@ MonoBehaviour:
   efectoCongelado: {fileID: 1437517039143674}
   efectoMusica: {fileID: 1950011815682802}
   estoyEnPool: 0
-  danio: 35
+  danio: 40
   potenciaAtaque: 2.5
   reducirPotenciaAtaque: 10
   reducirDanioPelotaComun: 15
@@ -1151,6 +1151,14 @@ MonoBehaviour:
   aumentarDanioPelotaFuego: 15
   velMovimiento: 20
   waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
