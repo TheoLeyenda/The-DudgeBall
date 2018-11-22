@@ -7,11 +7,19 @@ public class PuertaRejas : MonoBehaviour {
     // Use this for initialization
     private Animation animacion;
     public AnimationClip animationClip;
+    public float velocidad;
     private bool checkDestruirme;
     private bool activarUnaVez;
+    public float tiempoMov;
+    private bool cerrarPuerta;
+    private bool abrirPuerta;
+    private float y;
+    private float auxTiempoMov;
     public GameObject[] objetosActivar;
     void Start ()
     {
+        y = transform.position.y;
+        auxTiempoMov = tiempoMov;
         animacion = GetComponent<Animation>();
         animacion.clip = animationClip;
     }
@@ -33,6 +41,14 @@ public class PuertaRejas : MonoBehaviour {
     }
     void Update ()
     {
+        if(cerrarPuerta)
+        {
+            CerrarPuerta();
+        }
+        if(abrirPuerta)
+        {
+            AbrirPuertaSinAnimacion();
+        }
 		if(checkDestruirme)
         {
             if(!animacion.isPlaying)
@@ -41,18 +57,46 @@ public class PuertaRejas : MonoBehaviour {
             }
         }
 	}
+    public void SetCerrarPuerta(bool _cerrar)
+    {
+        cerrarPuerta = _cerrar;
+    }
+    public void SetAbrirPuerta(bool _abrir)
+    {
+        abrirPuerta = _abrir;
+    }
     public void AbrirPuerta()
     {
         animacion.clip = animationClip;        
         animacion.Play();
         checkDestruirme = true;
     }
-    private void OnTriggerStay(Collider other)
+    public void AbrirPuertaSinAnimacion()
     {
-        if(other.tag == "PararAnimacion")
+        if (tiempoMov > 0)
         {
-            Debug.Log("TREMENDA COLICION");
-            animacion.Stop();
+            tiempoMov = tiempoMov - Time.deltaTime;
+            y = y - Time.deltaTime * velocidad;
+            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+        }
+        if (tiempoMov <= 0)
+        {
+            tiempoMov = auxTiempoMov;
+            abrirPuerta = false;
+        }
+    }
+    public void CerrarPuerta()
+    {
+        if(tiempoMov > 0)
+        {
+            tiempoMov = tiempoMov - Time.deltaTime;
+            y = y + Time.deltaTime * velocidad;
+            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+        }
+        if(tiempoMov <= 0)
+        {
+            tiempoMov = auxTiempoMov;
+            cerrarPuerta = false;
         }
     }
 }
