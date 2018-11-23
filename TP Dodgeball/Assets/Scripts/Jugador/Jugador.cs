@@ -348,7 +348,9 @@ public class Jugador : MonoBehaviour {
         }
         if(other.tag == "RompeObjetos")
         {
-            SceneManager.LoadScene("GameOver");
+            //SceneManager.LoadScene("GameOver");
+            blindaje = 0;
+            vida = 0; 
         }
         if(other.tag == "ZonaRespawn")
         {

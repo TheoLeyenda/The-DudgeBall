@@ -219,5 +219,12 @@ public class Pirania : Enemigo {
 
         }*/
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "AntiPirania")
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
 }

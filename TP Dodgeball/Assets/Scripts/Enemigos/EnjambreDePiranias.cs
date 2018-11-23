@@ -47,6 +47,7 @@ public class EnjambreDePiranias : MonoBehaviour {
             {
                 if (Jugador.GetJugador().vida <= 0)
                 {
+                    gameObject.SetActive(false);
                     VolverPuntoInicio();
                 }
             }
@@ -109,6 +110,7 @@ public class EnjambreDePiranias : MonoBehaviour {
             pirania[i].transform.position = pirania[i].GetPuntoInicio();
             pirania[i].transform.rotation = pirania[i].GetRotacionInicio();
             pirania[i].activarPirania = false;
+            
         }
     }
     public void Seguir()
