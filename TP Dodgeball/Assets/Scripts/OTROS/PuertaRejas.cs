@@ -87,6 +87,17 @@ public class PuertaRejas : MonoBehaviour {
             tiempoMov = auxTiempoMov;
             abrirPuerta = false;
         }
+        if (!activarUnaVez)
+        {
+            for (int i = 0; i < objetosActivar.Length; i++)
+            {
+                if (objetosActivar[i] != null)
+                {
+                    objetosActivar[i].SetActive(true);
+                }
+            }
+            activarUnaVez = true;
+        }
     }
     public void CerrarPuerta()
     {
