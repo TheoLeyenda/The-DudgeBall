@@ -244,7 +244,14 @@ public class Torpedo : Enemigo {
         {
             if(Jugador.GetJugador() != null)
             {
-                Jugador.GetJugador().vida = Jugador.GetJugador().vida - Danio;
+                if (Jugador.instanciaJugador.blindaje > 0)
+                {
+                    Jugador.instanciaJugador.blindaje = Jugador.instanciaJugador.blindaje - Danio;
+                }
+                else
+                {
+                    Jugador.GetJugador().vida = Jugador.GetJugador().vida - Danio;
+                }
                 if (estoyEnPool)
                 {
                     poolObject.Resiclarme();

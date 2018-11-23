@@ -21,7 +21,10 @@ public class PuertaRejas : MonoBehaviour {
         y = transform.position.y;
         auxTiempoMov = tiempoMov;
         animacion = GetComponent<Animation>();
-        animacion.clip = animationClip;
+        if (animationClip != null && animacion != null)
+        {
+            animacion.clip = animationClip;
+        }
     }
 
     // Update is called once per frame
