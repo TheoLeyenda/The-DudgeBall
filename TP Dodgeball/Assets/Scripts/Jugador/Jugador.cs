@@ -341,7 +341,11 @@ public class Jugador : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "PickUpChalecoAntiGolpes")
+        if (other.gameObject.tag == "TESORO")
+        {
+            Debug.Log("GANASTE");
+        }
+        if (other.tag == "PickUpChalecoAntiGolpes")
         {
             powerUpChalecoAntiGolpes = true;
             other.gameObject.SetActive(false);
@@ -512,6 +516,7 @@ public class Jugador : MonoBehaviour {
     }
     private void OnTriggerStay(Collider other)
     {
+        
         if (other.gameObject.tag == "ObjetoDestruible")
         {
             other.gameObject.SetActive(false);
