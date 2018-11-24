@@ -73,7 +73,7 @@ public class SplashScreenController : MonoBehaviour
             if (tiempo >= 5.5f)
             {
                 Destroy(logoEmpresa);
-                SceneManager.LoadScene("Arena(Supervivencia)");
+                SceneManager.LoadScene("Pantalla de carga");
             }
             //if (tiempo >= 5f)
             //{

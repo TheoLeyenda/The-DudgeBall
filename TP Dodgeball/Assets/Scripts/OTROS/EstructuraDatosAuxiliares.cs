@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class EstructuraDatosAuxiliares : MonoBehaviour {
 
     // Use this for initialization
-    private static EstructuraDatosAuxiliares estructuraDatosAuxiliares;
+    public static EstructuraDatosAuxiliares estructuraDatosAuxiliares;
     [HideInInspector]
     public bool Guardar;
     [HideInInspector]
     public bool soloUnaVez= true;
+    public int oportunidades;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -26,7 +27,12 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
     {
         return estructuraDatosAuxiliares;
     }
-
+    public struct datosCargaNivel
+    {
+        public int I_nivelAcargar;
+        public string S_nivelAcargar;
+    }
+    
     public struct datosJugador
     {
         public int TOPE_MUNICION;// = 500
@@ -56,7 +62,29 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
 
     [HideInInspector]
     public datosJugador DatosJugador;
+    [HideInInspector]
+    public datosCargaNivel datosNivel;
 
+    public void SetNivel(int nivel)
+    {
+        datosNivel.I_nivelAcargar = nivel;
+    }
+    public void SetNivel(string nivel)
+    {
+        datosNivel.S_nivelAcargar = nivel;
+    }
+    public int I_GetNivel()
+    {
+        return datosNivel.I_nivelAcargar;
+    }
+    public string S_GetNivel()
+    {
+        return datosNivel.S_nivelAcargar;
+    }
+    public void PasarNivel()
+    {
+        SceneManager.LoadScene(datosNivel.I_nivelAcargar);
+    }
     public void SetDatosJugador(Jugador jugador)
     {
         DatosJugador.TOPE_MUNICION = jugador.GetTOPEMUNICION();

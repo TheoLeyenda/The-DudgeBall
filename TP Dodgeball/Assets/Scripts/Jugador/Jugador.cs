@@ -147,7 +147,7 @@ public class Jugador : MonoBehaviour {
             else
             {
                 EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetValoresDelJugador(Jugador.GetJugador());
-            }
+           }
         }
     }
 
@@ -176,18 +176,7 @@ public class Jugador : MonoBehaviour {
         }
     }
     void Update() {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 1.5f))
-        {
-            //if (hit.collider.tag == "Plataforma")
-            //{
-                //transform.SetParent(hit.collider.gameObject.transform,false);
-            //}
-            //else
-            //{
-                //transform.SetParent(null,false);
-            //}
-        }
+      
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();

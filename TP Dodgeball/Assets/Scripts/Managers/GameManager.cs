@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour {
     public GameObject puerta;
     public GameObject corazon;
     public GameObject blindaje;
+    public GameObject checkPoint;
 
     public static GameManager GetGameManager()
     {
@@ -268,6 +269,7 @@ public class GameManager : MonoBehaviour {
             }
             cambiarMaterial.CambiarMaterial();
             puerta.GetComponent<BoxCollider>().enabled = true;
+            checkPoint.SetActive(true);
         }
     }
     public void CheckTorreta()

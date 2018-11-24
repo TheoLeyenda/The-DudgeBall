@@ -31,7 +31,6 @@ public class LaberintoManager : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
-        Jugador.GetJugador().oportunidades = 3;
     }
     public static LaberintoManager GetLaberintoManager()
     {
@@ -42,7 +41,6 @@ public class LaberintoManager : MonoBehaviour
     void Start()
     {
         cantSpawnersDestruidosPorZona = new int[cantSpawnersPorZona.Length];
-        Jugador.GetJugador().oportunidades = 3;
     }
 
     // Update is called once per frame
