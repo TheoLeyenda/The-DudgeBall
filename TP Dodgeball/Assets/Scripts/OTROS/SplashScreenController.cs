@@ -9,6 +9,8 @@ public class SplashScreenController : MonoBehaviour
     // Use this for initialization
     public GameObject logoEmpresa;
     public GameObject logoJuego;
+    public bool menuWindows;
+    public bool menuAndroid;
     private float TransparenciaLogoEmpresa;
     private float TransparenciaLogoJuego;
     private bool entrarLogoEmpresa;
@@ -73,7 +75,14 @@ public class SplashScreenController : MonoBehaviour
             if (tiempo >= 5.5f)
             {
                 Destroy(logoEmpresa);
-                SceneManager.LoadScene("Pantalla de carga");
+                if (menuAndroid)
+                {
+                    SceneManager.LoadScene("MenuAndroid");
+                }
+                if(menuWindows)
+                {
+                    SceneManager.LoadScene("MenuWindows");
+                }
             }
             //if (tiempo >= 5f)
             //{
