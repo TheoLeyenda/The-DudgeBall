@@ -6,19 +6,27 @@ public class CheckDanioBomba : MonoBehaviour {
 
     // Use this for initialization
     public float danio;
+    private Jugador jugador;
+    private void Start()
+    {
+        if(Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            if (Jugador.GetJugador() != null)
+            if (jugador != null)
             {
-                if (Jugador.GetJugador().blindaje > 0)
+                if (jugador.blindaje > 0)
                 {
-                    Jugador.GetJugador().blindaje = 0;
+                    jugador.blindaje = 0;
                 }
                 else
                 {
-                    Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                    jugador.vida = jugador.vida - danio;
                 }
             }
         }

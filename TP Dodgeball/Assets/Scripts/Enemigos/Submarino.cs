@@ -4,26 +4,6 @@ using UnityEngine;
 
 public class Submarino : Enemigo{
 
-    // Use this for initialization
-    /*
-Patrullar: patrulla moviéndose por los distintos waypoints (no tiene activo
-Su punto débil)
-
-PatrullarBulnerable: en este estado el submarino patrulla pero tiene su
-Punto débil activo.
-
-PatrullarDisparando: el jugador mientras pasa por los distintos waypoints
-Dispara balas hacia el jugador (tiene activa su punto débil)
-
-Seguir: el submarino sigue al jugador mientras dispara torpedos y 
-Si el jugador esta por el costado del submarino le dispara balas
-(Tiene activo su punto débil)
-
-AtacarTorpedos: el submarino pasa a este estado cuando pasa 
-Por un waypoints especifico (tiene activo su punto débil), dispara sus 
-Torpedos.
-
-     */
     public enum States
     {
         Patrullar = 0,
@@ -34,7 +14,7 @@ Torpedos.
         AtacarConTodo,
         Quieto,
     }
-
+    private Jugador jugador;
     public PoolPelota poolTorpedos;
     public float dileyDisparoTorpedos;
     public float VelocidadMov;
@@ -60,6 +40,10 @@ Torpedos.
     public void Prendido()
     {
         //PONER LO MISMO QUE EN EL "START();".
+        if (Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         id = 0;
         poolObject = GetComponent<PoolObject>();
         if (efectoCongelado != null)
@@ -82,6 +66,10 @@ Torpedos.
         
     }
     void Start () {
+        if(Jugador.instanciaJugador!= null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         id = 0;
         poolObject = GetComponent<PoolObject>();
         if (efectoCongelado != null)
@@ -124,17 +112,17 @@ Torpedos.
                 efectoFuego = efectoFuego + Time.deltaTime;
                 if (efectoFuego >= 1)
                 {
-                    if (Jugador.GetJugador() != null)
+                    if (jugador != null)
                     {
-                        if (Jugador.GetJugador().GetDoblePuntuacion())
+                        if (jugador.GetDoblePuntuacion())
                         {
-                            Jugador.GetJugador().SumarPuntos(5 * 2);
+                            jugador.SumarPuntos(5 * 2);
                         }
                         else
                         {
-                            Jugador.GetJugador().SumarPuntos(5);
+                            jugador.SumarPuntos(5);
                         }
-                        vida = vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego());
+                        vida = vida - (GetDanioBolaFuego() + jugador.GetDanioAdicionalPelotaFuego());
                         EstaMuerto();
                     }
                     efectoFuego = 0;
@@ -338,9 +326,9 @@ Torpedos.
             }
         }
         puntoDebilActivado = true;
-        if(Jugador.GetJugador() != null)
+        if(jugador != null)
         {
-            transform.LookAt(Jugador.GetJugador().transform.position);
+            transform.LookAt(jugador.transform.position);
         }
         transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
         if (dileyDisparoTorpedos > 0)
@@ -448,9 +436,9 @@ Torpedos.
         {
             if (GetMuerto())
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    Jugador.GetJugador().SumarPuntos(250);
+                    jugador.SumarPuntos(250);
                 }
                 if (!estoyEnPool)
                 {
@@ -529,33 +517,33 @@ Torpedos.
         {
             if (other.gameObject.tag == "PelotaComun")
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    vida = vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun() - ReducirDanioPelotaComun);
+                    vida = vida - (GetDanioBolaComun() + jugador.GetDanioAdicionalPelotaComun() - ReducirDanioPelotaComun);
                     EstaMuerto();
-                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    if (jugador.GetDoblePuntuacion())
                     {
-                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                        jugador.SumarPuntos(10 * 2);
                     }
                     else
                     {
-                        Jugador.GetJugador().SumarPuntos(10);
+                        jugador.SumarPuntos(10);
                     }
                 }
             }
             if (other.gameObject.tag == "PelotaDeHielo")
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    if (jugador.GetDoblePuntuacion())
                     {
-                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                        jugador.SumarPuntos(10 * 2);
                     }
                     else
                     {
-                        Jugador.GetJugador().SumarPuntos(10);
+                        jugador.SumarPuntos(10);
                     }
-                    vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo()-ReducirDanioPelotaHielo);
+                    vida = vida - (GetDanioBolaHielo() + jugador.GetDanioAdicionalPelotaHielo()-ReducirDanioPelotaHielo);
                 }
                 EstaMuerto();
                 if (VelocidadMov > 0)
@@ -573,31 +561,31 @@ Torpedos.
             }
             if (other.gameObject.tag == "MiniPelota")
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    if (jugador.GetDoblePuntuacion())
                     {
-                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                        jugador.SumarPuntos(10 * 2);
                     }
                     else
                     {
-                        Jugador.GetJugador().SumarPuntos(10);
+                        jugador.SumarPuntos(10);
                     }
-                    vida = vida - (GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota() - ReducirDanioMiniPelota);
+                    vida = vida - (GetDanioMiniBola() + jugador.GetDanioAdicionalMiniPelota() - ReducirDanioMiniPelota);
                     EstaMuerto();
                 }
             }
             if (other.gameObject.tag == "PelotaDanzarina")
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    if (jugador.GetDoblePuntuacion())
                     {
-                        Jugador.GetJugador().SumarPuntos(5 * 2);
+                        jugador.SumarPuntos(5 * 2);
                     }
                     else
                     {
-                        Jugador.GetJugador().SumarPuntos(5);
+                        jugador.SumarPuntos(5);
                     }
                 }
                 if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
@@ -625,17 +613,17 @@ Torpedos.
             }
             if (other.gameObject.tag == "PelotaExplociva")
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    if (jugador.GetDoblePuntuacion())
                     {
-                        Jugador.GetJugador().SumarPuntos(20 * 2);
+                        jugador.SumarPuntos(20 * 2);
                     }
                     else
                     {
-                        Jugador.GetJugador().SumarPuntos(20);
+                        jugador.SumarPuntos(20);
                     }
-                    vida = vida - ((GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva()) - ReducirDanioExplocivo);
+                    vida = vida - ((GetDanioBolaExplociva() + jugador.GetDanioAdicionalPelotaExplociva()) - ReducirDanioExplocivo);
                 }
                 EstaMuerto();
 

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     // Use this for initialization
-
     public Text TextRonda;
     public Text TextRondaAndroid;
     [HideInInspector]

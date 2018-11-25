@@ -5,6 +5,7 @@ using UnityEngine;
 public class Menus : MonoBehaviour {
 
     // Use this for initialization
+    private Jugador jugador;
     public GameObject menuGeneral;
     public GameObject menuPausa;
     public GameObject menuOpciones;
@@ -14,6 +15,10 @@ public class Menus : MonoBehaviour {
     public GameObject menuMapa;
     private bool activar_Desactivar;
     void Start() {
+        if(Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         activar_Desactivar = false;
         if (menuPausa != null)
         {
@@ -43,9 +48,9 @@ public class Menus : MonoBehaviour {
     {
         if (Activar_o_Desactivar)
         {
-            if (Jugador.GetJugador() != null)
+            if (jugador != null)
             {
-                if (Jugador.GetJugador().jugadorWindows)
+                if (jugador.jugadorWindows)
                 {
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
@@ -56,9 +61,9 @@ public class Menus : MonoBehaviour {
         }
         else
         {
-            if (Jugador.GetJugador() != null && Jugador.GetJugador().jugadorAndroid == false)
+            if (jugador != null && jugador.jugadorAndroid == false)
             {
-                Jugador.GetJugador().enPausa = false;
+                jugador.enPausa = false;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
@@ -93,9 +98,9 @@ public class Menus : MonoBehaviour {
     public void ActivarMenuPausa()
     {
         activar_Desactivar = true;
-        if (menuArmas != null && Jugador.GetJugador() != null)
+        if (menuArmas != null && jugador != null)
         {
-            if (Jugador.GetJugador().jugadorAndroid)
+            if (jugador.jugadorAndroid)
             {
                 if (menuPausa != null && menuOpciones != null && menuArmas.activeSelf == false)
                 {
@@ -111,9 +116,9 @@ public class Menus : MonoBehaviour {
                 }
             }
         }
-        if(Jugador.GetJugador() != null)
+        if(jugador != null)
         {
-            if(Jugador.GetJugador().jugadorWindows)
+            if(jugador.jugadorWindows)
             {
                 if (menuPausa != null && menuOpciones != null)
                 {

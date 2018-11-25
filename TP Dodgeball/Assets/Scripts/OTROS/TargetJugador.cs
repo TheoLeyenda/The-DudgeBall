@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class TargetJugador : MonoBehaviour {
     public float ElevarVista;
-	void Update () {
+    private Jugador jugador;
+    private void Start()
+    {
+        if(Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
+    }
+    void Update () {
         TargetearJugador();
 	}
     public void TargetearJugador()
     {
         if(Jugador.GetJugador() != null)
         {
-            transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x,Jugador.GetJugador().transform.position.y+ ElevarVista,Jugador.GetJugador().transform.position.z));
+            transform.LookAt(new Vector3(jugador.transform.position.x, jugador.transform.position.y+ ElevarVista, jugador.transform.position.z));
         }
     }
 }

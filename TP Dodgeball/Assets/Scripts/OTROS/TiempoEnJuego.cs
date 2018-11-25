@@ -11,7 +11,12 @@ public class TiempoEnJuego : MonoBehaviour {
     public float segundos;
     private float auxMinutos;
     private float auxSegundos;
+    private Jugador jugador;
 	void Start () {
+        if(Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         auxMinutos = minutos;
         auxSegundos = segundos;
 	}
@@ -24,9 +29,9 @@ public class TiempoEnJuego : MonoBehaviour {
     {
         if (segundos <= 0 && minutos <= 0)
         {
-            if (Jugador.GetJugador() != null)
-            { 
-                Jugador.GetJugador().vida = 0;
+            if (jugador != null)
+            {
+                jugador.vida = 0;
                 segundos = auxSegundos;
                 minutos = auxMinutos;
                 if (segundos >= 10)
@@ -40,9 +45,9 @@ public class TiempoEnJuego : MonoBehaviour {
 
             }
         }
-        if (Jugador.GetJugador() != null)
+        if (jugador != null)
         {
-            if (Jugador.GetJugador().vida < 0)
+            if (jugador.vida < 0)
             {
                 segundos = auxSegundos;
                 minutos = auxMinutos;

@@ -16,6 +16,7 @@ public class EnjambreDePiranias : MonoBehaviour {
     public States estados;
     private int id = 0;
 
+    private Jugador jugador;
     public bool volverPuntoInicio;
     public Transform[] waypoints;
     public Pirania[] pirania;
@@ -25,6 +26,10 @@ public class EnjambreDePiranias : MonoBehaviour {
     private bool autodestrucion;
     void Start()
     {
+        if (Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         puntoInicio = transform.position;
         rotacionInicio = transform.rotation;
         if (pirania.Length > 0)
@@ -43,9 +48,9 @@ public class EnjambreDePiranias : MonoBehaviour {
     {
         if (volverPuntoInicio)
         {
-            if (Jugador.GetJugador() != null)
+            if (jugador != null)
             {
-                if (Jugador.GetJugador().vida <= 0)
+                if (jugador.vida <= 0)
                 {
                     gameObject.SetActive(false);
                     VolverPuntoInicio();
@@ -117,7 +122,7 @@ public class EnjambreDePiranias : MonoBehaviour {
     {
         if (Jugador.GetJugador() != null)
         {
-            Vector3 target = Jugador.GetJugador().transform.position;
+            Vector3 target = jugador.transform.position;
             transform.LookAt(target);
             transform.position = transform.position + transform.forward * Time.deltaTime * velocidadMovimiento;
         }

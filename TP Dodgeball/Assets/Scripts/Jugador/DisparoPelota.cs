@@ -5,7 +5,7 @@ using UnityEngine;
 public class DisparoPelota : MonoBehaviour {
 
     // Use this for initialization
-    //public GameObject pelota;
+    private Jugador instanciaJugador;
     public AudioSource sonido;
     public AudioClip sonidoPelotaComun;
     public AudioClip sonidoPelotaHielo;
@@ -31,6 +31,10 @@ public class DisparoPelota : MonoBehaviour {
     private float finDelay;
     private float delay;
 	void Start () {
+        if(Jugador.instanciaJugador != null)
+        {
+            instanciaJugador = Jugador.instanciaJugador;
+        }
         contador = 0;
         delay = 0f;
         finDelay = 0.1f;
@@ -69,7 +73,7 @@ public class DisparoPelota : MonoBehaviour {
         if (Time.timeScale > 0)
         {
 
-            if (Jugador.GetJugador().tipoPelota == 1 && generador != null && PelotaComun != null)
+            if (instanciaJugador.tipoPelota == 1 && generador != null && PelotaComun != null)
             {
                 estaDisparando = true;
                 GameObject go = PelotaComun.GetObject();
@@ -83,7 +87,7 @@ public class DisparoPelota : MonoBehaviour {
                     sonido.PlayOneShot(sonidoPelotaComun);
                 }
             }
-            if (Jugador.GetJugador().tipoPelota == 2 && pelotaDeHielo != null && generador != null && Jugador.GetJugador().GetMunicionPelotaHielo() > 0)
+            if (instanciaJugador.tipoPelota == 2 && pelotaDeHielo != null && generador != null && instanciaJugador.GetMunicionPelotaHielo() > 0)
             {
                 estaDisparando = true;
                 // cambiar esto por un codigo que haga que la pelota en cuestion se teletrasporte y luego la rotacion de la misma sea
@@ -94,14 +98,14 @@ public class DisparoPelota : MonoBehaviour {
                 go.transform.position = generador.transform.position + generador.transform.right;
                 go.transform.rotation = generador.transform.rotation;
                 pelota.Disparar();
-                Jugador.GetJugador().RestarMunicionHielo();
+                instanciaJugador.RestarMunicionHielo();
                 if(sonido != null && sonidoPelotaHielo != null)
                 {
                     sonido.clip = sonidoPelotaHielo;
                     sonido.PlayOneShot(sonidoPelotaHielo);
                 }
             }
-            if (Jugador.GetJugador().tipoPelota == 3 && pelotaFragmentadora != null && generador != null && Jugador.GetJugador().GetMunicionPelotaFragmentadora() > 0)
+            if (instanciaJugador.tipoPelota == 3 && pelotaFragmentadora != null && generador != null && instanciaJugador.GetMunicionPelotaFragmentadora() > 0)
             {
                 estaDisparando = true;
                 // cambiar esto por un codigo que haga que la pelota en cuestion se teletrasporte y luego la rotacion de la misma sea
@@ -112,14 +116,14 @@ public class DisparoPelota : MonoBehaviour {
                 go.transform.position = generador.transform.position + generador.transform.forward;
                 go.transform.rotation = generador.transform.rotation;
                 pelota.Disparar();
-                Jugador.GetJugador().RestarMunicionFragmentadora();
+                instanciaJugador.RestarMunicionFragmentadora();
                 if(sonido != null && sonidoPelotaFragmentadora != null)
                 {
                     sonido.clip = sonidoPelotaFragmentadora;
                     sonido.PlayOneShot(sonidoPelotaFragmentadora);
                 }
             }
-            if (Jugador.GetJugador().tipoPelota == 4 && pelotaDanzarina != null && generador != null && Jugador.GetJugador().GetMunicionPelotaDanzarina() > 0)
+            if (instanciaJugador.tipoPelota == 4 && pelotaDanzarina != null && generador != null && instanciaJugador.GetMunicionPelotaDanzarina() > 0)
             {
                 estaDisparando = true;
                 // cambiar esto por un codigo que haga que la pelota en cuestion se teletrasporte y luego la rotacion de la misma sea
@@ -130,14 +134,14 @@ public class DisparoPelota : MonoBehaviour {
                 go.transform.position = generador.transform.position + generador.transform.right;
                 go.transform.rotation = generador.transform.rotation;
                 pelota.Disparar();
-                Jugador.GetJugador().RestarMunicionDanzarina();
+                instanciaJugador.RestarMunicionDanzarina();
                 if(sonido != null && sonidoPelotaDanzarina != null)
                 {
                     sonido.clip = sonidoPelotaDanzarina;
                     sonido.PlayOneShot(sonidoPelotaDanzarina);
                 }
             }
-            if (Jugador.GetJugador().tipoPelota == 5 && pelotaDeFuego != null && generador != null && Jugador.GetJugador().GetMunicionPelotaFuego() > 0)
+            if (instanciaJugador.tipoPelota == 5 && pelotaDeFuego != null && generador != null && instanciaJugador.GetMunicionPelotaFuego() > 0)
             {
                 estaDisparando = true;
                 // cambiar esto por un codigo que haga que la pelota en cuestion se teletrasporte y luego la rotacion de la misma sea
@@ -148,14 +152,14 @@ public class DisparoPelota : MonoBehaviour {
                 go.transform.position = generador.transform.position + generador.transform.right;
                 go.transform.rotation = generador.transform.rotation;
                 pelota.Disparar();
-                Jugador.GetJugador().RestarMunicionFuego();
+                instanciaJugador.RestarMunicionFuego();
                 if(sonido != null && sonidoPelotaFuego != null)
                 {
                     sonido.clip = sonidoPelotaFuego;
                     sonido.PlayOneShot(sonidoPelotaFuego);
                 }
             }
-            if (Jugador.GetJugador().tipoPelota == 6 && pelotaExplociva != null && generadorExplicivos != null && Jugador.GetJugador().GetMunicionPelotaExplosiva() > 0)
+            if (instanciaJugador.tipoPelota == 6 && pelotaExplociva != null && generadorExplicivos != null && instanciaJugador.GetMunicionPelotaExplosiva() > 0)
             {
                 estaDisparando = true;
                 // cambiar esto por un codigo que haga que la pelota en cuestion se teletrasporte y luego la rotacion de la misma sea
@@ -166,7 +170,7 @@ public class DisparoPelota : MonoBehaviour {
                 go.transform.position = generadorExplicivos.transform.position + generadorExplicivos.transform.right;
                 go.transform.rotation = generadorExplicivos.transform.rotation;
                 pelota.disparar();
-                Jugador.GetJugador().RestarMunicionExplosiva();
+                instanciaJugador.RestarMunicionExplosiva();
                 if(sonido != null && sonidoPelotaExplociva != null)
                 {
                     sonido.clip = sonidoPelotaExplociva;
@@ -181,25 +185,25 @@ public class DisparoPelota : MonoBehaviour {
         switch (numeroArma)
         {
             case 1:
-                Jugador.GetJugador().tipoPelota = 1;
+                instanciaJugador.tipoPelota = 1;
                 break;
             case 2:
-                Jugador.GetJugador().tipoPelota = 2;
+                instanciaJugador.tipoPelota = 2;
                 break;
             case 3:
-                Jugador.GetJugador().tipoPelota = 3;
+                instanciaJugador.tipoPelota = 3;
                 break;
             case 4:
-                Jugador.GetJugador().tipoPelota = 4;
+                instanciaJugador.tipoPelota = 4;
                 break;
             case 5:
-                Jugador.GetJugador().tipoPelota = 5;
+                instanciaJugador.tipoPelota = 5;
                 break;
             case 6:
-                Jugador.GetJugador().tipoPelota = 6;
+                instanciaJugador.tipoPelota = 6;
                 break;
             default:
-                Jugador.GetJugador().tipoPelota = 1;
+                instanciaJugador.tipoPelota = 1;
                 break;
         }
     }

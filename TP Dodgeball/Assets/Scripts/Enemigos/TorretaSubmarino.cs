@@ -5,13 +5,18 @@ using UnityEngine;
 public class TorretaSubmarino : MonoBehaviour {
 
     // Use this for initialization
+    private Jugador jugador;
     public PoolPelota poolBalas;
     private PoolObject poolObject;
     public GameObject generadorBala;
     public float dilay;
     private float auxDilay;
     private bool disparar;
-    void Start () {
+    void Start() {
+        if (Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         auxDilay = dilay;
         disparar = false;
 	}
@@ -49,11 +54,11 @@ public class TorretaSubmarino : MonoBehaviour {
     }
     public void Movimiento()
     {
-        if (Jugador.GetJugador() != null)
+        if (jugador != null)
         {
             if (disparar)
             {
-                transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x, Jugador.GetJugador().transform.transform.position.y, Jugador.GetJugador().transform.position.z));
+                transform.LookAt(new Vector3(jugador.transform.position.x, jugador.transform.transform.position.y, jugador.transform.position.z));
             }
         }
     }

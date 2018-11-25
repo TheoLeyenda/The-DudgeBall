@@ -24,6 +24,7 @@ public class Tiburon : Enemigo {
         VolviendoQuieto,
         Count
     }
+    private Jugador jugador;
     public float danio;
     public float potenciaAtaque;
     public float reducirPotenciaAtaque;
@@ -50,6 +51,10 @@ public class Tiburon : Enemigo {
     //private FSM fsm;
     public void Prendido()
     {
+        if (Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         rig = GetComponent<Rigidbody>();
         estados = States.Nadando;
         if (potenciaAtaque <= 0)
@@ -63,6 +68,10 @@ public class Tiburon : Enemigo {
     }
     void Start()
     {
+        if(Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         rig = GetComponent<Rigidbody>();
         estados = States.Nadando;
         if(potenciaAtaque <= 0)
@@ -86,9 +95,9 @@ public class Tiburon : Enemigo {
 
         if (GetMuerto())
         {
-            if(Jugador.GetJugador()!= null)
+            if(jugador != null)
             {
-                Jugador.GetJugador().SumarPuntos(250);
+                jugador.SumarPuntos(250);
             }
             if (!estoyEnPool)
             {
@@ -112,17 +121,17 @@ public class Tiburon : Enemigo {
                 efectoFuego = efectoFuego + Time.deltaTime;
                 if (efectoFuego >= 1)
                 {
-                    if (Jugador.GetJugador() != null)
+                    if (jugador != null)
                     {
-                        if (Jugador.GetJugador().GetDoblePuntuacion())
+                        if (jugador.GetDoblePuntuacion())
                         {
-                            Jugador.GetJugador().SumarPuntos(5 * 2);
+                            jugador.SumarPuntos(5 * 2);
                         }
                         else
                         {
-                            Jugador.GetJugador().SumarPuntos(5);
+                            jugador.SumarPuntos(5);
                         }
-                        vida = vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego() + aumentarDanioPelotaFuego);
+                        vida = vida - (GetDanioBolaFuego() + jugador.GetDanioAdicionalPelotaFuego() + aumentarDanioPelotaFuego);
                         EstaMuerto();
                     }
                     efectoFuego = 0;
@@ -184,9 +193,9 @@ public class Tiburon : Enemigo {
     }
     public void UpdatePositionPlayer()
     {
-        if (Jugador.GetJugador() != null)
+        if (jugador != null)
         {
-            posJugador = Jugador.GetJugador().transform.position;
+            posJugador = jugador.transform.position;
         }
     }
     public void Nadar()
@@ -216,9 +225,9 @@ public class Tiburon : Enemigo {
     }
     public void Seguir()
     {
-        if (Jugador.GetJugador() != null)
+        if (jugador != null)
         {
-            transform.LookAt(Jugador.GetJugador().transform.position);
+            transform.LookAt(jugador.transform.position);
             transform.position = transform.position + transform.forward * Time.deltaTime * velMovimiento;
         }
     }
@@ -228,11 +237,11 @@ public class Tiburon : Enemigo {
         {
             puntoDebil.enabled = true;
         }
-        if(Jugador.GetJugador() != null)
+        if(jugador != null)
         {
             transform.LookAt(posJugador);
             transform.position = transform.position + transform.forward * Time.deltaTime * velAtaque;
-            if (transform.position.y < Jugador.GetJugador().transform.position.y)
+            if (transform.position.y < jugador.transform.position.y)
             {
                 estados = States.Retirse;
             }
@@ -255,33 +264,33 @@ public class Tiburon : Enemigo {
         {
             if (other.gameObject.tag == "PelotaComun")
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    vida = vida - ((GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun()) - reducirDanioPelotaComun);
+                    vida = vida - ((GetDanioBolaComun() + jugador.GetDanioAdicionalPelotaComun()) - reducirDanioPelotaComun);
                     EstaMuerto();
-                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    if (jugador.GetDoblePuntuacion())
                     {
-                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                        jugador.SumarPuntos(10 * 2);
                     }
                     else
                     {
-                        Jugador.GetJugador().SumarPuntos(10);
+                        jugador.SumarPuntos(10);
                     }
                 }
             }
             if (other.gameObject.tag == "PelotaDeHielo")
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    if (jugador.GetDoblePuntuacion())
                     {
-                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                        jugador.SumarPuntos(10 * 2);
                     }
                     else
                     {
-                        Jugador.GetJugador().SumarPuntos(10);
+                        jugador.SumarPuntos(10);
                     }
-                    vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo());
+                    vida = vida - (GetDanioBolaHielo() + jugador.GetDanioAdicionalPelotaHielo());
                 }
                 EstaMuerto();
                 if (velMovimiento > 0 || velAtaque > 0)
@@ -299,31 +308,31 @@ public class Tiburon : Enemigo {
             }
             if (other.gameObject.tag == "MiniPelota")
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    if (jugador.GetDoblePuntuacion())
                     {
-                        Jugador.GetJugador().SumarPuntos(10 * 2);
+                        jugador.SumarPuntos(10 * 2);
                     }
                     else
                     {
-                        Jugador.GetJugador().SumarPuntos(10);
+                        jugador.SumarPuntos(10);
                     }
-                    vida = vida - ((GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota())- reducirDanioPelotaFragmentadora);
+                    vida = vida - ((GetDanioMiniBola() + jugador.GetDanioAdicionalMiniPelota())- reducirDanioPelotaFragmentadora);
                     EstaMuerto();
                 }
             }
             if (other.gameObject.tag == "PelotaDanzarina")
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    if (jugador.GetDoblePuntuacion())
                     {
-                        Jugador.GetJugador().SumarPuntos(5 * 2);
+                        jugador.SumarPuntos(5 * 2);
                     }
                     else
                     {
-                        Jugador.GetJugador().SumarPuntos(5);
+                        jugador.SumarPuntos(5);
                     }
                 }
                 if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
@@ -352,17 +361,17 @@ public class Tiburon : Enemigo {
             }
             if (other.gameObject.tag == "PelotaExplociva")
             {
-                if (Jugador.GetJugador() != null)
+                if (jugador != null)
                 {
-                    if (Jugador.GetJugador().GetDoblePuntuacion())
+                    if (jugador.GetDoblePuntuacion())
                     {
-                        Jugador.GetJugador().SumarPuntos(20 * 2);
+                        jugador.SumarPuntos(20 * 2);
                     }
                     else
                     {
-                        Jugador.GetJugador().SumarPuntos(20);
+                        jugador.SumarPuntos(20);
                     }
-                    vida = vida - ((GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva()) - reducirDanioPelotaExplociva);
+                    vida = vida - ((GetDanioBolaExplociva() + jugador.GetDanioAdicionalPelotaExplociva()) - reducirDanioPelotaExplociva);
                 }
                 EstaMuerto();
 
@@ -376,15 +385,15 @@ public class Tiburon : Enemigo {
             {
                 id = 0;
             }
-            if(Jugador.GetJugador() != null)
+            if(jugador != null)
             {
-                if (Jugador.GetJugador().blindaje > 0)
+                if (jugador.blindaje > 0)
                 {
-                    Jugador.GetJugador().blindaje = Jugador.GetJugador().blindaje - danio;
+                    jugador.blindaje = jugador.blindaje - danio;
                 }
                 else
                 {
-                    Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                    jugador.vida = jugador.vida - danio;
                 }
             }
         }
@@ -414,14 +423,4 @@ public class Tiburon : Enemigo {
             }
         }
     }
-    // HACER QUE CUANDO LE DE EL GOLPE AL JUGADOR LO CAMBIE A ESTADO NADANDO Y DESACTIVE EL RANGO DE ATAQUE Y SEGUIMIENTO (O SOLO DE ATAQUE)
-    // HASTA QUE EL TIBURON LLEGUE AL PROXIMO WAYPOINT
-
-    //FIJARSE DE HACER QUE EL TIBURON ATAQUE NO SOLO CUANDO ESTA EN RANGO SINO TAMBIEN EN CUALQUIER MOMENTO DE FORMA ALEATOREA.
-
-    // PARA HACER QUE EL TIBURON ENTRE EN ESTADO ATAQUE DE FORMA ALEATOREA: cuando el tiburon haga triggered/collisione con un waypoint
-    //tirar un random entre 0 y 100. Si en el random aparece como resultado el numero que yo defino para que el tiburon ataque, el tiburon pasa a estado de ataque.
-
-    //ACTIVAR Y DESACTIVAR LOS RANGOS DE VISION Y ATAQUE SEGUN EL CASO(PARA ESTO USAR BOLEANOS).
-
 }

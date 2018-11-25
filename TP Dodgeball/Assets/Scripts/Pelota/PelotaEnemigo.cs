@@ -16,6 +16,14 @@ public class PelotaEnemigo : MonoBehaviour {
     public GameObject generador;
     public bool pelotaTinta;
     public bool flecha;
+    private Jugador jugador;
+    private void Start()
+    {
+        if(Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
+    }
     public void Disparar() {
         if (!pelotaTinta && !flecha)
         {
@@ -93,19 +101,19 @@ public class PelotaEnemigo : MonoBehaviour {
                 poolObject.Resiclarme();
             }
         }
-        if (Jugador.GetJugador() != null)
+        if (jugador != null)
         {
             if (other.gameObject.tag == "Player")
             {
-                if (!Jugador.GetJugador().GetInmune())
+                if (!jugador.GetInmune())
                 {
-                    if (Jugador.GetJugador().blindaje > 0)
+                    if (jugador.blindaje > 0)
                     {
-                        Jugador.GetJugador().blindaje = Jugador.GetJugador().blindaje - danio;
+                        jugador.blindaje = jugador.blindaje - danio;
                     }
                     else
                     {
-                        Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                        jugador.vida = jugador.vida - danio;
                     }
                 }
             }
@@ -120,19 +128,19 @@ public class PelotaEnemigo : MonoBehaviour {
                 tiempoVida = 0.1f;
             }
         }
-        if (Jugador.GetJugador() != null)
+        if (jugador != null)
         {
             if (collision.gameObject.tag == "Player")
             {
-                if (!Jugador.GetJugador().GetInmune())
+                if (!jugador.GetInmune())
                 {
-                    if (Jugador.GetJugador().blindaje > 0)
+                    if (jugador.blindaje > 0)
                     {
-                        Jugador.GetJugador().blindaje = Jugador.GetJugador().blindaje - danio;
+                        jugador.blindaje = jugador.blindaje - danio;
                     }
                     else
                     {
-                        Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                        jugador.vida = jugador.vida - danio;
                     }
                 }
             }

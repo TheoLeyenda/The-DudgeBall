@@ -13,7 +13,6 @@ public class Pirania : Enemigo {
     }
     private int id = 0;
 
-    
     public States estados;
     public float velocidadAtaque;
     public float velocidadMovimiento;

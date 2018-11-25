@@ -17,6 +17,7 @@ public class PantallaCarga : MonoBehaviour {
     private int nivelACargar;
     private EstructuraDatosAuxiliares estructuraDatos;
 	void Start () {
+        System.GC.Collect();
         porsentajeCarga = 0;
         if(EstructuraDatosAuxiliares.estructuraDatosAuxiliares != null)
         {

@@ -7,14 +7,22 @@ public class CheckVivoMuertoSpawnerEnemigo : MonoBehaviour {
     // Use this for initialization
     private bool unaVez = true;
     public int zona;
+    private LaberintoManager laberintoManager;
+    private void Start()
+    {
+        if(LaberintoManager.instanciaLaberintoManager != null)
+        {
+            laberintoManager = LaberintoManager.instanciaLaberintoManager;
+        }
+    }
     private void OnDisable()
     {
         if(unaVez)
         {
             unaVez = false;
-            if (LaberintoManager.GetLaberintoManager() != null)
+            if (laberintoManager != null)
             {
-                LaberintoManager.GetLaberintoManager().SumarSpawnerDestruidos(zona);
+                laberintoManager.SumarSpawnerDestruidos(zona);
             }
         }
     }

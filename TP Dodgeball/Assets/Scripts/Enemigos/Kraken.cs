@@ -27,6 +27,7 @@ public class Kraken : Enemigo {
     }
 
     // Use this for initialization
+    private Jugador jugador;
     private States estados;
     private PoolObject poolObject;
     private Rigidbody rig;
@@ -63,6 +64,10 @@ public class Kraken : Enemigo {
     //public float impulsoDeAtaque;
 
     void Start () {
+        if (Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         auxDileyMovDerecha = DileyMovDerecha;
         auxDileyMovIzquierda = DileyMovIzquierda;
         DileyMovDerecha = 0;
@@ -97,9 +102,9 @@ public class Kraken : Enemigo {
     {
         if (GetMuerto())
         {
-            if (Jugador.GetJugador() != null)
+            if (jugador != null)
             {
-                Jugador.GetJugador().SumarPuntos(250);
+                jugador.SumarPuntos(250);
             }
             if (!estoyEnPool)
             {
@@ -168,11 +173,11 @@ public class Kraken : Enemigo {
     public void SetDatosRotacion()
     {
 
-        if (Jugador.GetJugador() != null)
+        if (jugador != null)
         {
             if (tipoAtaque == 1)
             {
-                transform.LookAt(new Vector3(Jugador.GetJugador().transform.position.x, transform.position.y + 90, Jugador.GetJugador().transform.position.z));
+                transform.LookAt(new Vector3(jugador.transform.position.x, transform.position.y + 90, jugador.transform.position.z));
             }
             if (tipoAtaque == 2)
             {
@@ -250,7 +255,7 @@ public class Kraken : Enemigo {
     {
         //FALTA HACER QUE EL KRAKEN VAYA HACIA AL JUGADOR Y LE DE UNA OSTIA QUE LO DEJE AL OTRO LADO DEL MAPA(QUE LE APLIQUE UNA FUERZA AL JUGADOR QUE LO
         //SAQUE VOLANTO), LUEGO DE ESTO HACER QUE EL KRAKEN PASE AL ESTADO  RETIRARSE
-        if (transform.position.y <= Jugador.GetJugador().transform.position.y)
+        if (transform.position.y <= jugador.transform.position.y)
         {
             estados = States.Retirse;
         }
@@ -311,9 +316,9 @@ public class Kraken : Enemigo {
     }
     public void UpdatePositionPlayer()
     {
-        if (Jugador.GetJugador() != null)
+        if (jugador != null)
         {
-            posJugador = new Vector3(Jugador.GetJugador().transform.position.x+7,Jugador.GetJugador().transform.position.y-5, Jugador.GetJugador().transform.position.z);
+            posJugador = new Vector3(jugador.transform.position.x+7, jugador.transform.position.y-5, jugador.transform.position.z);
         }
     }
 

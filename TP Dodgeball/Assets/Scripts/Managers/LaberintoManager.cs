@@ -17,7 +17,7 @@ public class LaberintoManager : MonoBehaviour
     public GameObject imagenCorredorAndroid;
     public int ZonaActual;
 
-    private static LaberintoManager instanciaLaberintoManager;
+    public static LaberintoManager instanciaLaberintoManager;
     // Use this for initialization
     private void Awake()
     {

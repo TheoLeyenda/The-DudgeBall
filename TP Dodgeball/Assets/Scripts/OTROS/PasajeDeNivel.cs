@@ -9,6 +9,14 @@ public class PasajeDeNivel : MonoBehaviour {
     public string nivel;
     public int numeroNivel;
     public bool NivelPorNumero;
+    private Jugador jugador;
+    private void Start()
+    {
+        if (Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
@@ -16,12 +24,12 @@ public class PasajeDeNivel : MonoBehaviour {
             if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares() != null)
             {
 
-                EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetDatosJugador(Jugador.GetJugador());
-                if (Jugador.GetJugador().blindaje > 0)
+                EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetDatosJugador(jugador);
+                if (jugador.blindaje > 0)
                 {
-                    EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().DatosJugador.blindaje = Jugador.GetJugador().blindaje;
-                    Jugador.GetJugador().logoBlindaje.SetActive(true);
-                    Jugador.GetJugador().textBlindaje.gameObject.SetActive(true);
+                    EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().DatosJugador.blindaje = jugador.blindaje;
+                    jugador.logoBlindaje.SetActive(true);
+                    jugador.textBlindaje.gameObject.SetActive(true);
                 }
             }
             if (nivel != null && !NivelPorNumero)

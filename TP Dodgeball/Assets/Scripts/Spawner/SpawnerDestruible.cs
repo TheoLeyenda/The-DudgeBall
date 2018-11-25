@@ -7,7 +7,12 @@ public class SpawnerDestruible : Enemigo {
     // Use this for initialization
     private float timeEstado;
     private float efectoFuego;
+    private Jugador jugador;
     void Start () {
+        if(Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         efectoFuego = 0;
         efectoCongelado.SetActive(false);
         efectoQuemado.SetActive(false);
@@ -18,7 +23,7 @@ public class SpawnerDestruible : Enemigo {
 	void Update () {
 		if(vida <= 0)
         {
-            Jugador.GetJugador().SumarPuntos(150);
+            jugador.SumarPuntos(150);
             gameObject.SetActive(false);
         }
         if (timeEstado > 0)
@@ -28,17 +33,17 @@ public class SpawnerDestruible : Enemigo {
                 efectoFuego = efectoFuego + Time.deltaTime;
                 if (efectoFuego >= 1)
                 {
-                    if (Jugador.GetJugador() != null)
+                    if (jugador != null)
                     {
-                        if (Jugador.GetJugador().GetDoblePuntuacion())
+                        if (jugador.GetDoblePuntuacion())
                         {
-                            Jugador.GetJugador().SumarPuntos(5 * 2);
+                            jugador.SumarPuntos(5 * 2);
                         }
                         else
                         {
-                            Jugador.GetJugador().SumarPuntos(5);
+                            jugador.SumarPuntos(5);
                         }
-                        vida = vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego());
+                        vida = vida - (GetDanioBolaFuego() + jugador.GetDanioAdicionalPelotaFuego());
                     }
                     efectoFuego = 0;
                 }
@@ -51,63 +56,63 @@ public class SpawnerDestruible : Enemigo {
     {
         if (other.gameObject.tag == "PelotaComun")
         {
-            if (Jugador.GetJugador() != null)
+            if (jugador != null)
             {
-                vida = vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun());
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                vida = vida - (GetDanioBolaComun() + jugador.GetDanioAdicionalPelotaComun());
+                if (jugador.GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    jugador.SumarPuntos(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    jugador.SumarPuntos(10);
                 }
             }
             updateHP();
         }
         if (other.gameObject.tag == "PelotaDeHielo")
         {
-            if (Jugador.GetJugador() != null)
+            if (jugador != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (jugador.GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    jugador.SumarPuntos(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    jugador.SumarPuntos(10);
                 }
-                vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo());
+                vida = vida - (GetDanioBolaHielo() + jugador.GetDanioAdicionalPelotaHielo());
             }
             updateHP();
         }
         if (other.gameObject.tag == "MiniPelota")
         {
-            if (Jugador.GetJugador() != null)
+            if (jugador != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (jugador.GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    jugador.SumarPuntos(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    jugador.SumarPuntos(10);
                 }
-                vida = vida - (GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota());
+                vida = vida - (GetDanioMiniBola() + jugador.GetDanioAdicionalMiniPelota());
             }
             updateHP();
         }
         if (other.gameObject.tag == "PelotaDanzarina")
         {
-            if (Jugador.GetJugador() != null)
+            if (jugador != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (jugador.GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(5 * 2);
+                    jugador.SumarPuntos(5 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(5);
+                    jugador.SumarPuntos(5);
                 }
             }
             if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
@@ -133,17 +138,17 @@ public class SpawnerDestruible : Enemigo {
         }
         if (other.gameObject.tag == "PelotaExplociva")
         {
-            if (Jugador.GetJugador() != null)
+            if (jugador != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (jugador.GetDoblePuntuacion())
                 {
-                    Jugador.GetJugador().SumarPuntos(20 * 2);
+                    jugador.SumarPuntos(20 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(20);
+                    jugador.SumarPuntos(20);
                 }
-                vida = vida - (GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
+                vida = vida - (GetDanioBolaExplociva() + jugador.GetDanioAdicionalPelotaExplociva());
             }
             updateHP();
         }

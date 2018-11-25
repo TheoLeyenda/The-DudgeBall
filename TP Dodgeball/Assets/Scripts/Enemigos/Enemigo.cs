@@ -11,6 +11,7 @@ public enum EstadoEnemigo
 public class Enemigo : MonoBehaviour {
 
     // Use this for initialization
+    private Jugador jugador;
     public float vida;
     public float maxVida;
     public GameObject BarraVida;
@@ -33,6 +34,10 @@ public class Enemigo : MonoBehaviour {
     private bool esquivar;
     public bool estoyEnPool;
     void Start() {
+        if(Jugador.instanciaJugador != null)
+        {
+            jugador = Jugador.instanciaJugador;
+        }
         muerto = false;
         estadoEnemigo = EstadoEnemigo.normal;
         
@@ -40,16 +45,16 @@ public class Enemigo : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Jugador.GetJugador() != null)
+        if (jugador != null)
         {
-            if (Jugador.GetJugador().GetPowerUpDobleDanio())
+            if (jugador.GetPowerUpDobleDanio())
             {
-                Jugador.GetJugador().SetDanioAdicionalPelotaComun(danioBolaComun);
-                Jugador.GetJugador().SetDanioAdicionalMiniPelota(danioMiniBolas);
-                Jugador.GetJugador().SetDanioAdicionalPelotaHielo(danioBolaDeHielo);
-                Jugador.GetJugador().SetDanioAdicionalPelotaFuego(danioBolaDeFuego);
-                Jugador.GetJugador().SetDanioAdicionalPelotaExplosiva(danioBolaExplociva);
-                Jugador.GetJugador().SetPowerUpDobleDanio(false);
+                jugador.SetDanioAdicionalPelotaComun(danioBolaComun);
+                jugador.SetDanioAdicionalMiniPelota(danioMiniBolas);
+                jugador.SetDanioAdicionalPelotaHielo(danioBolaDeHielo);
+                jugador.SetDanioAdicionalPelotaFuego(danioBolaDeFuego);
+                jugador.SetDanioAdicionalPelotaExplosiva(danioBolaExplociva);
+                jugador.SetPowerUpDobleDanio(false);
             }
            
         }
