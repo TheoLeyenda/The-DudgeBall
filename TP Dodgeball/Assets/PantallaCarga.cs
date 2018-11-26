@@ -70,10 +70,7 @@ public class PantallaCarga : MonoBehaviour {
     }
     public void ResetNivel()
     {
-        if (estructuraDatos != null)
-        {
-            estructuraDatos.SetNivel(0);
-        }
+        estructuraDatos.SetNivel(0);
         SceneManager.LoadScene("SplashScreen");
     }
 }
