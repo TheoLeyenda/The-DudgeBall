@@ -31,6 +31,9 @@ public class Jugador : MonoBehaviour {
     public int oportunidades;
     public Transform posRespawn;
 
+    [HideInInspector]
+    public int cantAbatidos = 0;
+
     private float danioAdicionalPelotaComun;
     private float danioAdicionalPelotaHielo;
     private float danioAdicionalPelotaFuego;
@@ -332,7 +335,7 @@ public class Jugador : MonoBehaviour {
     {
         if (other.gameObject.tag == "TESORO")
         {
-            Debug.Log("GANASTE");
+            SceneManager.LoadScene("JUEGO COMPLETADO");
         }
         if (other.tag == "PickUpChalecoAntiGolpes")
         {

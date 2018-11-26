@@ -28,7 +28,7 @@ public class Torre : Enemigo {
     // Update is called once per frame
     void Update() {
         updateHP();
-        EstaMuerto();
+        
         if (GetMuerto())
         {
             if (!estoyEnPool)
@@ -103,6 +103,7 @@ public class Torre : Enemigo {
                             Jugador.GetJugador().SumarPuntos(5);
                         }
                         vida = vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego());
+                        EstaMuerto();
                     }
                     efectoFuego = 0;
                 }

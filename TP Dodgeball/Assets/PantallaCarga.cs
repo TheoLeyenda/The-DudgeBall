@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PantallaCarga : MonoBehaviour {
 
     // Use this for initialization
+    public Text porsentaje;
     public GameObject marcoBarraDeCarga;
     public GameObject carga;
     public float porsentajeMaximoCarga;
@@ -15,6 +17,7 @@ public class PantallaCarga : MonoBehaviour {
     private bool pasarNivel;
     public bool usarString;
     private int nivelACargar;
+    public bool noCargar;
     private EstructuraDatosAuxiliares estructuraDatos;
 	void Start () {
         System.GC.Collect();
@@ -29,14 +32,17 @@ public class PantallaCarga : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        UpdateBarraCarga();
-        if (usarString)
+        if (!noCargar)
         {
-            estructuraDatos.PasarNivel();
-        }
-        if(pasarNivel && !usarString)
-        {
-            estructuraDatos.PasarNivel();
+            UpdateBarraCarga();
+            if (usarString)
+            {
+                estructuraDatos.PasarNivel();
+            }
+            if (pasarNivel && !usarString)
+            {
+                estructuraDatos.PasarNivel();
+            }
         }
 	}
     public void UpdateBarraCarga()
@@ -48,7 +54,8 @@ public class PantallaCarga : MonoBehaviour {
             Vector3 ScaleBar = new Vector3(1, 1, z);
             carga.transform.localScale = ScaleBar;
         }
-        if(porsentajeCarga >= porsentajeMaximoCarga && !pasarNivel && !usarString)
+        porsentaje.text = "" + (int)porsentajeCarga + "%";
+        if (porsentajeCarga >= porsentajeMaximoCarga && !pasarNivel && !usarString)
         {
             estructuraDatos.SetNivel(estructuraDatos.datosNivel.I_nivelAcargar + 1);
             porsentajeCarga = 0;
@@ -60,5 +67,13 @@ public class PantallaCarga : MonoBehaviour {
             porsentajeCarga = 0;
             pasarNivel = true;
         }
+    }
+    public void ResetNivel()
+    {
+        if (estructuraDatos != null)
+        {
+            estructuraDatos.SetNivel(0);
+        }
+        SceneManager.LoadScene("SplashScreen");
     }
 }

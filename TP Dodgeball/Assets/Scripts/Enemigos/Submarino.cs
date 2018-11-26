@@ -311,11 +311,6 @@ public class Submarino : Enemigo{
             }
         }
     }
-    //(HECHO)
-    //Seguir: el submarino sigue al jugador mientras dispara torpedos y
-    //Si el jugador esta por el costado del submarino le dispara balas
-    //(Tiene activo su punto débil)
-    //Para entrar en "Seguir()" CONFIGURARLO PARA QUE ENTRE CUANDO ESTES EN MODO "SUPERVIVENCIA"
     public void Seguir()
     {
         for (int i = 0; i < torretas.Length; i++)
@@ -354,10 +349,6 @@ public class Submarino : Enemigo{
         // FALTA HACER QUE MIENTRAS SIGA ATAQUE.
     }
 
-    //(HECHO)
-    //PatrullarDisparando: el jugador mientras pasa por los distintos waypoints
-    //Dispara balas hacia el jugador(tiene activa su punto débil)
-    //TAG PARA ENTRAR EN "PatrullaDisparando()" = "WaypointPatrullarDisparando"
     public void PatrullarDisparando()
     {
         for (int i = 0; i < torretas.Length; i++)

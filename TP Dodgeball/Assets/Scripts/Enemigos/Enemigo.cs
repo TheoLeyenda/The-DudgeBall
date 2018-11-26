@@ -33,7 +33,9 @@ public class Enemigo : MonoBehaviour {
     private bool tocandoSuelo;
     private bool esquivar;
     public bool estoyEnPool;
+    private bool unaVez;
     void Start() {
+        unaVez = true;
         if(Jugador.instanciaJugador != null)
         {
             jugador = Jugador.instanciaJugador;
@@ -90,6 +92,7 @@ public class Enemigo : MonoBehaviour {
         if (vida <= 0)
         {
             muerto = true;
+            EstructuraDatosAuxiliares.estructuraDatosAuxiliares.DatosJugador.cantEnemigosAbatidos++;
         }
     }
     public void SetMuerto(bool _muerto)

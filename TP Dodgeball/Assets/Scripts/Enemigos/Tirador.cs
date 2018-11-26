@@ -92,7 +92,7 @@ public class Tirador : Enemigo {
                 }
             }
         }
-        EstaMuerto();
+        //EstaMuerto();
         updateHP();
         if (GetEstadoEnemigo() != EstadoEnemigo.congelado && GetEstadoEnemigo() != EstadoEnemigo.bailando)
         {
@@ -193,6 +193,7 @@ public class Tirador : Enemigo {
                             jugador.SumarPuntos(5);
                         }
                         vida = vida - (GetDanioBolaFuego() + jugador.GetDanioAdicionalPelotaFuego());
+                        EstaMuerto();
                     }
                     efectoFuego = 0;
                 }
@@ -375,7 +376,7 @@ public class Tirador : Enemigo {
         }
         if(other.gameObject.tag == "PelotaExplociva")
         {
-            EstaMuerto();
+            
             if (jugador != null)
             {
                 if (jugador.GetDoblePuntuacion())
@@ -387,6 +388,7 @@ public class Tirador : Enemigo {
                     jugador.SumarPuntos(10);
                 }
                 vida = vida - (GetDanioBolaExplociva() + jugador.GetDanioAdicionalPelotaExplociva());
+                EstaMuerto();
             }
 
         }

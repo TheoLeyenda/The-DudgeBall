@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 public class EstructuraDatosAuxiliares : MonoBehaviour {
 
     // Use this for initialization
+    [HideInInspector]
     public static EstructuraDatosAuxiliares estructuraDatosAuxiliares;
     [HideInInspector]
     public bool Guardar;
     [HideInInspector]
     public bool soloUnaVez= true;
-    public int oportunidades;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -58,6 +58,7 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
         public float contInstaKill;
         public float dileyActivacion;
         public int oportunidades;
+        public int cantEnemigosAbatidos;
     }
 
     [HideInInspector]
@@ -120,6 +121,7 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
         DatosJugador.contInstaKill = jugador.GetContInstaKill();
         DatosJugador.dileyActivacion = jugador.GetDileyActivacion();
         DatosJugador.oportunidades = jugador.oportunidades;
+        //DatosJugador.cantEnemigosAbatidos = jugador.cantAbatidos;
     }
 
     public void SetValoresDelJugador(Jugador jugador)
@@ -146,6 +148,6 @@ public class EstructuraDatosAuxiliares : MonoBehaviour {
         jugador.SetCountInstaKill(DatosJugador.contInstaKill);
         jugador.SetDileyActivacion(DatosJugador.dileyActivacion);
         jugador.oportunidades = DatosJugador.oportunidades;
+        jugador.cantAbatidos = DatosJugador.cantEnemigosAbatidos;
     }
-
 }

@@ -95,7 +95,7 @@ public class Corredor : Enemigo
                 }
             }
         }
-        EstaMuerto();
+        
         updateHP();
         if (GetEstadoEnemigo() != EstadoEnemigo.congelado && GetEstadoEnemigo() != EstadoEnemigo.bailando)
         {
@@ -184,6 +184,7 @@ public class Corredor : Enemigo
                             jugador.SumarPuntos(5);
                         }
                         vida = vida - (GetDanioBolaFuego() + jugador.GetDanioAdicionalPelotaFuego());
+                        EstaMuerto();
                     }
                     efectoFuego = 0;
                 }

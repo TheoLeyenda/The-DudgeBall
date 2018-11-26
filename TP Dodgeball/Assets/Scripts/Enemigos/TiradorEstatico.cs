@@ -68,7 +68,7 @@ public class TiradorEstatico : Enemigo
         }
         updateHP();
         rig.Sleep();
-        EstaMuerto();
+        //EstaMuerto();
         if (GetEstadoEnemigo() != EstadoEnemigo.congelado && GetEstadoEnemigo() != EstadoEnemigo.bailando)
         {
             Movimiento();
@@ -118,6 +118,7 @@ public class TiradorEstatico : Enemigo
                             jugador.SumarPuntos(5);
                         }
                         vida = vida - (GetDanioBolaFuego() + jugador.GetDanioAdicionalPelotaFuego());
+                        EstaMuerto();
                     }
                     efectoFuego = 0;
                 }
