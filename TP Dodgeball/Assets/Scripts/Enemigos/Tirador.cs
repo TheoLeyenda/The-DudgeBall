@@ -26,6 +26,8 @@ public class Tirador : Enemigo {
     public float rangoVisionEnemigo;
     public float danio;
     public float potenciaDisparo;
+    public AudioSource Audio;
+    public AudioClip clip;
 
     public PoolPelota poolPoderInmune;
     public PoolPelota poolDoblePuntuacion;
@@ -260,6 +262,10 @@ public class Tirador : Enemigo {
     public void TirarBola()
     {
         //Instantiate(Bola,generadorPelota.transform.position ,generadorPelota.transform.rotation);
+        if(Audio != null && clip != null)
+        {
+            Audio.PlayOneShot(clip);
+        }
         GameObject go = pelotasRugby.GetObject();
         PelotaEnemigo pelota = go.GetComponent<PelotaEnemigo>();
         go.transform.position = generadorPelota.transform.position;

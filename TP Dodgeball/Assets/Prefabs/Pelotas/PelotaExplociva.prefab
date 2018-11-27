@@ -240,7 +240,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1348130759821816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.609, y: 6.67, z: -2.9030924}
+  m_LocalPosition: {x: 23.316086, y: 59.77912, z: 55.577347}
   m_LocalScale: {x: 0.50000036, y: 0.5, z: 0.50000036}
   m_Children:
   - {fileID: 4119406068193042}
@@ -442,7 +442,8 @@ AudioSource:
   m_GameObject: {fileID: 1348130759821816}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243286311598226616, guid: 42344e02b39ea7e429f3b8ac0bd728ae,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -578,7 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sonido: {fileID: 82679393386403642}
-  sonidoExplocion: {fileID: 8300000, guid: e344b2b913167ee4cb094b2eeb06588d, type: 3}
+  sonidoExplocion: {fileID: 8300000, guid: f05ce5537217dfc40a809d8f7551c01f, type: 3}
   pool: {fileID: 114645570577268558, guid: be89b98fb0e0c1a498ae61148cc274dc, type: 2}
   potencia: 15
   camara: {fileID: 20261469279242880, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}

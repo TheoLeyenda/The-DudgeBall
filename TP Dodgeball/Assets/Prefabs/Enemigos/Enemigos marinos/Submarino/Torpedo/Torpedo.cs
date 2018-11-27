@@ -19,6 +19,8 @@ public class Torpedo : Enemigo {
     private float auxDileyAdelante;
     private float auxVida;
     private Rigidbody rig;
+    public AudioSource Audio;
+    public AudioClip clipTorpedo;
 
     private PoolObject poolObject;
     void Start() {
@@ -34,6 +36,7 @@ public class Torpedo : Enemigo {
 
     public void Prendido()
     {
+        Audio.PlayOneShot(clipTorpedo);
         SetEstadoEnemigo(EstadoEnemigo.normal);
         poolObject = GetComponent<PoolObject>();
         rig = GetComponent<Rigidbody>();

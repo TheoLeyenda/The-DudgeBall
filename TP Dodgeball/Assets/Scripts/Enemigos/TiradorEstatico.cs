@@ -22,6 +22,9 @@ public class TiradorEstatico : Enemigo
     private float dileyInsta;
     public int tipoMovimiento;
     public float danio;
+    public AudioSource Audio;
+    public AudioClip clip;
+
     void Start()
     {
         if(Jugador.instanciaJugador != null)
@@ -161,7 +164,11 @@ public class TiradorEstatico : Enemigo
     }
     public void TirarBola()
     {
-       
+        if (Audio != null && clip != null)
+        {
+            //Audio.volume = 0;
+            Audio.PlayOneShot(clip);
+        }
         GameObject go = pelotasRugby.GetObject();
         PelotaEnemigo pelota = go.GetComponent<PelotaEnemigo>();
         go.transform.position = generadorPelota.transform.position;

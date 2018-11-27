@@ -17,6 +17,11 @@ public class PelotaEnemigo : MonoBehaviour {
     public bool pelotaTinta;
     public bool flecha;
     private Jugador jugador;
+    public AudioSource Audio;
+    public AudioClip clipPelotaTinta;
+    public AudioClip clipBala;
+    public AudioClip clipPelotaRugby;
+    public AudioClip clipFlecha;
     private void Start()
     {
         if(Jugador.instanciaJugador != null)
@@ -27,7 +32,11 @@ public class PelotaEnemigo : MonoBehaviour {
     public void Disparar() {
         if (!pelotaTinta && !flecha)
         {
-            
+            if (Audio != null && clipPelotaRugby != null)
+            {
+                Audio.clip = clipPelotaRugby;
+                Audio.Play();
+            }
             rigBola = GetComponent<Rigidbody>();
             rigBola.velocity = Vector3.zero;
             rigBola.angularVelocity = Vector3.zero;
@@ -45,6 +54,10 @@ public class PelotaEnemigo : MonoBehaviour {
         }
         if(flecha)
         {
+            if(Audio != null && clipFlecha != null)
+            {
+                Audio.PlayOneShot(clipFlecha);
+            }
             rigBola = GetComponent<Rigidbody>();
             rigBola.velocity = Vector3.zero;
             rigBola.angularVelocity = Vector3.zero;
@@ -63,6 +76,10 @@ public class PelotaEnemigo : MonoBehaviour {
         }
         if(pelotaTinta)
         {
+            if (Audio != null && clipPelotaTinta != null)
+            {
+                Audio.PlayOneShot(clipPelotaTinta);
+            }
             rigBola = GetComponent<Rigidbody>();
             rigBola.velocity = Vector3.zero;
             rigBola.angularVelocity = Vector3.zero;

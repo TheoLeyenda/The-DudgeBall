@@ -17,9 +17,13 @@ public class MiniPelota : MonoBehaviour {
     private float rotarY;
     private float rotarZ;
     private bool resiclar;
+    public AudioSource Audio;
+    public AudioClip clip;
 
     void OnEnable()
     {
+        //Audio = GetComponent<AudioSource>();
+        //Audio.PlayOneShot(clip);
         resiclar = false;
         rotarX = 0;
         rotarY = 4;
@@ -27,6 +31,7 @@ public class MiniPelota : MonoBehaviour {
         rigBola = GetComponent<Rigidbody>();
         rigBola.velocity = Vector3.zero;
         rigBola.angularVelocity = Vector3.zero;
+
         if (tipoRuta == 1)
         {
             //rigBola.AddRelativeForce(transform.forward * potencia, ForceMode.Impulse);
