@@ -13,6 +13,8 @@ public class Torre : Enemigo {
     private float efectoFuego;
     public float danio;
     public float potenciaFlecha;
+    public AudioSource Audio;
+    public AudioClip clip;
     public GameObject generadorPelota;
 
     private Rigidbody rig;
@@ -55,6 +57,10 @@ public class Torre : Enemigo {
     public void TirarFlecha()
     {
         //Instantiate(Bola,generadorPelota.transform.position ,generadorPelota.transform.rotation);
+        if (Audio != null && clip != null)
+        {
+            Audio.PlayOneShot(clip);
+        }
         GameObject go = flechas.GetObject();
         PelotaEnemigo pelota = go.GetComponent<PelotaEnemigo>();
         go.transform.position = generadorPelota.transform.position;
