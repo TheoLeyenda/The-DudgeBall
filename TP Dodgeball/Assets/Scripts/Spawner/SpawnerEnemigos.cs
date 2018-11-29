@@ -26,6 +26,7 @@ public class SpawnerEnemigos : MonoBehaviour {
     public float rangoVisionEnemigo;
     public bool EvitarCreacionInstantanea;
     public bool activarCreacionEscalada;
+    public float DileyTirador;
     void Start() {
         auxDileyCreacion = dileyCreacion;
         TOPE_CREACION = cantEnemigosInicial;
@@ -80,6 +81,10 @@ public class SpawnerEnemigos : MonoBehaviour {
                     Tirador tirador = go.GetComponent<Tirador>();
                     go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), 0, Random.Range(0, rangoZ));
                     go.transform.rotation = transform.rotation;
+                    if (DileyTirador > 0)
+                    {
+                        tirador.dilay = DileyTirador;
+                    }
                     tirador.Prendido();
                     tirador.rangoVisionEnemigo = rangoVisionEnemigo;
                     tirador.tipoPatron = patronEnemigo;
@@ -146,6 +151,10 @@ public class SpawnerEnemigos : MonoBehaviour {
                     tirador.Prendido();
                     tirador.velocidad = velocidadEnemigo;
                     tirador.tipoPatron = patronEnemigo;
+                    if (DileyTirador > 0)
+                    {
+                        tirador.dilay = DileyTirador;
+                    }
                     if (GameManager.GetGameManager().GetRonda() > 1)
                     {
                         tirador.SumarVelocidad();
