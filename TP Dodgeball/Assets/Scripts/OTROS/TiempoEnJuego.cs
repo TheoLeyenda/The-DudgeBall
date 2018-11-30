@@ -12,6 +12,7 @@ public class TiempoEnJuego : MonoBehaviour {
     private float auxMinutos;
     private float auxSegundos;
     private Jugador jugador;
+    private bool tiempoAcabado = false;
 	void Start () {
         if(Jugador.instanciaJugador != null)
         {
@@ -31,6 +32,7 @@ public class TiempoEnJuego : MonoBehaviour {
         {
             if (jugador != null)
             {
+                tiempoAcabado = true;
                 jugador.vida = 0;
                 segundos = auxSegundos;
                 minutos = auxMinutos;
@@ -47,10 +49,11 @@ public class TiempoEnJuego : MonoBehaviour {
         }
         if (jugador != null)
         {
-            if (jugador.vida < 0)
+            if (tiempoAcabado)
             {
                 segundos = auxSegundos;
                 minutos = auxMinutos;
+                tiempoAcabado = false;
                 if (segundos >= 10)
                 {
                     tiempo.text = (int)minutos + ":" + (int)segundos;
