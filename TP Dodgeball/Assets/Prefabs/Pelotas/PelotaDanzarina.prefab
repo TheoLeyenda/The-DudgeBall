@@ -208,11 +208,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9ef048145b6344da9e97bf607ba244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sonidoDisparo: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
   pool: {fileID: 114332883883419476, guid: 8fe91187c72cecc448ef17d114facbfe, type: 2}
-  potencia: 50
-  camara: {fileID: 20261469279242880, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
-  tiempoVida: 7
+  power: 50
+  CAMERA: {fileID: 0}
+  timeLife: 7
 --- !u!135 &135557348155894144
 SphereCollider:
   m_ObjectHideFlags: 1

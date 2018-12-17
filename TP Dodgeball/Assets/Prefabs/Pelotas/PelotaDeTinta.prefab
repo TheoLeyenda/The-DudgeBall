@@ -142,11 +142,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 114844841794000772, guid: 356065e471749f24781584a0c5ec631a, type: 2}
-  potencia: 175
-  tiempoVida: 8
-  danio: 15
-  generador: {fileID: 1872867641886358, guid: 514f342be3c485f44b1b3713c946d31a, type: 2}
-  pelotaTinta: 1
+  power: 175
+  timeLife: 8
+  damage: 15
+  generator: {fileID: 0}
+  tinteBall: 1
+  arrow: 0
+  Audio: {fileID: 0}
+  clipTinteBall: {fileID: 0}
+  clipBullet: {fileID: 0}
+  clipRugbyBall: {fileID: 0}
+  clipArrow: {fileID: 0}
 --- !u!135 &135539155372238344
 SphereCollider:
   m_ObjectHideFlags: 1

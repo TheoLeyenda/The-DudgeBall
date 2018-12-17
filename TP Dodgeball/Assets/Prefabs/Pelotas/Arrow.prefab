@@ -440,12 +440,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 114375031054454486, guid: 5d0571a7f8619a74abf1d4b3347f4211, type: 2}
-  potencia: 0
-  tiempoVida: 5
-  danio: 0
-  generador: {fileID: 1997445418608920, guid: 55c78b9dbe0506e4da40e8bdeda16cd2, type: 2}
-  pelotaTinta: 0
-  flecha: 1
+  power: 0
+  timeLife: 5
+  damage: 0
+  generator: {fileID: 1997445418608920, guid: 55c78b9dbe0506e4da40e8bdeda16cd2, type: 2}
+  tinteBall: 0
+  arrow: 1
+  Audio: {fileID: 0}
+  clipTinteBall: {fileID: 0}
+  clipBullet: {fileID: 0}
+  clipRugbyBall: {fileID: 0}
+  clipArrow: {fileID: 0}
 --- !u!137 &137079778082618784
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
