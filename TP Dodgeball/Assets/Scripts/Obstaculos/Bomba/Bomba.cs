@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class Bomba : MonoBehaviour {
 
     // Use this for initialization
-    public AudioSource sonido;
-    public AudioClip sonidoExplocion;
-    public GameObject bomba;
-    public GameObject RangoExplocion;
-    public GameObject efectoExplocion;
-    public float TiempoExplocion;
-    private bool ActivarBomba;
-    private bool ActivarDiley;
-    private float dileyDesaparicion = 1;
+    public AudioSource sound;
+    public AudioClip explotionSound;
+    public GameObject bomb;
+    public GameObject explotionRange;
+    public GameObject explotionEffect;
+    public float explotionTime;
+    private bool ActivedBomb;
+    private bool ActivedDiley;
+    private float disappearanceDiley = 1;
     private bool unaVez = true;
 	void Start () {
 		
@@ -22,28 +24,28 @@ public class Bomba : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (ActivarBomba)
+        if (ActivedBomb)
         {
-            TiempoExplocion = TiempoExplocion - Time.deltaTime;
-            if (TiempoExplocion <= 0)
+            explotionTime = explotionTime - Time.deltaTime;
+            if (explotionTime <= 0)
             {
-                RangoExplocion.SetActive(true);
-                efectoExplocion.SetActive(true);
-                ActivarDiley = true;
-                ActivarBomba = false;
-                if (sonido != null && sonidoExplocion != null && unaVez)
+                explotionRange.SetActive(true);
+                explotionEffect.SetActive(true);
+                ActivedDiley = true;
+                ActivedBomb = false;
+                if (sound != null && explotionSound != null && unaVez)
                 {
-                    sonido.PlayOneShot(sonidoExplocion);
+                    sound.PlayOneShot(explotionSound);
                     unaVez = false;
                 }
             }
         }
-        if(ActivarDiley)
+        if(ActivedDiley)
         {
-            dileyDesaparicion = dileyDesaparicion - Time.deltaTime;
-            if(dileyDesaparicion <= 0)
+            disappearanceDiley = disappearanceDiley - Time.deltaTime;
+            if(disappearanceDiley <= 0)
             {
-                bomba.SetActive(false);
+                bomb.SetActive(false);
             }
         }
     }
@@ -51,10 +53,11 @@ public class Bomba : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            if(Jugador.GetJugador() != null)
+            if(Jugador.GetPlayer() != null)
             {
-                ActivarBomba = true;
+                ActivedBomb = true;
             }
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class MovimientoCamara : MonoBehaviour {
 
     // Use this for initialization
-    public GameObject camara;
+    public GameObject _camera;
     private float x;
     private float y;
     private float z;
     private Vector3 dir;
 	void Start () {
-        x = camara.transform.position.x;
-        y = camara.transform.position.y;
-        z = camara.transform.position.z;
+        x = _camera.transform.position.x;
+        y = _camera.transform.position.y;
+        z = _camera.transform.position.z;
         dir = Vector3.zero;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Movimiento();
+        Move();
 	}
-    public void Movimiento()
+    public void Move()
     {
         if(Input.GetKey(KeyCode.S))
         {
@@ -48,43 +49,44 @@ public class MovimientoCamara : MonoBehaviour {
             z--;
         }
         dir = new Vector3(x, y, z);
-        camara.transform.position = dir;
+        _camera.transform.position = dir;
     }
-    public void Subir()
+    public void Up()
     {
         y++;
         dir = new Vector3(x, y, z);
-        camara.transform.position = dir;
+        _camera.transform.position = dir;
     }
-    public void Bajar()
+    public void Down()
     {
         y--;
         dir = new Vector3(x, y, z);
-        camara.transform.position = dir;
+        _camera.transform.position = dir;
     }
-    public void MoverAdelante()
+    public void MoveForward()
     {
         z++;
         dir = new Vector3(x, y, z);
-        camara.transform.position = dir;
+        _camera.transform.position = dir;
     }
-    public void MoverAtras()
+    public void MoveBack()
     {
         z--;
         dir = new Vector3(x, y, z);
-        camara.transform.position = dir;
+        _camera.transform.position = dir;
     }
-    public void MoverIzquierda()
+    public void MoveLeft()
     {
         x--;
         dir = new Vector3(x, y, z);
-        camara.transform.position = dir;
+        _camera.transform.position = dir;
     }
-    public void MoverDerecha()
+    public void MoveRight()
     {
         x++;
         dir = new Vector3(x, y, z);
-        camara.transform.position = dir;
+        _camera.transform.position = dir;
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 

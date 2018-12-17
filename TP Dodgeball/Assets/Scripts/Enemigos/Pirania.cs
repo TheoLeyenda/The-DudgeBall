@@ -1,125 +1,125 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class Pirania : Enemigo {
 
     // Use this for initialization
     public enum States
     {
-        Nadando = 0,
-        Atacar,
-        Quieto,
+        Swiming = 0,
+        Attack,
+        Still,
     }
     private int id = 0;
 
-    public States estados;
-    public float velocidadAtaque;
-    public float velocidadMovimiento;
-    public float danio;
-    public bool activarPirania;
-    private Vector3 puntoInicio;
-    private Quaternion rotacionInicio;
+    public States states;
+    public float AtackSpeed;
+    public float MovementSpeed;
+    public float damage;
+    public bool ActivePiranha;
+    private Vector3 initialPoint;
+    private Quaternion initialRotation;
     public Transform[] waypoints;
-    public Transform waypointJugadorAndroid;
-    public Transform waypointJugadorWindows;
-    private Jugador instanceJugador;
+    public Transform waypointPlayerAndroid;
+    public Transform waypointPlayerWindows;
+    private Jugador instancePlayer;
     void Start () {
-        instanceJugador = Jugador.instanciaJugador;
-        puntoInicio = transform.position;
-        rotacionInicio = transform.rotation;
+        instancePlayer = Jugador.InstancePlayer;
+        initialPoint = transform.position;
+        initialRotation = transform.rotation;
 	}
 	
 	// Update is called once per frame
 	void Update () {
       
-        if (activarPirania)
+        if (ActivePiranha)
         {
             UpdateStates();
            
         }
-        if (GetMuerto())
+        if (GetDead())
         {
-            if (!estoyEnPool)
+            if (!i_AmInPool)
             {
                 gameObject.SetActive(false);
             }
         }
     }
-    public void SetPosicionInicio(Vector3 posInicial)
+    public void SetInitialPoint(Vector3 Point)
     {
-        puntoInicio = posInicial;
+        initialPoint = Point;
     }
-    public void SetRotacionInicio(Quaternion rotInicial)
+    public void SetInitialRotation(Quaternion rotInitial)
     {
-        rotacionInicio = rotInicial;
+        initialRotation = rotInitial;
     }
-    public Vector3 GetPuntoInicio()
+    public Vector3 GetInitialPoint()
     {
-        return puntoInicio;
+        return initialPoint;
     }
-    public Quaternion GetRotacionInicio()
+    public Quaternion GetInitialRotation()
     {
-        return rotacionInicio;
+        return initialRotation;
     }
     public void UpdateStates()
     {
 
-        switch ((int)estados)
+        switch ((int)states)
         {
-            case (int)States.Nadando:
-                Nadar();
+            case (int)States.Swiming:
+                Swim();
                 break;
-            case (int)States.Atacar:
-                Atacar();
+            case (int)States.Attack:
+                Attack();
                 break;
         }
     }
     public void SetWaypoint(Transform waypointPosition)
     {
-        if(Jugador.instanciaJugador != null)
+        if(Jugador.InstancePlayer != null)
         {
-            if(instanceJugador.jugadorAndroid)
+            if(instancePlayer.playerAndroid)
             {
-                waypointJugadorAndroid = waypointPosition;
+                waypointPlayerAndroid = waypointPosition;
             }
-            if(instanceJugador.jugadorWindows)
+            if(instancePlayer.playerWindows)
             {
-                waypointJugadorWindows = waypointPosition;
+                waypointPlayerWindows = waypointPosition;
             }
         }
     }
-    public void Atacar()
+    public void Attack()
     {
-        if (Jugador.GetJugador() != null)
+        if (Jugador.GetPlayer() != null)
         {
-            if (Jugador.GetJugador().jugadorWindows && Jugador.GetJugador().jugadorAndroid == false)
+            if (Jugador.GetPlayer().playerWindows && Jugador.GetPlayer().playerAndroid == false)
             {
-                if (waypointJugadorWindows != null)
+                if (waypointPlayerWindows != null)
                 {
-                    Vector3 target = waypointJugadorWindows.position;
+                    Vector3 target = waypointPlayerWindows.position;
                     transform.LookAt(target);
                     if (transform.position != target)
                     {
-                        transform.position = transform.position + transform.forward * Time.deltaTime * velocidadAtaque;
+                        transform.position = transform.position + transform.forward * Time.deltaTime * AtackSpeed;
                     }
                 }
             }
-            if (Jugador.GetJugador().jugadorAndroid && Jugador.GetJugador().jugadorWindows == false)
+            if (Jugador.GetPlayer().playerAndroid && Jugador.GetPlayer().playerWindows == false)
             {
-                if(waypointJugadorAndroid != null)
+                if(waypointPlayerAndroid != null)
                 {
-                    Vector3 target = waypointJugadorAndroid.position;
+                    Vector3 target = waypointPlayerAndroid.position;
                     transform.LookAt(target);
                     if (transform.position != target)
                     {
-                        transform.position = transform.position + transform.forward * Time.deltaTime * velocidadAtaque;
+                        transform.position = transform.position + transform.forward * Time.deltaTime * AtackSpeed;
                     }
                 }
             }
         }
     }
-    public void Nadar()
+    public void Swim()
     {
         if (waypoints.Length > 0)
         {
@@ -128,7 +128,7 @@ public class Pirania : Enemigo {
             {
                 Vector3 target = waypoints[id].position;
                 transform.LookAt(target);
-                transform.position = transform.position + transform.forward * Time.deltaTime * velocidadMovimiento;
+                transform.position = transform.position + transform.forward * Time.deltaTime * MovementSpeed;
                 Vector3 diff = target - this.transform.position;
 
                 if (diff.magnitude < 0.3f)
@@ -147,76 +147,59 @@ public class Pirania : Enemigo {
         
         if(other.tag == "Player")
         {
-            if (Jugador.GetJugador() != null)
+            if (Jugador.GetPlayer() != null)
             {
-                Jugador.GetJugador().vida = Jugador.GetJugador().vida - danio;
+                Jugador.GetPlayer().life = Jugador.GetPlayer().life - damage;
             }
         }
         if (other.gameObject.tag == "PelotaComun")
         {
-            if (Jugador.GetJugador() != null)
+            if (Jugador.GetPlayer() != null)
             {
-                vida = vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun());
-                EstaMuerto();
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                life = life - (GetDamageCommonBall() + Jugador.GetPlayer().GetAdditionalDamageCommonBall());
+                IsDead();
+                if (Jugador.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    Jugador.GetPlayer().AddScore(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    Jugador.GetPlayer().AddScore(10);
                 }
             }
         }
         if (other.gameObject.tag == "PelotaDeHielo")
         {
-            if (Jugador.GetJugador() != null)
+            if (Jugador.GetPlayer() != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (Jugador.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    Jugador.GetPlayer().AddScore(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    Jugador.GetPlayer().AddScore(10);
                 }
-                vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo());
+                life = life - (GetDamageIceBall() + Jugador.GetPlayer().GetAdditionalDamageIceBall());
             }
-            EstaMuerto();
+            IsDead();
         }
         if (other.gameObject.tag == "MiniPelota")
         {
-            if (Jugador.GetJugador() != null)
+            if (Jugador.GetPlayer() != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (Jugador.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    Jugador.GetPlayer().AddScore(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    Jugador.GetPlayer().AddScore(10);
                 }
-                vida = vida - (GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota());
-                EstaMuerto();
+                life = life - (GetDamageMiniBall() + Jugador.GetPlayer().GetAditionalDamageMiniBalls());
+                IsDead();
             }
-        } 
-        /*if (other.gameObject.tag == "PelotaExplociva")
-        {
-            if (Jugador.GetJugador() != null)
-            {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
-                {
-                    Jugador.GetJugador().SumarPuntos(20 * 2);
-                }
-                else
-                {
-                    Jugador.GetJugador().SumarPuntos(20);
-                }
-                vida = vida - (GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
-            }
-            EstaMuerto();
-
-        }*/
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -225,5 +208,5 @@ public class Pirania : Enemigo {
             gameObject.SetActive(false);
         }
     }
-
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

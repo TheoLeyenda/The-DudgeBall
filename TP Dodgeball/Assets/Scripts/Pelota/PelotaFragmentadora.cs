@@ -2,65 +2,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class PelotaFragmentadora : MonoBehaviour {
 
     // Use this for initialization
-    private bool PelotaBaseDestruida;
-    private bool tiempoAuxiliarHabilitado = false;
-    public float potencia;
-    public Camera camara;
-    public float tiempoVida;
-    private Rigidbody rigBola;
-    public GameObject miniPelota1;
-    public GameObject miniPelota2;
-    public GameObject miniPelota3;
-    public GameObject pelotaBase;
+    private bool baseBallDestroyed;
+    private bool auxiliaryTimeEnabled = false;
+    public float power;
+    public Camera CAMERA;
+    public float lifeTime;
+    private Rigidbody rigBall;
+    public GameObject miniBall1;
+    public GameObject miniBall2;
+    public GameObject miniBall3;
+    public GameObject baseBall;
     private Vector3 auxPos;
-    private bool resiclar;
-    public void Disparar()
+    private bool recycle;
+    public void Shoot()
     {
-        resiclar = false;
-        PelotaBaseDestruida = false;
-        rigBola = GetComponent<Rigidbody>();
-        rigBola.velocity = Vector3.zero;
-        rigBola.angularVelocity = Vector3.zero;
-        rigBola.AddRelativeForce(camara.transform.forward * potencia, ForceMode.Impulse);
-        miniPelota1.SetActive(false);
-        miniPelota2.SetActive(false);
-        miniPelota3.SetActive(false);
+        recycle = false;
+        baseBallDestroyed = false;
+        rigBall = GetComponent<Rigidbody>();
+        rigBall.velocity = Vector3.zero;
+        rigBall.angularVelocity = Vector3.zero;
+        rigBall.AddRelativeForce(CAMERA.transform.forward * power, ForceMode.Impulse);
+        miniBall1.SetActive(false);
+        miniBall2.SetActive(false);
+        miniBall3.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!tiempoAuxiliarHabilitado)
+        if(!auxiliaryTimeEnabled)
         {
-            tiempoAuxiliarHabilitado = true;
+            auxiliaryTimeEnabled = true;
         }
-        tiempoVida = tiempoVida - Time.deltaTime;
-        if (tiempoVida <= 0)
+        lifeTime = lifeTime - Time.deltaTime;
+        if (lifeTime <= 0)
         {
-            if (miniPelota1 != null && miniPelota2 != null && miniPelota3 != null)
+            if (miniBall1 != null && miniBall2 != null && miniBall3 != null)
             {
 
                
                 //Instantiate(miniPelota1, transform.position,transform.rotation);
-                miniPelota1.transform.position = gameObject.transform.position;
-                miniPelota1.transform.rotation = gameObject.transform.rotation;
-                miniPelota1.SetActive(true);
+                miniBall1.transform.position = gameObject.transform.position;
+                miniBall1.transform.rotation = gameObject.transform.rotation;
+                miniBall1.SetActive(true);
                 //Instantiate(miniPelota2, transform.position, transform.rotation);
-                miniPelota2.transform.position = gameObject.transform.position;
-                miniPelota2.transform.rotation = gameObject.transform.rotation;
-                miniPelota2.SetActive(true);
+                miniBall2.transform.position = gameObject.transform.position;
+                miniBall2.transform.rotation = gameObject.transform.rotation;
+                miniBall2.SetActive(true);
                 //Instantiate(miniPelota3, transform.position,transform.rotation);
-                miniPelota3.transform.position = gameObject.transform.position;
-                miniPelota3.transform.rotation = gameObject.transform.rotation;
-                miniPelota3.SetActive(true);
+                miniBall3.transform.position = gameObject.transform.position;
+                miniBall3.transform.rotation = gameObject.transform.rotation;
+                miniBall3.SetActive(true);
                 //new Quaternion(transform.rotation.x, transform.rotation.y - 45, transform.rotation.z, transform.rotation.w)
             }
             //Destroy(this.gameObject);
-            PelotaBaseDestruida = true;
-            resiclar = true;
+            baseBallDestroyed = true;
+            recycle = true;
 
         }
     }
@@ -69,46 +71,47 @@ public class PelotaFragmentadora : MonoBehaviour {
         
         if (other.gameObject.tag != "MiniPelota")
         {
-            if (miniPelota1 != null && miniPelota2 != null && miniPelota3 != null)
+            if (miniBall1 != null && miniBall2 != null && miniBall3 != null)
             {
                
                 //Instantiate(miniPelota1, transform.position,transform.rotation);
-                miniPelota1.transform.position = gameObject.transform.position;
-                miniPelota1.transform.rotation = gameObject.transform.rotation;
-                miniPelota1.SetActive(true);
+                miniBall1.transform.position = gameObject.transform.position;
+                miniBall1.transform.rotation = gameObject.transform.rotation;
+                miniBall1.SetActive(true);
                 //Instantiate(miniPelota2, transform.position, transform.rotation);
-                miniPelota2.transform.position = gameObject.transform.position;
-                miniPelota2.transform.rotation = gameObject.transform.rotation;
-                miniPelota2.SetActive(true);
+                miniBall2.transform.position = gameObject.transform.position;
+                miniBall2.transform.rotation = gameObject.transform.rotation;
+                miniBall2.SetActive(true);
                 //Instantiate(miniPelota3, transform.position,transform.rotation);
-                miniPelota3.transform.position = gameObject.transform.position;
-                miniPelota3.transform.rotation = gameObject.transform.rotation;
-                miniPelota3.SetActive(true);
+                miniBall3.transform.position = gameObject.transform.position;
+                miniBall3.transform.rotation = gameObject.transform.rotation;
+                miniBall3.SetActive(true);
                 //new Quaternion(transform.rotation.x, transform.rotation.y - 45, transform.rotation.z, transform.rotation.w)
             }
             //Destroy(this.gameObject);
-            PelotaBaseDestruida = true;
-            resiclar = true;
+            baseBallDestroyed = true;
+            recycle = true;
         }
     }
-    public bool GetPelotaBaseDestruida()
+    public bool GetBaseBallDestroyed()
     {
-        return PelotaBaseDestruida;
+        return baseBallDestroyed;
     }
-    public bool GetResiclar()
+    public bool GetRecycle()
     {
-        return resiclar;
+        return recycle;
     }
-    public void SetResiclar(bool _resiclar)
+    public void SetRecycle(bool _recycle)
     {
-        resiclar = _resiclar;
+        recycle = _recycle;
     }
-    public void SetTiempoVida(float tiempo)
+    public void SetLifeTime(float time)
     {
-        tiempoVida = tiempo;
+        lifeTime = time;
     }
-    public float GetTiempoVida()
+    public float GetLifeTime()
     {
-        return tiempoVida;
+        return lifeTime;
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

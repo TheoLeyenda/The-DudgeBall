@@ -3,40 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class SplashScreenController : MonoBehaviour
 {
 
     // Use this for initialization
-    public GameObject logoEmpresa;
-    public GameObject logoJuego;
+    public GameObject companyLogo;
+    public GameObject gameLogo;
     public bool menuWindows;
     public bool menuAndroid;
-    private float TransparenciaLogoEmpresa;
-    private float TransparenciaLogoJuego;
-    private bool entrarLogoEmpresa;
-    private bool entrarLogoJuego;
-    private bool soloUnaVez;
-    private bool sumar;
-    private bool restar;
-    private float tiempo;
+    private float transparencyCompanyLogo;
+    private float transparencyGameLogo;
+    private bool getInCompanyLogo;
+    private bool getInGameLogo;
+    private bool once;
+    private bool add;
+    private bool substract;
+    private float time;
     private float diley;
     void Start()
     {
-        TransparenciaLogoEmpresa = 0;
-        TransparenciaLogoJuego = 0;
-        entrarLogoEmpresa = false;
-        entrarLogoJuego = false;
-        sumar = true;
-        restar = false;
-        soloUnaVez = true;
-        tiempo = 0;
+        transparencyCompanyLogo = 0;
+        transparencyGameLogo = 0;
+        getInCompanyLogo = false;
+        getInGameLogo = false;
+        add = true;
+        substract = false;
+        once = true;
+        time = 0;
         diley = 0;
 
-        Material tempMatEmpresa = logoEmpresa.GetComponent<MeshRenderer>().sharedMaterial;
-        tempMatEmpresa.color = new Color(tempMatEmpresa.color.r, tempMatEmpresa.color.g, tempMatEmpresa.color.b, TransparenciaLogoEmpresa);
+        Material tempMatEmpresa = companyLogo.GetComponent<MeshRenderer>().sharedMaterial;
+        tempMatEmpresa.color = new Color(tempMatEmpresa.color.r, tempMatEmpresa.color.g, tempMatEmpresa.color.b, transparencyCompanyLogo);
         //Material tempMatJuego = logoEmpresa.GetComponent<MeshRenderer>().sharedMaterial;
         //tempMatJuego.color = new Color(tempMatJuego.color.r, tempMatJuego.color.g, tempMatJuego.color.b, TransparenciaLogoJuego);
-        logoEmpresa.GetComponent<MeshRenderer>().sharedMaterial.color = tempMatEmpresa.color;
+        companyLogo.GetComponent<MeshRenderer>().sharedMaterial.color = tempMatEmpresa.color;
         //logoJuego.GetComponent<MeshRenderer>().sharedMaterial.color = tempMatJuego.color;
     }
 
@@ -45,36 +47,36 @@ public class SplashScreenController : MonoBehaviour
     {
 
         diley = diley + Time.deltaTime;
-        if (diley >= 2 && soloUnaVez)
+        if (diley >= 2 && once)
         {
-            entrarLogoEmpresa = true;
-            soloUnaVez = false;
+            getInCompanyLogo = true;
+            once = false;
             //diley = 0;
         }
 
-        if (entrarLogoEmpresa)
+        if (getInCompanyLogo)
         {
-            if (logoEmpresa != null)
+            if (companyLogo != null)
             {
-                logoEmpresa.GetComponent<MeshRenderer>().sharedMaterial.color = new Color(logoEmpresa.GetComponent<MeshRenderer>().sharedMaterial.color.r, logoEmpresa.GetComponent<MeshRenderer>().sharedMaterial.color.g, logoEmpresa.GetComponent<MeshRenderer>().sharedMaterial.color.b, TransparenciaLogoEmpresa);
+                companyLogo.GetComponent<MeshRenderer>().sharedMaterial.color = new Color(companyLogo.GetComponent<MeshRenderer>().sharedMaterial.color.r, companyLogo.GetComponent<MeshRenderer>().sharedMaterial.color.g, companyLogo.GetComponent<MeshRenderer>().sharedMaterial.color.b, transparencyCompanyLogo);
             }
-            tiempo = tiempo + Time.deltaTime;
-            if (TransparenciaLogoEmpresa < 1 && sumar)
+            time = time + Time.deltaTime;
+            if (transparencyCompanyLogo < 1 && add)
             {
-                TransparenciaLogoEmpresa = TransparenciaLogoEmpresa + Time.deltaTime;
+                transparencyCompanyLogo = transparencyCompanyLogo + Time.deltaTime;
             }
-            if (tiempo >= 4 && tiempo < 7f)
+            if (time >= 4 && time < 7f)
             {
-                sumar = false;
-                restar = true;
+                add = false;
+                substract = true;
             }
-            if (TransparenciaLogoEmpresa >= 0 && restar)
+            if (transparencyCompanyLogo >= 0 && substract)
             {
-                TransparenciaLogoEmpresa = TransparenciaLogoEmpresa - Time.deltaTime;
+                transparencyCompanyLogo = transparencyCompanyLogo - Time.deltaTime;
             }
-            if (tiempo >= 5.5f)
+            if (time >= 5.5f)
             {
-                Destroy(logoEmpresa);
+                Destroy(companyLogo);
                 if (menuAndroid)
                 {
                     SceneManager.LoadScene("MenuAndroid");
@@ -128,3 +130,4 @@ public class SplashScreenController : MonoBehaviour
         }*/
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

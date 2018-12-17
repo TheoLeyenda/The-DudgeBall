@@ -4,152 +4,152 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class Jugador : MonoBehaviour {
 
     // Use this for initialization
     [HideInInspector]
-    public bool enPausa;
-    public static Jugador instanciaJugador;
-    private int TOPE_MUNICION = 500;
-    public float vida;
-    public float maxVida;
-    public float blindaje;
+    public bool pause;
+    public static Jugador InstancePlayer;
+    private int TOP_AMMO = 500;
+    public float life;
+    public float maxLife;
+    public float armor;
     [HideInInspector]
-    public int tipoPelota;
-    private int puntos;
+    public int ballType;
+    private int score;
     [HideInInspector]
-    public bool contar;
-    public Enemigo corredor;
-    public Enemigo tirador;
-    public Enemigo tiradorEstatico;
+    public bool count;
+    public Enemigo runner;
+    public Enemigo shooter;
+    public Enemigo staticShooter;
     //public Enemigo Danio;
-    public Pinchos pinchos;
-    public bool jugadorWindows;
-    public bool jugadorAndroid;
+    public Pinchos skewers;
+    public bool playerWindows;
+    public bool playerAndroid;
     public Rigidbody rigJugador;
-    public int oportunidades;
+    public int opportunities;
     public Transform posRespawn;
 
     [HideInInspector]
-    public int cantAbatidos = 0;
+    public int countKilled = 0;
 
-    private float danioAdicionalPelotaComun;
-    private float danioAdicionalPelotaHielo;
-    private float danioAdicionalPelotaFuego;
-    private float danioAdicionalPelotaExplosiva;
-    private float danioAdicionalMiniPelota;
+    private float AdditionalDamageCommonBall;
+    private float AdditionalDamageIceBall;
+    private float AdditionalDamageFireBall;
+    private float AdditionalDamageExplociveBall;
+    private float AditionalDamageMiniBalls;
 
-    public Text textVida;
-    public Text textPuntos;
-    public Text textBlindaje;
-    public Text TextOportunidades;
+    public Text textLife;
+    public Text textScore;
+    public Text textArmor;
+    public Text TextOpportunities;
 
-    private int municionPelotaDeHielo = 0;
-    private int municionPelotaDeFuego = 0;
-    private int municionPelotaFragmentadora = 0;
-    private int municionPelotaDanzarina = 0;
-    private int municionPelotaExplosiva = 0;
+    private int AmmoIceBall = 0;
+    private int AmmoFireBall = 0;
+    private int AmmoFragmentBall = 0;
+    private int AmmoDanceBall = 0;
+    private int AmmoExplociveBall = 0;
 
-    public Text textMunicionPelotaDeHielo;
-    public Text textMunicionPelotaDeFuego;
-    public Text textMunicionPelotaFragmentadora;
-    public Text textMunicionPelotaDanzarina;
-    public Text textMunicionPelotaExplosiva;
+    public Text textAmmoIceBall;
+    public Text textAmmoFireBall;
+    public Text textAmmoFragmentBall;
+    public Text textAmmoDanceBall;
+    public Text textAmmoExplociveBall;
 
-    public GameObject blockHielo;
-    public GameObject blockFuego;
-    public GameObject blockDanzarina;
-    public GameObject blockFragmentadora;
-    public GameObject blockExplosiva;
+    public GameObject lockedIce;
+    public GameObject lockedFire;
+    public GameObject lockedDance;
+    public GameObject lockedFragment;
+    public GameObject lockedExplosive;
 
-    public GameObject desbloqueadoHielo;
-    public GameObject desbloqueadoFuego;
-    public GameObject desbloqueadoDanzarina;
-    public GameObject desbloqueadoFragmentadora;
-    public GameObject desbloqueadoExplosiva;
+    public GameObject unlockedIce;
+    public GameObject unlockedFire;
+    public GameObject unlockedDance;
+    public GameObject unlockedFragment;
+    public GameObject unlockedExplocive;
 
-    private bool powerUpAumentarVida;
-    public bool powerUpChalecoAntiGolpes;
-    private bool powerUpDobleDanio;
+    private bool powerUpAddLife;
+    public bool powerUpArmor;
+    private bool powerUpDobleDamage;
 
-    public GameObject logoBlindaje;
-    public GameObject logoDobleDanio;
+    public GameObject logoArmor;
+    public GameObject logoDobleDamage;
 
-    public bool EnTienda;
+    public bool inStore;
 
-    public GameObject logoInmulnerabilidad;
-    public GameObject logoDoblePuntaje;
+    public GameObject logoImulnerability;
+    public GameObject logoDoblePoints;
     public GameObject logoInstaKill;
     //private bool powerUpDoblePelota;
 
-    private bool Inmune;
-    private bool doblePuntuacion;
+    private bool Immune;
+    private bool DoblePoints;
     private bool InstaKill;
-    private bool activoInstaKill;
+    private bool activeInstaKill;
     //private float auxContInmune;
-    private float contInmune;
-    private float contDoblePuntuacion;
-    private float contInstaKill;
-    private float dileyActivacion;
+    private float countImmune;
+    private float countDoblePoints;
+    private float countInstaKill;
+    private float dileyActive;
     private void Awake()
     {
-        instanciaJugador = this;
+        InstancePlayer = this;
     }
-    public void AumentarVida()
+    public void AddedLife()
     {
-        powerUpAumentarVida = true;
+        powerUpAddLife = true;
     }
-    public void ChalecoAntiGolpes()
+    public void Armor()
     {
-        powerUpChalecoAntiGolpes = true;
-        if(logoBlindaje != null)
+        powerUpArmor = true;
+        if(logoArmor != null)
         {
-            logoBlindaje.SetActive(true);
+            logoArmor.SetActive(true);
         }
     }
-    public void DobleDanio()
+    public void DobleDamage()
     {
-        powerUpDobleDanio = true;
-        if(logoDobleDanio != null)
+        powerUpDobleDamage = true;
+        if(logoDobleDamage != null)
         {
-            logoDobleDanio.SetActive(true);
+            logoDobleDamage.SetActive(true);
         }
     }
-    public void RestarPuntos(int _puntos)
+    public void SubtractScore(int _score)
     {
-        puntos = puntos - _puntos;
+        score = score - _score;
     }
     void Start() {
         
-        EnTienda = false;
-        contInmune = 0;
-        danioAdicionalPelotaComun = 0;
-        danioAdicionalMiniPelota = 0;
-        danioAdicionalPelotaExplosiva = 0;
-        danioAdicionalPelotaFuego = 0;
-        danioAdicionalPelotaHielo = 0;
+        inStore = false;
+        countImmune = 0;
+        AdditionalDamageCommonBall = 0;
+        AditionalDamageMiniBalls = 0;
+        AdditionalDamageExplociveBall = 0;
+        AdditionalDamageFireBall = 0;
+        AdditionalDamageIceBall = 0;
         //blindaje = 0;
-        if (textBlindaje != null)
+        if (textArmor != null)
         {
-            textBlindaje.gameObject.SetActive(false);
+            textArmor.gameObject.SetActive(false);
         }
-        Inmune = false;
-        contar = true;
-        puntos = 0;
-        textVida.text = ""+((int)vida);
-        instanciaJugador = this;
-        tipoPelota = 1;
-        municionPelotaDeHielo = 0;
-        if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares() != null)
+        Immune = false;
+        count = true;
+        score = 0;
+        textLife.text = ""+((int)life);
+        InstancePlayer = this;
+        ballType = 1;
+        AmmoIceBall = 0;
+        if (DataStructure.GetEstructuraDatosAuxiliares() != null)
         {
-            if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().soloUnaVez)
+            if (DataStructure.GetEstructuraDatosAuxiliares().once)
             {
-                EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().soloUnaVez = false;
+                DataStructure.GetEstructuraDatosAuxiliares().once = false;
             }
             else
             {
-                EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetValoresDelJugador(Jugador.GetJugador());
+                DataStructure.GetEstructuraDatosAuxiliares().SetPlayerValues(Jugador.GetPlayer());
            }
         }
     }
@@ -157,12 +157,12 @@ public class Jugador : MonoBehaviour {
     // Update is called once per frame
     public void ControlCursor()
     {
-        if (EnTienda || jugadorAndroid || enPausa)
+        if (inStore || playerAndroid || pause)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-        if (!EnTienda && !jugadorAndroid && !enPausa)
+        if (!inStore && !playerAndroid && !pause)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -172,7 +172,7 @@ public class Jugador : MonoBehaviour {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-        if(jugadorAndroid && Input.GetKey(KeyCode.Mouse0))
+        if(playerAndroid && Input.GetKey(KeyCode.Mouse0))
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -186,112 +186,112 @@ public class Jugador : MonoBehaviour {
             //LeanRodrigez98
         }
         ControlCursor();
-        if(doblePuntuacion)
+        if(DoblePoints)
         {
-            logoDoblePuntaje.SetActive(true);
+            logoDoblePoints.SetActive(true);
         }
-        if(doblePuntuacion == false)
+        if(DoblePoints == false)
         {
-            logoDoblePuntaje.SetActive(false);
+            logoDoblePoints.SetActive(false);
         }
-        if (Inmune == true)
+        if (Immune == true)
         {
-            logoInmulnerabilidad.SetActive(true);
-            contInmune = contInmune - Time.deltaTime;
-            if(contInmune <= 0)
+            logoImulnerability.SetActive(true);
+            countImmune = countImmune - Time.deltaTime;
+            if(countImmune <= 0)
             {
-                Inmune = false;
+                Immune = false;
             }
         }
-        if(Inmune == false)
+        if(Immune == false)
         {
-            logoInmulnerabilidad.SetActive(false);
+            logoImulnerability.SetActive(false);
         }
         if(InstaKill == false)
         {
             logoInstaKill.SetActive(false);
         }
-        if(doblePuntuacion == true)
+        if(DoblePoints == true)
         {
-            contDoblePuntuacion = contDoblePuntuacion - Time.deltaTime;
-            if (contDoblePuntuacion <= 0)
+            countDoblePoints = countDoblePoints - Time.deltaTime;
+            if (countDoblePoints <= 0)
             {
-                doblePuntuacion = false;
+                DoblePoints = false;
             }
         }
         if(InstaKill == true)
         {
             logoInstaKill.SetActive(true);
-            contInstaKill = contInstaKill - Time.deltaTime;
-            if(contInstaKill <= 0)
+            countInstaKill = countInstaKill - Time.deltaTime;
+            if(countInstaKill <= 0)
             {
                 InstaKill = false;
             }
         }
-        if (municionPelotaDanzarina > 0)
+        if (AmmoDanceBall > 0)
         {
-            blockDanzarina.SetActive(false);
-            desbloqueadoDanzarina.SetActive(true);
+            lockedDance.SetActive(false);
+            unlockedDance.SetActive(true);
         }
-        if(municionPelotaDeFuego > 0)
+        if(AmmoFireBall > 0)
         {
-            blockFuego.SetActive(false);
-            desbloqueadoFuego.SetActive(true);
+            lockedFire.SetActive(false);
+            unlockedFire.SetActive(true);
         }
-        if(municionPelotaDeHielo > 0)
+        if(AmmoIceBall > 0)
         {
-            blockHielo.SetActive(false);
-            desbloqueadoHielo.SetActive(true);
+            lockedIce.SetActive(false);
+            unlockedIce.SetActive(true);
         }
-        if(municionPelotaExplosiva > 0)
+        if(AmmoExplociveBall > 0)
         {
-            blockExplosiva.SetActive(false);
-            desbloqueadoExplosiva.SetActive(true);
+            lockedExplosive.SetActive(false);
+            unlockedExplocive.SetActive(true);
         }
-        if(municionPelotaFragmentadora > 0)
+        if(AmmoFragmentBall > 0)
         {
-            blockFragmentadora.SetActive(false);
-            desbloqueadoFragmentadora.SetActive(true);
+            lockedFragment.SetActive(false);
+            unlockedFragment.SetActive(true);
         }
-        if(blindaje <= 0)
+        if(armor <= 0)
         {
-            blindaje = 0;
-            if(logoBlindaje != null)
+            armor = 0;
+            if(logoArmor != null)
             {
-                logoBlindaje.SetActive(false);
+                logoArmor.SetActive(false);
             }
         }
-        if(powerUpAumentarVida)
+        if(powerUpAddLife)
         {
-            vida = maxVida;
-            powerUpAumentarVida = false;
+            life = maxLife;
+            powerUpAddLife = false;
 
         }
-        if(powerUpChalecoAntiGolpes)
+        if(powerUpArmor)
         {
-            logoBlindaje.SetActive(true);
-            textBlindaje.gameObject.SetActive(true);
-            blindaje = 100;
-            powerUpChalecoAntiGolpes = false;
+            logoArmor.SetActive(true);
+            textArmor.gameObject.SetActive(true);
+            armor = 100;
+            powerUpArmor = false;
         }
-        if(powerUpDobleDanio)
+        if(powerUpDobleDamage)
         {
             //definido en enemigo
         }
-        textVida.text = "VIDA: " + (int)vida;
-        textPuntos.text = "PUNTOS: " + puntos;
-        if (oportunidades > -1 && TextOportunidades != null)
+        textLife.text = "VIDA: " + (int)life;
+        textScore.text = "PUNTOS: " + score;
+        if (opportunities > -1 && TextOpportunities != null)
         {
-            TextOportunidades.text = "OPORTUNIDADES: " + oportunidades;
+            TextOpportunities.text = "OPORTUNIDADES: " + opportunities;
         }
-        if(textBlindaje != null)
+        if(textArmor != null)
         {
-            textBlindaje.text = "BLINDAJE:" + (int)blindaje;
+            textArmor.text = "BLINDAJE:" + (int)armor;
         }
-        if (vida <= 0)
+        if (life <= 0)
         {
-            oportunidades = oportunidades - 1;
-            if (vida <= 0 && oportunidades < 0)
+            opportunities = opportunities - 1;
+            if (life <= 0 && opportunities < 0)
             {
                 SceneManager.LoadScene("GameOver");
                 gameObject.SetActive(false);
@@ -301,7 +301,7 @@ public class Jugador : MonoBehaviour {
                 if (posRespawn != null)
                 {
                     transform.position = posRespawn.position;
-                    vida = 100;
+                    life = 100;
                 }
                 else
                 {
@@ -310,25 +310,25 @@ public class Jugador : MonoBehaviour {
                 }
             }
         }
-        if (textMunicionPelotaDeHielo != null)
+        if (textAmmoIceBall != null)
         {
-            textMunicionPelotaDeHielo.text = municionPelotaDeHielo + "";
+            textAmmoIceBall.text = AmmoIceBall + "";
         }
-        if (textMunicionPelotaDeFuego != null)
+        if (textAmmoFireBall != null)
         {
-            textMunicionPelotaDeFuego.text = municionPelotaDeFuego + "";
+            textAmmoFireBall.text = AmmoFireBall + "";
         }
-        if (textMunicionPelotaFragmentadora != null)
+        if (textAmmoFragmentBall != null)
         {
-            textMunicionPelotaFragmentadora.text = municionPelotaFragmentadora + "";
+            textAmmoFragmentBall.text = AmmoFragmentBall + "";
         }
-        if (textMunicionPelotaDanzarina != null)
+        if (textAmmoDanceBall != null)
         {
-            textMunicionPelotaDanzarina.text = municionPelotaDanzarina + "";
+            textAmmoDanceBall.text = AmmoDanceBall + "";
         }
-        if (textMunicionPelotaExplosiva != null)
+        if (textAmmoExplociveBall != null)
         {
-            textMunicionPelotaExplosiva.text = municionPelotaExplosiva + "";
+            textAmmoExplociveBall.text = AmmoExplociveBall + "";
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -339,26 +339,26 @@ public class Jugador : MonoBehaviour {
         }
         if (other.tag == "PickUpChalecoAntiGolpes")
         {
-            powerUpChalecoAntiGolpes = true;
+            powerUpArmor = true;
             other.gameObject.SetActive(false);
         }
         if(other.tag == "RompeObjetos")
         {
             //SceneManager.LoadScene("GameOver");
-            blindaje = 0;
-            vida = 0; 
+            armor = 0;
+            life = 0; 
         }
         if(other.tag == "ZonaRespawn")
         {
-            if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares() != null)
+            if (DataStructure.GetEstructuraDatosAuxiliares() != null)
             {
                 
-                EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetDatosJugador(Jugador.GetJugador());
-                if (blindaje > 0)
+                DataStructure.GetEstructuraDatosAuxiliares().SetPlayerData(Jugador.GetPlayer());
+                if (armor > 0)
                 {
-                    EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().DatosJugador.blindaje = blindaje;
-                    logoBlindaje.SetActive(true);
-                    textBlindaje.gameObject.SetActive(true);
+                    DataStructure.GetEstructuraDatosAuxiliares().playerData.armor = armor;
+                    logoArmor.SetActive(true);
+                    textArmor.gameObject.SetActive(true);
                 }
             }
             posRespawn = other.gameObject.transform;
@@ -366,99 +366,99 @@ public class Jugador : MonoBehaviour {
         if(other.tag == "PoderInmune")
         {
             other.gameObject.SetActive(false);
-            Inmune = true;
-            contInmune = 15;
+            Immune = true;
+            countImmune = 15;
         }
         if(other.tag == "DoblePuntuacion")
         {
             other.gameObject.SetActive(false);
-            doblePuntuacion = true;
-            contDoblePuntuacion = 20;
+            DoblePoints = true;
+            countDoblePoints = 20;
 
         }
         if (other.tag == "InstaKill")
         {
             other.gameObject.SetActive(false);
             InstaKill = true;
-            activoInstaKill = true;
-            contInstaKill = 12;
+            activeInstaKill = true;
+            countInstaKill = 12;
         }
         if (other.tag == "PickUpHielo")
         {
-            municionPelotaDeHielo = municionPelotaDeHielo + 12;
-            contar = true;
-            if (blockHielo != null)
+            AmmoIceBall = AmmoIceBall + 12;
+            count = true;
+            if (lockedIce != null)
             {
-                blockHielo.SetActive(false);
+                lockedIce.SetActive(false);
             }
-            if (desbloqueadoHielo != null)
+            if (unlockedIce != null)
             {
-                desbloqueadoHielo.SetActive(true);
+                unlockedIce.SetActive(true);
             }
             other.gameObject.SetActive(false);
         }
         if (other.tag == "PickUpFuego")
         {
-            municionPelotaDeFuego = municionPelotaDeFuego + 12;
-            contar = true;
-            if (blockFuego != null)
+            AmmoFireBall = AmmoFireBall + 12;
+            count = true;
+            if (lockedFire != null)
             {
-                blockFuego.SetActive(false);
+                lockedFire.SetActive(false);
             }
-            if (desbloqueadoFuego != null)
+            if (unlockedFire != null)
             {
-                desbloqueadoFuego.SetActive(true);
+                unlockedFire.SetActive(true);
             }
             other.gameObject.SetActive(false);
         }
         if (other.tag == "PickUpDanzarina")
         {
-            municionPelotaDanzarina = municionPelotaDanzarina + 8;
-            contar = true;
-            if (blockDanzarina != null)
+            AmmoDanceBall = AmmoDanceBall + 8;
+            count = true;
+            if (lockedDance != null)
             {
-                blockDanzarina.SetActive(false);
+                lockedDance.SetActive(false);
             }
-            if (desbloqueadoDanzarina != null)
+            if (unlockedDance != null)
             {
-                desbloqueadoDanzarina.SetActive(true);
+                unlockedDance.SetActive(true);
             }
             other.gameObject.SetActive(false);
         }
         if (other.tag == "PickUpFragmentadora")
         {
-            municionPelotaFragmentadora = municionPelotaFragmentadora + 30;
-            contar = true;
-            if (blockFragmentadora != null)
+            AmmoFragmentBall = AmmoFragmentBall + 30;
+            count = true;
+            if (lockedFragment != null)
             {
-                blockFragmentadora.SetActive(false);
+                lockedFragment.SetActive(false);
             }
-            if (desbloqueadoFragmentadora != null)
+            if (unlockedFragment != null)
             {
-                desbloqueadoFragmentadora.SetActive(true);
+                unlockedFragment.SetActive(true);
             }
             other.gameObject.SetActive(false);
         }
         if (other.tag == "PickUpExplosivo")
         {
-            municionPelotaExplosiva = municionPelotaExplosiva + 10;
-            contar = true;
-            if (blockExplosiva != null)
+            AmmoExplociveBall = AmmoExplociveBall + 10;
+            count = true;
+            if (lockedExplosive != null)
             {
-                blockExplosiva.SetActive(false);
+                lockedExplosive.SetActive(false);
             }
-            if (desbloqueadoExplosiva != null)
+            if (unlockedExplocive != null)
             {
-                desbloqueadoExplosiva.SetActive(true);
+                unlockedExplocive.SetActive(true);
             }
             other.gameObject.SetActive(false);
         }
         if(other.tag == "PickUpVida")
         {
-            vida = vida + 100;
-            if(vida>maxVida)
+            life = life + 100;
+            if(life>maxLife)
             {
-                vida = maxVida;
+                life = maxLife;
             }
             other.gameObject.SetActive(false);
         }
@@ -466,22 +466,22 @@ public class Jugador : MonoBehaviour {
         
     }
     //COMENTARLO
-    public static Jugador GetJugador()
+    public static Jugador GetPlayer()
     {
-        return instanciaJugador;
+        return InstancePlayer;
     }
     private void OnCollisionEnter(Collision collision)
     {
         
         if (collision.gameObject.tag == "Roca")
         {
-            if (blindaje > 0)
+            if (armor > 0)
             {
-                blindaje = 0;
+                armor = 0;
             }
             else
             {
-                vida = 0;
+                life = 0;
             }
         }
         
@@ -490,17 +490,17 @@ public class Jugador : MonoBehaviour {
     private void OnCollisionStay(Collision collision)
     {
         
-        if (!Inmune)
+        if (!Immune)
         {
             if (collision.gameObject.tag == "Corredor")
             {
-                if (blindaje > 0)
+                if (armor > 0)
                 {
-                    blindaje = blindaje - 1;
+                    armor = armor - 1;
                 }
                 else
                 {
-                    vida = vida - 1;
+                    life = life - 1;
                 }
             }
         }
@@ -513,281 +513,274 @@ public class Jugador : MonoBehaviour {
         {
             other.gameObject.SetActive(false);
         }
-        if (!Inmune)
+        if (!Immune)
         {
             if (other.tag == "Pinchos")
             {
-                if (blindaje > 0)
+                if (armor > 0)
                 {
-                    blindaje = blindaje - pinchos.danio;
+                    armor = armor - skewers.damage;
                 }
                 else
                 {
-                    vida = vida - pinchos.danio;
+                    life = life - skewers.damage;
                 }
             }
             if (other.gameObject.tag == "Corredor")
             {
-                if (blindaje > 0)
+                if (armor > 0)
                 {
-                    blindaje = blindaje - 1;
+                    armor = armor - 1;
                 }
                 else
                 {
-                    vida = vida - 1;
+                    life = life - 1;
                 }
             }
         }
     }
-    public void SumarMunicionPelotaFuego(int municion)
+    public void AddAmmoFireBall(int ammo)
     {
-        if (municionPelotaDeFuego <= TOPE_MUNICION)
+        if (AmmoFireBall <= TOP_AMMO)
         {
-            municionPelotaDeFuego = municionPelotaDeFuego + municion;
+            AmmoFireBall = AmmoFireBall + ammo;
         }
     }
-    public void SumarMunicionPelotaHielo(int municion)
+    public void AddAmmoIceBall(int ammo)
     {
-        if (municionPelotaDeHielo <= TOPE_MUNICION)
+        if (AmmoIceBall <= TOP_AMMO)
         {
-            municionPelotaDeHielo = municionPelotaDeHielo + municion;
+            AmmoIceBall = AmmoIceBall + ammo;
         }
     }
-    public void SumarMunicionPelotaFragmentadora(int municion)
+    public void AddAmmoFragmentBall(int ammo)
     {
-        if (municionPelotaFragmentadora <= TOPE_MUNICION)
+        if (AmmoFragmentBall <= TOP_AMMO)
         {
-            municionPelotaFragmentadora = municionPelotaFragmentadora + municion;
+            AmmoFragmentBall = AmmoFragmentBall + ammo;
         }
     }
-    public void SumarMunicionPelotaDanzarina(int municion)
+    public void AddAmmoDanceBall(int ammo)
     {
-        if (municionPelotaDanzarina <= TOPE_MUNICION)
+        if (AmmoDanceBall <= TOP_AMMO)
         {
-            municionPelotaDanzarina = municionPelotaDanzarina + municion;
+            AmmoDanceBall = AmmoDanceBall + ammo;
         }
     }
-    public void SumarMunicionPelotaExplosiva(int municion)
+    public void AddAmmoExplocive(int ammo)
     {
-        if (municionPelotaExplosiva <= TOPE_MUNICION)
+        if (AmmoExplociveBall <= TOP_AMMO)
         {
-            municionPelotaExplosiva = municionPelotaExplosiva + municion;
+            AmmoExplociveBall = AmmoExplociveBall + ammo;
         }
     }
-    public int GetTOPEMUNICION()
+    public int GetTOPAMMO()
     {
-        return TOPE_MUNICION;
+        return TOP_AMMO;
     }
-    public int GetMunicionPelotaFuego()
+    public int GetAmmoFireBall()
     {
-        return municionPelotaDeFuego;
+        return AmmoFireBall;
     }
-    public int GetMunicionPelotaHielo()
+    public int GetAmmoIceBall()
     {
-        return municionPelotaDeHielo;
+        return AmmoIceBall;
     }
-    public int GetMunicionPelotaFragmentadora()
+    public int GetAmmoFragmentBall()
     {
-        return municionPelotaFragmentadora;
+        return AmmoFragmentBall;
     }
-    public int GetMunicionPelotaDanzarina()
+    public int GetAmmoDanceBall()
     {
-        return municionPelotaDanzarina;
+        return AmmoDanceBall;
     }
-    public int GetMunicionPelotaExplosiva()
+    public int GetAmmoExplociveBall()
     {
-        return municionPelotaExplosiva;
+        return AmmoExplociveBall;
     }
-    public void RestarMunicionFuego()
+    public void SubstractAmmoFireBall()
     {
-        municionPelotaDeFuego = municionPelotaDeFuego - 1;
+        AmmoFireBall = AmmoFireBall - 1;
     }
-    public void RestarMunicionDanzarina()
+    public void SubstractAmmoDanceBall()
     {
-        municionPelotaDanzarina = municionPelotaDanzarina - 1;
+        AmmoDanceBall = AmmoDanceBall - 1;
     }
-    public void RestarMunicionHielo()
+    public void SubstractAmmoIceBall()
     {
-        municionPelotaDeHielo = municionPelotaDeHielo - 1;
+        AmmoIceBall = AmmoIceBall - 1;
     }
-    public void SetTOPEMUNICION(int topeMunicion)
+    public void SetTOPAMMO(int topAmmo)
     {
-        TOPE_MUNICION = topeMunicion;
+        TOP_AMMO = topAmmo;
     }
-    public void SetMunicionPelotaDeHielo(int municion)
+    public void SetAmmoIceBall(int ammo)
     {
-        municionPelotaDeHielo = municion;
+        AmmoIceBall = ammo;
     }
-    public void SetMunicionPelotaDeFuego(int municion)
+    public void SetAmmoFireBall(int ammo)
     {
-        municionPelotaDeFuego = municion;
+        AmmoFireBall = ammo;
     }
-    public void SetMunicionDanzarina(int municion)
+    public void SetAmmoDanceBall(int ammo)
     {
-        municionPelotaDanzarina = municion;
+        AmmoDanceBall = ammo;
     }
-    public void SetMunicionFragmentadora(int municion)
+    public void SetAmmoExplociveBall(int ammo)
     {
-        municionPelotaExplosiva = municion;
+        AmmoExplociveBall = ammo;
     }
-    public void SetChalecoAntiGolpes(bool _chalecoAntiGolpes)
+    public void SetPowerUpArmor(bool _powerUpArmor)
     {
-        powerUpChalecoAntiGolpes = _chalecoAntiGolpes;
+        powerUpArmor = _powerUpArmor;
     }
-    public void SetDobleDanio(bool _dobleDanio)
+    public void SetPowerUpDobleDamage(bool _dobleDamage)
     {
-        powerUpDobleDanio = _dobleDanio;
+        powerUpDobleDamage = _dobleDamage;
     }
-    public void SetInmune(bool _inmune)
+    public void SetImmune(bool _immune)
     {
-        Inmune = _inmune;
+        Immune = _immune;
     }
-    public void SetDoblePuntuacion(bool _doblePuntuacion)
+    public void SetDoblePoints(bool _doblepoints)
     {
-        doblePuntuacion = _doblePuntuacion;
+        DoblePoints = _doblepoints;
     }
     public void SetInstaKill(bool _instaKill)
     {
         InstaKill = _instaKill;
     }
-    public void SetCountInmune(float _contInmune)
+    public void SetCountImmune(float _contImmune)
     {
-        contInmune = _contInmune;
+        countImmune = _contImmune;
     }
-    public void SetCountDoblePuntiacion(float _countDoblePuntuacion)
+    public void SetCountDoblePoints(float _countDoblePoints)
     {
-        contDoblePuntuacion = _countDoblePuntuacion;
+        countDoblePoints = _countDoblePoints;
     }
-    public void SetMunicionExplociva(int municion)
+    public void SetDileyActive(float diley)
     {
-        municionPelotaExplosiva = municion;
+        dileyActive = diley;
     }
-    public void SetDileyActivacion(float diley)
+    public void SetCountInstaKill(float _countInstaKill)
     {
-        dileyActivacion = diley;
+        countInstaKill = _countInstaKill;
     }
-    public void SetCountInstaKill(float _contInstaKill)
+    public void SetScore(int _score)
     {
-        contInstaKill = _contInstaKill;
+        score = _score;
     }
-    public void SetPuntos(int _puntos)
+    public void SubstractAmmoFragmentBall()
     {
-        puntos = _puntos;
+        AmmoFragmentBall = AmmoFragmentBall - 1;
     }
-    public void RestarMunicionFragmentadora()
+    public void SubstractAmmoExplociveBall()
     {
-        municionPelotaFragmentadora = municionPelotaFragmentadora - 1;
+        AmmoExplociveBall = AmmoExplociveBall - 1;
     }
-    public void RestarMunicionExplosiva()
+    public int GetScore()
     {
-        municionPelotaExplosiva = municionPelotaExplosiva - 1;
+        return score;
     }
-    public int GetPuntos()
+    public void AddScore(int _score)
     {
-        return puntos;
+        score = score + _score;
     }
-    public void SumarPuntos(int sumaPuntos)
+    public void SetAdditionalDamageCommonBall(float _additionalDamageCommonBall)
     {
-        puntos = puntos + sumaPuntos;
+        AdditionalDamageCommonBall = _additionalDamageCommonBall;
     }
-    public void SetDanioAdicionalPelotaComun(float _adicionalPelotaComun)
+    public void SetAditionalDamageMiniBalls(float _aditionalDamageMiniBalls)
     {
-        danioAdicionalPelotaComun = _adicionalPelotaComun;
+        AditionalDamageMiniBalls = _aditionalDamageMiniBalls;
     }
-    public void SetDanioAdicionalMiniPelota(float _adicionalMiniPelota)
+    public void SetAdditionalDamageExplociveBall(float _aditionalDamageExplociveBall)
     {
-        danioAdicionalMiniPelota = _adicionalMiniPelota;
+        AdditionalDamageExplociveBall = _aditionalDamageExplociveBall;
     }
-    public void SetDanioAdicionalPelotaExplosiva(float _adicionalPelotaExplociva)
+    public void SetAdditionalDamageFireBall(float _additionalDamageFireBall)
     {
-        danioAdicionalPelotaExplosiva = _adicionalPelotaExplociva;
+        AdditionalDamageFireBall = _additionalDamageFireBall;
     }
-    public void SetDanioAdicionalPelotaFuego(float _adicionalPelotaFuego)
+    public void SetAdditionalDamageIceBall(float _additionalDamageIceBall)
     {
-        danioAdicionalPelotaFuego = _adicionalPelotaFuego;
+        AdditionalDamageIceBall = _additionalDamageIceBall;
     }
-    public void SetDanioAdicionalPelotaHielo(float _adicionalPelotaHielo)
+    public float GetAdditionalDamageCommonBall()
     {
-        danioAdicionalPelotaHielo = _adicionalPelotaHielo;
+        return AdditionalDamageCommonBall;
     }
-    public float GetDanioAdicionalPelotaComun()
+    public float GetAditionalDamageMiniBalls()
     {
-        return danioAdicionalPelotaComun;
+        return AditionalDamageMiniBalls;
     }
-    public float GetDanioAdicionalMiniPelota()
+    public float GetAdditionalDamageExplociveBall()
     {
-        return danioAdicionalMiniPelota;
+        return AdditionalDamageExplociveBall;
     }
-    public float GetDanioAdicionalPelotaExplociva()
+    public float GetAdditionalDamageFireBall()
     {
-        return danioAdicionalPelotaExplosiva;
+        return AdditionalDamageFireBall;
     }
-    public float GetDanioAdicionalPelotaFuego()
+    public float GetAdditionalDamageIceBall()
     {
-        return danioAdicionalPelotaFuego;
+        return AdditionalDamageIceBall;
     }
-    public float GetDanioAdicionalPelotaHielo()
+    public bool GetpowerUpDobleDamage()
     {
-        return danioAdicionalPelotaHielo;
+        return powerUpDobleDamage;
     }
-    public bool GetPowerUpDobleDanio()
+    public void SetPowerUpAddLife(bool _life)
     {
-        return powerUpDobleDanio;
+        powerUpAddLife = _life;
     }
-    public void SetPowerUpDobleDanio(bool _powerUpDobleDanio)
+    public void SetpowerUpArmor(bool _armor)
     {
-        powerUpDobleDanio = _powerUpDobleDanio;
+        powerUpArmor = _armor;
     }
-    public void SetPowerUpMasVida(bool _vida)
+    public bool GetDoblePoints()
     {
-        powerUpAumentarVida = _vida;
-    }
-    public void SetPowerUpBlindaje(bool _blindaje)
-    {
-        powerUpChalecoAntiGolpes = _blindaje;
-    }
-    public bool GetDoblePuntuacion()
-    {
-        return doblePuntuacion;
+        return DoblePoints;
     }
     public bool GetInstaKill()
     {
         return InstaKill;
     }
-    public bool GetActivarInstaKill()
+    public bool GetActiveInstaKill()
     {
-        return activoInstaKill;
+        return activeInstaKill;
     }
-    public void SetActivarInstaKill(bool _InstaKill)
+    public void SetActiveInstaKill(bool _InstaKill)
     {
-        activoInstaKill = _InstaKill;
+        activeInstaKill = _InstaKill;
     }
-    public bool GetPowerUpAumentarVida()
+    public bool GetPowerUpAddLife()
     {
-        return powerUpAumentarVida;
+        return powerUpAddLife;
     }
-    public bool GetPowerUpChalecoAntiGolpes()
+    public bool GetPowerUpArmor()
     {
-        return powerUpChalecoAntiGolpes;
+        return powerUpArmor;
     }
-    public float GetContInmune()
+    public float GetCountImmune()
     {
-        return contInmune;
+        return countImmune;
     }
-    public bool GetInmune()
+    public bool GetImmune()
     {
-        return Inmune;
+        return Immune;
     }
-    public float GetContDoblePuntuacion()
+    public float GetCountDoblePoints()
     {
-        return contDoblePuntuacion;
+        return countDoblePoints;
     }
-    public float GetContInstaKill()
+    public float GetCountInstaKill()
     {
-        return contInstaKill;
+        return countInstaKill;
     }
-    public float GetDileyActivacion()
+    public float GetDileyActive()
     {
-        return dileyActivacion;
+        return dileyActive;
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

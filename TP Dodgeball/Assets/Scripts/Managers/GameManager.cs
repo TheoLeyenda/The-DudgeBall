@@ -3,84 +3,87 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class GameManager : MonoBehaviour {
 
     // Use this for initialization
-    public Text TextRonda;
-    public Text TextRondaAndroid;
+    public Text TextRoundWindows;
+    public Text TextRoundAndroid;
     [HideInInspector]
-    public int cantEnemigosEnPantalla;
-    public CambiarMaterialPuertas cambiarMaterial;
-    public SpawnerEnemigos[] spawnersEnemigos;
-    public TiradorEstatico[] torretas;
-    public SpawnerTrampa[] trampas;
-    private bool Empiezo;
-    private static GameManager instanciaGameManager;
-    private int Ronda;
-    public bool supervivencia;
-    public bool historia;
-    public bool verificarRonda;
-    public bool verificarVictoria;
-    public int RondaVictoria;
-    private int muertes;
-    public int limiteMuertes;
-    public string mapaActual;
-    public string mapaSiguiente;
-    private bool entrarRonda;
-    private bool victoria;
-    private int cantTorretasEnPantalla;
-    private bool unaVezPorRonda;
+    public int enemyAmountOnScreen;
+    public CambiarMaterialPuertas changeMaterial;
+    public SpawnerEnemigos[] spawnersEnemy;
+    public TiradorEstatico[] turrets;
+    public SpawnerTrampa[] traps;
+    private bool start;
+    private static GameManager instanceGameManager;
+    private int Round;
+    public bool survival;
+    public bool history;
+    public bool checkRound;
+    public bool checkVictory;
+    public int RoundVictory;
+    private int deaths;
+    public int deathLimit;
+    public string currentMap;
+    public string nextMap;
+    private bool enterRound;
+    private bool victory;
+    private int turretsAmountOnScreen;
+    private bool oncePerRound;
     [HideInInspector]
-    public bool pasarNivel = false;
+    public bool nextLevel = false;
     [HideInInspector]
-    public bool pausa;
-    public GameObject puerta;
-    public GameObject corazon;
-    public GameObject blindaje;
+    public bool pause;
+    public GameObject door;
+    public GameObject heart;
+    public GameObject armor;
     public GameObject checkPoint;
 
     public static GameManager GetGameManager()
     {
-        return instanciaGameManager;
+        return instanceGameManager;
     }
     private void Awake()
     {
         //entrarRonda = true;
-        Ronda = 1;
-        muertes = 0;
-        unaVezPorRonda = false;
-        if (instanciaGameManager == null)
+        Round = 1;
+        deaths = 0;
+        oncePerRound = false;
+        if (instanceGameManager == null)
         {
-            instanciaGameManager = this;
+            instanceGameManager = this;
         }
-        else if (instanciaGameManager != null)
+        else if (instanceGameManager != null)
         {
             this.gameObject.SetActive(false);            
         }
     }
     private void Start()
     {
-        cantEnemigosEnPantalla = 0;
-        if (!historia && supervivencia)
+        enemyAmountOnScreen = 0;
+        if (!history && survival)
         {
-            if (mapaActual == "Arena(Supervivencia)")
+            if (currentMap == "Arena(Supervivencia)")
             {
-                if (spawnersEnemigos[4] != null && spawnersEnemigos[5] != null && spawnersEnemigos[6] != null && spawnersEnemigos[7] != null)
+                if (spawnersEnemy[4] != null && spawnersEnemy[5] != null && spawnersEnemy[6] != null && spawnersEnemy[7] != null)
                 {
-                    spawnersEnemigos[4].gameObject.SetActive(false);
-                    spawnersEnemigos[5].gameObject.SetActive(false);
-                    spawnersEnemigos[6].gameObject.SetActive(false);
-                    spawnersEnemigos[7].gameObject.SetActive(false);
+                    spawnersEnemy[4].gameObject.SetActive(false);
+                    spawnersEnemy[5].gameObject.SetActive(false);
+                    spawnersEnemy[6].gameObject.SetActive(false);
+                    spawnersEnemy[7].gameObject.SetActive(false);
                 }
             }
         }
-        if (torretas != null)
+        if (turrets != null)
         {
-            for(int i = 0; i<torretas.Length; i++)
+            for(int i = 0; i<turrets.Length; i++)
             {
-                if(torretas[i] != null)
+                if(turrets[i] != null)
                 {
-                    torretas[i].gameObject.SetActive(false);
+                    turrets[i].gameObject.SetActive(false);
                 }
             }
         }
@@ -89,250 +92,252 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        CheckTorreta();
+        CheckTurrets();
         //VerificarVictoria();
-        if (pausa)
+        if (pause)
         {
             Time.timeScale = 0;
         }
-        if(!pausa)
+        if(!pause)
         {
             Time.timeScale = 1;
         }
-        if (supervivencia)
+        if (survival)
         {
 
-            for (int i = 0; i < spawnersEnemigos.Length; i++)
+            for (int i = 0; i < spawnersEnemy.Length; i++)
             {
                 
-                if (cantEnemigosEnPantalla <= 0 && cantTorretasEnPantalla <= 0)
+                if (enemyAmountOnScreen <= 0 && turretsAmountOnScreen <= 0)
                 {
                     
-                    spawnersEnemigos[i].SetEnFuncionamiento(true);
-                    if (entrarRonda)
+                    spawnersEnemy[i].SetInWorking(true);
+                    if (enterRound)
                     {
-                        unaVezPorRonda = true;
-                        SumarRonda();
-                        entrarRonda = false;
+                        oncePerRound = true;
+                        AddRound();
+                        enterRound = false;
                     }
                 }
-                if (mapaActual == "Arena(Historia)" && unaVezPorRonda)
+                if (currentMap == "Arena(Historia)" && oncePerRound)
                 {
-                    if (corazon != null && blindaje != null)
+                    if (heart != null && armor != null)
                     {
-                        corazon.SetActive(false);
-                        blindaje.SetActive(false);
+                        heart.SetActive(false);
+                        armor.SetActive(false);
                     }
-                    VerificarVictoria();
-                    if (!victoria)
+                    CheckVictory();
+                    if (!victory)
                     {
-                        ActivacionTorretas();
+                        ActiveTurrets();
                     }
-                    unaVezPorRonda = false;
-                    if(Ronda == 2)
+                    oncePerRound = false;
+                    if(Round == 2)
                     {
-                        for (int j = 0; j < trampas.Length; j++)
+                        for (int j = 0; j < traps.Length; j++)
                         {
-                            if (trampas[j] != null)
+                            if (traps[j] != null)
                             {
-                                trampas[j].gameObject.SetActive(true);
+                                traps[j].gameObject.SetActive(true);
                             }
                         }
                     }
-                    if(Ronda == 4)
+                    if(Round == 4)
                     {
-                        spawnersEnemigos[4].gameObject.SetActive(true);
-                        spawnersEnemigos[5].gameObject.SetActive(true);
-                        spawnersEnemigos[6].gameObject.SetActive(false);
-                        spawnersEnemigos[7].gameObject.SetActive(false);
+                        spawnersEnemy[4].gameObject.SetActive(true);
+                        spawnersEnemy[5].gameObject.SetActive(true);
+                        spawnersEnemy[6].gameObject.SetActive(false);
+                        spawnersEnemy[7].gameObject.SetActive(false);
                     }
-                    if(Ronda == 5)
+                    if(Round == 5)
                     {
-                        spawnersEnemigos[4].gameObject.SetActive(false);
-                        spawnersEnemigos[5].gameObject.SetActive(false);
-                        spawnersEnemigos[6].gameObject.SetActive(true);
-                        spawnersEnemigos[7].gameObject.SetActive(true);
+                        spawnersEnemy[4].gameObject.SetActive(false);
+                        spawnersEnemy[5].gameObject.SetActive(false);
+                        spawnersEnemy[6].gameObject.SetActive(true);
+                        spawnersEnemy[7].gameObject.SetActive(true);
                     }
-                    if(Ronda == 6)
+                    if(Round == 6)
                     {
-                        spawnersEnemigos[4].gameObject.SetActive(true);
-                        spawnersEnemigos[5].gameObject.SetActive(true);
-                        spawnersEnemigos[6].gameObject.SetActive(true);
-                        spawnersEnemigos[7].gameObject.SetActive(true);
+                        spawnersEnemy[4].gameObject.SetActive(true);
+                        spawnersEnemy[5].gameObject.SetActive(true);
+                        spawnersEnemy[6].gameObject.SetActive(true);
+                        spawnersEnemy[7].gameObject.SetActive(true);
                     }
                 }
             }
         }
 
-        if(mapaActual == "Laberinto")
+        if(currentMap == "Laberinto")
         {
-            if (TextRonda != null)
+            if (TextRoundWindows != null)
             {
-                TextRonda.text = "";
+                TextRoundWindows.text = "";
             }
 
         }
         
-        if(historia && !supervivencia && pasarNivel == true)
+        if(history && !survival && nextLevel == true)
         {
-            MostrarRonda();
+            ShowRound();
             /*if(muertes >= limiteMuertes)
             {
                 SceneManager.LoadScene(mapaSiguiente);
             }*/
         }
-        if(!historia && supervivencia)
+        if(!history && survival)
         {
-            MostrarRonda();
-            if (mapaActual == "Arena(Supervivencia)")
+            ShowRound();
+            if (currentMap == "Arena(Supervivencia)")
             {
-                if (spawnersEnemigos[4] != null && spawnersEnemigos[5] != null && spawnersEnemigos[6] != null && spawnersEnemigos[7] != null)
+                if (spawnersEnemy[4] != null && spawnersEnemy[5] != null && spawnersEnemy[6] != null && spawnersEnemy[7] != null)
                 {
-                    if (Ronda % 5 == 0)
+                    if (Round % 5 == 0)
                     {
-                        spawnersEnemigos[4].gameObject.SetActive(true);
-                        spawnersEnemigos[5].gameObject.SetActive(true);
-                        spawnersEnemigos[6].gameObject.SetActive(true);
-                        spawnersEnemigos[7].gameObject.SetActive(true);
+                        spawnersEnemy[4].gameObject.SetActive(true);
+                        spawnersEnemy[5].gameObject.SetActive(true);
+                        spawnersEnemy[6].gameObject.SetActive(true);
+                        spawnersEnemy[7].gameObject.SetActive(true);
                     }
-                    if(Ronda % 5 != 0)
+                    if(Round % 5 != 0)
                     {
-                        spawnersEnemigos[4].gameObject.SetActive(false);
-                        spawnersEnemigos[5].gameObject.SetActive(false);
-                        spawnersEnemigos[6].gameObject.SetActive(false);
-                        spawnersEnemigos[7].gameObject.SetActive(false);
+                        spawnersEnemy[4].gameObject.SetActive(false);
+                        spawnersEnemy[5].gameObject.SetActive(false);
+                        spawnersEnemy[6].gameObject.SetActive(false);
+                        spawnersEnemy[7].gameObject.SetActive(false);
                     }
                 }
             }
         }
 	}
-    public void ActivacionTorretas()
+    public void ActiveTurrets()
     {
-        if (Ronda == 3)
+        if (Round == 3)
         {
-            torretas[0].gameObject.SetActive(true);
-            torretas[1].gameObject.SetActive(true);
+            turrets[0].gameObject.SetActive(true);
+            turrets[1].gameObject.SetActive(true);
         }
-        if (Ronda == 4)
+        if (Round == 4)
         {
-            torretas[0].gameObject.SetActive(true);
-            torretas[1].gameObject.SetActive(true);
-            torretas[2].gameObject.SetActive(true);
-            torretas[3].gameObject.SetActive(true);
+            turrets[0].gameObject.SetActive(true);
+            turrets[1].gameObject.SetActive(true);
+            turrets[2].gameObject.SetActive(true);
+            turrets[3].gameObject.SetActive(true);
         }
-        if (Ronda == 5)
+        if (Round == 5)
         {
-            torretas[4].gameObject.SetActive(true);
-            torretas[5].gameObject.SetActive(true);
-            torretas[6].gameObject.SetActive(true);
-            torretas[7].gameObject.SetActive(true);
-            torretas[8].gameObject.SetActive(true);
-            torretas[9].gameObject.SetActive(true);
-            torretas[10].gameObject.SetActive(true);
-            torretas[11].gameObject.SetActive(true);
+            turrets[4].gameObject.SetActive(true);
+            turrets[5].gameObject.SetActive(true);
+            turrets[6].gameObject.SetActive(true);
+            turrets[7].gameObject.SetActive(true);
+            turrets[8].gameObject.SetActive(true);
+            turrets[9].gameObject.SetActive(true);
+            turrets[10].gameObject.SetActive(true);
+            turrets[11].gameObject.SetActive(true);
         }
-        if (Ronda >= 6)
+        if (Round >= 6)
         {
-            torretas[0].gameObject.SetActive(true);
-            torretas[1].gameObject.SetActive(true);
-            torretas[2].gameObject.SetActive(true);
-            torretas[3].gameObject.SetActive(true);
-            torretas[4].gameObject.SetActive(true);
-            torretas[5].gameObject.SetActive(true);
-            torretas[6].gameObject.SetActive(true);
-            torretas[7].gameObject.SetActive(true);
-            torretas[8].gameObject.SetActive(true);
-            torretas[9].gameObject.SetActive(true);
-            torretas[10].gameObject.SetActive(true);
-            torretas[11].gameObject.SetActive(true);
+            turrets[0].gameObject.SetActive(true);
+            turrets[1].gameObject.SetActive(true);
+            turrets[2].gameObject.SetActive(true);
+            turrets[3].gameObject.SetActive(true);
+            turrets[4].gameObject.SetActive(true);
+            turrets[5].gameObject.SetActive(true);
+            turrets[6].gameObject.SetActive(true);
+            turrets[7].gameObject.SetActive(true);
+            turrets[8].gameObject.SetActive(true);
+            turrets[9].gameObject.SetActive(true);
+            turrets[10].gameObject.SetActive(true);
+            turrets[11].gameObject.SetActive(true);
         }
     }
-    public bool GetVictoria()
+    public bool GetVictory()
     {
-        return victoria;
+        return victory;
     }
-    public void VerificarVictoria()
+    public void CheckVictory()
     {
-        if(Ronda >= RondaVictoria)
+        if(Round >= RoundVictory)
         {
-            victoria = true;
-            corazon.SetActive(true);
-            blindaje.SetActive(true);
-            for (int i = 0; i < spawnersEnemigos.Length; i++)
+            victory = true;
+            heart.SetActive(true);
+            armor.SetActive(true);
+            for (int i = 0; i < spawnersEnemy.Length; i++)
             {
-                if(spawnersEnemigos[i] != null)
+                if(spawnersEnemy[i] != null)
                 {
-                    spawnersEnemigos[i].SetEnFuncionamiento(false);
-                    spawnersEnemigos[i].gameObject.SetActive(false);
+                    spawnersEnemy[i].SetInWorking(false);
+                    spawnersEnemy[i].gameObject.SetActive(false);
                 }
             }
-            cambiarMaterial.CambiarMaterial();
-            puerta.GetComponent<BoxCollider>().enabled = true;
+            changeMaterial.SwitchMaterial();
+            door.GetComponent<BoxCollider>().enabled = true;
             checkPoint.SetActive(true);
         }
     }
-    public void CheckTorreta()
+    public void CheckTurrets()
     {
-        if (torretas != null)
+        if (turrets != null)
         {
-            cantTorretasEnPantalla = torretas.Length;
-            for (int i = 0; i < torretas.Length; i++)
+            turretsAmountOnScreen = turrets.Length;
+            for (int i = 0; i < turrets.Length; i++)
             {
-                if (torretas[i] != null)
+                if (turrets[i] != null)
                 {
-                    if (torretas[i].gameObject.activeSelf == false && cantTorretasEnPantalla > 0)
+                    if (turrets[i].gameObject.activeSelf == false && turretsAmountOnScreen > 0)
                     {
-                        cantTorretasEnPantalla--;
+                        turretsAmountOnScreen--;
                     }
                 }
             }
         }
     }
-    public void MostrarRonda()
+    public void ShowRound()
     {
-        if (TextRonda != null)
+        if (TextRoundWindows != null)
         {
-            TextRonda.text = "RONDA: " + Ronda;
+            TextRoundWindows.text = "RONDA: " + Round;
         }
-        if (TextRondaAndroid != null)
+        if (TextRoundAndroid != null)
         {
-            TextRondaAndroid.text = "RONDA: " + Ronda;
+            TextRoundAndroid.text = "RONDA: " + Round;
         }
     }
-    public void SetEnemigosEnPantalla(int enemigosEnPantalla)
+    public void SetEnemyAmoutOnScreen(int _enemyAmountOnScreen)
     {
-        cantEnemigosEnPantalla = enemigosEnPantalla;
+        enemyAmountOnScreen = _enemyAmountOnScreen;
     }
-    public void SumarEnemigoEnPantalla()
+    public void AddEnemyAmoutOnScreen()
     {
-        cantEnemigosEnPantalla++;
+        enemyAmountOnScreen++;
     }
-    public void RestarEnemigoEnPantalla()
+    public void SubstractEnemyAmountOnScreen()
     {
-        cantEnemigosEnPantalla--;
+        enemyAmountOnScreen--;
     }
-    public int GetEnemigosEnPantalla()
+    public int GetEnemyAmountOnScreen()
     {
-        return cantEnemigosEnPantalla;
+        return enemyAmountOnScreen;
     }
-    public void SumarRonda()
+    public void AddRound()
     {
-        Ronda = Ronda + 1;
+        Round = Round + 1;
     }
-    public int GetRonda()
+    public int GetRound()
     {
-        return Ronda;
+        return Round;
     }
-    public void SetRonda(int _Ronda)
+    public void SetRound(int _Round)
     {
-        Ronda = _Ronda;
+        Round = _Round;
     }
-    public void SumarMuertes()
+    public void AddDeath()
     {
-        muertes = muertes + 1;
+        deaths = deaths + 1;
     }
-    public void SetEntrarRonda(bool _entrarRonda)
+    public void SetEntrarRonda(bool _enterRound)
     {
-        entrarRonda = _entrarRonda;
+        enterRound = _enterRound;
     }
 }
+
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

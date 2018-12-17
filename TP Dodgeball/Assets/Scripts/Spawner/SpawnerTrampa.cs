@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class SpawnerTrampa : MonoBehaviour {
 
     // Use this for initialization
-    public PoolPelota poolEnemigo;
+    public PoolPelota poolEnemy;
     private PoolObject poolObject;
-    public float RangoX;
-    public float RangoZ;
-    public int cantidad;
-    public bool generarAlEmpezar;
+    public float RangeX;
+    public float RangeZ;
+    public int count;
+    public bool generateOnStart;
     void Start () {
         
-        if (generarAlEmpezar)
+        if (generateOnStart)
         {
-            for (int i = 0; i < cantidad; i++)
+            for (int i = 0; i < count; i++)
             {
-                Generar();
+                Generate();
             }
         }
 	}
@@ -26,11 +28,12 @@ public class SpawnerTrampa : MonoBehaviour {
     void Update () {
 		
 	}
-    public void Generar()
+    public void Generate()
     {
-        GameObject go = poolEnemigo.GetObject();
-        float x = Random.Range(-RangoX, RangoX);
-        float z = Random.Range(-RangoZ, RangoZ);
+        GameObject go = poolEnemy.GetObject();
+        float x = Random.Range(-RangeX, RangeX);
+        float z = Random.Range(-RangeZ, RangeZ);
         go.transform.position = new Vector3(transform.position.x+x, transform.position.y, transform.position.z+z);
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

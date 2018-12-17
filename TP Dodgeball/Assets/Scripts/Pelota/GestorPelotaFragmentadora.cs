@@ -2,65 +2,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class GestorPelotaFragmentadora : MonoBehaviour {
 
     // Use this for initialization
-    public PelotaFragmentadora codeFragmentadora;
-    public MiniPelota codeMiniPelota1;
-    public MiniPelota codeMiniPelota2;
-    public MiniPelota codeMiniPelota3;
-    public GameObject pelotaFragmentadora;
-    public GameObject miniPelota1;
-    public GameObject miniPelota2;
-    public GameObject miniPelota3;
+    public PelotaFragmentadora codeFragment;
+    public MiniPelota codeMiniBall1;
+    public MiniPelota codeMiniBall2;
+    public MiniPelota codeMiniBall3;
+    public GameObject FragmentBall;
+    public GameObject miniBall1;
+    public GameObject miniBall2;
+    public GameObject miniBall3;
     public PoolPelota pool;
     private PoolObject poolObject;
-    public float auxTiempoVidaPelotaFragmentadora;
+    public float auxTimeLifeFragmentBalls;
     //public float auxTiempoVidaMiniPelota1;
     //public float auxTiempoVidaMiniPelota2;
     //public float auxTiempoVidaMiniPelota3;
     private void Start()
     {
-        auxTiempoVidaPelotaFragmentadora = codeFragmentadora.GetTiempoVida();
+        auxTimeLifeFragmentBalls = codeFragment.GetLifeTime();
     }
     void OnEnable() {
         
         poolObject = GetComponent<PoolObject>();
-        pelotaFragmentadora.SetActive(true);
-        miniPelota1.SetActive(false);
-        miniPelota2.SetActive(false);
-        miniPelota3.SetActive(false);
-        codeFragmentadora.SetResiclar(false);
-        codeMiniPelota1.SetResiclar(false);
-        codeMiniPelota2.SetResiclar(false);
-        codeMiniPelota3.SetResiclar(false);
+        FragmentBall.SetActive(true);
+        miniBall1.SetActive(false);
+        miniBall2.SetActive(false);
+        miniBall3.SetActive(false);
+        codeFragment.SetRecycle(false);
+        codeMiniBall1.SetRecycle(false);
+        codeMiniBall2.SetRecycle(false);
+        codeMiniBall3.SetRecycle(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if(codeFragmentadora.GetResiclar())
+        if(codeFragment.GetRecycle())
         {
-            codeFragmentadora.SetTiempoVida(auxTiempoVidaPelotaFragmentadora);
-            pelotaFragmentadora.SetActive(false);
-            miniPelota1.SetActive(true);
-            miniPelota2.SetActive(true);
-            miniPelota3.SetActive(true);
+            codeFragment.SetLifeTime(auxTimeLifeFragmentBalls);
+            FragmentBall.SetActive(false);
+            miniBall1.SetActive(true);
+            miniBall2.SetActive(true);
+            miniBall3.SetActive(true);
 
-            if (codeMiniPelota1.GetResiclar() && codeMiniPelota2.GetResiclar() && codeMiniPelota3.GetResiclar())
+            if (codeMiniBall1.GetRecycle() && codeMiniBall2.GetRecycle() && codeMiniBall3.GetRecycle())
             {
-                poolObject.Resiclarme();
+                poolObject.Recycle();
             }
         }
 	}
-    public void Disparar()
+    public void Shoot()
     {
-        codeFragmentadora.SetTiempoVida(auxTiempoVidaPelotaFragmentadora);
-        pelotaFragmentadora.SetActive(true);
-        codeFragmentadora.SetResiclar(false);
-        codeMiniPelota1.SetResiclar(false);
-        codeMiniPelota2.SetResiclar(false);
-        codeMiniPelota3.SetResiclar(false);
-        pelotaFragmentadora.transform.position = (transform.position + transform.right)-transform.forward;
-        codeFragmentadora.Disparar();
+        codeFragment.SetLifeTime(auxTimeLifeFragmentBalls);
+        FragmentBall.SetActive(true);
+        codeFragment.SetRecycle(false);
+        codeMiniBall1.SetRecycle(false);
+        codeMiniBall2.SetRecycle(false);
+        codeMiniBall3.SetRecycle(false);
+        FragmentBall.transform.position = (transform.position + transform.right)-transform.forward;
+        codeFragment.Shoot();
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

@@ -2,37 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class MenuCreditos : MonoBehaviour {
 
     // Use this for initialization
-    public GameObject JuegoCompletado;
-    public GameObject Creditos;
-    public float Velocidad;
+    public GameObject completedGame;
+    public GameObject credits;
+    public float speed;
     private float y;
-    public float tiempoSubida;
+    public float riseTime;
     void Start() {
-        y = Creditos.transform.position.y;
+        y = credits.transform.position.y;
     }
 
     // Update is called once per frame
     void Update() {
-        if (Creditos.activeSelf == true)
+        if (credits.activeSelf == true)
         {
-            MoverVertical();
+            MoveVertical();
         }
     }
-    public void CreditosMenu()
+    public void CreditsMenu()
     {
-        Creditos.SetActive(true);
-        JuegoCompletado.SetActive(false);
+        credits.SetActive(true);
+        completedGame.SetActive(false);
     }
-    public void MoverVertical()
+    public void MoveVertical()
     {
-        if (tiempoSubida > 0)
+        if (riseTime > 0)
         {
-            y = y + Time.deltaTime * Velocidad;
-            Creditos.transform.position = new Vector3(Creditos.transform.position.x, y, Creditos.transform.position.z);
-            tiempoSubida = tiempoSubida - Time.deltaTime;
+            y = y + Time.deltaTime * speed;
+            credits.transform.position = new Vector3(credits.transform.position.x, y, credits.transform.position.z);
+            riseTime = riseTime - Time.deltaTime;
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

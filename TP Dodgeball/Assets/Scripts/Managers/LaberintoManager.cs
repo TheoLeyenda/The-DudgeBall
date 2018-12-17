@@ -3,289 +3,291 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class LaberintoManager : MonoBehaviour
 {
 
-    public int[] cantSpawnersPorZona;
-    public int[] cantSpawnersDestruidosPorZona;
-    public GameObject[] puertas;
-    public Text objetivoWindows;
-    public GameObject imagenTiradorWindows;
-    public GameObject imagenCorredorWindows;
-    public Text objetivoAndroid;
-    public GameObject imagenTiradorAndroid;
-    public GameObject imagenCorredorAndroid;
-    public int ZonaActual;
+    public int[] SpawnersQuantityByArea;
+    public int[] SpawnersDestroyedByArea;
+    public GameObject[] doors;
+    public Text objetiveWindows;
+    public GameObject imageShooterWindows;
+    public GameObject imageRunnerWindows;
+    public Text objetiveAndroid;
+    public GameObject imageShooterAndroid;
+    public GameObject imageRunnerAndroid;
+    public int currentZone;
 
-    public static LaberintoManager instanciaLaberintoManager;
+    public static LaberintoManager instanceLabyrinthManager;
     // Use this for initialization
     private void Awake()
     {
         //entrarRonda = true;
 
-        if (instanciaLaberintoManager == null)
+        if (instanceLabyrinthManager == null)
         {
-            instanciaLaberintoManager = this;
+            instanceLabyrinthManager = this;
         }
-        else if (instanciaLaberintoManager != null)
+        else if (instanceLabyrinthManager != null)
         {
             this.gameObject.SetActive(false);
         }
     }
     public static LaberintoManager GetLaberintoManager()
     {
-        return instanciaLaberintoManager;
+        return instanceLabyrinthManager;
     }
 
 
     void Start()
     {
-        cantSpawnersDestruidosPorZona = new int[cantSpawnersPorZona.Length];
+        SpawnersDestroyedByArea = new int[SpawnersQuantityByArea.Length];
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (ZonaActual)
+        switch (currentZone)
         {
             case 0:
-                CheckZona0();
+                CheckZone0();
                 break;
             case 1:
-                CheckZona1();
+                CheckZone1();
                 break;
             case 2:
-                CheckZona2();
+                CheckZone2();
                 break;
             case 3:
-                CheckZona3();
+                CheckZone3();
                 break;
             case 4:
-                CheckZona4();
+                CheckZone4();
                 break;
         }
 
     }
-    public void SumarSpawnerDestruidos(int zona)
+    public void AddSpawnersDestroyedByArea(int zone)
     {
-        cantSpawnersDestruidosPorZona[zona]++;
+        SpawnersDestroyedByArea[zone]++;
     }
-    public void CheckZona0()
+    public void CheckZone0()
     {
-        if (Jugador.GetJugador() != null)
+        if (Jugador.GetPlayer() != null)
         {
-            if (Jugador.GetJugador().jugadorWindows)
+            if (Jugador.GetPlayer().playerWindows)
             {
-                if (objetivoWindows != null && imagenCorredorWindows != null && imagenTiradorWindows != null)
+                if (objetiveWindows != null && imageRunnerWindows != null && imageShooterWindows != null)
                 {
-                    objetivoWindows.text = cantSpawnersDestruidosPorZona[0] + "/" + cantSpawnersPorZona[0] + " " + imagenCorredorWindows + " " + imagenTiradorWindows;
-                    imagenCorredorWindows.SetActive(true);
-                    imagenTiradorWindows.SetActive(true);
+                    objetiveWindows.text = SpawnersDestroyedByArea[0] + "/" + SpawnersQuantityByArea[0] + " " + imageRunnerWindows + " " + imageShooterWindows;
+                    imageRunnerWindows.SetActive(true);
+                    imageShooterWindows.SetActive(true);
                 }
             }
 
-            if (Jugador.GetJugador().jugadorAndroid)
+            if (Jugador.GetPlayer().playerAndroid)
             {
-                if (objetivoAndroid != null && imagenCorredorAndroid != null && imagenTiradorAndroid != null)
+                if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
                 {
-                    objetivoAndroid.text = cantSpawnersDestruidosPorZona[0] + "/" + cantSpawnersPorZona[0] + " " + imagenCorredorAndroid + " " + imagenTiradorAndroid;
-                    imagenCorredorAndroid.SetActive(true);
-                    imagenTiradorAndroid.SetActive(true);
+                    objetiveAndroid.text = SpawnersDestroyedByArea[0] + "/" + SpawnersQuantityByArea[0] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
+                    imageRunnerAndroid.SetActive(true);
+                    imageShooterAndroid.SetActive(true);
                 }
             }
-            if (cantSpawnersPorZona[0] <= cantSpawnersDestruidosPorZona[0])
+            if (SpawnersQuantityByArea[0] <= SpawnersDestroyedByArea[0])
             {
-                ZonaActual++;
-                if (puertas[0] != null)
+                currentZone++;
+                if (doors[0] != null)
                 {
-                    puertas[0].SetActive(false);
+                    doors[0].SetActive(false);
                 }
-                if (Jugador.GetJugador().jugadorWindows)
+                if (Jugador.GetPlayer().playerWindows)
                 {
-                    objetivoWindows.text = " ";
-                    imagenCorredorWindows.SetActive(false);
-                    imagenTiradorWindows.SetActive(false);
+                    objetiveWindows.text = " ";
+                    imageRunnerWindows.SetActive(false);
+                    imageShooterWindows.SetActive(false);
                 }
-                if (Jugador.GetJugador().jugadorAndroid)
+                if (Jugador.GetPlayer().playerAndroid)
                 {
-                    objetivoAndroid.text = " ";
-                    imagenCorredorAndroid.SetActive(false);
-                    imagenTiradorAndroid.SetActive(false);
-                }
-            }
-        }
-    }
-    public void CheckZona1()
-    {
-        if (Jugador.GetJugador() != null)
-        {
-            if (Jugador.GetJugador().jugadorWindows)
-            {
-                if (objetivoWindows != null && imagenCorredorWindows != null && imagenTiradorWindows != null)
-                {
-                    objetivoWindows.text = cantSpawnersDestruidosPorZona[1] + "/" + cantSpawnersPorZona[1] + " " + imagenCorredorWindows + " " + imagenTiradorWindows;
-                    imagenCorredorWindows.SetActive(true);
-                    imagenTiradorWindows.SetActive(true);
-                }
-                if (Jugador.GetJugador().jugadorAndroid)
-                {
-                    if (objetivoAndroid != null && imagenCorredorAndroid != null && imagenTiradorAndroid != null)
-                    {
-                        objetivoAndroid.text = cantSpawnersDestruidosPorZona[1] + "/" + cantSpawnersPorZona[1] + " " + imagenCorredorAndroid + " " + imagenTiradorAndroid;
-                        imagenCorredorAndroid.SetActive(true);
-                        imagenTiradorAndroid.SetActive(true);
-                    }
-                }
-                if (cantSpawnersPorZona[1] <= cantSpawnersDestruidosPorZona[1])
-                {
-                    ZonaActual++;
-                    if (puertas[1] != null)
-                    {
-                        puertas[1].SetActive(false);
-                    }
-                    if (Jugador.GetJugador().jugadorWindows)
-                    {
-                        objetivoWindows.text = " ";
-                        imagenCorredorWindows.SetActive(false);
-                        imagenTiradorWindows.SetActive(false);
-                    }
-                    if (Jugador.GetJugador().jugadorAndroid)
-                    {
-                        objetivoAndroid.text = " ";
-                        imagenCorredorAndroid.SetActive(false);
-                        imagenTiradorAndroid.SetActive(false);
-                    }
+                    objetiveAndroid.text = " ";
+                    imageRunnerAndroid.SetActive(false);
+                    imageShooterAndroid.SetActive(false);
                 }
             }
         }
     }
-    public void CheckZona2()
+    public void CheckZone1()
     {
-        if (Jugador.GetJugador() != null)
+        if (Jugador.GetPlayer() != null)
         {
-            if (Jugador.GetJugador().jugadorWindows)
+            if (Jugador.GetPlayer().playerWindows)
             {
-                if (objetivoWindows != null && imagenCorredorWindows != null && imagenTiradorWindows != null)
+                if (objetiveWindows != null && imageRunnerWindows != null && imageShooterWindows != null)
                 {
-                    objetivoWindows.text = cantSpawnersDestruidosPorZona[2] + "/" + cantSpawnersPorZona[2] + " " + imagenCorredorWindows + " " + imagenTiradorWindows;
-                    imagenCorredorWindows.SetActive(true);
-                    imagenTiradorWindows.SetActive(true);
+                    objetiveWindows.text = SpawnersDestroyedByArea[1] + "/" + SpawnersQuantityByArea[1] + " " + imageRunnerWindows + " " + imageShooterWindows;
+                    imageRunnerWindows.SetActive(true);
+                    imageShooterWindows.SetActive(true);
                 }
-                if (Jugador.GetJugador().jugadorAndroid)
+                if (Jugador.GetPlayer().playerAndroid)
                 {
-                    if (objetivoAndroid != null && imagenCorredorAndroid != null && imagenTiradorAndroid != null)
+                    if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
                     {
-                        objetivoAndroid.text = cantSpawnersDestruidosPorZona[2] + "/" + cantSpawnersPorZona[2] + " " + imagenCorredorAndroid + " " + imagenTiradorAndroid;
-                        imagenCorredorAndroid.SetActive(true);
-                        imagenTiradorAndroid.SetActive(true);
+                        objetiveAndroid.text = SpawnersDestroyedByArea[1] + "/" + SpawnersQuantityByArea[1] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
+                        imageRunnerAndroid.SetActive(true);
+                        imageShooterAndroid.SetActive(true);
                     }
                 }
-                if (cantSpawnersPorZona[2] <= cantSpawnersDestruidosPorZona[2])
+                if (SpawnersQuantityByArea[1] <= SpawnersDestroyedByArea[1])
                 {
-                    ZonaActual++;
-                    if (puertas[2] != null)
+                    currentZone++;
+                    if (doors[1] != null)
                     {
-                        puertas[2].SetActive(false);
+                        doors[1].SetActive(false);
                     }
-                    if (Jugador.GetJugador().jugadorWindows)
+                    if (Jugador.GetPlayer().playerWindows)
                     {
-                        objetivoWindows.text = " ";
-                        imagenCorredorWindows.SetActive(false);
-                        imagenTiradorWindows.SetActive(false);
+                        objetiveWindows.text = " ";
+                        imageRunnerWindows.SetActive(false);
+                        imageShooterWindows.SetActive(false);
                     }
-                    if (Jugador.GetJugador().jugadorAndroid)
+                    if (Jugador.GetPlayer().playerAndroid)
                     {
-                        objetivoAndroid.text = " ";
-                        imagenCorredorAndroid.SetActive(false);
-                        imagenTiradorAndroid.SetActive(false);
+                        objetiveAndroid.text = " ";
+                        imageRunnerAndroid.SetActive(false);
+                        imageShooterAndroid.SetActive(false);
                     }
                 }
             }
         }
     }
-    public void CheckZona3()
+    public void CheckZone2()
     {
-        if (Jugador.GetJugador() != null)
+        if (Jugador.GetPlayer() != null)
         {
-            if (Jugador.GetJugador().jugadorWindows)
+            if (Jugador.GetPlayer().playerWindows)
             {
-                if (objetivoWindows != null && imagenCorredorWindows != null && imagenTiradorWindows != null)
+                if (objetiveWindows != null && imageRunnerWindows != null && imageShooterWindows != null)
                 {
-                    objetivoWindows.text = cantSpawnersDestruidosPorZona[3] + "/" + cantSpawnersPorZona[3] + " " + imagenCorredorWindows + " " + imagenTiradorWindows;
-                    imagenCorredorWindows.SetActive(true);
-                    imagenTiradorWindows.SetActive(true);
+                    objetiveWindows.text = SpawnersDestroyedByArea[2] + "/" + SpawnersQuantityByArea[2] + " " + imageRunnerWindows + " " + imageShooterWindows;
+                    imageRunnerWindows.SetActive(true);
+                    imageShooterWindows.SetActive(true);
                 }
-                if (Jugador.GetJugador().jugadorAndroid)
+                if (Jugador.GetPlayer().playerAndroid)
                 {
-                    if (objetivoAndroid != null && imagenCorredorAndroid != null && imagenTiradorAndroid != null)
+                    if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
                     {
-                        objetivoAndroid.text = cantSpawnersDestruidosPorZona[3] + "/" + cantSpawnersPorZona[3] + " " + imagenCorredorAndroid + " " + imagenTiradorAndroid;
-                        imagenCorredorAndroid.SetActive(true);
-                        imagenTiradorAndroid.SetActive(true);
+                        objetiveAndroid.text = SpawnersDestroyedByArea[2] + "/" + SpawnersQuantityByArea[2] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
+                        imageRunnerAndroid.SetActive(true);
+                        imageShooterAndroid.SetActive(true);
                     }
                 }
-                if (cantSpawnersPorZona[3] <= cantSpawnersDestruidosPorZona[3])
+                if (SpawnersQuantityByArea[2] <= SpawnersDestroyedByArea[2])
                 {
-                    ZonaActual++;
-                    if (puertas[3] != null)
+                    currentZone++;
+                    if (doors[2] != null)
                     {
-                        puertas[3].SetActive(false);
+                        doors[2].SetActive(false);
                     }
-                    if (Jugador.GetJugador().jugadorWindows)
+                    if (Jugador.GetPlayer().playerWindows)
                     {
-                        objetivoWindows.text = " ";
-                        imagenCorredorWindows.SetActive(false);
-                        imagenTiradorWindows.SetActive(false);
+                        objetiveWindows.text = " ";
+                        imageRunnerWindows.SetActive(false);
+                        imageShooterWindows.SetActive(false);
                     }
-                    if (Jugador.GetJugador().jugadorAndroid)
+                    if (Jugador.GetPlayer().playerAndroid)
                     {
-                        objetivoAndroid.text = " ";
-                        imagenCorredorAndroid.SetActive(false);
-                        imagenTiradorAndroid.SetActive(false);
+                        objetiveAndroid.text = " ";
+                        imageRunnerAndroid.SetActive(false);
+                        imageShooterAndroid.SetActive(false);
                     }
                 }
             }
         }
     }
-    public void CheckZona4()
+    public void CheckZone3()
     {
-        if (Jugador.GetJugador() != null)
+        if (Jugador.GetPlayer() != null)
         {
-            if (Jugador.GetJugador().jugadorWindows)
+            if (Jugador.GetPlayer().playerWindows)
             {
-                if (objetivoWindows != null && imagenCorredorWindows != null && imagenTiradorWindows != null)
+                if (objetiveWindows != null && imageRunnerWindows != null && imageShooterWindows != null)
                 {
-                    objetivoWindows.text = cantSpawnersDestruidosPorZona[4] + "/" + cantSpawnersPorZona[4];
-                    imagenCorredorWindows.SetActive(true);
-                    imagenTiradorWindows.SetActive(true);
+                    objetiveWindows.text = SpawnersDestroyedByArea[3] + "/" + SpawnersQuantityByArea[3] + " " + imageRunnerWindows + " " + imageShooterWindows;
+                    imageRunnerWindows.SetActive(true);
+                    imageShooterWindows.SetActive(true);
                 }
-                if (Jugador.GetJugador().jugadorAndroid)
+                if (Jugador.GetPlayer().playerAndroid)
                 {
-                    if (objetivoAndroid != null && imagenCorredorAndroid != null && imagenTiradorAndroid != null)
+                    if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
                     {
-                        objetivoAndroid.text = cantSpawnersDestruidosPorZona[4] + "/" + cantSpawnersPorZona[4] + " " + imagenCorredorAndroid + " " + imagenTiradorAndroid;
-                        imagenCorredorAndroid.SetActive(true);
-                        imagenTiradorAndroid.SetActive(true);
+                        objetiveAndroid.text = SpawnersDestroyedByArea[3] + "/" + SpawnersQuantityByArea[3] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
+                        imageRunnerAndroid.SetActive(true);
+                        imageShooterAndroid.SetActive(true);
                     }
                 }
-                if (cantSpawnersPorZona[4] <= cantSpawnersDestruidosPorZona[4])
+                if (SpawnersQuantityByArea[3] <= SpawnersDestroyedByArea[3])
                 {
-                    ZonaActual++;
-                    if (puertas[4] != null)
+                    currentZone++;
+                    if (doors[3] != null)
                     {
-                        puertas[4].SetActive(false);
+                        doors[3].SetActive(false);
                     }
-                    if (Jugador.GetJugador().jugadorWindows)
+                    if (Jugador.GetPlayer().playerWindows)
                     {
-                        objetivoWindows.text = " ";
-                        imagenCorredorWindows.SetActive(false);
-                        imagenTiradorWindows.SetActive(false);
+                        objetiveWindows.text = " ";
+                        imageRunnerWindows.SetActive(false);
+                        imageShooterWindows.SetActive(false);
                     }
-                    if (Jugador.GetJugador().jugadorAndroid)
+                    if (Jugador.GetPlayer().playerAndroid)
                     {
-                        objetivoAndroid.text = " ";
-                        imagenCorredorAndroid.SetActive(false);
-                        imagenTiradorAndroid.SetActive(false);
+                        objetiveAndroid.text = " ";
+                        imageRunnerAndroid.SetActive(false);
+                        imageShooterAndroid.SetActive(false);
+                    }
+                }
+            }
+        }
+    }
+    public void CheckZone4()
+    {
+        if (Jugador.GetPlayer() != null)
+        {
+            if (Jugador.GetPlayer().playerWindows)
+            {
+                if (objetiveWindows != null && imageRunnerWindows != null && imageShooterWindows != null)
+                {
+                    objetiveWindows.text = SpawnersDestroyedByArea[4] + "/" + SpawnersQuantityByArea[4];
+                    imageRunnerWindows.SetActive(true);
+                    imageShooterWindows.SetActive(true);
+                }
+                if (Jugador.GetPlayer().playerAndroid)
+                {
+                    if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
+                    {
+                        objetiveAndroid.text = SpawnersDestroyedByArea[4] + "/" + SpawnersQuantityByArea[4] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
+                        imageRunnerAndroid.SetActive(true);
+                        imageShooterAndroid.SetActive(true);
+                    }
+                }
+                if (SpawnersQuantityByArea[4] <= SpawnersDestroyedByArea[4])
+                {
+                    currentZone++;
+                    if (doors[4] != null)
+                    {
+                        doors[4].SetActive(false);
+                    }
+                    if (Jugador.GetPlayer().playerWindows)
+                    {
+                        objetiveWindows.text = " ";
+                        imageRunnerWindows.SetActive(false);
+                        imageShooterWindows.SetActive(false);
+                    }
+                    if (Jugador.GetPlayer().playerAndroid)
+                    {
+                        objetiveAndroid.text = " ";
+                        imageRunnerAndroid.SetActive(false);
+                        imageShooterAndroid.SetActive(false);
                     }
                 }
             }
@@ -293,3 +295,5 @@ public class LaberintoManager : MonoBehaviour
     }
     //MISMO CODIGO CAMBIO LOS SUB INDICES DE LOS ARRAYS(PARA COPIARLO Y GENERAR EL SIGUIENTE CHECKZONA COPIAR PEGAR Y CAMBIAR ESTOS SUB INDICES)
 }
+
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

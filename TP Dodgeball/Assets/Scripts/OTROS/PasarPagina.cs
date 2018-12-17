@@ -2,57 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class PasarPagina : MonoBehaviour {
 
     // Use this for initialization
-    public GameObject[] paginas;
+    public GameObject[] pages;
     private int id;
 	void Start () {
         id = 0;
-		for(int i = 0; i< paginas.Length; i++)
+		for(int i = 0; i< pages.Length; i++)
         {
-            paginas[i].SetActive(false);
+            pages[i].SetActive(false);
         }
 	}
 
     // Update is called once per frame
     void Update() {
-        MostrarPagina();
+        DrawPages();
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            SiguientePagina();
+            NextPages();
         }
         if(Input.GetKey(KeyCode.LeftArrow))
         {
-            AnteriorPagina();
+            BackPages();
         }
 	}
-    public void SiguientePagina()
+    public void NextPages()
     {
-        if (id < paginas.Length)
+        if (id < pages.Length)
         {
             id++;
         }
     }
-    public void AnteriorPagina()
+    public void BackPages()
     {
         if (id > 0)
         {
             id--;
         }
     }
-    public void MostrarPagina()
+    public void DrawPages()
     {
-        for(int i = 0; i< paginas.Length; i++)
+        for(int i = 0; i< pages.Length; i++)
         {
             if(i == id)
             {
-                paginas[i].SetActive(true);
+                pages[i].SetActive(true);
             }
             else
             {
-                paginas[i].SetActive(false);
+                pages[i].SetActive(false);
             }
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

@@ -2,38 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class GeneradorBloques : MonoBehaviour {
 
-    public GameObject bloques;
+    public GameObject blocks;
     private float randomX;
     private float randomZ;
-    private float randomInstanciar;
-    public float ancho;
-    public float alto;
-    public float valorY;
+    private float randomInstantiate;
+    public float width;
+    public float hight;
+    public float valueY;
     private PoolObject poolObject;
-    public PoolPelota poolCubitos;
-    // ESTO TEORICAMENTE FUNCIONARIA (PROBAR LUEGO)
+    public PoolPelota poolBlocks;
     private void Start()
     {
-        for (int i = 1; i < ancho; i++)
+        for (int i = 1; i < width; i++)
         {
-            for (int j = 1; j < alto; j++)
+            for (int j = 1; j < hight; j++)
             {
                 if(i % 2 == 0 && j %2 != 0)
                 {
-                    randomInstanciar = Random.Range(1, 100);
-                    if(randomInstanciar >= 60)
+                    randomInstantiate = Random.Range(1, 100);
+                    if(randomInstantiate >= 60)
                     {
-                        Instantiate(bloques, new Vector3(i,valorY,j), Quaternion.identity);
+                        Instantiate(blocks, new Vector3(i,valueY,j), Quaternion.identity);
                     }
                 }
                 if(j % 2 == 0)
                 {
-                    randomInstanciar = Random.Range(1, 100);
-                    if (randomInstanciar >= 60)
+                    randomInstantiate = Random.Range(1, 100);
+                    if (randomInstantiate >= 60)
                     {
-                        Instantiate(bloques, new Vector3(i,valorY,j), Quaternion.identity);
+                        Instantiate(blocks, new Vector3(i,valueY,j), Quaternion.identity);
                     }
                 }
 
@@ -41,14 +42,5 @@ public class GeneradorBloques : MonoBehaviour {
         }
     }
      //------------------------------------------
-    
-    void Update()
-    {
-
-    }
 }
-
-
-
-    // Update is called once per frame
-   
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

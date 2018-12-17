@@ -5,40 +5,40 @@ using UnityEngine;
 public class CambiarMaterialPuertas : MonoBehaviour {
 
     // Use this for initialization
-    public Material nuevoMaterial;
-    public GameObject objetaAcambiarMaterial;
-    private float contar= 0;
-    private bool EmpezarContar= false;
+    public Material newMaterial;
+    public GameObject objectToChangeMaterial;
+    private float count= 0;
+    private bool startCount= false;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            if (nuevoMaterial != null && objetaAcambiarMaterial != null)
+            if (newMaterial != null && objectToChangeMaterial != null)
             {
-                objetaAcambiarMaterial.SetActive(true);
-                objetaAcambiarMaterial.GetComponent<MeshRenderer>().sharedMaterial = nuevoMaterial;
-                EmpezarContar = true;
+                objectToChangeMaterial.SetActive(true);
+                objectToChangeMaterial.GetComponent<MeshRenderer>().sharedMaterial = newMaterial;
+                startCount = true;
             }
         }
     }
     private void Update()
     {
-        if(EmpezarContar)
+        if(startCount)
         {
-            contar = contar + Time.deltaTime;
+            count = count + Time.deltaTime;
         }
-        if(contar >= 1)
+        if(count >= 1)
         {
             gameObject.SetActive(false);
         }
     }
-    public void CambiarMaterial()
+    public void SwitchMaterial()
     {
-        if (nuevoMaterial != null && objetaAcambiarMaterial != null)
+        if (newMaterial != null && objectToChangeMaterial != null)
         {
-            objetaAcambiarMaterial.SetActive(true);
-            objetaAcambiarMaterial.GetComponent<MeshRenderer>().sharedMaterial = nuevoMaterial;
-            EmpezarContar = true;
+            objectToChangeMaterial.SetActive(true);
+            objectToChangeMaterial.GetComponent<MeshRenderer>().sharedMaterial = newMaterial;
+            startCount = true;
         }
     }
 }

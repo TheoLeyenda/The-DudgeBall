@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class SolidoNoSolido : MonoBehaviour {
 
     // Use this for initialization
-    public bool hacerloSolido;
-    private bool soloUnaVez = true;
-    public GameObject[] objetos;
-    public void Solidificar(GameObject[] obj)
+    public bool makeSolid;
+    private bool once = true;
+    public GameObject[] objects;
+    public void Solidify(GameObject[] obj)
     {
         for (int i = 0; i < obj.Length; i++)
         {
@@ -41,7 +42,7 @@ public class SolidoNoSolido : MonoBehaviour {
             }
         }
     }
-    public void Desolidificar(GameObject[] obj)
+    public void Desolidify(GameObject[] obj)
     {
         for (int i = 0; i < obj.Length; i++)
         {
@@ -76,17 +77,18 @@ public class SolidoNoSolido : MonoBehaviour {
     }
     private void OnDisable()
     {
-        if (soloUnaVez)
+        if (once)
         {
-            if (hacerloSolido)
+            if (makeSolid)
             {
-                Solidificar(objetos);
+                Solidify(objects);
             }
             else
             {
-                Desolidificar(objetos);
+                Desolidify(objects);
             }
-            soloUnaVez = false;
+            once = false;
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

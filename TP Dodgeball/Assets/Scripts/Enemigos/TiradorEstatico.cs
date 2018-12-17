@@ -1,288 +1,290 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 
 public class TiradorEstatico : Enemigo
 {
 
     // Use this for initialization
-    private Jugador jugador;
-    public float auxVida;
-    public PoolPelota pelotasRugby;
+    private Jugador player;
+    public float auxLife;
+    public PoolPelota rugbyBalls;
     private PoolObject poolObject;
-    private float auxTiempoVida;
+    private float auxLifeTime;
     public float dilay;
     private float auxDilay;
-    public GameObject Bola;
-    public GameObject generadorPelota;
-    public GameObject tirador;
-    private float timeEstado;
-    private float efectoFuego;
+    public GameObject Ball;
+    public GameObject generatorBalls;
+    public GameObject shooter;
+    private float timeState;
+    private float effectFire;
     private Rigidbody rig;
     private float dileyInsta;
-    public int tipoMovimiento;
-    public float danio;
+    public int movementType;
+    public float damage;
     public AudioSource Audio;
     public AudioClip clip;
 
     void Start()
     {
-        if(Jugador.instanciaJugador != null)
+        if(Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
         dileyInsta = 1;
-        auxVida = vida;
+        auxLife = life;
         auxDilay = dilay;
-        timeEstado = 0;
-        SetEstadoEnemigo(EstadoEnemigo.normal);
-        efectoFuego = 0;
-        efectoCongelado.SetActive(false);
-        efectoMusica.SetActive(false);
+        timeState = 0;
+        SetEnemyState(EstadoEnemigo.normal);
+        effectFire = 0;
+        effectFrozen.SetActive(false);
+        effectMusic.SetActive(false);
         rig = GetComponent<Rigidbody>();
     }
     private void OnEnable()
     {
-        vida = maxVida;
-        SetMuerto(false);
+        life = maxLife;
+        SetDead(false);
     }
     // Update is called once per frame
     void Update()
     {
-        if (jugador != null)
+        if (player != null)
         {
-            if (jugador.GetInstaKill())
+            if (player.GetInstaKill())
             {
-                vida = 1;
+                life = 1;
             }
-            if (!jugador.GetInstaKill() && jugador.GetActivarInstaKill())
+            if (!player.GetInstaKill() && player.GetActiveInstaKill())
             {
-                vida = auxVida;
+                life = auxLife;
                 if (dileyInsta > 0)
                 {
                     dileyInsta = dileyInsta - Time.deltaTime;
                 }
                 if (dileyInsta <= 0)
                 {
-                    jugador.SetActivarInstaKill(false);
+                    player.SetActiveInstaKill(false);
                     dileyInsta = 1;
                 }
             }
         }
-        updateHP();
+        UpdateHP();
         rig.Sleep();
         //EstaMuerto();
-        if (GetEstadoEnemigo() != EstadoEnemigo.congelado && GetEstadoEnemigo() != EstadoEnemigo.bailando)
+        if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
         {
             Movimiento();
         }
         if (dilay <= 0)
         {
             dilay = auxDilay;
-            TirarBola();
+            ThrowBall();
         }
         if (dilay > 0)
         {
             dilay = dilay - Time.deltaTime;
         }
-        if (GetMuerto())
+        if (GetDead())
         {
-            if (!estoyEnPool)
+            if (!i_AmInPool)
             {
                 gameObject.SetActive(false);
             }
         }
-        if (timeEstado > 0)
+        if (timeState > 0)
         {
-            timeEstado = timeEstado - Time.deltaTime;
+            timeState = timeState - Time.deltaTime;
 
-            if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
+            if (GetEnemyState() == EstadoEnemigo.frozen)
             {
                 dilay = 200000;
             }
-            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
+            if (GetEnemyState() == EstadoEnemigo.dance)
             {
-                SetRotarY(20);
-                Rotar();
+                SetRotateY(20);
+                Rotate();
             }
-            if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.activeSelf)
+            if (GetEnemyState() == EstadoEnemigo.Burned || effectBurned.activeSelf)
             {
-                efectoFuego = efectoFuego + Time.deltaTime;
-                if (efectoFuego >= 1)
+                effectFire = effectFire + Time.deltaTime;
+                if (effectFire >= 1)
                 {
-                    if (jugador != null)
+                    if (player != null)
                     {
-                        if (jugador.GetDoblePuntuacion())
+                        if (player.GetDoblePoints())
                         {
-                            jugador.SumarPuntos(5*2);
+                            player.AddScore(5*2);
                         }
                         else
                         {
-                            jugador.SumarPuntos(5);
+                            player.AddScore(5);
                         }
-                        vida = vida - (GetDanioBolaFuego() + jugador.GetDanioAdicionalPelotaFuego());
-                        EstaMuerto();
+                        life = life - (GetDamageFireBall() + player.GetAdditionalDamageFireBall());
+                        IsDead();
                     }
-                    efectoFuego = 0;
+                    effectFire = 0;
                 }
             }
-            if (timeEstado <= 0)
+            if (timeState <= 0)
             {
                 dilay = auxDilay;
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                SetEnemyState(EstadoEnemigo.normal);
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                 
             }
         }
-        if (GetEstadoEnemigo() != EstadoEnemigo.quemado && GetEstadoEnemigo() != EstadoEnemigo.bailando)
+        if (GetEnemyState() != EstadoEnemigo.Burned && GetEnemyState() != EstadoEnemigo.dance)
         {
-            efectoQuemado.SetActive(false);
+            effectBurned.SetActive(false);
         }
-        if (GetEstadoEnemigo() != EstadoEnemigo.congelado)
+        if (GetEnemyState() != EstadoEnemigo.frozen)
         {
-            efectoCongelado.SetActive(false);
+            effectFrozen.SetActive(false);
         }
-        if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+        if (GetEnemyState() != EstadoEnemigo.dance)
         {
-            efectoMusica.SetActive(false);
+            effectMusic.SetActive(false);
         }
 
     }
     public void Movimiento()
     {
-        if (jugador != null)
+        if (player != null)
         {
-            if (tipoMovimiento == 0)
+            if (movementType == 0)
             {
-                transform.LookAt(new Vector3(jugador.transform.position.x, transform.position.y, jugador.transform.position.z));
+                transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             }
-            if(tipoMovimiento == 1)
+            if(movementType == 1)
             {
-                transform.LookAt(new Vector3(jugador.transform.position.x, jugador.transform.position.y, jugador.transform.position.z));
+                transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
             }
         }
     }
-    public void TirarBola()
+    public void ThrowBall()
     {
         if (Audio != null && clip != null)
         {
             //Audio.volume = 0;
             Audio.PlayOneShot(clip);
         }
-        GameObject go = pelotasRugby.GetObject();
-        PelotaEnemigo pelota = go.GetComponent<PelotaEnemigo>();
-        go.transform.position = generadorPelota.transform.position;
-        go.transform.rotation = generadorPelota.transform.rotation;
-        pelota.Disparar();
-        if (danio > 0)
+        GameObject go = rugbyBalls.GetObject();
+        PelotaEnemigo ball = go.GetComponent<PelotaEnemigo>();
+        go.transform.position = generatorBalls.transform.position;
+        go.transform.rotation = generatorBalls.transform.rotation;
+        ball.Shoot();
+        if (damage > 0)
         {
-            pelota.danio = danio;
+            ball.damage = damage;
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PelotaComun")
         {
-            if (jugador != null)
+            if (player != null)
             {
-                vida = vida - (GetDanioBolaComun() + jugador.GetDanioAdicionalPelotaComun());
-                EstaMuerto();
-                if (jugador.GetDoblePuntuacion())
+                life = life - (GetDamageCommonBall() + player.GetAdditionalDamageCommonBall());
+                IsDead();
+                if (player.GetDoblePoints())
                 {
-                    jugador.SumarPuntos(10*2);
+                    player.AddScore(10*2);
                 }
                 else
                 {
-                    jugador.SumarPuntos(10);
+                    player.AddScore(10);
                 }
             }
         }
         if (other.gameObject.tag == "PelotaDeHielo")
         {
-            if (jugador != null)
+            if (player != null)
             {
-                if (jugador.GetDoblePuntuacion())
+                if (player.GetDoblePoints())
                 {
-                    jugador.SumarPuntos(10 * 2);
+                    player.AddScore(10 * 2);
                 }
                 else
                 {
-                    jugador.SumarPuntos(10);
+                    player.AddScore(10);
                 }
-                vida = vida - (GetDanioBolaHielo() + jugador.GetDanioAdicionalPelotaHielo());
+                life = life - (GetDamageIceBall() + player.GetAdditionalDamageIceBall());
             }
-            EstaMuerto();
-            if (GetEstadoEnemigo() != EstadoEnemigo.congelado)
+            IsDead();
+            if (GetEnemyState() != EstadoEnemigo.frozen)
             {
-                timeEstado = 5;//tiempo por el cual el enemigo "Corredor" estara congelado
+                timeState = 5;//tiempo por el cual el enemigo "Corredor" estara congelado
             }
-            efectoCongelado.SetActive(true);
-            SetEstadoEnemigo(EstadoEnemigo.congelado);
+            effectFrozen.SetActive(true);
+            SetEnemyState(EstadoEnemigo.frozen);
         }
         if(other.gameObject.tag == "MiniPelota")
         {
-            if (jugador != null)
+            if (player != null)
             {
-                if (jugador.GetDoblePuntuacion())
+                if (player.GetDoblePoints())
                 {
-                    jugador.SumarPuntos(10*2);
+                    player.AddScore(10*2);
                 }
                 else
                 {
-                    jugador.SumarPuntos(10);
+                    player.AddScore(10);
                 }
-                vida = vida - (GetDanioMiniBola() + jugador.GetDanioAdicionalMiniPelota());
-                EstaMuerto();
+                life = life - (GetDamageMiniBall() + player.GetAditionalDamageMiniBalls());
+                IsDead();
             }
         }
         if (other.gameObject.tag == "PelotaDanzarina")
         {
-            if (jugador.GetDoblePuntuacion())
+            if (player.GetDoblePoints())
             {
-                jugador.SumarPuntos(5*2);
+                player.AddScore(5*2);
             }
             else
             {
-                jugador.SumarPuntos(5);
+                player.AddScore(5);
             }
-            if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+            if (GetEnemyState() != EstadoEnemigo.dance)
             {
-                timeEstado = 7;//tiempo por el cual el enemigo estara bailando
+                timeState = 7;//tiempo por el cual el enemigo estara bailando
             }
-            SetEstadoEnemigo(EstadoEnemigo.bailando);
-            vida = vida - GetDanioBolaDanzarina();
-            EstaMuerto();
-            efectoMusica.SetActive(true);
+            SetEnemyState(EstadoEnemigo.dance);
+            life = life - GetDamageDanceBall();
+            IsDead();
+            effectMusic.SetActive(true);
         }
         if (other.gameObject.tag == "PelotaDeFuego")
         {
            
-            if (GetEstadoEnemigo() != EstadoEnemigo.quemado)
+            if (GetEnemyState() != EstadoEnemigo.Burned)
             {
-                timeEstado = 7;
+                timeState = 7;
             }
-            if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+            if (GetEnemyState() != EstadoEnemigo.dance)
             {
-                SetEstadoEnemigo(EstadoEnemigo.quemado);
+                SetEnemyState(EstadoEnemigo.Burned);
             }
-            efectoQuemado.SetActive(true);
+            effectBurned.SetActive(true);
             dilay = auxDilay;
         }
         if (other.gameObject.tag == "PelotaExplociva")
         {
-            EstaMuerto();
-            if (jugador != null)
+            IsDead();
+            if (player != null)
             {
-                if (jugador.GetDoblePuntuacion())
+                if (player.GetDoblePoints())
                 {
-                    jugador.SumarPuntos(20*2);
+                    player.AddScore(20*2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(20);
+                    Jugador.GetPlayer().AddScore(20);
                 }
-                vida = vida - (GetDanioBolaExplociva() + jugador.GetDanioAdicionalPelotaExplociva());
+                life = life - (GetDamageExplociveBall() + player.GetAdditionalDamageExplociveBall());
             }
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

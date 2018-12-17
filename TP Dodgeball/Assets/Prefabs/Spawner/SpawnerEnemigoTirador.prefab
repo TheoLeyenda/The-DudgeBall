@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1256507786389724
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,14 +62,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1253944418417124}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.99, y: 1.25, z: 8.9}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -2.5554771, y: 39.326553, z: 28.09898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4022434745857886}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &114197804725938436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,12 +82,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolEnemigo: {fileID: 114343732359657828}
-  cantEnemigosInicial: 1
-  dileyCreacion: 0
-  rangoX: 4
-  rangoZ: 4
-  IncrementoCreacion: 2
-  tipoEnemigo: 2
+  initialEnemyAmount: 1
+  dileyCreation: 0
+  rangeX: 4
+  rangeZ: 4
+  enemySpeed: 0
+  incrementCreation: 1
+  enemyType: 2
+  enemyPattern: 0
+  damageShooter: 7
+  powerShooter: 70
+  enemyVisionRange: 0
+  avoidInstantCreation: 0
+  activedInstantCreation: 0
+  DileyShooter: 1.1
 --- !u!114 &114343732359657828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,5 +107,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1287565174351690, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
-  count: 500
+  Ball: {fileID: 1287565174351690, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
+  count: 50

@@ -1,63 +1,63 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class EnjambreDePiranias : MonoBehaviour {
 
     // Use this for initialization
 
     public enum States
     {
-        Nadando = 0,
-        Seguir,
-        Quieto,
+        swiming = 0,
+        follow,
+        still,
     }
 
-    public States estados;
+    public States states;
     private int id = 0;
 
-    private Jugador jugador;
-    public bool volverPuntoInicio;
+    private Jugador player;
+    public bool backHomePoint;
     public Transform[] waypoints;
-    public Pirania[] pirania;
-    private Vector3 puntoInicio;
-    private Quaternion rotacionInicio;
-    public float velocidadMovimiento;
-    private bool autodestrucion;
+    public Pirania[] piranha;
+    private Vector3 initialPoint;
+    private Quaternion initialRotation;
+    public float movementSpeed;
+    private bool selfDestruction;
     void Start()
     {
-        if (Jugador.instanciaJugador != null)
+        if (Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
-        puntoInicio = transform.position;
-        rotacionInicio = transform.rotation;
-        if (pirania.Length > 0)
+        initialPoint = transform.position;
+        initialRotation = transform.rotation;
+        if (piranha.Length > 0)
         {
-            for (int i = 0; i < pirania.Length; i++)
+            for (int i = 0; i < piranha.Length; i++)
             {
-                if (pirania[i] != null)
+                if (piranha[i] != null)
                 {
-                    pirania[i].activarPirania = false;
+                    piranha[i].ActivePiranha = false;
                 }
             }
-            autodestrucion = false;
+            selfDestruction = false;
         }
     }
     void Update()
     {
-        if (volverPuntoInicio)
+        if (backHomePoint)
         {
-            if (jugador != null)
+            if (player != null)
             {
-                if (jugador.vida <= 0)
+                if (player.life <= 0)
                 {
                     gameObject.SetActive(false);
-                    VolverPuntoInicio();
+                    ReturnInitialPoint();
                 }
             }
         }
-        if (!autodestrucion)
+        if (!selfDestruction)
         {
             UpdateStates();
         }
@@ -65,18 +65,18 @@ public class EnjambreDePiranias : MonoBehaviour {
     public void UpdateStates()
     {
         
-        switch ((int)estados)
+        switch ((int)states)
         {
-            case (int)States.Nadando:
-                Nadar();
+            case (int)States.swiming:
+                Swiming();
                 break;
-            case (int)States.Seguir:
-                Seguir();
+            case (int)States.follow:
+                Follow();
                 break;
         }
     }
 
-    public void Nadar()
+    public void Swiming()
     {
         if (waypoints.Length > 0)
         {
@@ -85,7 +85,7 @@ public class EnjambreDePiranias : MonoBehaviour {
             {
                 Vector3 target = waypoints[id].position;
                 transform.LookAt(target);
-                transform.position = transform.position + transform.forward * Time.deltaTime * velocidadMovimiento;
+                transform.position = transform.position + transform.forward * Time.deltaTime * movementSpeed;
                 Vector3 diff = target - this.transform.position;
 
                 if (diff.magnitude < 0.3f)
@@ -93,41 +93,42 @@ public class EnjambreDePiranias : MonoBehaviour {
                     id++;
                     if (id >= waypoints.Length)
                     {
-                        for (int i = 0; i < pirania.Length; i++)
+                        for (int i = 0; i < piranha.Length; i++)
                         {
-                            pirania[i].activarPirania = true;
+                            piranha[i].ActivePiranha = true;
                         }
-                        autodestrucion = true;
+                        selfDestruction = true;
                     }
                 }
             }
         }
     }
-    public void VolverPuntoInicio()
+    public void ReturnInitialPoint()
     {
-        transform.position = puntoInicio;
-        estados = States.Nadando;
-        autodestrucion = false;
+        transform.position = initialPoint;
+        states = States.swiming;
+        selfDestruction = false;
         id = 0;
-        transform.rotation = rotacionInicio;
-        for(int i = 0; i< pirania.Length; i++)
+        transform.rotation = initialRotation;
+        for(int i = 0; i< piranha.Length; i++)
         {
-            pirania[i].transform.position = pirania[i].GetPuntoInicio();
-            pirania[i].transform.rotation = pirania[i].GetRotacionInicio();
-            pirania[i].activarPirania = false;
+            piranha[i].transform.position = piranha[i].GetInitialPoint();
+            piranha[i].transform.rotation = piranha[i].GetInitialRotation();
+            piranha[i].ActivePiranha = false;
             
         }
     }
-    public void Seguir()
+    public void Follow()
     {
-        if (Jugador.GetJugador() != null)
+        if (Jugador.GetPlayer() != null)
         {
-            Vector3 target = jugador.transform.position;
+            Vector3 target = player.transform.position;
             transform.LookAt(target);
-            transform.position = transform.position + transform.forward * Time.deltaTime * velocidadMovimiento;
+            transform.position = transform.position + transform.forward * Time.deltaTime * movementSpeed;
         }
     }
     
 	// Update is called once per frame
 	
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

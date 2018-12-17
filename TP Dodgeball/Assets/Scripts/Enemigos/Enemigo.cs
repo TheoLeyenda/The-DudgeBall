@@ -1,68 +1,69 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public enum EstadoEnemigo
 {
-    congelado,
-    quemado,
+    frozen,
+    Burned,
     normal,
-    bailando,
+    dance,
 }
 public class Enemigo : MonoBehaviour {
 
     // Use this for initialization
-    private Jugador jugador;
-    public float vida;
-    public float maxVida;
-    public GameObject BarraVida;
-    public GameObject marcoBarra;
-    private bool muerto;
-    private EstadoEnemigo estadoEnemigo;
-    private float danioBolaComun = 30;
-    private float danioBolaDeHielo = 5;
-    private float danioMiniBolas = 18;
-    private float danioBolaDanzarina = 0;
-    private float danioBolaDeFuego = 10;
-    private float danioBolaExplociva = 50;
-    private float rotarX = 0;
-    private float rotarY = 0;
-    private float rotarZ = 0;
-    public GameObject efectoQuemado;
-    public GameObject efectoCongelado;
-    public GameObject efectoMusica;
-    private bool tocandoSuelo;
-    private bool esquivar;
-    public bool estoyEnPool;
-    private bool unaVez;
+    private Jugador player;
+    public float life;
+    public float maxLife;
+    public GameObject lifeBar;
+    public GameObject framework;
+    private bool dead;
+    private EstadoEnemigo enemyState;
+    private float damageBallCommon = 30;
+    private float damageBallIce = 5;
+    private float damageMiniBalls = 18;
+    private float damageBallDance = 0;
+    private float damageFireBall = 10;
+    private float damageExplociveBall = 50;
+    private float rotateX = 0;
+    private float rotateY = 0;
+    private float rotateZ = 0;
+    public GameObject effectBurned;
+    public GameObject effectFrozen;
+    public GameObject effectMusic;
+    private bool touchFloor;
+    private bool dodge;
+    public bool i_AmInPool;
+    private bool once;
     void Start() {
-        unaVez = true;
-        if(Jugador.instanciaJugador != null)
+        once = true;
+        if(Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
-        muerto = false;
-        estadoEnemigo = EstadoEnemigo.normal;
+        dead = false;
+        enemyState = EstadoEnemigo.normal;
         
     }
 
     // Update is called once per frame
     void Update() {
-        if (jugador != null)
+        if (player != null)
         {
-            if (jugador.GetPowerUpDobleDanio())
+            if (player.GetpowerUpDobleDamage())
             {
-                jugador.SetDanioAdicionalPelotaComun(danioBolaComun);
-                jugador.SetDanioAdicionalMiniPelota(danioMiniBolas);
-                jugador.SetDanioAdicionalPelotaHielo(danioBolaDeHielo);
-                jugador.SetDanioAdicionalPelotaFuego(danioBolaDeFuego);
-                jugador.SetDanioAdicionalPelotaExplosiva(danioBolaExplociva);
-                jugador.SetPowerUpDobleDanio(false);
+                player.SetAdditionalDamageCommonBall(damageBallCommon);
+                player.SetAditionalDamageMiniBalls(damageMiniBalls);
+                player.SetAdditionalDamageIceBall(damageBallIce);
+                player.SetAdditionalDamageFireBall(damageFireBall);
+                player.SetAdditionalDamageExplociveBall(damageExplociveBall);
+                player.SetPowerUpDobleDamage(false);
             }
            
         }
         
     }
-    public void Esquivar(int lado, float velocidad, float velAgregado)//tiempo = 1 y tiempoFinal = 2
+    public void Dodge(int lado, float velocidad, float velAgregado)//tiempo = 1 y tiempoFinal = 2
     {
         
         if (lado == 1)
@@ -78,131 +79,132 @@ public class Enemigo : MonoBehaviour {
             transform.position += transform.forward * Time.deltaTime * velocidad;
         }
     }
-    public void updateHP()
+    public void UpdateHP()
     {
-        if (BarraVida != null)
+        if (lifeBar != null)
         {
-            float z = (float)vida / (float)maxVida;
+            float z = (float)life / (float)maxLife;
             Vector3 ScaleBar = new Vector3(1, 1, z);
-            BarraVida.transform.localScale = ScaleBar;
+            lifeBar.transform.localScale = ScaleBar;
         }
     }
-    public void EstaMuerto()
+    public void IsDead()
     {
-        if (vida <= 0)
+        if (life <= 0)
         {
-            muerto = true;
-            EstructuraDatosAuxiliares.estructuraDatosAuxiliares.DatosJugador.cantEnemigosAbatidos++;
+            dead = true;
+            DataStructure.auxiliaryDataStructure.playerData.downcastEnemies++;
         }
     }
-    public void SetMuerto(bool _muerto)
+    public void SetDead(bool _dead)
     {
-        muerto = _muerto;
+        dead = _dead;
     }
-    public bool GetMuerto()
+    public bool GetDead()
     {
-        return muerto;
+        return dead;
     }
-    public void SetEstadoEnemigo(EstadoEnemigo estado)
+    public void SetEnemyState(EstadoEnemigo state)
     {
-        estadoEnemigo = estado;
+        enemyState = state;
     }
-    public EstadoEnemigo GetEstadoEnemigo()
+    public EstadoEnemigo GetEnemyState()
     {
-        return estadoEnemigo;
+        return enemyState;
     }
-    public void SetRotarX(float rotX)
+    public void SetRotateX(float rotX)
     {
-        rotarX = rotX;
+        rotateX = rotX;
     }
-    public void SetRotarY(float rotY)
+    public void SetRotateY(float rotY)
     {
-        rotarY = rotY;
+        rotateY = rotY;
     }
-    public void SetRotarZ(float rotZ)
+    public void SetRotateZ(float rotZ)
     {
-        rotarZ = rotZ;
+        rotateZ = rotZ;
     }
-    public float GetRotarX()
+    public float GetRotateX()
     {
-        return rotarX;
+        return rotateX;
     }
-    public float GetRotarY()
+    public float GetRotateY()
     {
-        return rotarY;
+        return rotateY;
     }
-    public float GetRotarZ()
+    public float GetRotateZ()
     {
-        return rotarZ;
+        return rotateZ;
     }
-    public void Rotar()
+    public void Rotate()
     {
-        transform.Rotate(rotarX, rotarY, rotarZ);
+        transform.Rotate(rotateX, rotateY, rotateZ);
     }
-    public void SetTocandoSuelo(bool tocando)
+    public void SetTouchFloor(bool touch)
     {
-        tocandoSuelo = tocando;
+        touchFloor = touch;
     }
-    public bool GetTocandoSuelo()
+    public bool GetTouchFloor()
     {
-        return tocandoSuelo;
+        return touchFloor;
     }
-    public void SetDanioBolaComun(float danioNuevo)
+    public void SetDamageCommonBall(float newDamage)
     {
-        danioBolaComun = danioNuevo;
+        damageBallCommon = newDamage;
     }
-    public void SetDanioBolaHielo(float danioNuevo)
+    public void SetDamageIceBall(float newDamage)
     {
-        danioBolaDeHielo = danioNuevo;
+        damageBallIce = newDamage;
     }
-    public void SetDanioMiniBola(float danioNuevo)
+    public void SetDamageMiniBall(float newDamage)
     {
-        danioMiniBolas = danioNuevo;
+        damageMiniBalls = newDamage;
     }
-    public void SetDanioBolaDanzarina(float danioNuevo)
+    public void SetDamageDanceBall(float newDamage)
     {
-        danioBolaDanzarina = danioNuevo;
+        damageBallDance = newDamage;
     }
-    public void SetDanioBolaFuego(float danioNuevo)
+    public void SetDamageFireBall(float newDamage)
     {
-        danioBolaDeFuego = danioNuevo;
+        damageFireBall = newDamage;
     }
-    public void SetDanioBolaExplociva(float danioNuevo)
+    public void SetDamageExplociveBall(float newDamage)
     {
-        danioBolaExplociva = danioNuevo;
+        damageExplociveBall = newDamage;
     }
 
-    public float GetDanioBolaComun()
+    public float GetDamageCommonBall()
     {
-        return danioBolaComun;
+        return damageBallCommon;
     }
-    public float GetDanioBolaHielo()
+    public float GetDamageIceBall()
     {
-        return danioBolaDeHielo;
+        return damageBallIce;
     }
-    public float GetDanioMiniBola()
+    public float GetDamageMiniBall()
     {
-        return danioMiniBolas;
+        return damageMiniBalls;
     }
-    public float GetDanioBolaDanzarina()
+    public float GetDamageDanceBall()
     {
-        return danioBolaDanzarina;
+        return damageBallDance;
     }
-    public float GetDanioBolaFuego()
+    public float GetDamageFireBall()
     {
-        return danioBolaDeFuego;
+        return damageFireBall;
     }
-    public float GetDanioBolaExplociva()
+    public float GetDamageExplociveBall()
     {
-        return danioBolaExplociva;
+        return damageExplociveBall;
     }
-    public void SetEsquivar(bool _esquivar)
+    public void SetDodge(bool _esquivar)
     {
-        esquivar = _esquivar;
+        dodge = _esquivar;
     }
-    public bool GetEsquivar()
+    public bool GetDodge()
     {
-        return esquivar;
+        return dodge;
     }
 
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

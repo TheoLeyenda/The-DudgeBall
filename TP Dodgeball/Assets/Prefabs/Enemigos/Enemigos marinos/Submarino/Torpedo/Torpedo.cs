@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class Torpedo : Enemigo {
 
     // Use this for initialization
-    public float Velocidad;
-    public float VelocidadInicial;
-    public float Danio;
+    public float speed;
+    public float initialSpeed;
+    public float damage;
     public PoolPelota pool;
-    public float dileyAdelante;
-    public GameObject burbujas;
+    public float dileyForward;
+    public GameObject bubbles;
 
-    private float auxVelocidaInicial;
-    private float auxVelocidad;
-    private float timeEstado;
-    private float efectoFuego;
-    private float auxDileyAdelante;
-    private float auxVida;
+    private float auxInitaialSpeed;
+    private float auxSpeed;
+    private float timeState;
+    private float effectFire;
+    private float auxDileyForward;
+    private float auxLife;
     private Rigidbody rig;
     public AudioSource Audio;
     public AudioClip clipTorpedo;
@@ -28,115 +29,115 @@ public class Torpedo : Enemigo {
         rig = GetComponent<Rigidbody>();
         rig.velocity = Vector3.zero;
         rig.angularVelocity = Vector3.zero;
-        auxDileyAdelante = dileyAdelante;
-        vida = maxVida;
-        auxVelocidaInicial = VelocidadInicial;
-        auxVelocidad = Velocidad;
+        auxDileyForward = dileyForward;
+        life = maxLife;
+        auxInitaialSpeed = initialSpeed;
+        auxSpeed = speed;
     }
 
-    public void Prendido()
+    public void On()
     {
         Audio.PlayOneShot(clipTorpedo);
-        SetEstadoEnemigo(EstadoEnemigo.normal);
+        SetEnemyState(EstadoEnemigo.normal);
         poolObject = GetComponent<PoolObject>();
         rig = GetComponent<Rigidbody>();
         rig.velocity = Vector3.zero;
         rig.angularVelocity = Vector3.zero;
-        auxDileyAdelante = dileyAdelante;
-        vida = maxVida;
-        timeEstado = 0;
+        auxDileyForward = dileyForward;
+        life = maxLife;
+        timeState = 0;
     }
     // Update is called once per frame
     void Update()
     {
-        Moverse();
-        CheckMuerto();
-        if (timeEstado > 0)
+        Move();
+        CheckDead();
+        if (timeState > 0)
         {
-            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
+            if (GetEnemyState() == EstadoEnemigo.dance)
             {
-                SetRotarY(90);
-                Rotar();
+                SetRotateY(90);
+                Rotate();
             }
-            if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
+            if (GetEnemyState() == EstadoEnemigo.frozen)
             {
-                Velocidad = 0;
-                VelocidadInicial = 0;
+                speed = 0;
+                initialSpeed = 0;
             }
-            timeEstado = timeEstado - Time.deltaTime;
+            timeState = timeState - Time.deltaTime;
         }
-        if (timeEstado <= 0)
+        if (timeState <= 0)
         {
-            if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
+            if (GetEnemyState() == EstadoEnemigo.frozen)
             {
-                Velocidad = auxVelocidad;
-                VelocidadInicial = auxVelocidaInicial;
-                if (efectoCongelado != null && efectoMusica != null)
+                speed = auxSpeed;
+                initialSpeed = auxInitaialSpeed;
+                if (effectFrozen != null && effectMusic != null)
                 {
-                    efectoCongelado.SetActive(false);
-                    efectoMusica.SetActive(false);
+                    effectFrozen.SetActive(false);
+                    effectMusic.SetActive(false);
                 }
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                SetEnemyState(EstadoEnemigo.normal);
 
             }
-            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
+            if (GetEnemyState() == EstadoEnemigo.dance)
             {
-                if (efectoCongelado != null && efectoMusica != null)
+                if (effectFrozen != null && effectMusic != null)
                 {
-                    efectoMusica.SetActive(false);
-                    efectoCongelado.SetActive(false);
+                    effectMusic.SetActive(false);
+                    effectFrozen.SetActive(false);
                 }
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                SetEnemyState(EstadoEnemigo.normal);
             }
-            if (GetEstadoEnemigo() == EstadoEnemigo.quemado)
+            if (GetEnemyState() == EstadoEnemigo.Burned)
             {
-                if ( efectoCongelado != null && efectoMusica != null)
+                if ( effectFrozen != null && effectMusic != null)
                 {
-                    efectoMusica.SetActive(false);
-                    efectoCongelado.SetActive(false);
+                    effectMusic.SetActive(false);
+                    effectFrozen.SetActive(false);
                 }
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                SetEnemyState(EstadoEnemigo.normal);
             }
         }
     }
-    public void Moverse()
+    public void Move()
     {
-        if (GetEstadoEnemigo() != EstadoEnemigo.congelado && GetEstadoEnemigo() != EstadoEnemigo.bailando)
+        if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
         {
-            if (dileyAdelante > 0)
+            if (dileyForward > 0)
             {
-                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadInicial;
-                burbujas.SetActive(false);
+                transform.position = transform.position + transform.forward * Time.deltaTime * initialSpeed;
+                bubbles.SetActive(false);
             }
-            if (dileyAdelante < 0)
+            if (dileyForward < 0)
             {
-                burbujas.SetActive(true);
-                if (Jugador.GetJugador() != null)
+                bubbles.SetActive(true);
+                if (Jugador.GetPlayer() != null)
                 {
-                    transform.LookAt(Jugador.GetJugador().transform.position);
-                    transform.position = transform.position + transform.forward * Time.deltaTime * Velocidad;
+                    transform.LookAt(Jugador.GetPlayer().transform.position);
+                    transform.position = transform.position + transform.forward * Time.deltaTime * speed;
                 }
             }
-            dileyAdelante = dileyAdelante - Time.deltaTime;
+            dileyForward = dileyForward - Time.deltaTime;
         }
     }
-    public void CheckMuerto()
+    public void CheckDead()
     {
-        if (vida <= 0)
+        if (life <= 0)
         {
-            if (GetMuerto())
+            if (GetDead())
             {
-                if (Jugador.GetJugador() != null)
+                if (Jugador.GetPlayer() != null)
                 {
-                    Jugador.GetJugador().SumarPuntos(250);
+                    Jugador.GetPlayer().AddScore(250);
                 }
-                if (!estoyEnPool)
+                if (!i_AmInPool)
                 {
                     gameObject.SetActive(false);
                 }
-                if (estoyEnPool)
+                if (i_AmInPool)
                 {
-                    poolObject.Resiclarme();
+                    poolObject.Recycle();
                 }
             }
         }
@@ -145,119 +146,119 @@ public class Torpedo : Enemigo {
     {
         if (other.gameObject.tag == "PelotaComun")
         {
-            if (Jugador.GetJugador() != null)
+            if (Jugador.GetPlayer() != null)
             {
-                vida = vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun());
-                EstaMuerto();
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                life = life - (GetDamageCommonBall() + Jugador.GetPlayer().GetAdditionalDamageCommonBall());
+                IsDead();
+                if (Jugador.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(1 * 2);
+                    Jugador.GetPlayer().AddScore(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(1);
+                    Jugador.GetPlayer().AddScore(1);
                 }
             }
         }
         if (other.gameObject.tag == "PelotaDeHielo")
         {
-            if (Jugador.GetJugador() != null)
+            if (Jugador.GetPlayer() != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (Jugador.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(1 * 2);
+                    Jugador.GetPlayer().AddScore(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(1);
+                    Jugador.GetPlayer().AddScore(1);
                 }
-                vida = vida - (GetDanioBolaHielo() + Jugador.GetJugador().GetDanioAdicionalPelotaHielo());
+                life = life - (GetDamageIceBall() + Jugador.GetPlayer().GetAdditionalDamageIceBall());
             }
-            EstaMuerto();
-            if (Velocidad > 0 || VelocidadInicial > 0)
+            IsDead();
+            if (speed > 0 || initialSpeed > 0)
             {
-                Velocidad = Velocidad - 2f;
-                VelocidadInicial = VelocidadInicial - 4f;
+                speed = speed - 2f;
+                initialSpeed = initialSpeed - 4f;
                 //velMovimiento = 0;
             }
-            if (Velocidad <= 0 || VelocidadInicial <= 0)
+            if (speed <= 0 || initialSpeed <= 0)
             {
-                SetEstadoEnemigo(EstadoEnemigo.congelado);
-                efectoCongelado.SetActive(true);
-                timeEstado = 2.5f;//tiempo por el cual el enemigo "Corredor" estara congelado
+                SetEnemyState(EstadoEnemigo.frozen);
+                effectFrozen.SetActive(true);
+                timeState = 2.5f;//tiempo por el cual el enemigo "Corredor" estara congelado
             }
         }
         if (other.gameObject.tag == "MiniPelota")
         {
-            if (Jugador.GetJugador() != null)
+            if (Jugador.GetPlayer() != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (Jugador.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(1 * 2);
+                    Jugador.GetPlayer().AddScore(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(1);
+                    Jugador.GetPlayer().AddScore(1);
                 }
-                vida = vida - (GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota());
-                EstaMuerto();
+                life = life - (GetDamageMiniBall() + Jugador.GetPlayer().GetAditionalDamageMiniBalls());
+                IsDead();
             }
         }
         if (other.gameObject.tag == "PelotaDanzarina")
         {
-            if (Jugador.GetJugador() != null)
+            if (Jugador.GetPlayer() != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (Jugador.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(1 * 2);
+                    Jugador.GetPlayer().AddScore(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(1);
+                    Jugador.GetPlayer().AddScore(1);
                 }
             }
-            if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+            if (GetEnemyState() != EstadoEnemigo.dance)
             {
-                timeEstado = 1.5f;//tiempo por el cual el enemigo estara bailando
+                timeState = 1.5f;//tiempo por el cual el enemigo estara bailando
             }
-            SetEstadoEnemigo(EstadoEnemigo.bailando);
-            efectoMusica.SetActive(true);
-            vida = vida - GetDanioBolaDanzarina();
-            EstaMuerto();
+            SetEnemyState(EstadoEnemigo.dance);
+            effectMusic.SetActive(true);
+            life = life - GetDamageDanceBall();
+            IsDead();
 
         }
         if (other.gameObject.tag == "PelotaExplociva")
         {
-            if (Jugador.GetJugador() != null)
+            if (Jugador.GetPlayer() != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (Jugador.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(1 * 2);
+                    Jugador.GetPlayer().AddScore(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(1);
+                    Jugador.GetPlayer().AddScore(1);
                 }
-                vida = vida - (GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
+                life = life - (GetDamageExplociveBall() + Jugador.GetPlayer().GetAdditionalDamageExplociveBall());
             }
-            EstaMuerto();
+            IsDead();
 
         }
         if(other.gameObject.tag == "Player")
         {
-            if(Jugador.GetJugador() != null)
+            if(Jugador.GetPlayer() != null)
             {
-                if (Jugador.instanciaJugador.blindaje > 0)
+                if (Jugador.InstancePlayer.armor > 0)
                 {
-                    Jugador.instanciaJugador.blindaje = Jugador.instanciaJugador.blindaje - Danio;
+                    Jugador.InstancePlayer.armor = Jugador.InstancePlayer.armor - damage;
                 }
                 else
                 {
-                    Jugador.GetJugador().vida = Jugador.GetJugador().vida - Danio;
+                    Jugador.GetPlayer().life = Jugador.GetPlayer().life - damage;
                 }
-                if (estoyEnPool)
+                if (i_AmInPool)
                 {
-                    poolObject.Resiclarme();
+                    poolObject.Recycle();
                 }
                 else
                 {
@@ -267,3 +268,4 @@ public class Torpedo : Enemigo {
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

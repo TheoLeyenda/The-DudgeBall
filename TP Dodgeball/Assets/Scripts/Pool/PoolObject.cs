@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class PoolObject : MonoBehaviour {
 
     // Use this for initialization
@@ -13,8 +15,9 @@ public class PoolObject : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void Resiclarme()
+    public void Recycle()
     {
         pool.Recycle(this.gameObject);
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

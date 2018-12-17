@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class Barril : MonoBehaviour {
 
     // Use this for initialization
-    public PuertaPuzle puertaPuzle;
-    private bool unaVez;
+    public PuertaPuzle PuzleDoor;
+    private bool once;
 	void Start () {
-        unaVez = true;
+        once = true;
 	}
     private void OnDisable()
     {
-        if (unaVez)
+        if (once)
         {
-            puertaPuzle.sumarBarrilDerribado();
+            PuzleDoor.AddBarrelDown();
             //unaVez = false;
         }
     }
@@ -30,3 +32,4 @@ public class Barril : MonoBehaviour {
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

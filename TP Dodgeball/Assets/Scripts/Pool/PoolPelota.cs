@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class PoolPelota : MonoBehaviour {
 
-    public GameObject Pelota;
-    private List<GameObject> PelotasComunes;
+    public GameObject Ball;
+    private List<GameObject> CommonBalls;
     public int count;
     private int id;
-    private bool resetarValoresPelota;
+    private bool substractValuesBalls;
     // Use this for initialization
     void Awake()
     {
-        PelotasComunes = new List<GameObject>();
+        CommonBalls = new List<GameObject>();
         for(int i = 0; i< count; i++)
         {
-            GameObject go = Instantiate(Pelota);
+            GameObject go = Instantiate(Ball);
             PoolObject po;
             go.SetActive(false);
-            PelotasComunes.Add(go);
+            CommonBalls.Add(go);
             po = go.AddComponent<PoolObject>();
             po.pool = this;
         }
@@ -30,11 +32,11 @@ public class PoolPelota : MonoBehaviour {
     }
     public List<GameObject> GetListPelotasComunes()
     {
-        return PelotasComunes;
+        return CommonBalls;
     }
     public GameObject GetObject()
     {
-        GameObject go = PelotasComunes[id];
+        GameObject go = CommonBalls[id];
         go.SetActive(true);
         id++;
         return go;
@@ -43,17 +45,17 @@ public class PoolPelota : MonoBehaviour {
     {
         id--;
         go.SetActive(false);
-        PelotasComunes[id] = go;
+        CommonBalls[id] = go;
     }
     public void SetId(int _id)
     {
         id = _id;
     }
-    public void RestarId()
+    public void SubstractId()
     {
         id = id - 1;
     }
-    public void SumarId()
+    public void AddId()
     {
         id = id + 1;
     }
@@ -62,3 +64,4 @@ public class PoolPelota : MonoBehaviour {
         return id;
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

@@ -2,29 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class PelotaExpliciva : MonoBehaviour {
 
     // Use this for initialization
-    public AudioSource sonido;
-    public AudioClip sonidoExplocion;
+    public AudioSource sound;
+    public AudioClip explotionSound;
     public PoolPelota pool;
     private PoolObject poolObject;
-    private bool tiempoAuxiliarHabilitado;
-    public float potencia;
-    public Camera camara;
-    public float tiempoVida;
-    private float auxTiempoVida;
+    private bool auxiliaryTimeEnabled;
+    public float power;
+    public Camera CAMERA;
+    public float lifeTime;
+    private float auxlifeTime;
     private Rigidbody rigBola;
     //private float poder;
     public float radio;
     //public float upforce;
-    public GameObject bomba;
-    private bool destruir;
-    private float contador;
-    public SphereCollider EsferaColicionadora;
-    public GameObject efectoExplocion;
-    private float contadorEfecto;
-    private bool contar;
+    public GameObject bomb;
+    private bool destroy;
+    private float count;
+    public SphereCollider collisionSphere;
+    public GameObject explotionEffect;
+    private float countEffect;
+    private bool tell;
     private void Start()
     {
         //SI ALGO SE ROMPE CON LA BOMBA DESCOMENTAR ESTA LINEA
@@ -33,86 +35,87 @@ public class PelotaExpliciva : MonoBehaviour {
     private void OnEnable()
     {
         
-        auxTiempoVida = tiempoVida;
+        auxlifeTime = lifeTime;
         
     }
-    public void disparar()
+    public void Shoot()
     {
-        if (tiempoVida <= 0)
+        if (lifeTime <= 0)
         {
-            tiempoVida = auxTiempoVida;
+            lifeTime = auxlifeTime;
         }
         rigBola = GetComponent<Rigidbody>();
         rigBola.velocity = Vector3.zero;
         rigBola.angularVelocity = Vector3.zero;
-        if (EsferaColicionadora != null)
+        if (collisionSphere != null)
         {
-            EsferaColicionadora.radius = radio;
-            EsferaColicionadora.gameObject.SetActive(false);
+            collisionSphere.radius = radio;
+            collisionSphere.gameObject.SetActive(false);
         }
-        rigBola.AddRelativeForce(camara.transform.forward * potencia, ForceMode.Impulse);
-        efectoExplocion.SetActive(false);
-        contadorEfecto = 0;
-        contador = 0;
-        destruir = false;
-        contar = false;
+        rigBola.AddRelativeForce(CAMERA.transform.forward * power, ForceMode.Impulse);
+        explotionEffect.SetActive(false);
+        countEffect = 0;
+        count = 0;
+        destroy = false;
+        tell = false;
         poolObject = GetComponent<PoolObject>();
 
     }
     // Update is called once per frame
     void Update()
     {
-        tiempoVida = tiempoVida - Time.deltaTime;
-        if (tiempoVida <= 0)
+        lifeTime = lifeTime - Time.deltaTime;
+        if (lifeTime <= 0)
         {
-            if(sonido != null && sonidoExplocion != null)
+            if(sound != null && explotionSound != null)
             {
-                sonido.clip = sonidoExplocion;
-                sonido.PlayOneShot(sonidoExplocion);
+                sound.clip = explotionSound;
+                sound.PlayOneShot(explotionSound);
             }
-            Detonar();
-            destruir = true;
-            contar = true;
+            Detonate();
+            destroy = true;
+            tell = true;
         }
-        if(contador>3 && destruir)
+        if(count>3 && destroy)
         {
             //Destroy(this.gameObject);
-            if (EsferaColicionadora != null)
+            if (collisionSphere != null)
             {
-                EsferaColicionadora.gameObject.SetActive(false);
+                collisionSphere.gameObject.SetActive(false);
             }
-            poolObject.Resiclarme();
-            tiempoVida = auxTiempoVida;
+            poolObject.Recycle();
+            lifeTime = auxlifeTime;
         }
-        if(contar)
+        if(tell)
         {
-            contadorEfecto = contadorEfecto + Time.deltaTime;
-            contador = contador + Time.deltaTime;
+            countEffect = countEffect + Time.deltaTime;
+            count = count + Time.deltaTime;
         }
-        if(contadorEfecto >= 1)
+        if(countEffect >= 1)
         {
-            efectoExplocion.SetActive(false);
+            explotionEffect.SetActive(false);
         }
     }
-    void Detonar()
+    void Detonate()
     {
-        if (EsferaColicionadora != null)
+        if (collisionSphere != null)
         {
-            EsferaColicionadora.gameObject.SetActive(true);
+            collisionSphere.gameObject.SetActive(true);
         }
         //Destroy(gameObject);
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (sonido != null && sonidoExplocion != null)
+        if (sound != null && explotionSound != null)
         {
-            sonido.clip = sonidoExplocion;
-            sonido.PlayOneShot(sonidoExplocion);
+            sound.clip = explotionSound;
+            sound.PlayOneShot(explotionSound);
         }
-        Detonar();
-        efectoExplocion.SetActive(true);
-        destruir = true;
-        contar = true;
+        Detonate();
+        explotionEffect.SetActive(true);
+        destroy = true;
+        tell = true;
     }
 
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

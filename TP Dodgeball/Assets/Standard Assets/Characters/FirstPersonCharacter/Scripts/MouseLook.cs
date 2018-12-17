@@ -50,11 +50,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             //float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
             //float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
             //(descomentar esto en caso de que se quiera probar para celular)
-            //float yRot = LookAxis.x * XSensitivity;
-            //float xRot = LookAxis.y * YSensitivity;
+            float yRot = LookAxis.x * XSensitivity;
+            float xRot = LookAxis.y * YSensitivity;
             //------------------------------------
-            //m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
-            //m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
+            m_CharacterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
+            m_CameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
 #elif UNITY_ANDROID
             //PARA CELULAR USAR ESTO
             float yRot = LookAxis.x * XSensitivity;

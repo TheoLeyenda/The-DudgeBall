@@ -2,51 +2,54 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class AbrirPuertaSegunVidaEnemigo : MonoBehaviour {
 
     // Use this for initialization
-    public PuertaRejas puertaRejas;
-    public Enemigo[] enemigos;
-    private int cantEnemigosMuertos;
-    private bool abrirPuerta;
+    public PuertaRejas gateOfBars;
+    public Enemigo[] Enemy;
+    private int countDeathEnemys;
+    private bool openDoor;
 	void Start () {
-        abrirPuerta = false;
+        openDoor = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        CheckEnemigosMuertos();
-        CheckAbrirPuerta();
+        CheckDeathEnemys();
+        CheckOpenDoor();
 	}
-    public void CheckAbrirPuerta()
+    public void CheckOpenDoor()
     {
-        if(abrirPuerta)
+        if(openDoor)
         {
-            if(puertaRejas != null)
+            if(gateOfBars != null)
             {
-                puertaRejas.SetAbrirPuerta(true);
+                gateOfBars.SetOpenDoor(true);
             }
         }
     }
-    public void CheckEnemigosMuertos()
+    public void CheckDeathEnemys()
     {
-        for(int i = 0; i< enemigos.Length; i++)
+        for(int i = 0; i< Enemy.Length; i++)
         {
-            if (enemigos[i] != null)
+            if (Enemy[i] != null)
             {
-                if (enemigos[i].vida <= 0)
+                if (Enemy[i].life <= 0)
                 {
-                    cantEnemigosMuertos++;
+                    countDeathEnemys++;
                 }
             }
         }
-        if(cantEnemigosMuertos >= enemigos.Length)
+        if(countDeathEnemys >= Enemy.Length)
         {
-            abrirPuerta = true;
+            openDoor = true;
         }
         else
         {
-            cantEnemigosMuertos = 0;
+            countDeathEnemys = 0;
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

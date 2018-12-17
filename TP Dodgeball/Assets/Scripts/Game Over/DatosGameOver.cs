@@ -3,54 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class DatosGameOver : MonoBehaviour {
 
     // Use this for initialization
-    private EstructuraDatosAuxiliares estructuraDatosAuxiliares;
+    private DataStructure dataStructure;
     
-    private float puntaje;
-    private float oportunidadesRestantes;
-    private int EnemigosAbatidos;
-    private float vidaRestante;
+    private float score;
+    private float remainingOpportunities;
+    private int downcastEnemies;
+    private float remainingLife;
 
-    public Text textPuntaje;
-    public Text textOportunidadesRestantes;
-    public Text textEnemigosAbatidos;
-    public Text textVidaRestante;
-
-    public 
-	void Start () {
-		if(EstructuraDatosAuxiliares.estructuraDatosAuxiliares != null)
+    public Text textScore;
+    public Text textRemainingOpportunities;
+    public Text textDowncastEnemies;
+    public Text textRemainingLife;
+    
+    void Start ()
+    {
+        if (DataStructure.auxiliaryDataStructure != null)
         {
-            estructuraDatosAuxiliares = EstructuraDatosAuxiliares.estructuraDatosAuxiliares;
-            puntaje = estructuraDatosAuxiliares.DatosJugador.puntos;
-            oportunidadesRestantes = estructuraDatosAuxiliares.DatosJugador.oportunidades;
-            EnemigosAbatidos = estructuraDatosAuxiliares.DatosJugador.cantEnemigosAbatidos;
-            vidaRestante = estructuraDatosAuxiliares.DatosJugador.vida;
+            dataStructure = DataStructure.auxiliaryDataStructure;
+            score = dataStructure.playerData.score;
+            remainingOpportunities = dataStructure.playerData.opportunities;
+            downcastEnemies = dataStructure.playerData.downcastEnemies;
+            remainingLife = dataStructure.playerData.life;
         }
         
-        MostrarDatos();
+        ShowData();
 
     }
 
     // Update is called once per frame
-    public void MostrarDatos()
+    public void ShowData()
     {
-        if (textPuntaje != null)
+        if (textScore != null)
         {
-            textPuntaje.text = "Puntaje: " + puntaje;
+            textScore.text = "Puntaje: " + score;
         }
-        if (textOportunidadesRestantes != null)
+        if (textRemainingOpportunities != null)
         {
-            textOportunidadesRestantes.text = "Oportunidades Restantes: " + oportunidadesRestantes;
+            textRemainingOpportunities.text = "Oportunidades Restantes: " + remainingOpportunities;
         }
-        if (textEnemigosAbatidos != null)
+        if (textDowncastEnemies != null)
         {
-            textEnemigosAbatidos.text = "Enemigos Abatidos:" + EnemigosAbatidos;
+            textDowncastEnemies.text = "Enemigos Abatidos:" + downcastEnemies;
         }
-        if (textVidaRestante)
+        if (textRemainingLife)
         {
-            textVidaRestante.text = "Vida Restante: " + vidaRestante; 
+            textRemainingLife.text = "Vida Restante: " + remainingLife; 
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

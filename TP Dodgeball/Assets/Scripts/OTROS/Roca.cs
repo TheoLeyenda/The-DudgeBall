@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class Roca : MonoBehaviour {
 
     // Use this for initialization
-    public PoolPelota poolRoca;
+    public PoolPelota poolRock;
     private PoolObject poolObject;
     private Rigidbody rig;
     void Start () {
@@ -23,7 +23,8 @@ public class Roca : MonoBehaviour {
         {
             rig.velocity = Vector3.zero;
             rig.angularVelocity = Vector3.zero;
-            poolObject.Resiclarme();
+            poolObject.Recycle();
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

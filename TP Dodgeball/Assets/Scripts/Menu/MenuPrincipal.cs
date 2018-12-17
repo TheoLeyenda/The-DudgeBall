@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class MenuPrincipal : MonoBehaviour {
 
     // Use this for initialization
-    public GameObject menuPrincipal;
-    public GameObject menuInformacion;
-    public GameObject menuControles;
+    public GameObject mainMenu;
+    public GameObject informationMenu;
+    public GameObject controlsMenu;
 	void Start () {
 		
 	}
@@ -17,26 +19,27 @@ public class MenuPrincipal : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void Jugar()
+    public void Play()
     {
         SceneManager.LoadScene("Pantalla de carga");
     }
-    public void MenuPrin()
+    public void MainMenu()
     {
-        menuPrincipal.SetActive(true);
-        menuInformacion.SetActive(false);
-        menuControles.SetActive(false);
+        mainMenu.SetActive(true);
+        informationMenu.SetActive(false);
+        controlsMenu.SetActive(false);
     }
-    public void MenuInformacion()
+    public void InformationMenu()
     {
-        menuPrincipal.SetActive(false);
-        menuInformacion.SetActive(true);
-        menuControles.SetActive(false);
+        mainMenu.SetActive(false);
+        informationMenu.SetActive(true);
+        controlsMenu.SetActive(false);
     }
-    public void MenuControles()
+    public void ControlsMenu()
     {
-        menuPrincipal.SetActive(false);
-        menuInformacion.SetActive(false);
-        menuControles.SetActive(true);
+        mainMenu.SetActive(false);
+        informationMenu.SetActive(false);
+        controlsMenu.SetActive(true);
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

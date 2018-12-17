@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class ReiniciarTodo : MonoBehaviour {
 
     // Use this for initialization
-    private EstructuraDatosAuxiliares estructura;
+    private DataStructure structure;
 	void Start () {
-		if(EstructuraDatosAuxiliares.estructuraDatosAuxiliares != null)
+		if(DataStructure.auxiliaryDataStructure != null)
         {
-            estructura = EstructuraDatosAuxiliares.estructuraDatosAuxiliares;
+            structure = DataStructure.auxiliaryDataStructure;
         }
 	}
 	
@@ -17,23 +19,24 @@ public class ReiniciarTodo : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void Reiniciar()
+    public void Restart()
     {
-        if(estructura != null)
+        if(structure != null)
         {
-            estructura.DatosJugador.powerUpAumentarVida = false;
-            estructura.DatosJugador.powerUpChalecoAntiGolpes = false;
-            estructura.DatosJugador.powerUpDobleDanio = false;
-            estructura.DatosJugador.blindaje = 0;
-            estructura.DatosJugador.cantEnemigosAbatidos = 0;
-            estructura.DatosJugador.municionPelotaDanzarina = 0;
-            estructura.DatosJugador.municionPelotaDeFuego = 0;
-            estructura.DatosJugador.municionPelotaDeHielo = 0;
-            estructura.DatosJugador.municionPelotaExplosiva = 0;
-            estructura.DatosJugador.municionPelotaFragmentadora = 0;
-            estructura.DatosJugador.oportunidades = 10;
-            estructura.DatosJugador.puntos = 0;
-            estructura.DatosJugador.vida = estructura.DatosJugador.maxVida;
+            structure.playerData.powerUpAddLife = false;
+            structure.playerData.powerUpChalecoAntiGolpes = false;
+            structure.playerData.powerUpDobleDamage = false;
+            structure.playerData.armor = 0;
+            structure.playerData.downcastEnemies = 0;
+            structure.playerData.ammoDanceBall = 0;
+            structure.playerData.ammoFireBall = 0;
+            structure.playerData.ammoIceBall = 0;
+            structure.playerData.ammoExplociveBall = 0;
+            structure.playerData.ammoFragmentBall = 0;
+            structure.playerData.opportunities = 10;
+            structure.playerData.score = 0;
+            structure.playerData.life = structure.playerData.maxLife;
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

@@ -3,76 +3,78 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class PuertaPuzle : MonoBehaviour {
 
     // Use this for initialization
-    public Text AvisoAndroid;
-    public Text AvisoWindows;
-    public PuertaRejas puerta;
-    private bool puzleCompletado;
-    private Jugador jugador;
-    private int barrilesDerribados;
-    public GameObject[] barriles;
+    public Text noticeAndroid;
+    public Text noticeWindows;
+    public PuertaRejas door;
+    private bool completedPuzzle;
+    private Jugador player;
+    private int downBarrels;
+    public GameObject[] barrels;
     private float time;
     private float auxTime;
 	void Start () {
         time = 0.1f;
         auxTime = time;
-        if (Jugador.instanciaJugador != null)
+        if (Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
 	}
 
     // Update is called once per frame
     void Update()
     {
-        if (barrilesDerribados >= 3)
+        if (downBarrels >= 3)
         {
-            puzleCompletado = true;
+            completedPuzzle = true;
         }
-        if (barrilesDerribados >= 1 && barrilesDerribados < 3)
+        if (downBarrels >= 1 && downBarrels < 3)
         {
             time = time - Time.deltaTime;
             if (time <= 0)
             {
-                barrilesDerribados = 0;
+                downBarrels = 0;
                 time = auxTime;
-                for (int i = 0; i < barriles.Length; i++)
+                for (int i = 0; i < barrels.Length; i++)
                 {
-                    if (barriles[i] != null)
+                    if (barrels[i] != null)
                     {
-                        barriles[i].SetActive(true);
+                        barrels[i].SetActive(true);
                     }
                 }
             }
         }
 	}
-    public void sumarBarrilDerribado()
+    public void AddBarrelDown()
     {
-        barrilesDerribados++;
+        downBarrels++;
     }
-    public void SetPuzleeCompletado(bool puzzle)
+    public void SetPuzzleCompleted(bool puzzle)
     {
-        puzleCompletado = puzzle;
+        completedPuzzle = puzzle;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            if (puzleCompletado)
+            if (completedPuzzle)
             {
-                puerta.SetAbrirPuerta(true);
+                door.SetOpenDoor(true);
             }
-            if (puzleCompletado == false)
+            if (completedPuzzle == false)
             {
-                if (jugador.jugadorAndroid)
+                if (player.playerAndroid)
                 {
-                    AvisoAndroid.gameObject.SetActive(true);
+                    noticeAndroid.gameObject.SetActive(true);
                 }
-                if(jugador.jugadorWindows)
+                if(player.playerWindows)
                 {
-                    AvisoWindows.gameObject.SetActive(true);
+                    noticeWindows.gameObject.SetActive(true);
                 }
             }
         }
@@ -81,14 +83,15 @@ public class PuertaPuzle : MonoBehaviour {
     {
         if(other.tag == "Player")
         { 
-            if (jugador.jugadorAndroid)
+            if (player.playerAndroid)
             {
-                AvisoAndroid.gameObject.SetActive(false);
+                noticeAndroid.gameObject.SetActive(false);
             }
-            if (jugador.jugadorWindows)
+            if (player.playerWindows)
             {
-                AvisoWindows.gameObject.SetActive(false);
+                noticeWindows.gameObject.SetActive(false);
             }
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

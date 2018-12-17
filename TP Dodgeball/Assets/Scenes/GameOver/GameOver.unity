@@ -190,7 +190,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1354511046}
-        m_MethodName: ResetNivel
+        m_MethodName: ResetLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -201,7 +201,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1354511052}
-        m_MethodName: Reiniciar
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -495,7 +495,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1354511050}
-        m_MethodName: salirApp
+        m_MethodName: ExitApp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -789,14 +789,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae59b259673d4f4f865d0a2f96deb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porsentaje: {fileID: 0}
-  marcoBarraDeCarga: {fileID: 0}
-  carga: {fileID: 0}
-  porsentajeMaximoCarga: 0
-  velocidadCarga: 0
-  PantallaAcargar: 
-  usarString: 0
-  noCargar: 1
+  percentage: {fileID: 0}
+  loadBarFrame: {fileID: 0}
+  load: {fileID: 0}
+  percentageLoadMaximun: 0
+  loadSpeed: 0
+  loadScreen: 
+  usingString: 0
+  notLoad: 1
 --- !u!23 &1354511047
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -863,7 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c803a65c49039da4da9bb0bddf6118f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DesactivarUpdate: 0
+  DisableUpdate: 0
 --- !u!114 &1354511051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,9 +875,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8116e10ea593f247a2810eac4fc7e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nivel: JUEGO COMPLETADO
-  numeroNivel: 0
-  NivelPorNumero: 0
+  level: JUEGO COMPLETADO
+  numberLevel: 0
+  levelByNumber: 0
 --- !u!114 &1354511052
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,73 +4,76 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class PantallaCarga : MonoBehaviour {
 
     // Use this for initialization
-    public Text porsentaje;
-    public GameObject marcoBarraDeCarga;
-    public GameObject carga;
-    public float porsentajeMaximoCarga;
-    public float velocidadCarga;
-    public string PantallaAcargar;
-    private float porsentajeCarga;
-    private bool pasarNivel;
-    public bool usarString;
-    private int nivelACargar;
-    public bool noCargar;
-    private EstructuraDatosAuxiliares estructuraDatos;
+    public Text percentage;
+    public GameObject loadBarFrame;
+    public GameObject load;
+    public float percentageLoadMaximun;
+    public float loadSpeed;
+    public string loadScreen;
+    private float percentageLoad;
+    private bool nextLevel;
+    public bool usingString;
+    private int loadLevel;
+    public bool notLoad;
+    private DataStructure dataStructure;
 	void Start () {
         System.GC.Collect();
-        porsentajeCarga = 0;
-        if(EstructuraDatosAuxiliares.estructuraDatosAuxiliares != null)
+        percentageLoad = 0;
+        if(DataStructure.auxiliaryDataStructure != null)
         {
-            estructuraDatos = EstructuraDatosAuxiliares.estructuraDatosAuxiliares;
+            dataStructure = DataStructure.auxiliaryDataStructure;
         }
-        pasarNivel = false;
+        nextLevel = false;
 	}
 
     // Update is called once per frame
     void Update() {
 
-        if (!noCargar)
+        if (!notLoad)
         {
-            UpdateBarraCarga();
-            if (usarString)
+            UpdateLoadBar();
+            if (usingString)
             {
-                estructuraDatos.PasarNivel();
+                dataStructure.NextLevel();
             }
-            if (pasarNivel && !usarString)
+            if (nextLevel && !usingString)
             {
-                estructuraDatos.PasarNivel();
+                dataStructure.NextLevel();
             }
         }
 	}
-    public void UpdateBarraCarga()
+    public void UpdateLoadBar()
     {
-        porsentajeCarga = porsentajeCarga + Time.deltaTime * velocidadCarga;
-        if (carga != null)
+        percentageLoad = percentageLoad + Time.deltaTime * loadSpeed;
+        if (load != null)
         {
-            float z = (float)porsentajeCarga / (float)porsentajeMaximoCarga;
+            float z = (float)percentageLoad / (float)percentageLoadMaximun;
             Vector3 ScaleBar = new Vector3(1, 1, z);
-            carga.transform.localScale = ScaleBar;
+            load.transform.localScale = ScaleBar;
         }
-        porsentaje.text = "" + (int)porsentajeCarga + "%";
-        if (porsentajeCarga >= porsentajeMaximoCarga && !pasarNivel && !usarString)
+        percentage.text = "" + (int)percentageLoad + "%";
+        if (percentageLoad >= percentageLoadMaximun && !nextLevel && !usingString)
         {
-            estructuraDatos.SetNivel(estructuraDatos.datosNivel.I_nivelAcargar + 1);
-            porsentajeCarga = 0;
-            pasarNivel = true;
+            dataStructure.SetLevel(dataStructure.levelData.I_levelLoad + 1);
+            percentageLoad = 0;
+            nextLevel = true;
         }
-        if(porsentajeCarga >= porsentajeMaximoCarga && !pasarNivel && usarString)
+        if(percentageLoad >= percentageLoadMaximun && !nextLevel && usingString)
         {
-            estructuraDatos.SetNivel(PantallaAcargar);
-            porsentajeCarga = 0;
-            pasarNivel = true;
+            dataStructure.SetLevel(loadScreen);
+            percentageLoad = 0;
+            nextLevel = true;
         }
     }
-    public void ResetNivel()
+    public void ResetLevel()
     {
-        estructuraDatos.SetNivel(0);
+        dataStructure.SetLevel(0);
         SceneManager.LoadScene("SplashScreen");
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

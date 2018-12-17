@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class DesbloquearMouse : MonoBehaviour {
 
 	// Use this for initialization
@@ -15,3 +17,4 @@ public class DesbloquearMouse : MonoBehaviour {
 		
 	}
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

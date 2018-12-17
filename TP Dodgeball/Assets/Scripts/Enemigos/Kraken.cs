@@ -1,84 +1,84 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class Kraken : Enemigo {
 
-    public struct DatosRotacion
+    public struct RotationData
     {
-        public float rotacionX;
-        public float rotacionY;
-        public float rotacionZ;
+        public float rotationX;
+        public float rotationY;
+        public float rotationZ;
     }
-    public enum ROTACION
+    public enum ROTATION
     {
         RotNormal = 0,
-        RotAtaque1,
-        RotAtaque2,
+        RotAttack1,
+        RotAttack2,
         Count
     }
     public enum States
     {
 
-        Nadando = 0,
-        Atacar,
-        Retirse,
+        Swiming = 0,
+        Attacking,
+        BackingOut,
         Count
     }
 
     // Use this for initialization
-    private Jugador jugador;
-    private States estados;
+    private Jugador Player;
+    private States states;
     private PoolObject poolObject;
     private Rigidbody rig;
-    private Vector3 posJugador;
+    private Vector3 posPlayer;
     private int id = 0;
-    private float auxFuerzaImpulsoMov;
-    private float auxDileyImpulso;
-    private int tipoAtaque;
-    private float auxDileyDisparo;
-    private float auxTiempoDisparando;
-    private DatosRotacion datRotacion;
-    private ROTACION EstadoRotacion;
+    private float auxPowerImpulseMov;
+    private float auxDileyImpulse;
+    private int AttackKind;
+    private float auxDileyShoot;
+    private float auxTimeShooting;
+    private RotationData datRotation;
+    private ROTATION StateRotation;
     private float timeEstado;
     //private float auxImpulsoDeAtaque;
-    private float efectoFuego;
-    private float auxDileyMovIzquierda;
-    private float auxDileyMovDerecha;
+    private float effectFire;
+    private float auxDileyMovLeft;
+    private float auxDileyMovRight;
 
-    public float danioAumentadoPelotaComun;
-    public float danioAumentadoPelotaFuego;
+    public float danioIncreasedCommonBall;
+    public float danioIncreasedFireBall;
     public float movHorizontal;
-    public float DileyMovDerecha;
-    public float DileyMovIzquierda;
-    public float tiempoDisparando;
-    public float dileyDisparo;
-    public GameObject[] generadorPelota;
+    public float DileyMovRight;
+    public float DileyMovLeft;
+    public float ShootingTime;
+    public float dileyShoot;
+    public GameObject[] generatorBall;
     public Transform[] waypoints;
-    public PoolPelota poolPelotasDeTinta;
-    public float dileyImpulso;
-    public float FuerzaImpulsoMov;
-    public BoxCollider puntoDebil;
-    public BoxCollider puntoMedioDelCuerpo;
-    public float potenciaAtaque;
+    public PoolPelota poolInkBall;
+    public float dileyImpulse;
+    public float PowerImpulseMov;
+    public BoxCollider weakPoint;
+    public BoxCollider midpointOfTheBody;
+    public float powerAttack;
     //public float impulsoDeAtaque;
 
     void Start () {
-        if (Jugador.instanciaJugador != null)
+        if (Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            Player = Jugador.InstancePlayer;
         }
-        auxDileyMovDerecha = DileyMovDerecha;
-        auxDileyMovIzquierda = DileyMovIzquierda;
-        DileyMovDerecha = 0;
-        auxTiempoDisparando = tiempoDisparando;
-        tiempoDisparando = 0;
-        auxDileyDisparo = dileyDisparo;
-        auxDileyImpulso = dileyImpulso;
-        auxFuerzaImpulsoMov = FuerzaImpulsoMov;
+        auxDileyMovRight = DileyMovRight;
+        auxDileyMovLeft = DileyMovLeft;
+        DileyMovRight = 0;
+        auxTimeShooting = ShootingTime;
+        ShootingTime = 0;
+        auxDileyShoot = dileyShoot;
+        auxDileyImpulse = dileyImpulse;
+        auxPowerImpulseMov = PowerImpulseMov;
         id = 0;
         //estados = States.Nadando;
-        EstadoRotacion = ROTACION.RotNormal;
+        StateRotation = ROTATION.RotNormal;
         rig = GetComponent<Rigidbody>();
 	}
 	
@@ -86,118 +86,118 @@ public class Kraken : Enemigo {
 	void Update () {
         if (Time.timeScale > 0)
         {
-            if (tiempoDisparando <= 0)
+            if (ShootingTime <= 0)
             {
-                tipoAtaque = 2;
+                AttackKind = 2;
             }
-            updateHP();
+            UpdateHP();
             UpdateStates();
-            UpdateRotacion();
+            UpdateRotation();
             UpdatePositionPlayer();
-            CheckMuerto();
+            CheckDead();
         }
         //CheckEstados();
     }
-    public void CheckMuerto()
+    public void CheckDead()
     {
-        if (GetMuerto())
+        if (GetDead())
         {
-            if (jugador != null)
+            if (Player != null)
             {
-                jugador.SumarPuntos(250);
+                Player.AddScore(250);
             }
-            if (!estoyEnPool)
+            if (!i_AmInPool)
             {
                 gameObject.SetActive(false);
             }
-            if (estoyEnPool)
+            if (i_AmInPool)
             {
-                poolObject.Resiclarme();
+                poolObject.Recycle();
             }
         }
     }
    
-    public void TirarBola()
+    public void ThrowBall()
     {
         
-        for (int i = 0; i < generadorPelota.Length; i++)
+        for (int i = 0; i < generatorBall.Length; i++)
         {
-            if (tiempoDisparando > 0)
+            if (ShootingTime > 0)
             {
-                tiempoDisparando = tiempoDisparando - Time.deltaTime;
-                if (generadorPelota[i].activeSelf == true)
+                ShootingTime = ShootingTime - Time.deltaTime;
+                if (generatorBall[i].activeSelf == true)
                 {
-                    GameObject go = poolPelotasDeTinta.GetObject();
+                    GameObject go = poolInkBall.GetObject();
                     PelotaEnemigo pelota = go.GetComponent<PelotaEnemigo>();
-                    go.transform.position = generadorPelota[i].transform.position;
-                    go.transform.rotation = generadorPelota[i].transform.rotation;
-                    pelota.Disparar();
+                    go.transform.position = generatorBall[i].transform.position;
+                    go.transform.rotation = generatorBall[i].transform.rotation;
+                    pelota.Shoot();
                 }
             }
         }
     }
     
-    public void ActivarDisparo()
+    public void ActiveShooting()
     {
-        tiempoDisparando = auxTiempoDisparando;
+        ShootingTime = auxTimeShooting;
     }
-    public void UpdateRotacion()
+    public void UpdateRotation()
     {
-        switch((int)EstadoRotacion)
+        switch((int)StateRotation)
         {
-            case (int)ROTACION.RotNormal:
+            case (int)ROTATION.RotNormal:
                 break;
-            case (int)ROTACION.RotAtaque1:
-                SetDatosRotacion();
+            case (int)ROTATION.RotAttack1:
+                SetDataRotation();
                 break;
-            case (int)ROTACION.RotAtaque2:
-                SetDatosRotacion();
+            case (int)ROTATION.RotAttack2:
+                SetDataRotation();
                 break;
         }
     }
     public void UpdateStates()
     {
-        switch ((int)estados)
+        switch ((int)states)
         {
-            case (int)States.Nadando:
-                Nadar();
+            case (int)States.Swiming:
+                Swiming();
                 break;
-            case (int)States.Atacar:
-                Atacar(tipoAtaque);
+            case (int)States.Attacking:
+                Attacking(AttackKind);
                 break;
-            case (int)States.Retirse:
-                Retirarse();
+            case (int)States.BackingOut:
+                BackingOut();
                 break;
         }
     }
-    public void SetDatosRotacion()
+    public void SetDataRotation()
     {
 
-        if (jugador != null)
+        if (Player != null)
         {
-            if (tipoAtaque == 1)
+            if (AttackKind == 1)
             {
-                transform.LookAt(new Vector3(jugador.transform.position.x, transform.position.y + 90, jugador.transform.position.z));
+                transform.LookAt(new Vector3(Player.transform.position.x, transform.position.y + 90, Player.transform.position.z));
             }
-            if (tipoAtaque == 2)
+            if (AttackKind == 2)
             {
-                transform.LookAt(posJugador);
+                transform.LookAt(posPlayer);
                 
             }
         }
     }
-    public void Nadar()
+    public void Swiming()
     {
-        EstadoRotacion = ROTACION.RotNormal;
-        puntoMedioDelCuerpo.enabled = true;
-        puntoDebil.enabled = false;
+        StateRotation = ROTATION.RotNormal;
+        midpointOfTheBody.enabled = true;
+        weakPoint.enabled = false;
         if (waypoints.Length > 0)
         {
             if (waypoints[id] != null)
             {
                 Vector3 target = waypoints[id].position;
                 transform.LookAt(target);
-                transform.position = transform.position + transform.forward * Time.deltaTime * FuerzaImpulsoMov;
+                transform.position = transform.position + transform.forward * Time.deltaTime * PowerImpulseMov;
                 Vector3 diff = target - this.transform.position;
 
                 if (diff.magnitude < 0.3f)
@@ -206,7 +206,7 @@ public class Kraken : Enemigo {
                     if (random < 75)
                     {
                         id++;
-                        FuerzaImpulsoMov = 2;
+                        PowerImpulseMov = 2;
                         if (id >= waypoints.Length)
                         {
                             id = 0;
@@ -218,96 +218,96 @@ public class Kraken : Enemigo {
                         if(randomTipoAtaque<60)
                         {
                            
-                            tipoAtaque = 1;
-                            ActivarDisparo();
-                            estados = States.Atacar;
+                            AttackKind = 1;
+                            ActiveShooting();
+                            states = States.Attacking;
                         }
                         if(randomTipoAtaque >=60)
                         {
                            
-                            tipoAtaque = 2;
-                            estados = States.Atacar;
+                            AttackKind = 2;
+                            states = States.Attacking;
                         }
                             
                     }
                     
                 }
-                if (FuerzaImpulsoMov > 2)
+                if (PowerImpulseMov > 2)
                 {
-                    FuerzaImpulsoMov = FuerzaImpulsoMov - (Time.deltaTime* 5.2f);
+                    PowerImpulseMov = PowerImpulseMov - (Time.deltaTime* 5.2f);
                 }
-                if(FuerzaImpulsoMov <= 2)
+                if(PowerImpulseMov <= 2)
                 {
-                    if(dileyImpulso > 2)
+                    if(dileyImpulse > 2)
                     {
-                        dileyImpulso = dileyImpulso - (Time.deltaTime* 5.2f);
+                        dileyImpulse = dileyImpulse - (Time.deltaTime* 5.2f);
                     }
-                    if(dileyImpulso <= 2)
+                    if(dileyImpulse <= 2)
                     {
-                        dileyImpulso = auxDileyImpulso;
-                        FuerzaImpulsoMov = auxFuerzaImpulsoMov;
+                        dileyImpulse = auxDileyImpulse;
+                        PowerImpulseMov = auxPowerImpulseMov;
                     }
                 }
             }
         }
     }
-    public void Atacar(int tipoAtaque)
+    public void Attacking(int AttackKind)
     {
         //FALTA HACER QUE EL KRAKEN VAYA HACIA AL JUGADOR Y LE DE UNA OSTIA QUE LO DEJE AL OTRO LADO DEL MAPA(QUE LE APLIQUE UNA FUERZA AL JUGADOR QUE LO
         //SAQUE VOLANTO), LUEGO DE ESTO HACER QUE EL KRAKEN PASE AL ESTADO  RETIRARSE
-        if (transform.position.y <= jugador.transform.position.y)
+        if (transform.position.y <= Player.transform.position.y)
         {
-            estados = States.Retirse;
+            states = States.BackingOut;
         }
-        puntoMedioDelCuerpo.enabled = false;
-        puntoDebil.enabled = true;
+        midpointOfTheBody.enabled = false;
+        weakPoint.enabled = true;
 
-        if (tipoAtaque == 1)
+        if (AttackKind == 1)
         {
 
-            EstadoRotacion = ROTACION.RotAtaque1;
-            if (dileyDisparo <= 0)
+            StateRotation = ROTATION.RotAttack1;
+            if (dileyShoot <= 0)
             {
-                dileyDisparo = auxDileyDisparo;
-                TirarBola();
+                dileyShoot = auxDileyShoot;
+                ThrowBall();
             }
-            if (dileyDisparo > 0)
+            if (dileyShoot > 0)
             {
-                dileyDisparo = dileyDisparo - Time.deltaTime;
+                dileyShoot = dileyShoot - Time.deltaTime;
             }
-            if (DileyMovDerecha > 0)
+            if (DileyMovRight > 0)
             {
                 transform.position = transform.position + transform.right * Time.deltaTime * movHorizontal;
-                DileyMovDerecha = DileyMovDerecha - Time.deltaTime;
-                if (DileyMovDerecha <= 0)
+                DileyMovRight = DileyMovRight - Time.deltaTime;
+                if (DileyMovRight <= 0)
                 {
-                    DileyMovIzquierda = auxDileyMovIzquierda;
-                    DileyMovDerecha = 0;
+                    DileyMovLeft = auxDileyMovLeft;
+                    DileyMovRight = 0;
                 }
             }
 
-            if (DileyMovIzquierda > 0)
+            if (DileyMovLeft > 0)
             {
                 transform.position = transform.position + transform.right * Time.deltaTime * -movHorizontal;
-                DileyMovIzquierda = DileyMovIzquierda - Time.deltaTime;
-                if (DileyMovIzquierda <= 0)
+                DileyMovLeft = DileyMovLeft - Time.deltaTime;
+                if (DileyMovLeft <= 0)
                 {
-                    DileyMovDerecha = auxDileyMovDerecha;
-                    DileyMovIzquierda = 0;
+                    DileyMovRight = auxDileyMovRight;
+                    DileyMovLeft = 0;
                 }
             }
 
         }
         
-        if (tipoAtaque == 2)
+        if (AttackKind == 2)
         {
-            EstadoRotacion = ROTACION.RotAtaque2;
-            transform.position = transform.position + transform.forward * Time.deltaTime * (FuerzaImpulsoMov*potenciaAtaque);
+            StateRotation = ROTATION.RotAttack2;
+            transform.position = transform.position + transform.forward * Time.deltaTime * (PowerImpulseMov*powerAttack);
         }
     }
-    public void Retirarse()
+    public void BackingOut()
     {
-        estados = States.Nadando;
+        states = States.Swiming;
         id++;
         if (id >= waypoints.Length)
         {
@@ -316,10 +316,11 @@ public class Kraken : Enemigo {
     }
     public void UpdatePositionPlayer()
     {
-        if (jugador != null)
+        if (Player != null)
         {
-            posJugador = new Vector3(jugador.transform.position.x+7, jugador.transform.position.y-5, jugador.transform.position.z);
+            posPlayer = new Vector3(Player.transform.position.x+7, Player.transform.position.y-5, Player.transform.position.z);
         }
     }
 
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

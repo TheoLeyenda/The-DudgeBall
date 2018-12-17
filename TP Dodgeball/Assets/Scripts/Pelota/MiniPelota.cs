@@ -1,22 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class MiniPelota : MonoBehaviour {
 
     // Use this for initialization
     public PelotaFragmentadora Base;
-    public float potencia;
-    public float tiempoVida;
-    public float auxTiempoVida;
-    public int tipoRuta;
-    public GameObject pelotaBase;
-    private float angulo;
-    private Rigidbody rigBola;
-    private float rotarX;
-    private float rotarY;
-    private float rotarZ;
-    private bool resiclar;
+    public float power;
+    public float timeLife;
+    public float auxTimeLife;
+    public int typeRoute;
+    public GameObject BaseBall;
+    private float angle;
+    private Rigidbody rigBall;
+    private float rotateX;
+    private float rotateY;
+    private float rotateZ;
+    private bool recycle;
     public AudioSource Audio;
     public AudioClip clip;
 
@@ -24,30 +24,30 @@ public class MiniPelota : MonoBehaviour {
     {
         //Audio = GetComponent<AudioSource>();
         //Audio.PlayOneShot(clip);
-        resiclar = false;
-        rotarX = 0;
-        rotarY = 4;
-        rotarZ = 0;
-        rigBola = GetComponent<Rigidbody>();
-        rigBola.velocity = Vector3.zero;
-        rigBola.angularVelocity = Vector3.zero;
+        recycle = false;
+        rotateX = 0;
+        rotateY = 4;
+        rotateZ = 0;
+        rigBall = GetComponent<Rigidbody>();
+        rigBall.velocity = Vector3.zero;
+        rigBall.angularVelocity = Vector3.zero;
 
-        if (tipoRuta == 1)
+        if (typeRoute == 1)
         {
             //rigBola.AddRelativeForce(transform.forward * potencia, ForceMode.Impulse);
-            rigBola.AddForce(transform.right * potencia, ForceMode.Impulse);
+            rigBall.AddForce(transform.right * power, ForceMode.Impulse);
         }
-        if(tipoRuta == 2)
+        if(typeRoute == 2)
         {
-            transform.Rotate(rotarX, -rotarY, rotarZ);
+            transform.Rotate(rotateX, -rotateY, rotateZ);
             //rigBola.AddRelativeForce(transform.forward * potencia, ForceMode.Impulse);
-            rigBola.AddForce(transform.right * potencia, ForceMode.Impulse);
+            rigBall.AddForce(transform.right * power, ForceMode.Impulse);
         }
-        if (tipoRuta == 3)
+        if (typeRoute == 3)
         {
-            transform.Rotate(rotarX, rotarY, rotarZ);
+            transform.Rotate(rotateX, rotateY, rotateZ);
             // rigBola.AddRelativeForce(transform.forward * potencia, ForceMode.Impulse);
-            rigBola.AddForce(transform.right * potencia, ForceMode.Impulse);
+            rigBall.AddForce(transform.right * power, ForceMode.Impulse);
         }
     }
 
@@ -55,13 +55,13 @@ public class MiniPelota : MonoBehaviour {
     void Update()
     {
 
-        tiempoVida = tiempoVida - Time.deltaTime;
+        timeLife = timeLife - Time.deltaTime;
 
-        if (tiempoVida <= 0)
+        if (timeLife <= 0)
         {
             //Destroy(this.gameObject);
-            resiclar = true;
-            tiempoVida = auxTiempoVida;
+            recycle = true;
+            timeLife = auxTimeLife;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -69,24 +69,25 @@ public class MiniPelota : MonoBehaviour {
         if (other.gameObject.tag != "PelotaFragmentadora" && other.gameObject.tag != "MiniPelota")
         {
             //Destroy(this.gameObject);
-            resiclar = true;
-            tiempoVida = auxTiempoVida;
+            recycle = true;
+            timeLife = auxTimeLife;
         }
     }
-    public bool GetResiclar()
+    public bool GetRecycle()
     {
-        return resiclar;
+        return recycle;
     }
-    public void SetResiclar(bool _resiclar)
+    public void SetRecycle(bool _recycle)
     {
-        resiclar = _resiclar;
+        recycle = _recycle;
     }
-    public void SetTiempoVida(float tiempo)
+    public void SetTimeLife(float time)
     {
-        tiempoVida = tiempo;
+        timeLife = time;
     }
-    public float GetTiempoVida()
+    public float GetTimeLife()
     {
-        return tiempoVida;
+        return timeLife;
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

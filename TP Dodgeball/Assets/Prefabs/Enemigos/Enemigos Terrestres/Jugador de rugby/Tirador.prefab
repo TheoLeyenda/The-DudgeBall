@@ -1202,33 +1202,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5463f3e1f8df5bb409705a78689c0d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 150
-  maxVida: 150
-  BarraVida: {fileID: 1157324672914572}
-  marcoBarra: {fileID: 1913296450299338}
-  efectoQuemado: {fileID: 1388369246638936}
-  efectoCongelado: {fileID: 1315979541742606}
-  efectoMusica: {fileID: 1911461675911026}
-  estoyEnPool: 1
-  auxVida: 150
-  poolTirador: {fileID: 114343732359657828, guid: c2d359284f512a0449e4b7b8ba4f10ac,
+  life: 150
+  maxLife: 150
+  lifeBar: {fileID: 1157324672914572}
+  framework: {fileID: 1913296450299338}
+  effectBurned: {fileID: 1388369246638936}
+  effectFrozen: {fileID: 1315979541742606}
+  effectMusic: {fileID: 1315979541742606}
+  i_AmInPool: 0
+  auxLife: 150
+  poolShooter: {fileID: 114343732359657828, guid: c2d359284f512a0449e4b7b8ba4f10ac,
     type: 2}
-  pelotasRugby: {fileID: 114784017348185434}
-  velocidad: 3
-  dilay: 1.7
-  Bola: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
-  generadorPelota: {fileID: 1085660676339224}
-  tirador: {fileID: 1287565174351690}
-  rangoDoblar: 1
-  rangoVisionEnemigo: 0
-  danio: 20
-  potenciaDisparo: 0
+  rugbyBalls: {fileID: 114784017348185434}
+  speed: 0
+  dilay: 1.5
+  ball: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
+  generatorBall: {fileID: 1085660676339224}
+  shooter: {fileID: 1287565174351690}
+  rangeDouble: 1
+  enemyVisionRange: 0
+  damage: 20
+  powerShoot: 0
   Audio: {fileID: 82219119490209512}
   clip: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
   poolPoderInmune: {fileID: 114514777268955236}
   poolDoblePuntuacion: {fileID: 114703426975621058}
   poolInstaKill: {fileID: 114894181555330850}
-  tipoPatron: 0
+  patternType: 0
 --- !u!114 &114514777268955236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1278114312916220, guid: 37acd911ec02188498101b430ac67a82, type: 2}
+  Ball: {fileID: 0}
   count: 3
 --- !u!114 &114703426975621058
 MonoBehaviour:
@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1134810615268926, guid: f1edec69d96a9e54382f31568f44e217, type: 2}
+  Ball: {fileID: 0}
   count: 3
 --- !u!114 &114784017348185434
 MonoBehaviour:
@@ -1266,7 +1266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
+  Ball: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
   count: 20
 --- !u!114 &114894181555330850
 MonoBehaviour:
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1241760798131488, guid: 9142309ec773ed64dbbd99335ba57289, type: 2}
+  Ball: {fileID: 0}
   count: 3
 --- !u!114 &114942627227381640
 MonoBehaviour:
@@ -1292,14 +1292,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b287d181c574c754eb642d24519e32a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 150
-  maxVida: 150
-  BarraVida: {fileID: 0}
-  marcoBarra: {fileID: 0}
-  efectoQuemado: {fileID: 0}
-  efectoCongelado: {fileID: 0}
-  efectoMusica: {fileID: 0}
-  estoyEnPool: 0
+  life: 150
+  maxLife: 150
+  lifeBar: {fileID: 0}
+  framework: {fileID: 0}
+  effectBurned: {fileID: 0}
+  effectFrozen: {fileID: 0}
+  effectMusic: {fileID: 0}
+  i_AmInPool: 0
 --- !u!198 &198397411130569510
 ParticleSystem:
   m_ObjectHideFlags: 1

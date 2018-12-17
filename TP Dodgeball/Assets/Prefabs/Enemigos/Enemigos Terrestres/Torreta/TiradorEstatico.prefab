@@ -1578,22 +1578,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f7f33a09e25dc4c9b055be6c5f52ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 300
-  maxVida: 300
-  BarraVida: {fileID: 1688300466347070}
-  marcoBarra: {fileID: 1980007889510546}
-  efectoQuemado: {fileID: 1368723099192780}
-  efectoCongelado: {fileID: 1009037284040572}
-  efectoMusica: {fileID: 1029082604560890}
-  estoyEnPool: 0
-  auxVida: 300
-  pelotasRugby: {fileID: 114520711564998794}
+  life: 300
+  maxLife: 300
+  lifeBar: {fileID: 1688300466347070}
+  framework: {fileID: 1980007889510546}
+  effectBurned: {fileID: 1368723099192780}
+  effectFrozen: {fileID: 1009037284040572}
+  effectMusic: {fileID: 1029082604560890}
+  i_AmInPool: 0
+  auxLife: 300
+  rugbyBalls: {fileID: 114520711564998794}
   dilay: 1
-  Bola: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
-  generadorPelota: {fileID: 1303700311380134}
-  tirador: {fileID: 1845889816869878}
-  tipoMovimiento: 0
-  danio: 25
+  Ball: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
+  generatorBalls: {fileID: 1303700311380134}
+  shooter: {fileID: 1845889816869878}
+  movementType: 0
+  damage: 25
   Audio: {fileID: 82921423312594822}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
 --- !u!114 &114520711564998794
@@ -1607,7 +1607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
+  Ball: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
   count: 20
 --- !u!114 &114599259994121654
 MonoBehaviour:
@@ -1620,14 +1620,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b287d181c574c754eb642d24519e32a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 300
-  maxVida: 300
-  BarraVida: {fileID: 0}
-  marcoBarra: {fileID: 0}
-  efectoQuemado: {fileID: 0}
-  efectoCongelado: {fileID: 0}
-  efectoMusica: {fileID: 0}
-  estoyEnPool: 0
+  life: 300
+  maxLife: 300
+  lifeBar: {fileID: 0}
+  framework: {fileID: 0}
+  effectBurned: {fileID: 0}
+  effectFrozen: {fileID: 0}
+  effectMusic: {fileID: 0}
+  i_AmInPool: 0
 --- !u!136 &136349370598202370
 CapsuleCollider:
   m_ObjectHideFlags: 1

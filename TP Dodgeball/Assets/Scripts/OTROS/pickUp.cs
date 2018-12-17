@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class pickUp : MonoBehaviour {
 
     // Use this for initialization
@@ -15,7 +16,7 @@ public class pickUp : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void Prendido()
+    public void On()
     {
         poolObject = GetComponent<PoolObject>();
     }
@@ -23,7 +24,8 @@ public class pickUp : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            poolObject.Resiclarme();
+            poolObject.Recycle();
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

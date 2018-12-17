@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class SpawnerJugador : MonoBehaviour {
 
     // Use this for initialization
-    public GameObject Jugador_Windows;
-    public GameObject Jugador_Android;
+    public GameObject player_Windows;
+    public GameObject player_Android;
 	void Start () {
 #if UNITY_EDITOR
-        if (Jugador_Windows != null)
+        if (player_Windows != null)
         {
-            Instantiate(Jugador_Windows, this.transform.position, Quaternion.identity);
+            Instantiate(player_Windows, this.transform.position, Quaternion.identity);
         }
 #elif UNITY_STANDALOVE
         if (Jugador_Windows != null)
@@ -31,3 +33,5 @@ public class SpawnerJugador : MonoBehaviour {
 		
 	}
 }
+
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

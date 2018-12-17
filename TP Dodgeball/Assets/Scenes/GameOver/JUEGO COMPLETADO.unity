@@ -1352,7 +1352,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1767119091}
-        m_MethodName: ResetNivel
+        m_MethodName: ResetLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1575,10 +1575,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338789e8acc4fd546a8e410b46046cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textPuntaje: {fileID: 468458513}
-  textOportunidadesRestantes: {fileID: 1344158605}
-  textEnemigosAbatidos: {fileID: 196736361}
-  textVidaRestante: {fileID: 164046514}
+  textScore: {fileID: 468458513}
+  textRemainingOpportunities: {fileID: 1344158605}
+  textDowncastEnemies: {fileID: 196736361}
+  textRemainingLife: {fileID: 164046514}
 --- !u!1 &1469370856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,10 +1853,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9ee8f4f5c6f514bb63c2849434a785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JuegoCompletado: {fileID: 2124124204}
-  Creditos: {fileID: 1602150269}
-  Velocidad: 28
-  tiempoSubida: 30
+  completedGame: {fileID: 2124124204}
+  credits: {fileID: 1602150269}
+  speed: 28
+  riseTime: 30
 --- !u!114 &1767119091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1868,14 +1868,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae59b259673d4f4f865d0a2f96deb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porsentaje: {fileID: 0}
-  marcoBarraDeCarga: {fileID: 0}
-  carga: {fileID: 0}
-  porsentajeMaximoCarga: 0
-  velocidadCarga: 0
-  PantallaAcargar: 
-  usarString: 0
-  noCargar: 1
+  percentage: {fileID: 0}
+  loadBarFrame: {fileID: 0}
+  load: {fileID: 0}
+  percentageLoadMaximun: 0
+  loadSpeed: 0
+  loadScreen: 
+  usingString: 0
+  notLoad: 1
 --- !u!1 &1905320144
 GameObject:
   m_ObjectHideFlags: 0

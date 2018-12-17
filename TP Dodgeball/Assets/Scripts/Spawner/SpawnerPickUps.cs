@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class SpawnerPickUps : MonoBehaviour {
 
     // Use this for initialization
@@ -16,7 +18,9 @@ public class SpawnerPickUps : MonoBehaviour {
         pickUp pickUp = go.GetComponent<pickUp>();
         go.transform.position = transform.position;
         go.transform.rotation = transform.rotation;
-        pickUp.Prendido();
+        pickUp.On();
         gameObject.SetActive(false);
     }
 }
+
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

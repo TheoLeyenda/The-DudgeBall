@@ -2,56 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class PuntoDebilKraken : Enemigo {
 
     // Use this for initialization
-    private float timeEstado;
-    private float efectoFuego;
+    private float timeState;
+    private float fireEffect;
     public Kraken kraken;
+    private Jugador instancePlayer;
 	void Start () {
-		
+        if (Jugador.InstancePlayer != null)
+        {
+            instancePlayer = Jugador.InstancePlayer;
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        CheckEstados();
+        CheckStates();
 	}
-    public void CheckEstados()
+    public void CheckStates()
     {
-        if (timeEstado > 0)
+        if (timeState > 0)
         {
             
-            if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.activeSelf)
+            if (GetEnemyState() == EstadoEnemigo.Burned || effectBurned.activeSelf)
             {
-                efectoFuego = efectoFuego + Time.deltaTime;
-                if (efectoFuego >= 1)
+                fireEffect = fireEffect + Time.deltaTime;
+                if (fireEffect >= 1)
                 {
-                    if (Jugador.GetJugador() != null)
+                    if (instancePlayer != null)
                     {
-                        if (Jugador.GetJugador().GetDoblePuntuacion())
+                        if (instancePlayer.GetDoblePoints())
                         {
-                            Jugador.GetJugador().SumarPuntos(5 * 2);
+                            instancePlayer.AddScore(5 * 2);
                         }
                         else
                         {
-                            Jugador.GetJugador().SumarPuntos(5);
+                            instancePlayer.AddScore(5);
                         }
-                        kraken.vida = kraken.vida - (GetDanioBolaFuego() + Jugador.GetJugador().GetDanioAdicionalPelotaFuego() + kraken.danioAumentadoPelotaFuego);
-                        kraken.EstaMuerto();
+                        kraken.life = kraken.life - (GetDamageFireBall() + instancePlayer.GetAdditionalDamageFireBall() + kraken.danioIncreasedFireBall);
+                        kraken.IsDead();
                     }
-                    efectoFuego = 0;
+                    fireEffect = 0;
                 }
                 
             }
-            timeEstado = timeEstado - Time.deltaTime;
+            timeState = timeState - Time.deltaTime;
         }
-        if (timeEstado <= 0)
+        if (timeState <= 0)
         {
 
-            if (GetEstadoEnemigo() == EstadoEnemigo.quemado)
+            if (GetEnemyState() == EstadoEnemigo.Burned)
             {
-                efectoQuemado.SetActive(false);
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                effectBurned.SetActive(false);
+                SetEnemyState(EstadoEnemigo.normal);
             }
         }
     }
@@ -59,66 +64,67 @@ public class PuntoDebilKraken : Enemigo {
     {
         if (other.gameObject.tag == "PelotaComun")
         {
-            if (Jugador.GetJugador() != null)
+            if (instancePlayer != null)
             {
-                kraken.vida = kraken.vida - (GetDanioBolaComun() + Jugador.GetJugador().GetDanioAdicionalPelotaComun() + kraken.danioAumentadoPelotaComun);
-                kraken.EstaMuerto();
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                kraken.life = kraken.life - (GetDamageCommonBall() + instancePlayer.GetAdditionalDamageCommonBall() + kraken.danioIncreasedCommonBall);
+                kraken.IsDead();
+                if (instancePlayer.GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    instancePlayer.AddScore(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    instancePlayer.AddScore(10);
                 }
             }
         }
 
         if (other.gameObject.tag == "MiniPelota")
         {
-            if (Jugador.GetJugador() != null)
+            if (instancePlayer != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (instancePlayer.GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(10 * 2);
+                    instancePlayer.AddScore(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(10);
+                    instancePlayer.AddScore(10);
                 }
-                kraken.vida = kraken.vida - (GetDanioMiniBola() + Jugador.GetJugador().GetDanioAdicionalMiniPelota());
-                kraken.EstaMuerto();
+                kraken.life = kraken.life - (GetDamageMiniBall() + instancePlayer.GetAditionalDamageMiniBalls());
+                kraken.IsDead();
             }
         }
 
         if (other.gameObject.tag == "PelotaDeFuego")
         {
-            if (GetEstadoEnemigo() != EstadoEnemigo.quemado)
+            if (GetEnemyState() != EstadoEnemigo.Burned)
             {
-                timeEstado = 7;
+                timeState = 7;
             }
-            if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+            if (GetEnemyState() != EstadoEnemigo.dance)
             {
-                SetEstadoEnemigo(EstadoEnemigo.quemado);
+                SetEnemyState(EstadoEnemigo.Burned);
             }
-            efectoQuemado.SetActive(true);
+            effectBurned.SetActive(true);
         }
         if (other.gameObject.tag == "PelotaExplociva")
         {
-            if (Jugador.GetJugador() != null)
+            if (instancePlayer != null)
             {
-                if (Jugador.GetJugador().GetDoblePuntuacion())
+                if (instancePlayer.GetDoblePoints())
                 {
-                    Jugador.GetJugador().SumarPuntos(20 * 2);
+                    instancePlayer.AddScore(20 * 2);
                 }
                 else
                 {
-                    Jugador.GetJugador().SumarPuntos(20);
+                    instancePlayer.AddScore(20);
                 }
-                kraken.vida = kraken.vida - (GetDanioBolaExplociva() + Jugador.GetJugador().GetDanioAdicionalPelotaExplociva());
+                kraken.life = kraken.life - (GetDamageExplociveBall() + instancePlayer.GetAdditionalDamageExplociveBall());
             }
-            kraken.EstaMuerto();
+            kraken.IsDead();
 
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

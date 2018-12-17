@@ -159,6 +159,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1432016113375410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4553306416741000}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1554322548395532
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +222,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1771960147610598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4054430400979970}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1796700415263758
 GameObject:
   m_ObjectHideFlags: 1
@@ -257,6 +287,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4054430400979970
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771960147610598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4225745922300136}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4195693140035660
 Transform:
   m_ObjectHideFlags: 1
@@ -270,7 +313,7 @@ Transform:
   - {fileID: 4747650984015136}
   - {fileID: 4948482851405650}
   m_Father: {fileID: 4225745922300136}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4225745922300136
 Transform:
@@ -278,9 +321,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1191930640314322}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.31251, y: 60.63, z: 38.347843}
-  m_LocalScale: {x: 1, y: 2.7662, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -67.350006, y: 0.7726364, z: -17.169998}
+  m_LocalScale: {x: 1, y: 2.7661998, z: 1}
   m_Children:
   - {fileID: 4378527278763290}
   - {fileID: 4583238699431770}
@@ -290,10 +333,12 @@ Transform:
   - {fileID: 4656169597248930}
   - {fileID: 4910575577408062}
   - {fileID: 4396655615101534}
+  - {fileID: 4054430400979970}
+  - {fileID: 4553306416741000}
   - {fileID: 4195693140035660}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4305490009950550
 Transform:
   m_ObjectHideFlags: 1
@@ -361,6 +406,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4378527278763290}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4553306416741000
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1432016113375410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4225745922300136}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4583238699431770
 Transform:
@@ -630,7 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1278114312916220, guid: 37acd911ec02188498101b430ac67a82, type: 2}
+  Ball: {fileID: 1278114312916220, guid: 37acd911ec02188498101b430ac67a82, type: 2}
   count: 3
 --- !u!114 &114445969922267134
 MonoBehaviour:
@@ -643,7 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1241760798131488, guid: 9142309ec773ed64dbbd99335ba57289, type: 2}
+  Ball: {fileID: 1241760798131488, guid: 9142309ec773ed64dbbd99335ba57289, type: 2}
   count: 3
 --- !u!114 &114815260880604044
 MonoBehaviour:
@@ -656,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1134810615268926, guid: f1edec69d96a9e54382f31568f44e217, type: 2}
+  Ball: {fileID: 1134810615268926, guid: f1edec69d96a9e54382f31568f44e217, type: 2}
   count: 3
 --- !u!114 &114924459123740402
 MonoBehaviour:
@@ -669,23 +727,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae49742bbd20ad8479448b615fd8e673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 150
-  maxVida: 150
-  BarraVida: {fileID: 1867315365180226}
-  marcoBarra: {fileID: 1307910765115352}
-  efectoQuemado: {fileID: 1029650287932278}
-  efectoCongelado: {fileID: 1104356226669678}
-  efectoMusica: {fileID: 1755785168054666}
-  estoyEnPool: 1
-  auxVida: 150
+  life: 150
+  maxLife: 150
+  lifeBar: {fileID: 1867315365180226}
+  framework: {fileID: 1307910765115352}
+  effectBurned: {fileID: 1029650287932278}
+  effectFrozen: {fileID: 1104356226669678}
+  effectMusic: {fileID: 1755785168054666}
+  i_AmInPool: 0
+  auxLife: 150
   pool: {fileID: 0}
-  velocidad: 6
-  MaxVelocidad: 10
-  PatronDeMovimiento: 0
-  rangoDoblar: 1
-  rangoVisionEnemigo: 0
-  poolPoderInmune: {fileID: 114329165412501646}
-  poolDoblePuntuacion: {fileID: 114815260880604044}
+  speed: 6
+  MaxSpeed: 10
+  PatternOfMovement: 1
+  rangeBend: 1
+  rangeEnemyVision: 100
+  poolPowerImmune: {fileID: 114329165412501646}
+  poolDoblePoints: {fileID: 114815260880604044}
   poolInstaKill: {fileID: 114445969922267134}
 --- !u!114 &114956403617915710
 MonoBehaviour:
@@ -698,14 +756,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b287d181c574c754eb642d24519e32a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 150
-  maxVida: 150
-  BarraVida: {fileID: 0}
-  marcoBarra: {fileID: 0}
-  efectoQuemado: {fileID: 0}
-  efectoCongelado: {fileID: 0}
-  efectoMusica: {fileID: 0}
-  estoyEnPool: 0
+  life: 0
+  maxLife: 0
+  lifeBar: {fileID: 0}
+  framework: {fileID: 0}
+  effectBurned: {fileID: 0}
+  effectFrozen: {fileID: 0}
+  effectMusic: {fileID: 0}
+  i_AmInPool: 0
 --- !u!198 &198138066748981218
 ParticleSystem:
   m_ObjectHideFlags: 1

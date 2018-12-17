@@ -1,46 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class TorretaSubmarino : MonoBehaviour {
 
     // Use this for initialization
-    private Jugador jugador;
-    public PoolPelota poolBalas;
+    private Jugador player;
+    public PoolPelota poolBullets;
     private PoolObject poolObject;
-    public GameObject generadorBala;
+    public GameObject generatorBullet;
     public float dilay;
     private float auxDilay;
-    private bool disparar;
+    private bool shooting;
     void Start() {
-        if (Jugador.instanciaJugador != null)
+        if (Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
         auxDilay = dilay;
-        disparar = false;
+        shooting = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Movimiento();
-        CheckDisparo();
+        Movement();
+        CheckShooting();
     }
-    public void Disparar()
+    public void Shoot()
     {
-        if (disparar)
+        if (shooting)
         {
-            if (poolBalas.GetId() < poolBalas.count)
+            if (poolBullets.GetId() < poolBullets.count)
             {
-                GameObject go = poolBalas.GetObject();
-                PelotaEnemigo pelota = go.GetComponent<PelotaEnemigo>();
-                go.transform.position = generadorBala.transform.position;
-                go.transform.rotation = generadorBala.transform.rotation;
-                pelota.Disparar();
+                GameObject go = poolBullets.GetObject();
+                PelotaEnemigo bullet = go.GetComponent<PelotaEnemigo>();
+                go.transform.position = generatorBullet.transform.position;
+                go.transform.rotation = generatorBullet.transform.rotation;
+                bullet.Shoot();
             }
         }
     }
-    public void CheckDisparo()
+    public void CheckShooting()
     {
         if (dilay > 0)
         {
@@ -48,26 +48,27 @@ public class TorretaSubmarino : MonoBehaviour {
         }
         if (dilay <= 0)
         {
-            Disparar();
+            Shoot();
             dilay = auxDilay;
         }
     }
-    public void Movimiento()
+    public void Movement()
     {
-        if (jugador != null)
+        if (player != null)
         {
-            if (disparar)
+            if (shooting)
             {
-                transform.LookAt(new Vector3(jugador.transform.position.x, jugador.transform.transform.position.y, jugador.transform.position.z));
+                transform.LookAt(new Vector3(player.transform.position.x, player.transform.transform.position.y, player.transform.position.z));
             }
         }
     }
-    public void SetDisparar(bool _disparar)
+    public void SetShooting(bool _shooting)
     {
-        disparar = _disparar;
+        shooting = _shooting;
     }
-    public bool GetDisparar()
+    public bool GetShooting()
     {
-        return disparar;
+        return shooting;
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

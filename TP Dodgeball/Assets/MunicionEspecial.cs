@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class MunicionEspecial : MonoBehaviour {
 
     // Use this for initialization
     public GameObject pickUp;
-    private Jugador jugador;
+    private Jugador player;
 	void Start () {
-		if(Jugador.instanciaJugador != null)
+		if(Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        checkMunicionJugador();
+        checkAmmoPlayer();
 	}
-    public void checkMunicionJugador()
+    public void checkAmmoPlayer()
     {
-        if(jugador.GetMunicionPelotaFragmentadora() <= 0)
+        if(player.GetAmmoFragmentBall() <= 0)
         {
             pickUp.gameObject.SetActive(true);
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

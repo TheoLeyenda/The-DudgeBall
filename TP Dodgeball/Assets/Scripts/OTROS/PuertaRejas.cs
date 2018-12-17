@@ -2,115 +2,117 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class PuertaRejas : MonoBehaviour {
 
     // Use this for initialization
-    private Animation animacion;
+    private Animation animationDoor;
     public AnimationClip animationClip;
-    public float velocidad;
-    private bool checkDestruirme;
-    private bool activarUnaVez;
-    public float tiempoMov;
-    private bool cerrarPuerta;
-    private bool abrirPuerta;
+    public float speed;
+    private bool checkDestroy;
+    private bool ActivateOnce;
+    public float timeMov;
+    private bool closeDoor;
+    private bool openDoor;
     private float y;
-    private float auxTiempoMov;
-    public GameObject[] objetosActivar;
+    private float auxTimeMov;
+    public GameObject[] ActivateObjects;
     void Start ()
     {
         y = transform.position.y;
-        auxTiempoMov = tiempoMov;
-        animacion = GetComponent<Animation>();
-        if (animationClip != null && animacion != null)
+        auxTimeMov = timeMov;
+        animationDoor = GetComponent<Animation>();
+        if (animationClip != null && animationDoor != null)
         {
-            animacion.clip = animationClip;
+            animationDoor.clip = animationClip;
         }
     }
 
     // Update is called once per frame
     private void OnDisable()
     {
-        if (!activarUnaVez)
+        if (!ActivateOnce)
         {
-            for (int i = 0; i < objetosActivar.Length; i++)
+            for (int i = 0; i < ActivateObjects.Length; i++)
             {
-                if (objetosActivar[i] != null)
+                if (ActivateObjects[i] != null)
                 {
-                    objetosActivar[i].SetActive(true);
+                    ActivateObjects[i].SetActive(true);
                 }
             }
-            activarUnaVez = true;
+            ActivateOnce = true;
         }
     }
     void Update ()
     {
-        if(cerrarPuerta)
+        if(closeDoor)
         {
-            CerrarPuerta();
+            CloseDoor();
         }
-        if(abrirPuerta)
+        if(openDoor)
         {
-            AbrirPuertaSinAnimacion();
+            OpenDoorWithoutAnimation();
         }
-		if(checkDestruirme)
+		if(checkDestroy)
         {
-            if(!animacion.isPlaying)
+            if(!animationDoor.isPlaying)
             {
                 gameObject.SetActive(false);
             }
         }
 	}
-    public void SetCerrarPuerta(bool _cerrar)
+    public void SetCloseDoor(bool _close)
     {
-        cerrarPuerta = _cerrar;
+        closeDoor = _close;
     }
-    public void SetAbrirPuerta(bool _abrir)
+    public void SetOpenDoor(bool _abrir)
     {
-        abrirPuerta = _abrir;
+        openDoor = _abrir;
     }
-    public void AbrirPuerta()
+    public void OpenDoor()
     {
-        animacion.clip = animationClip;        
-        animacion.Play();
-        checkDestruirme = true;
+        animationDoor.clip = animationClip;        
+        animationDoor.Play();
+        checkDestroy = true;
     }
-    public void AbrirPuertaSinAnimacion()
+    public void OpenDoorWithoutAnimation()
     {
-        if (tiempoMov > 0)
+        if (timeMov > 0)
         {
-            tiempoMov = tiempoMov - Time.deltaTime;
-            y = y - Time.deltaTime * velocidad;
+            timeMov = timeMov - Time.deltaTime;
+            y = y - Time.deltaTime * speed;
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
         }
-        if (tiempoMov <= 0)
+        if (timeMov <= 0)
         {
-            tiempoMov = auxTiempoMov;
-            abrirPuerta = false;
+            timeMov = auxTimeMov;
+            openDoor = false;
         }
-        if (!activarUnaVez)
+        if (!ActivateOnce)
         {
-            for (int i = 0; i < objetosActivar.Length; i++)
+            for (int i = 0; i < ActivateObjects.Length; i++)
             {
-                if (objetosActivar[i] != null)
+                if (ActivateObjects[i] != null)
                 {
-                    objetosActivar[i].SetActive(true);
+                    ActivateObjects[i].SetActive(true);
                 }
             }
-            activarUnaVez = true;
+            ActivateOnce = true;
         }
     }
-    public void CerrarPuerta()
+    public void CloseDoor()
     {
-        if(tiempoMov > 0)
+        if(timeMov > 0)
         {
-            tiempoMov = tiempoMov - Time.deltaTime;
-            y = y + Time.deltaTime * velocidad;
+            timeMov = timeMov - Time.deltaTime;
+            y = y + Time.deltaTime * speed;
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
         }
-        if(tiempoMov <= 0)
+        if(timeMov <= 0)
         {
-            tiempoMov = auxTiempoMov;
-            cerrarPuerta = false;
+            timeMov = auxTimeMov;
+            closeDoor = false;
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

@@ -1,111 +1,113 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 
 public class PelotaEnemigo : MonoBehaviour {
 
     // Use this for initialization
     public PoolPelota pool;
     private PoolObject poolObject;
-    private bool tiempoAuxiliarHabilitado;
-    private float auxTiempoVida;
-    public float potencia;
-    public float tiempoVida;
-    public float danio;
-    private Rigidbody rigBola;
-    public GameObject generador;
-    public bool pelotaTinta;
-    public bool flecha;
-    private Jugador jugador;
+    //auxiliaryTimeEnabled
+    private bool auxiliaryTimeEnabled;
+    private float auxTimeLife;
+    public float power;
+    public float timeLife;
+    public float damage;
+    private Rigidbody rigBall;
+    public GameObject generator;
+    public bool tinteBall;
+    public bool arrow;
+    private Jugador player;
     public AudioSource Audio;
-    public AudioClip clipPelotaTinta;
-    public AudioClip clipBala;
-    public AudioClip clipPelotaRugby;
-    public AudioClip clipFlecha;
+    public AudioClip clipTinteBall;
+    public AudioClip clipBullet;
+    public AudioClip clipRugbyBall;
+    public AudioClip clipArrow;
     private void Start()
     {
-        if(Jugador.instanciaJugador != null)
+        if(Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
     }
-    public void Disparar() {
-        if (!pelotaTinta && !flecha)
+    public void Shoot() {
+        if (!tinteBall && !arrow)
         {
-            if (Audio != null && clipPelotaRugby != null)
+            if (Audio != null && clipRugbyBall != null)
             {
-                Audio.clip = clipPelotaRugby;
+                Audio.clip = clipRugbyBall;
                 Audio.Play();
             }
-            rigBola = GetComponent<Rigidbody>();
-            rigBola.velocity = Vector3.zero;
-            rigBola.angularVelocity = Vector3.zero;
-            rigBola.AddRelativeForce(-generador.transform.forward * potencia, ForceMode.Impulse);
+            rigBall = GetComponent<Rigidbody>();
+            rigBall.velocity = Vector3.zero;
+            rigBall.angularVelocity = Vector3.zero;
+            rigBall.AddRelativeForce(-generator.transform.forward * power, ForceMode.Impulse);
             poolObject = GetComponent<PoolObject>();
-            if (!tiempoAuxiliarHabilitado)
+            if (!auxiliaryTimeEnabled)
             {
-                tiempoAuxiliarHabilitado = true;
-                auxTiempoVida = tiempoVida;
+                auxiliaryTimeEnabled = true;
+                auxTimeLife = timeLife;
             }
-            if (tiempoVida <= 0)
+            if (timeLife <= 0)
             {
-                tiempoVida = auxTiempoVida;
+                timeLife = auxTimeLife;
             }
         }
-        if(flecha)
+        if(arrow)
         {
-            if(Audio != null && clipFlecha != null)
+            if(Audio != null && clipArrow != null)
             {
-                Audio.PlayOneShot(clipFlecha);
+                Audio.PlayOneShot(clipArrow);
             }
-            rigBola = GetComponent<Rigidbody>();
-            rigBola.velocity = Vector3.zero;
-            rigBola.angularVelocity = Vector3.zero;
+            rigBall = GetComponent<Rigidbody>();
+            rigBall.velocity = Vector3.zero;
+            rigBall.angularVelocity = Vector3.zero;
             
-            rigBola.AddRelativeForce(generador.transform.up * potencia, ForceMode.Impulse);
+            rigBall.AddRelativeForce(generator.transform.up * power, ForceMode.Impulse);
             poolObject = GetComponent<PoolObject>();
-            if (!tiempoAuxiliarHabilitado)
+            if (!auxiliaryTimeEnabled)
             {
-                tiempoAuxiliarHabilitado = true;
-                auxTiempoVida = tiempoVida;
+                auxiliaryTimeEnabled = true;
+                auxTimeLife = timeLife;
             }
-            if (tiempoVida <= 0)
+            if (timeLife <= 0)
             {
-                tiempoVida = auxTiempoVida;
+                timeLife = auxTimeLife;
             }
         }
-        if(pelotaTinta)
+        if(tinteBall)
         {
-            if (Audio != null && clipPelotaTinta != null)
+            if (Audio != null && clipTinteBall != null)
             {
-                Audio.PlayOneShot(clipPelotaTinta);
+                Audio.PlayOneShot(clipTinteBall);
             }
-            rigBola = GetComponent<Rigidbody>();
-            rigBola.velocity = Vector3.zero;
-            rigBola.angularVelocity = Vector3.zero;
-            rigBola.AddRelativeForce(-generador.transform.up * potencia, ForceMode.Impulse);
+            rigBall = GetComponent<Rigidbody>();
+            rigBall.velocity = Vector3.zero;
+            rigBall.angularVelocity = Vector3.zero;
+            rigBall.AddRelativeForce(-generator.transform.up * power, ForceMode.Impulse);
             poolObject = GetComponent<PoolObject>();
-            if (!tiempoAuxiliarHabilitado)
+            if (!auxiliaryTimeEnabled)
             {
-                tiempoAuxiliarHabilitado = true;
-                auxTiempoVida = tiempoVida;
+                auxiliaryTimeEnabled = true;
+                auxTimeLife = timeLife;
             }
-            if (tiempoVida <= 0)
+            if (timeLife <= 0)
             {
-                tiempoVida = auxTiempoVida;
+                timeLife = auxTimeLife;
             }
         }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        tiempoVida = tiempoVida - Time.deltaTime;
-        if(tiempoVida <= 0)
+        timeLife = timeLife - Time.deltaTime;
+        if(timeLife <= 0)
         {
             //Destroy(this.gameObject);
             if (poolObject != null)
             {
-                poolObject.Resiclarme();
+                poolObject.Recycle();
             }
         }
 	}
@@ -115,22 +117,22 @@ public class PelotaEnemigo : MonoBehaviour {
         {
             if (poolObject != null)
             {
-                poolObject.Resiclarme();
+                poolObject.Recycle();
             }
         }
-        if (jugador != null)
+        if (player != null)
         {
             if (other.gameObject.tag == "Player")
             {
-                if (!jugador.GetInmune())
+                if (!player.GetImmune())
                 {
-                    if (jugador.blindaje > 0)
+                    if (player.armor > 0)
                     {
-                        jugador.blindaje = jugador.blindaje - danio;
+                        player.armor = player.armor - damage;
                     }
                     else
                     {
-                        jugador.vida = jugador.vida - danio;
+                        player.life = player.life - damage;
                     }
                 }
             }
@@ -142,25 +144,26 @@ public class PelotaEnemigo : MonoBehaviour {
         {
             if (poolObject != null)
             {
-                tiempoVida = 0.1f;
+                timeLife = 0.1f;
             }
         }
-        if (jugador != null)
+        if (player != null)
         {
             if (collision.gameObject.tag == "Player")
             {
-                if (!jugador.GetInmune())
+                if (!player.GetImmune())
                 {
-                    if (jugador.blindaje > 0)
+                    if (player.armor > 0)
                     {
-                        jugador.blindaje = jugador.blindaje - danio;
+                        player.armor = player.armor - damage;
                     }
                     else
                     {
-                        jugador.vida = jugador.vida - danio;
+                        player.life = player.life - damage;
                     }
                 }
             }
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

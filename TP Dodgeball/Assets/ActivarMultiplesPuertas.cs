@@ -2,37 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class ActivarMultiplesPuertas : MonoBehaviour {
 
     // Use this for initialization
-    private EstructuraDatosAuxiliares estructuraDatosAuxiliares;
-    private Jugador jugador;
-    public PuertaRejas[] puertas;
-    public Enemigo enemigo;
+    private DataStructure dataStructure;
+    private Jugador player;
+    public PuertaRejas[] doors;
+    public Enemigo enemy;
     public SphereCollider sphereCollider;
 	void Start () { 
-        if(EstructuraDatosAuxiliares.estructuraDatosAuxiliares != null)
+        if(DataStructure.auxiliaryDataStructure != null)
         {
-            estructuraDatosAuxiliares = EstructuraDatosAuxiliares.estructuraDatosAuxiliares;
+            dataStructure = DataStructure.auxiliaryDataStructure;
         }
-        if(Jugador.instanciaJugador != null)
+        if(Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        CheckAbrirPuertas();
+        CheckOpenDoor();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            enemigo.gameObject.SetActive(true);
-            for (int i = 0; i < puertas.Length; i++)
+            enemy.gameObject.SetActive(true);
+            for (int i = 0; i < doors.Length; i++)
             {
-                puertas[i].SetCerrarPuerta(true);
+                doors[i].SetCloseDoor(true);
             }
             if (sphereCollider != null)
             {
@@ -40,17 +42,17 @@ public class ActivarMultiplesPuertas : MonoBehaviour {
             }
         }
     }
-    public void CheckAbrirPuertas()
+    public void CheckOpenDoor()
     {
-        if(enemigo != null)
+        if(enemy != null)
         {
-            if (enemigo.vida <= 0)
+            if (enemy.life <= 0)
             {
-                estructuraDatosAuxiliares.SetDatosJugador(jugador);
-                estructuraDatosAuxiliares.SetValoresDelJugador(jugador);
-                for (int i = 0; i < puertas.Length; i++)
+                dataStructure.SetPlayerData(player);
+                dataStructure.SetPlayerValues(player);
+                for (int i = 0; i < doors.Length; i++)
                 {
-                    puertas[i].SetAbrirPuerta(true);
+                    doors[i].SetOpenDoor(true);
                 }
                 if (sphereCollider != null)
                 {
@@ -61,3 +63,4 @@ public class ActivarMultiplesPuertas : MonoBehaviour {
     }
 
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

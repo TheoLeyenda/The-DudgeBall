@@ -2,191 +2,194 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class SpawnerEnemigos : MonoBehaviour {
 
     // Use this for initialization
     public PoolPelota poolEnemigo;
     private PoolObject poolObject;
     //public GameObject Enemigo;
-    public int cantEnemigosInicial;
-    public float dileyCreacion;
-    private int TOPE_CREACION;
-    private float auxDileyCreacion;
-    public float rangoX;
-    public float rangoZ;
-    private int creaciones;
-    public float velocidadEnemigo;
-    private bool enFuncionamiento;
-    public float IncrementoCreacion;
-    private int TOPE_MAXIMO;
-    public int tipoEnemigo;
-    public int patronEnemigo;
-    public float danioTirador;
-    public float potenciaTirador;
-    public float rangoVisionEnemigo;
-    public bool EvitarCreacionInstantanea;
-    public bool activarCreacionEscalada;
-    public float DileyTirador;
+    public int initialEnemyAmount;
+    public float dileyCreation;
+    private int TOP_CREATION;
+    private float auxDileyCreation;
+    public float rangeX;
+    public float rangeZ;
+    private int creations;
+    public float enemySpeed;
+    private bool inWorking;
+    public float incrementCreation;
+    private int TOP_MAXIMUM;
+    public int enemyType;
+    public int enemyPattern;
+    public float damageShooter;
+    public float powerShooter;
+    public float enemyVisionRange;
+    public bool avoidInstantCreation;
+    public bool activedInstantCreation;
+    public float DileyShooter;
     void Start() {
-        auxDileyCreacion = dileyCreacion;
-        TOPE_CREACION = cantEnemigosInicial;
-        enFuncionamiento = true;
-        TOPE_MAXIMO = poolEnemigo.count;
-        if (!EvitarCreacionInstantanea)
+        auxDileyCreation = dileyCreation;
+        TOP_CREATION = initialEnemyAmount;
+        inWorking = true;
+        TOP_MAXIMUM = poolEnemigo.count;
+        if (!avoidInstantCreation)
         {
-            dileyCreacion = 0;
+            dileyCreation = 0;
         }
     }
 
     // Update is called once per frame
     void Update() {
-        if(GameManager.GetGameManager().verificarVictoria)
+        if(GameManager.GetGameManager().checkVictory)
         {
-            GameManager.GetGameManager().VerificarVictoria();
+            GameManager.GetGameManager().CheckVictory();
         }
-        if (GameManager.GetGameManager().cantEnemigosEnPantalla <= 0)
+        if (GameManager.GetGameManager().enemyAmountOnScreen <= 0)
         {
             GameManager.GetGameManager().SetEntrarRonda(true);
         }
-        if (enFuncionamiento && TOPE_CREACION < TOPE_MAXIMO && GameManager.GetGameManager().supervivencia && GameManager.GetGameManager().GetVictoria() == false && poolEnemigo.GetId() < poolEnemigo.count)
+        if (inWorking && TOP_CREATION < TOP_MAXIMUM && GameManager.GetGameManager().survival && GameManager.GetGameManager().GetVictory() == false && poolEnemigo.GetId() < poolEnemigo.count)
         {
-            if (dileyCreacion > 0)
+            if (dileyCreation > 0)
             {
-                dileyCreacion = dileyCreacion - Time.deltaTime;
+                dileyCreation = dileyCreation - Time.deltaTime;
             }
-            if (dileyCreacion <= 0 && creaciones < TOPE_CREACION)
+            if (dileyCreation <= 0 && creations < TOP_CREATION)
             {
                 if (GameManager.GetGameManager() != null)
                 {
-                    GameManager.GetGameManager().SumarEnemigoEnPantalla();
+                    GameManager.GetGameManager().AddEnemyAmoutOnScreen();
                 }
-                creaciones++;
-                if (tipoEnemigo == 1)
+                creations++;
+                if (enemyType == 1)
                 {
                     GameObject go = poolEnemigo.GetObject();
-                    Corredor corredor = go.GetComponent<Corredor>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX),0, Random.Range(0, rangoZ));
+                    Corredor runner = go.GetComponent<Corredor>();
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX),0, Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
-                    corredor.Prendido();
-                    corredor.rangoVisionEnemigo = rangoVisionEnemigo;
-                    corredor.PatronDeMovimiento = patronEnemigo;
-                    if (GameManager.GetGameManager().GetRonda() > 0)
+                    runner.On();
+                    runner.rangeEnemyVision = enemyVisionRange;
+                    runner.PatternOfMovement = enemyPattern;
+                    if (GameManager.GetGameManager().GetRound() > 0)
                     {
-                        corredor.SumarVelocidad();
+                        runner.AddSpeed();
                     }
                 }
-                if (tipoEnemigo == 2)
+                if (enemyType == 2)
                 {
                     GameObject go = poolEnemigo.GetObject();
-                    Tirador tirador = go.GetComponent<Tirador>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), 0, Random.Range(0, rangoZ));
+                    Tirador shooter = go.GetComponent<Tirador>();
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0, Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
-                    if (DileyTirador > 0)
+                    if (DileyShooter > 0)
                     {
-                        tirador.dilay = DileyTirador;
+                        shooter.dilay = DileyShooter;
                     }
-                    tirador.Prendido();
-                    tirador.rangoVisionEnemigo = rangoVisionEnemigo;
-                    tirador.tipoPatron = patronEnemigo;
-                    if (danioTirador > 0)
+                    shooter.Prendido();
+                    shooter.enemyVisionRange = enemyVisionRange;
+                    shooter.patternType = enemyPattern;
+                    if (damageShooter > 0)
                     {
-                        tirador.danio = danioTirador;
+                        shooter.damage = damageShooter;
                     }
-                    if(potenciaTirador> 0)
+                    if(powerShooter> 0)
                     {
-                        tirador.potenciaDisparo = potenciaTirador;
+                        shooter.powerShoot = powerShooter;
                     }
-                    if (GameManager.GetGameManager().GetRonda() > 1)
+                    if (GameManager.GetGameManager().GetRound() > 1)
                     {
-                        tirador.SumarVelocidad();
+                        shooter.AddSpeed();
                     }
                 }
-                dileyCreacion = auxDileyCreacion;
+                dileyCreation = auxDileyCreation;
             }
-            if (creaciones >= TOPE_CREACION)
+            if (creations >= TOP_CREATION)
             {
-                creaciones = 0;
-                TOPE_CREACION = TOPE_CREACION + (int)IncrementoCreacion;
-                enFuncionamiento = false;
+                creations = 0;
+                TOP_CREATION = TOP_CREATION + (int)incrementCreation;
+                inWorking = false;
             }
         }
-        if (enFuncionamiento && GameManager.GetGameManager().historia && activarCreacionEscalada == false && GameManager.GetGameManager().GetVictoria() == false && poolEnemigo.GetId() < poolEnemigo.count)
+        if (inWorking && GameManager.GetGameManager().history && activedInstantCreation == false && GameManager.GetGameManager().GetVictory() == false && poolEnemigo.GetId() < poolEnemigo.count)
         {
-            if (dileyCreacion > 0)
+            if (dileyCreation > 0)
             {
-                dileyCreacion = dileyCreacion - Time.deltaTime;
+                dileyCreation = dileyCreation - Time.deltaTime;
             }
-            if (dileyCreacion <= 0)
+            if (dileyCreation <= 0)
             {
                 
-                if (tipoEnemigo == 1)
+                if (enemyType == 1)
                 {
 
                     GameObject go = poolEnemigo.GetObject();
-                    Corredor corredor = go.GetComponent<Corredor>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), 0, Random.Range(0, rangoZ));
+                    Corredor runner = go.GetComponent<Corredor>();
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0, Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
-                    corredor.Prendido();
-                    corredor.velocidad = velocidadEnemigo;
-                    corredor.PatronDeMovimiento = patronEnemigo;
-                    if (GameManager.GetGameManager().GetRonda() > 0)
+                    runner.On();
+                    runner.speed = enemySpeed;
+                    runner.PatternOfMovement = enemyPattern;
+                    if (GameManager.GetGameManager().GetRound() > 0)
                     {
-                        corredor.SumarVelocidad();
+                        runner.AddSpeed();
                     }
                 }
-                if (tipoEnemigo == 2)
+                if (enemyType == 2)
                 {
                     GameObject go = poolEnemigo.GetObject();
-                    Tirador tirador = go.GetComponent<Tirador>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangoX), 0, Random.Range(0, rangoZ));
+                    Tirador shooter = go.GetComponent<Tirador>();
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0, Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
-                    if (danioTirador > 0)
+                    if (damageShooter > 0)
                     {
-                        tirador.danio = danioTirador;
+                        shooter.damage = damageShooter;
                     }
-                    if (potenciaTirador > 0)
+                    if (powerShooter > 0)
                     {
-                        tirador.potenciaDisparo = potenciaTirador;
+                        shooter.powerShoot = powerShooter;
                     }
-                    tirador.Prendido();
-                    tirador.velocidad = velocidadEnemigo;
-                    tirador.tipoPatron = patronEnemigo;
-                    if (DileyTirador > 0)
+                    shooter.Prendido();
+                    shooter.speed = enemySpeed;
+                    shooter.patternType = enemyPattern;
+                    if (DileyShooter > 0)
                     {
-                        tirador.dilay = DileyTirador;
+                        shooter.dilay = DileyShooter;
                     }
-                    if (GameManager.GetGameManager().GetRonda() > 1)
+                    if (GameManager.GetGameManager().GetRound() > 1)
                     {
-                        tirador.SumarVelocidad();
+                        shooter.AddSpeed();
                     }
                 }
                 
-                dileyCreacion = auxDileyCreacion;
+                dileyCreation = auxDileyCreation;
             }
         }
     }
-    public void SetEnFuncionamiento(bool _enFuncionamiento)
+    public void SetInWorking(bool _inWorking)
     {
-        enFuncionamiento = _enFuncionamiento;
+        inWorking = _inWorking;
     }
-    public bool GetEnFuncionamiento()
+    public bool GetInWorking()
     {
-        return enFuncionamiento;
+        return inWorking;
     }
-    public int GetCreaciones()
+    public int GetCreations()
     {
-        return creaciones;
+        return creations;
     }
-    public void SetCreaciones(int _creaciones)
+    public void SetCreations(int _creations)
     {
-        creaciones = _creaciones;
+        creations = _creations;
     }
-    public void SetTopeCreacion(int _TOPE_CREACION)
+    public void SetTopCreation(int _TOP_CREATION)
     {
-        TOPE_CREACION = _TOPE_CREACION;
+        TOP_CREATION = _TOP_CREATION;
     }
-    public int GetTopeCreacion()
+    public int GetTopCreation()
     {
-        return TOPE_CREACION;
+        return TOP_CREATION;
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

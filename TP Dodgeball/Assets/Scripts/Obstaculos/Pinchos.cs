@@ -1,17 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class Pinchos : MonoBehaviour {
 
     // Use this for initialization
-    public float danio;
-	void Start () {
-		
-	}
+    public float damage;
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class CambiarArma : MonoBehaviour {
 
     // Use this for initialization
-    public Material Negro;
-    public Material Hielo;
+    public Material Black;
+    public Material Ice;
     public Material Normal;
-    public Material Fragmentadora;
-    public Material Danzarina;
-    public Material Fuego;
-    public GameObject GeneradorExplocivos;
-    public GameObject GeneradorPelotaComun;
+    public Material Fragment;
+    public Material Dancer;
+    public Material Fire;
+    public GameObject GeneratorExplocive;
+    public GameObject GeneratorCommonBall;
     public bool JugadorWindows;
 
     private Renderer ren;
@@ -26,71 +26,72 @@ public class CambiarArma : MonoBehaviour {
 	void Update () {
         if (JugadorWindows)
         {
-            CheckArma();
+            CheckWeapon();
         }
-        if(Jugador.GetJugador().tipoPelota == 1 && Normal != null)
+        if(Jugador.GetPlayer().ballType == 1 && Normal != null)
         {
-            GeneradorExplocivos.SetActive(false);
-            GeneradorPelotaComun.SetActive(true);
+            GeneratorExplocive.SetActive(false);
+            GeneratorCommonBall.SetActive(true);
             gameObject.GetComponent<Renderer>().material = Normal;
         }
-        if(Jugador.GetJugador().tipoPelota == 2 && Hielo != null)
+        if(Jugador.GetPlayer().ballType == 2 && Ice != null)
         {
-            GeneradorExplocivos.SetActive(false);
-            GeneradorPelotaComun.SetActive(true);
-            gameObject.GetComponent<Renderer>().material = Hielo;
+            GeneratorExplocive.SetActive(false);
+            GeneratorCommonBall.SetActive(true);
+            gameObject.GetComponent<Renderer>().material = Ice;
         }
-        if(Jugador.GetJugador().tipoPelota == 3 && Fragmentadora != null)
+        if(Jugador.GetPlayer().ballType == 3 && Fragment != null)
         {
-            GeneradorExplocivos.SetActive(false);
-            GeneradorPelotaComun.SetActive(true);
-            gameObject.GetComponent<Renderer>().material = Fragmentadora;
+            GeneratorExplocive.SetActive(false);
+            GeneratorCommonBall.SetActive(true);
+            gameObject.GetComponent<Renderer>().material = Fragment;
         }
-        if(Jugador.GetJugador().tipoPelota == 4 && Danzarina != null)
+        if(Jugador.GetPlayer().ballType == 4 && Dancer != null)
         {
-            GeneradorExplocivos.SetActive(false);
-            GeneradorPelotaComun.SetActive(true);
-            gameObject.GetComponent<Renderer>().material = Danzarina;
+            GeneratorExplocive.SetActive(false);
+            GeneratorCommonBall.SetActive(true);
+            gameObject.GetComponent<Renderer>().material = Dancer;
         }
-        if (Jugador.GetJugador().tipoPelota == 5 && Fuego != null)
+        if (Jugador.GetPlayer().ballType == 5 && Fire != null)
         {
-            GeneradorExplocivos.SetActive(false);
-            GeneradorPelotaComun.SetActive(true);
-            gameObject.GetComponent<Renderer>().material = Fuego;
+            GeneratorExplocive.SetActive(false);
+            GeneratorCommonBall.SetActive(true);
+            gameObject.GetComponent<Renderer>().material = Fire;
         }
-        if(Jugador.GetJugador().tipoPelota == 6 && GeneradorExplocivos != null)
+        if(Jugador.GetPlayer().ballType == 6 && GeneratorExplocive != null)
         {
-            GeneradorPelotaComun.SetActive(false);
-            gameObject.GetComponent<Renderer>().material = Negro;
-            GeneradorExplocivos.SetActive(true);
+            GeneratorCommonBall.SetActive(false);
+            gameObject.GetComponent<Renderer>().material = Black;
+            GeneratorExplocive.SetActive(true);
             
         }
     }
-    public void CheckArma()
+    public void CheckWeapon()
     {
         if(Input.GetKey(KeyCode.Alpha1))
         {
-            Jugador.GetJugador().tipoPelota = 1;
+            Jugador.GetPlayer().ballType = 1;
         }
         if (Input.GetKey(KeyCode.Alpha2))
         {
-            Jugador.GetJugador().tipoPelota = 2;
+            Jugador.GetPlayer().ballType = 2;
         }
         if (Input.GetKey(KeyCode.Alpha3))
         {
-            Jugador.GetJugador().tipoPelota = 3;
+            Jugador.GetPlayer().ballType = 3;
         }
         if (Input.GetKey(KeyCode.Alpha4))
         {
-            Jugador.GetJugador().tipoPelota = 4;
+            Jugador.GetPlayer().ballType = 4;
         }
         if (Input.GetKey(KeyCode.Alpha5))
         {
-            Jugador.GetJugador().tipoPelota = 5;
+            Jugador.GetPlayer().ballType = 5;
         }
         if (Input.GetKey(KeyCode.Alpha6))
         {
-            Jugador.GetJugador().tipoPelota = 6;
+            Jugador.GetPlayer().ballType = 6;
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

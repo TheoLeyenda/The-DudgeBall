@@ -2,61 +2,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class DisparoPelota : MonoBehaviour {
 
     // Use this for initialization
-    private Jugador instanciaJugador;
-    public AudioSource sonido;
-    public AudioClip sonidoPelotaComun;
-    public AudioClip sonidoPelotaHielo;
-    public AudioClip sonidoPelotaDanzarina;
-    public AudioClip sonidoPelotaFuego;
-    public AudioClip sonidoPelotaExplociva;
-    public AudioClip sonidoPelotaFragmentadora;
-    public PoolPelota PelotaComun;
-    public PoolPelota pelotaDeHielo;
-    public PoolPelota pelotaFragmentadora;
-    public PoolPelota pelotaDanzarina;
-    public PoolPelota pelotaDeFuego;
-    public PoolPelota pelotaExplociva;
-    public GameObject generador;
-    public GameObject generadorExplicivos;
-    public Transform jugador;
-    public GameObject panelArmas;
-    private float efectoFuego;
-    public bool jugadorWindows;
-    private bool estaDisparando;
-    private int contador;
+    private Jugador instancePlayer;
+    public AudioSource sound;
+    public AudioClip soundCommonBall;
+    public AudioClip soundIceBall;
+    public AudioClip soundDanceBall;
+    public AudioClip soundFireBall;
+    public AudioClip soundExplociveBall;
+    public AudioClip soundFragmentBall;
+    public PoolPelota CommonBall;
+    public PoolPelota IceBall;
+    public PoolPelota FragmentBall;
+    public PoolPelota DanceBall;
+    public PoolPelota FireBall;
+    public PoolPelota ExplociveBall;
+    public GameObject generator;
+    public GameObject generatorExplocive;
+    public Transform player;
+    public GameObject weaponsPanel;
+    private float effectFire;
+    public bool playerWindows;
+    private bool is_Shooting;
+    private int counter;
 
-    private float finDelay;
+    private float endDelay;
     private float delay;
 	void Start () {
-        if(Jugador.instanciaJugador != null)
+        if(Jugador.InstancePlayer != null)
         {
-            instanciaJugador = Jugador.instanciaJugador;
+            instancePlayer = Jugador.InstancePlayer;
         }
-        contador = 0;
+        counter = 0;
         delay = 0f;
-        finDelay = 0.1f;
-        if (panelArmas != null)
+        endDelay = 0.1f;
+        if (weaponsPanel != null)
         {
-            panelArmas.SetActive(false);
+            weaponsPanel.SetActive(false);
         }
-        estaDisparando = false;
+        is_Shooting = false;
     }
 
     // Update is called once per frame
     void Update() {
-        if (delay <= finDelay)
+        if (delay <= endDelay)
         {
             delay = delay + Time.deltaTime;
         }
 //#if UNITY_EDITOR// modo de disparar en compu
 
         // ESTO ES PARA PC
-        if (Input.GetButtonDown("Fire1") && jugadorWindows)
+        if (Input.GetButtonDown("Fire1") && playerWindows)
         { 
-            Disparar();
+            Shoot();
         }
         //----------------------
 //#elif UNITY_STANDALONE
@@ -67,182 +69,183 @@ public class DisparoPelota : MonoBehaviour {
        // }
 //#endif
     }
-    public void Disparar()
+    public void Shoot()
     {
         
         if (Time.timeScale > 0)
         {
 
-            if (instanciaJugador.tipoPelota == 1 && generador != null && PelotaComun != null)
+            if (instancePlayer.ballType == 1 && generator != null && CommonBall != null)
             {
-                estaDisparando = true;
-                GameObject go = PelotaComun.GetObject();
+                is_Shooting = true;
+                GameObject go = CommonBall.GetObject();
                 Pelota pelota = go.GetComponent<Pelota>();
-                go.transform.position = generador.transform.position + generador.transform.right;
-                go.transform.rotation = generador.transform.rotation;
-                pelota.Disparar();
-                if(sonido != null && sonidoPelotaComun != null)
+                go.transform.position = generator.transform.position + generator.transform.right;
+                go.transform.rotation = generator.transform.rotation;
+                pelota.Shoot();
+                if(sound != null && soundCommonBall != null)
                 {
-                    sonido.clip = sonidoPelotaComun;
-                    sonido.PlayOneShot(sonidoPelotaComun);
+                    sound.clip = soundCommonBall;
+                    sound.PlayOneShot(soundCommonBall);
                 }
             }
-            if (instanciaJugador.tipoPelota == 2 && pelotaDeHielo != null && generador != null && instanciaJugador.GetMunicionPelotaHielo() > 0)
+            if (instancePlayer.ballType == 2 && IceBall != null && generator != null && instancePlayer.GetAmmoIceBall() > 0)
             {
-                estaDisparando = true;
+                is_Shooting = true;
                 // cambiar esto por un codigo que haga que la pelota en cuestion se teletrasporte y luego la rotacion de la misma sea
                 // igual a la del generador luego de esto que active el gameObject
                 //Instantiate(pelotaDeHielo, generador.transform.position + generador.transform.forward, generador.transform.rotation);
-                GameObject go = pelotaDeHielo.GetObject();
+                GameObject go = IceBall.GetObject();
                 Pelota pelota = go.GetComponent<Pelota>();
-                go.transform.position = generador.transform.position + generador.transform.right;
-                go.transform.rotation = generador.transform.rotation;
-                pelota.Disparar();
-                instanciaJugador.RestarMunicionHielo();
-                if(sonido != null && sonidoPelotaHielo != null)
+                go.transform.position = generator.transform.position + generator.transform.right;
+                go.transform.rotation = generator.transform.rotation;
+                pelota.Shoot();
+                instancePlayer.SubstractAmmoIceBall();
+                if(sound != null && soundIceBall != null)
                 {
-                    sonido.clip = sonidoPelotaHielo;
-                    sonido.PlayOneShot(sonidoPelotaHielo);
+                    sound.clip = soundIceBall;
+                    sound.PlayOneShot(soundIceBall);
                 }
             }
-            if (instanciaJugador.tipoPelota == 3 && pelotaFragmentadora != null && generador != null && instanciaJugador.GetMunicionPelotaFragmentadora() > 0)
+            if (instancePlayer.ballType == 3 && FragmentBall != null && generator != null && instancePlayer.GetAmmoFragmentBall() > 0)
             {
-                estaDisparando = true;
+                is_Shooting = true;
                 // cambiar esto por un codigo que haga que la pelota en cuestion se teletrasporte y luego la rotacion de la misma sea
                 // igual a la del generador luego de esto que active el gameObject
                 //Instantiate(pelotaFragmentadora, generador.transform.position + generador.transform.forward, generador.transform.rotation);
-                GameObject go = pelotaFragmentadora.GetObject();
+                GameObject go = FragmentBall.GetObject();
                 GestorPelotaFragmentadora pelota = go.GetComponent<GestorPelotaFragmentadora>();
-                go.transform.position = generador.transform.position + generador.transform.forward;
-                go.transform.rotation = generador.transform.rotation;
-                pelota.Disparar();
-                instanciaJugador.RestarMunicionFragmentadora();
-                if(sonido != null && sonidoPelotaFragmentadora != null)
+                go.transform.position = generator.transform.position + generator.transform.forward;
+                go.transform.rotation = generator.transform.rotation;
+                pelota.Shoot();
+                instancePlayer.SubstractAmmoFragmentBall();
+                if(sound != null && soundFragmentBall != null)
                 {
-                    sonido.clip = sonidoPelotaFragmentadora;
-                    sonido.PlayOneShot(sonidoPelotaFragmentadora);
+                    sound.clip = soundFragmentBall;
+                    sound.PlayOneShot(soundFragmentBall);
                 }
             }
-            if (instanciaJugador.tipoPelota == 4 && pelotaDanzarina != null && generador != null && instanciaJugador.GetMunicionPelotaDanzarina() > 0)
+            if (instancePlayer.ballType == 4 && DanceBall != null && generator != null && instancePlayer.GetAmmoDanceBall() > 0)
             {
-                estaDisparando = true;
+                is_Shooting = true;
                 // cambiar esto por un codigo que haga que la pelota en cuestion se teletrasporte y luego la rotacion de la misma sea
                 // igual a la del generador luego de esto que active el gameObject
                 //Instantiate(pelotaDanzarina, generador.transform.position + generador.transform.forward, generador.transform.rotation);
-                GameObject go = pelotaDanzarina.GetObject();
+                GameObject go = DanceBall.GetObject();
                 Pelota pelota = go.GetComponent<Pelota>();
-                go.transform.position = generador.transform.position + generador.transform.right;
-                go.transform.rotation = generador.transform.rotation;
-                pelota.Disparar();
-                instanciaJugador.RestarMunicionDanzarina();
-                if(sonido != null && sonidoPelotaDanzarina != null)
+                go.transform.position = generator.transform.position + generator.transform.right;
+                go.transform.rotation = generator.transform.rotation;
+                pelota.Shoot();
+                instancePlayer.SubstractAmmoDanceBall();
+                if(sound != null && soundDanceBall != null)
                 {
-                    sonido.clip = sonidoPelotaDanzarina;
-                    sonido.PlayOneShot(sonidoPelotaDanzarina);
+                    sound.clip = soundDanceBall;
+                    sound.PlayOneShot(soundDanceBall);
                 }
             }
-            if (instanciaJugador.tipoPelota == 5 && pelotaDeFuego != null && generador != null && instanciaJugador.GetMunicionPelotaFuego() > 0)
+            if (instancePlayer.ballType == 5 && FireBall != null && generator != null && instancePlayer.GetAmmoFireBall() > 0)
             {
-                estaDisparando = true;
+                is_Shooting = true;
                 // cambiar esto por un codigo que haga que la pelota en cuestion se teletrasporte y luego la rotacion de la misma sea
                 // igual a la del generador luego de esto que active el gameObject
                 //Instantiate(pelotaDeFuego, generador.transform.position + generador.transform.forward, generador.transform.rotation);
-                GameObject go = pelotaDeFuego.GetObject();
+                GameObject go = FireBall.GetObject();
                 Pelota pelota = go.GetComponent<Pelota>();
-                go.transform.position = generador.transform.position + generador.transform.right;
-                go.transform.rotation = generador.transform.rotation;
-                pelota.Disparar();
-                instanciaJugador.RestarMunicionFuego();
-                if(sonido != null && sonidoPelotaFuego != null)
+                go.transform.position = generator.transform.position + generator.transform.right;
+                go.transform.rotation = generator.transform.rotation;
+                pelota.Shoot();
+                instancePlayer.SubstractAmmoFireBall();
+                if(sound != null && soundFireBall != null)
                 {
-                    sonido.clip = sonidoPelotaFuego;
-                    sonido.PlayOneShot(sonidoPelotaFuego);
+                    sound.clip = soundFireBall;
+                    sound.PlayOneShot(soundFireBall);
                 }
             }
-            if (instanciaJugador.tipoPelota == 6 && pelotaExplociva != null && generadorExplicivos != null && instanciaJugador.GetMunicionPelotaExplosiva() > 0)
+            if (instancePlayer.ballType == 6 && ExplociveBall != null && generatorExplocive != null && instancePlayer.GetAmmoExplociveBall() > 0)
             {
-                estaDisparando = true;
+                is_Shooting = true;
                 // cambiar esto por un codigo que haga que la pelota en cuestion se teletrasporte y luego la rotacion de la misma sea
                 // igual a la del generador luego de esto que active el gameObject
                 //Instantiate(pelotaExplociva, generadorExplicivos.transform.position + generadorExplicivos.transform.forward, generador.transform.rotation);
-                GameObject go = pelotaExplociva.GetObject();
+                GameObject go = ExplociveBall.GetObject();
                 PelotaExpliciva pelota = go.GetComponent<PelotaExpliciva>();
-                go.transform.position = generadorExplicivos.transform.position + generadorExplicivos.transform.right;
-                go.transform.rotation = generadorExplicivos.transform.rotation;
-                pelota.disparar();
-                instanciaJugador.RestarMunicionExplosiva();
-                if(sonido != null && sonidoPelotaExplociva != null)
+                go.transform.position = generatorExplocive.transform.position + generatorExplocive.transform.right;
+                go.transform.rotation = generatorExplocive.transform.rotation;
+                pelota.Shoot();
+                instancePlayer.SubstractAmmoExplociveBall();
+                if(sound != null && soundExplociveBall != null)
                 {
-                    sonido.clip = sonidoPelotaExplociva;
-                    sonido.PlayOneShot(sonidoPelotaExplociva);
+                    sound.clip = soundExplociveBall;
+                    sound.PlayOneShot(soundExplociveBall);
                 }
             }
         }
         //estaDisparando = false;
     }
-    public void CambiarArmaAndroid(int numeroArma)
+    public void SwinchWeaponAndroid(int numWeapon)
     {
-        switch (numeroArma)
+        switch (numWeapon)
         {
             case 1:
-                instanciaJugador.tipoPelota = 1;
+                instancePlayer.ballType = 1;
                 break;
             case 2:
-                instanciaJugador.tipoPelota = 2;
+                instancePlayer.ballType = 2;
                 break;
             case 3:
-                instanciaJugador.tipoPelota = 3;
+                instancePlayer.ballType = 3;
                 break;
             case 4:
-                instanciaJugador.tipoPelota = 4;
+                instancePlayer.ballType = 4;
                 break;
             case 5:
-                instanciaJugador.tipoPelota = 5;
+                instancePlayer.ballType = 5;
                 break;
             case 6:
-                instanciaJugador.tipoPelota = 6;
+                instancePlayer.ballType = 6;
                 break;
             default:
-                instanciaJugador.tipoPelota = 1;
+                instancePlayer.ballType = 1;
                 break;
         }
     }
-    public void ActivarPanel()
+    public void ActivatePanel()
     {
-        if(contador == 2)
+        if(counter == 2)
         {
-            panelArmas.SetActive(false);
-            contador = -1;
+            weaponsPanel.SetActive(false);
+            counter = -1;
         }
-        if(panelArmas != null && contador == 0)
+        if(weaponsPanel != null && counter == 0)
         {
-            panelArmas.SetActive(true);
-            contador = contador + 1;
+            weaponsPanel.SetActive(true);
+            counter = counter + 1;
             if (GameManager.GetGameManager() != null)
             {
-                GameManager.GetGameManager().pausa = true;
+                GameManager.GetGameManager().pause = true;
             }
         }
-        if(contador == 1)
+        if(counter == 1)
         {
-            contador = contador + 1;
+            counter = counter + 1;
         }
-        if(contador == -1)
+        if(counter == -1)
         {
-            contador = 0;
+            counter = 0;
             if (GameManager.GetGameManager() != null)
             {
-                GameManager.GetGameManager().pausa = false;
+                GameManager.GetGameManager().pause = false;
             }
             //Time.timeScale = 1;
         }
     }
-    public bool GetEstaDisparando()
+    public bool GetIsShooting()
     {
-        return estaDisparando;
+        return is_Shooting;
     }
-    public void SetEstaDisparando(bool _estaDisparando)
+    public void SetIsShooting(bool isShooting)
     {
-        estaDisparando = _estaDisparando;
+        is_Shooting = isShooting;
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

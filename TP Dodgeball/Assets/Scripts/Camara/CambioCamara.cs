@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class CambioCamara : MonoBehaviour {
 
     // Use this for initialization
-    public GameObject camaraPrincipal;
-    public GameObject camaraSecundaria;
-    public GameObject[] cosasEnPantalla;
-    public GameObject sombrero;
+    public GameObject cameraPrincipal;
+    public GameObject cameraSecond;
+    public GameObject[] ObjectsOnScreen;
+    public GameObject hat;
 	void Start () {
-        if (sombrero != null)
+        if (hat != null)
         {
-            sombrero.SetActive(false);
+            hat.SetActive(false);
         }
     }
 	
@@ -20,48 +20,49 @@ public class CambioCamara : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void PrenderCamaraPrincipal()
+    public void OnMainCamera()
     {
-        if (sombrero != null)
+        if (hat != null)
         {
-            sombrero.SetActive(false);
+            hat.SetActive(false);
         }
-        if(camaraPrincipal != null)
+        if(cameraPrincipal != null)
         {
-            camaraPrincipal.SetActive(true);
-            camaraSecundaria.SetActive(false);
-            if (cosasEnPantalla != null)
+            cameraPrincipal.SetActive(true);
+            cameraSecond.SetActive(false);
+            if (ObjectsOnScreen != null)
             {
-                for (int i = 0; i < cosasEnPantalla.Length; i++)
+                for (int i = 0; i < ObjectsOnScreen.Length; i++)
                 {
-                    if (cosasEnPantalla[i] != null)
+                    if (ObjectsOnScreen[i] != null)
                     {
-                        cosasEnPantalla[i].SetActive(true);
+                        ObjectsOnScreen[i].SetActive(true);
                     }
                 }
             }
         }
     }
-    public void PrenderCamaraSecundaria()
+    public void OnSecundaryCamera()
     {
-        if (sombrero != null)
+        if (hat != null)
         {
-            sombrero.SetActive(true);
+            hat.SetActive(true);
         }
-        if(camaraSecundaria != null)
+        if(cameraSecond != null)
         {
-            camaraSecundaria.SetActive(true);
-            camaraPrincipal.SetActive(false);
-            if (cosasEnPantalla != null)
+            cameraSecond.SetActive(true);
+            cameraPrincipal.SetActive(false);
+            if (ObjectsOnScreen != null)
             {
-                for (int i = 0; i < cosasEnPantalla.Length; i++)
+                for (int i = 0; i < ObjectsOnScreen.Length; i++)
                 {
-                    if (cosasEnPantalla[i] != null && cosasEnPantalla[i].activeSelf == true)
+                    if (ObjectsOnScreen[i] != null && ObjectsOnScreen[i].activeSelf == true)
                     {
-                        cosasEnPantalla[i].SetActive(false);
+                        ObjectsOnScreen[i].SetActive(false);
                     }
                 }
             }
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

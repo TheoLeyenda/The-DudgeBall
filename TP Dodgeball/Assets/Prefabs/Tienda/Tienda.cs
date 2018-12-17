@@ -2,92 +2,92 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class Tienda : MonoBehaviour
 {
     public GameObject boton;
-    public Text texto;
-    public Text textoPrecioHieloAndroid;
-    public Text textoPrecioHieloWindoiws;
-    public Text textoPrecioFuegoAndroid;
-    public Text textoPrecioFuegoWindows;
-    public Text textoPrecioDanzarinaAndroid;
-    public Text textoPrecioDanzarinaWindows;
-    public Text textoPrecioFragmentadoraAndroid;
-    public Text textoPrecioFragmentadoraWindows;
-    public Text textoPrecioExplocivoAndroid;
-    public Text textoPrecioExplocivoWindows;
-    public Text textoPrecioBlindajeAndroid;
-    public Text textoPrecioBlindajeWindows;
-    public Text textoPrecioVidaAndroid;
-    public Text textoPrecioVidaWindows;
-    public Text textoPrecioDobleDanioAndroid;
-    public Text textoPrecioDobleDanioWindows;
-    public int PrecioMunicionHielo;
-    public int PrecioMunicionFuego;
-    public int PrecioMunicionDanzarina;
-    public int PrecioMunicionFragmentadora;
-    public int PrecioMunicionExplociva;
-    public int PrecioBlindaje;
-    public int PrecioDanioDoble;
-    public int PrecioVida;
-    public GameObject camvasTiendaWindows;
-    public GameObject camvasTiendaAndroid;
-    private bool tiendaAbierta;
-    public GameObject menuArmasAndroid;
+    public Text text;
+    public Text textPriceIceAndroid;
+    public Text textPriceIceWindows;
+    public Text textPriceFireAndroid;
+    public Text textPriceFireWindows;
+    public Text textPriceDancerAndroid;
+    public Text textPriceDancerWindows;
+    public Text textPriceFragmentAndroid;
+    public Text textPriceFragmentWindows;
+    public Text textPriceExplociveAndroid;
+    public Text textPriceExplociveWindows;
+    public Text textPriceArmorAndroid;
+    public Text textPriceArmorWindows;
+    public Text textPriceLifeAndroid;
+    public Text textPriceLifeWindows;
+    public Text textPriceDobleDamageAndroid;
+    public Text textPriceDobleDamageWindows;
+    public int PriceChargerIce;
+    public int PriceChargerFire;
+    public int PriceChargerDancer;
+    public int PriceChargerFragment;
+    public int PriceChargerExplocive;
+    public int PriceArmor;
+    public int PriceDobleDamage;
+    public int PriceLife;
+    public GameObject camvasStoreWindows;
+    public GameObject camvasStoreAndroid;
+    private bool OpenStore;
+    public GameObject menuWeaponAndroid;
     // Use this for initialization
     void Start()
     {
-        tiendaAbierta = false;
-        if (camvasTiendaAndroid != null && camvasTiendaWindows != null)
+        OpenStore = false;
+        if (camvasStoreAndroid != null && camvasStoreWindows != null)
         {
-            camvasTiendaWindows.SetActive(false);
-            camvasTiendaAndroid.SetActive(false);
+            camvasStoreWindows.SetActive(false);
+            camvasStoreAndroid.SetActive(false);
         }
-        if (textoPrecioVidaAndroid != null
-            && textoPrecioHieloAndroid != null
-            && textoPrecioFuegoAndroid != null
-            && textoPrecioFragmentadoraAndroid != null
-            && textoPrecioExplocivoAndroid != null
-            && textoPrecioDobleDanioAndroid != null
-            && textoPrecioDanzarinaAndroid != null
-            && textoPrecioBlindajeAndroid != null)
+        if (textPriceLifeAndroid != null
+            && textPriceIceAndroid != null
+            && textPriceFireAndroid != null
+            && textPriceFragmentAndroid != null
+            && textPriceExplociveAndroid != null
+            && textPriceDobleDamageAndroid != null
+            && textPriceDancerAndroid != null
+            && textPriceArmorAndroid != null)
         {
-            textoPrecioVidaAndroid.text = PrecioVida + " $";
-            textoPrecioHieloAndroid.text = PrecioMunicionHielo + " $";
-            textoPrecioFuegoAndroid.text = PrecioMunicionFuego + " $";
-            textoPrecioFragmentadoraAndroid.text = PrecioMunicionFragmentadora + " $";
-            textoPrecioExplocivoAndroid.text = PrecioMunicionExplociva + " $";
-            textoPrecioDobleDanioAndroid.text = PrecioDanioDoble + " $";
-            textoPrecioDanzarinaAndroid.text = PrecioMunicionDanzarina + " $";
-            textoPrecioBlindajeAndroid.text = PrecioBlindaje + " $";
+            textPriceLifeAndroid.text = PriceLife + " $";
+            textPriceIceAndroid.text = PriceChargerIce + " $";
+            textPriceFireAndroid.text = PriceChargerFire + " $";
+            textPriceFragmentAndroid.text = PriceChargerFragment + " $";
+            textPriceExplociveAndroid.text = PriceChargerExplocive + " $";
+            textPriceDobleDamageAndroid.text = PriceDobleDamage + " $";
+            textPriceDancerAndroid.text = PriceChargerDancer + " $";
+            textPriceArmorAndroid.text = PriceArmor + " $";
         }
-        if (textoPrecioHieloWindoiws != null
-            && textoPrecioFuegoWindows != null
-            && textoPrecioDanzarinaWindows != null
-            && textoPrecioFragmentadoraWindows != null
-            && textoPrecioExplocivoWindows != null
-            && textoPrecioBlindajeWindows != null
-            && textoPrecioVidaWindows != null
-            && textoPrecioDobleDanioWindows != null)
+        if (textPriceIceWindows != null
+            && textPriceFireWindows != null
+            && textPriceDancerWindows != null
+            && textPriceFragmentWindows != null
+            && textPriceExplociveWindows != null
+            && textPriceArmorWindows != null
+            && textPriceLifeWindows != null
+            && textPriceDobleDamageWindows != null)
         {
-            textoPrecioVidaWindows.text = PrecioVida + " $";
-            textoPrecioHieloWindoiws.text = PrecioMunicionHielo + " $";
-            textoPrecioFuegoWindows.text = PrecioMunicionFuego + " $";
-            textoPrecioFragmentadoraWindows.text = PrecioMunicionFragmentadora + " $";
-            textoPrecioExplocivoWindows.text = PrecioMunicionExplociva + " $";
-            textoPrecioDobleDanioWindows.text = PrecioDanioDoble + " $";
-            textoPrecioDanzarinaWindows.text = PrecioMunicionDanzarina + " $";
-            textoPrecioBlindajeWindows.text = PrecioBlindaje + " $";
+            textPriceLifeWindows.text = PriceLife + " $";
+            textPriceIceWindows.text = PriceChargerIce + " $";
+            textPriceFireWindows.text = PriceChargerFire + " $";
+            textPriceFragmentWindows.text = PriceChargerFragment + " $";
+            textPriceExplociveWindows.text = PriceChargerExplocive + " $";
+            textPriceDobleDamageWindows.text = PriceDobleDamage + " $";
+            textPriceDancerWindows.text = PriceChargerDancer + " $";
+            textPriceArmorWindows.text = PriceArmor + " $";
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(camvasTiendaAndroid.activeSelf == true || camvasTiendaWindows.activeSelf == true && GameManager.GetGameManager() != null)
+        if(camvasStoreAndroid.activeSelf == true || camvasStoreWindows.activeSelf == true && GameManager.GetGameManager() != null)
         {
-            GameManager.GetGameManager().pausa = true;
+            GameManager.GetGameManager().pause = true;
         }
         else
         {
@@ -95,127 +95,127 @@ public class Tienda : MonoBehaviour
         }
        
     }
-    public void AbrirTienda()
+    public void OpeningStore()
     {
-        if (Jugador.GetJugador() != null)
+        if (Jugador.GetPlayer() != null)
         {
-            if (Jugador.GetJugador().jugadorWindows && Jugador.GetJugador().jugadorAndroid == false)
+            if (Jugador.GetPlayer().playerWindows && Jugador.GetPlayer().playerAndroid == false)
             {
-                texto.gameObject.SetActive(true);
+                text.gameObject.SetActive(true);
                 if (Input.GetKey(KeyCode.E))
                 {
-                    AbrirCamvasTienda();
+                    OpeningCamvasStore();
                     //prende el camvas de tienda
                 }
             }
-            if (Jugador.GetJugador().jugadorAndroid && Jugador.GetJugador().jugadorWindows == false)
+            if (Jugador.GetPlayer().playerAndroid && Jugador.GetPlayer().playerWindows == false)
             {
                 boton.SetActive(true);
                 //al apretar el boton en pantalla prende la tienda
             }
         }
     }
-    public void AbrirCamvasTienda()
+    public void OpeningCamvasStore()
     {
-        if(Jugador.GetJugador() != null)
+        if(Jugador.GetPlayer() != null)
         {
-            Jugador.GetJugador().EnTienda = true;
+            Jugador.GetPlayer().inStore = true;
         }
-        tiendaAbierta = true;
-        if (Jugador.GetJugador().jugadorWindows && Jugador.GetJugador().jugadorAndroid == false)
+        OpenStore = true;
+        if (Jugador.GetPlayer().playerWindows && Jugador.GetPlayer().playerAndroid == false)
         {
-            camvasTiendaWindows.SetActive(true);
-            texto.gameObject.SetActive(false);
-            Jugador.GetJugador().EnTienda = true;
+            camvasStoreWindows.SetActive(true);
+            text.gameObject.SetActive(false);
+            Jugador.GetPlayer().inStore = true;
         }
-        if (Jugador.GetJugador().jugadorAndroid && Jugador.GetJugador().jugadorWindows == false)
+        if (Jugador.GetPlayer().playerAndroid && Jugador.GetPlayer().playerWindows == false)
         {
-            camvasTiendaAndroid.SetActive(true);
+            camvasStoreAndroid.SetActive(true);
             boton.SetActive(false);
-            if (menuArmasAndroid != null)
+            if (menuWeaponAndroid != null)
             {
-                menuArmasAndroid.SetActive(true);
+                menuWeaponAndroid.SetActive(true);
             }
 
         }
         if (GameManager.GetGameManager() != null)
         {
-            GameManager.GetGameManager().pausa = true;
+            GameManager.GetGameManager().pause = true;
         }
     }
-    public void CerrarTienda()
+    public void ClosingStore()
     {
-        tiendaAbierta = false;
-        if (Jugador.GetJugador() != null)
+        OpenStore = false;
+        if (Jugador.GetPlayer() != null)
         {
-            Jugador.GetJugador().EnTienda = false;
+            Jugador.GetPlayer().inStore = false;
         }
-        if (Jugador.GetJugador().jugadorWindows && Jugador.GetJugador().jugadorAndroid == false)
+        if (Jugador.GetPlayer().playerWindows && Jugador.GetPlayer().playerAndroid == false)
         {
-            camvasTiendaWindows.SetActive(false);
-            Jugador.GetJugador().EnTienda = false;
+            camvasStoreWindows.SetActive(false);
+            Jugador.GetPlayer().inStore = false;
         }
-        if (Jugador.GetJugador().jugadorAndroid && Jugador.GetJugador().jugadorWindows == false)
+        if (Jugador.GetPlayer().playerAndroid && Jugador.GetPlayer().playerWindows == false)
         {
-            camvasTiendaAndroid.SetActive(false);
-            if (menuArmasAndroid != null)
+            camvasStoreAndroid.SetActive(false);
+            if (menuWeaponAndroid != null)
             {
-                menuArmasAndroid.SetActive(false);
+                menuWeaponAndroid.SetActive(false);
             }
         }
         if (GameManager.GetGameManager() != null)
         {
-            GameManager.GetGameManager().pausa = false;
+            GameManager.GetGameManager().pause = false;
         }
         //que resiva el camvas de la tienda y la apague
     }
-    public void Comprar(int queComprar)
+    public void Buy(int numBuy)
     {
-        if (Jugador.GetJugador() != null)
+        if (Jugador.GetPlayer() != null)
         {
-            if (queComprar == 0)
+            if (numBuy == 0)
             {
-                CerrarTienda();
+                ClosingStore();
             }
-            if (PrecioMunicionHielo <= Jugador.GetJugador().GetPuntos() && queComprar == 1)
+            if (PriceChargerIce <= Jugador.GetPlayer().GetScore() && numBuy == 1)
             {
-                Jugador.GetJugador().SumarMunicionPelotaHielo(12);
-                Jugador.GetJugador().RestarPuntos(PrecioMunicionHielo);
+                Jugador.GetPlayer().AddAmmoIceBall(12);
+                Jugador.GetPlayer().SubtractScore(PriceChargerIce);
             }
-            if (PrecioMunicionFuego <= Jugador.GetJugador().GetPuntos() && queComprar == 2)
+            if (PriceChargerFire <= Jugador.GetPlayer().GetScore() && numBuy == 2)
             {
-                Jugador.GetJugador().SumarMunicionPelotaFuego(12);
-                Jugador.GetJugador().RestarPuntos(PrecioMunicionFuego);
+                Jugador.GetPlayer().AddAmmoFireBall(12);
+                Jugador.GetPlayer().SubtractScore(PriceChargerFire);
             }
-            if (PrecioMunicionFragmentadora <= Jugador.GetJugador().GetPuntos() && queComprar == 3)
+            if (PriceChargerFragment <= Jugador.GetPlayer().GetScore() && numBuy == 3)
             {
-                Jugador.GetJugador().SumarMunicionPelotaFragmentadora(30);
-                Jugador.GetJugador().RestarPuntos(PrecioMunicionFragmentadora);
+                Jugador.GetPlayer().AddAmmoFragmentBall(30);
+                Jugador.GetPlayer().SubtractScore(PriceChargerFragment);
             }
-            if (PrecioMunicionDanzarina <= Jugador.GetJugador().GetPuntos() && queComprar == 4)
+            if (PriceChargerDancer <= Jugador.GetPlayer().GetScore() && numBuy == 4)
             {
-                Jugador.GetJugador().SumarMunicionPelotaDanzarina(8);
-                Jugador.GetJugador().RestarPuntos(PrecioMunicionDanzarina);
+                Jugador.GetPlayer().AddAmmoDanceBall(8);
+                Jugador.GetPlayer().SubtractScore(PriceChargerDancer);
             }
-            if (PrecioMunicionExplociva <= Jugador.GetJugador().GetPuntos() && queComprar == 5)
+            if (PriceChargerExplocive <= Jugador.GetPlayer().GetScore() && numBuy == 5)
             {
-                Jugador.GetJugador().SumarMunicionPelotaExplosiva(10);
-                Jugador.GetJugador().RestarPuntos(PrecioMunicionExplociva);
+                Jugador.GetPlayer().AddAmmoExplocive(10);
+                Jugador.GetPlayer().SubtractScore(PriceChargerExplocive);
             }
-            if (PrecioVida <= Jugador.GetJugador().GetPuntos() && queComprar == 6)
+            if (PriceLife <= Jugador.GetPlayer().GetScore() && numBuy == 6)
             {
-                Jugador.GetJugador().AumentarVida();
-                Jugador.GetJugador().RestarPuntos(PrecioVida);
+                Jugador.GetPlayer().AddedLife();
+                Jugador.GetPlayer().SubtractScore(PriceLife);
             }
-            if (PrecioBlindaje <= Jugador.GetJugador().GetPuntos() && queComprar == 7)
+            if (PriceArmor <= Jugador.GetPlayer().GetScore() && numBuy == 7)
             {
-                Jugador.GetJugador().ChalecoAntiGolpes();
-                Jugador.GetJugador().RestarPuntos(PrecioBlindaje);
+                Jugador.GetPlayer().Armor();
+                Jugador.GetPlayer().SubtractScore(PriceArmor);
             }
-            if (PrecioDanioDoble <= Jugador.GetJugador().GetPuntos() && queComprar == 8)
+            if (PriceDobleDamage <= Jugador.GetPlayer().GetScore() && numBuy == 8)
             {
-                Jugador.GetJugador().DobleDanio();
-                Jugador.GetJugador().RestarPuntos(PrecioDanioDoble);
+                Jugador.GetPlayer().DobleDamage();
+                Jugador.GetPlayer().SubtractScore(PriceDobleDamage);
             }
         }
     }
@@ -223,18 +223,19 @@ public class Tienda : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            AbrirTienda();
+            OpeningStore();
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (Jugador.GetJugador().jugadorWindows && Jugador.GetJugador().jugadorAndroid == false)
+        if (Jugador.GetPlayer().playerWindows && Jugador.GetPlayer().playerAndroid == false)
         {
-            texto.gameObject.SetActive(false);
+            text.gameObject.SetActive(false);
         }
-        if (Jugador.GetJugador().jugadorAndroid && Jugador.GetJugador().jugadorWindows == false)
+        if (Jugador.GetPlayer().playerAndroid && Jugador.GetPlayer().playerWindows == false)
         {
             boton.SetActive(false);
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

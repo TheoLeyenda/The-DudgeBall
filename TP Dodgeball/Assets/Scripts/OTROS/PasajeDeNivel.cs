@@ -3,55 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class PasajeDeNivel : MonoBehaviour {
 
     // Use this for initialization
-    public string nivel;
-    public int numeroNivel;
-    public bool NivelPorNumero;
-    private Jugador jugador;
+    public string level;
+    public int numberLevel;
+    public bool levelByNumber;
+    private Jugador player;
     private void Start()
     {
-        if (Jugador.instanciaJugador != null)
+        if (Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            if (EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares() != null)
+            if (DataStructure.GetEstructuraDatosAuxiliares() != null)
             {
 
-                EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().SetDatosJugador(jugador);
-                if (jugador.blindaje > 0)
+                DataStructure.GetEstructuraDatosAuxiliares().SetPlayerData(player);
+                if (player.armor > 0)
                 {
-                    EstructuraDatosAuxiliares.GetEstructuraDatosAuxiliares().DatosJugador.blindaje = jugador.blindaje;
-                    jugador.logoBlindaje.SetActive(true);
-                    jugador.textBlindaje.gameObject.SetActive(true);
+                    DataStructure.GetEstructuraDatosAuxiliares().playerData.armor = player.armor;
+                    player.logoArmor.SetActive(true);
+                    player.textArmor.gameObject.SetActive(true);
                 }
             }
-            if (nivel != null && !NivelPorNumero)
+            if (level != null && !levelByNumber)
             {
-                SceneManager.LoadScene(nivel);
+                SceneManager.LoadScene(level);
             }
-            if(NivelPorNumero)
+            if(levelByNumber)
             {
-                SceneManager.LoadScene(numeroNivel);
+                SceneManager.LoadScene(numberLevel);
             }
         }
     }
-    public void pasarNivel(string nivel)
+    public void NextLevel(string level)
     {
 
-        if (nivel != null && !NivelPorNumero)
+        if (level != null && !levelByNumber)
         {
-            SceneManager.LoadScene(nivel);
+            SceneManager.LoadScene(level);
         }
-        if (NivelPorNumero)
+        if (levelByNumber)
         {
-            SceneManager.LoadScene(numeroNivel);
+            SceneManager.LoadScene(numberLevel);
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

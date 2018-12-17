@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class SpawnerRocas : MonoBehaviour {
 
     // Use this for initialization
-    public PoolPelota poolRoca;
+    public PoolPelota poolRock;
     private PoolObject poolObject;
-    public float RangoX;
-    public float RangoZ;
-    public float dileyGeneracion;
-    public float auxDileyGeneracion;
+    public float RangeX;
+    public float RangeZ;
+    public float dileyGeneration;
+    public float auxDileyGeneration;
     void Start () {
-        auxDileyGeneracion = dileyGeneracion;
+        auxDileyGeneration = dileyGeneration;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(dileyGeneracion <= 0)
+		if(dileyGeneration <= 0)
         {
-            GameObject go = poolRoca.GetObject();
-            go.transform.position = new Vector3((int)Random.Range(-RangoX, RangoX)+ transform.position.x, transform.position.y, (int)Random.Range(-RangoZ, RangoZ)+transform.position.z);
-            dileyGeneracion = auxDileyGeneracion;
+            GameObject go = poolRock.GetObject();
+            go.transform.position = new Vector3((int)Random.Range(-RangeX, RangeX)+ transform.position.x, transform.position.y, (int)Random.Range(-RangeZ, RangeZ)+transform.position.z);
+            dileyGeneration = auxDileyGeneration;
         }
-        dileyGeneracion = dileyGeneracion - Time.deltaTime;
+        dileyGeneration = dileyGeneration - Time.deltaTime;
 	}
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

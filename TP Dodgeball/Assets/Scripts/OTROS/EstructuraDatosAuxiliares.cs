@@ -2,152 +2,156 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class EstructuraDatosAuxiliares : MonoBehaviour {
+
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
+public class DataStructure : MonoBehaviour {
 
     // Use this for initialization
     [HideInInspector]
-    public static EstructuraDatosAuxiliares estructuraDatosAuxiliares;
+    public static DataStructure auxiliaryDataStructure;
     [HideInInspector]
-    public bool Guardar;
+    public bool save;
     [HideInInspector]
-    public bool soloUnaVez= true;
+    public bool once= true;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        if (estructuraDatosAuxiliares == null)
+        if (auxiliaryDataStructure == null)
         {
-            estructuraDatosAuxiliares = this;
+            auxiliaryDataStructure = this;
         }
-        else if (estructuraDatosAuxiliares != null)
+        else if (auxiliaryDataStructure != null)
         {
             this.gameObject.SetActive(false);
         }
     }
-    public static EstructuraDatosAuxiliares GetEstructuraDatosAuxiliares()
+    public static DataStructure GetEstructuraDatosAuxiliares()
     {
-        return estructuraDatosAuxiliares;
+        return auxiliaryDataStructure;
     }
-    public struct datosCargaNivel
+    public struct DataLoadingLevel
     {
-        public int I_nivelAcargar;
-        public string S_nivelAcargar;
+        public int I_levelLoad;
+        public string S_levelLoad;
     }
     
-    public struct datosJugador
+    public struct PlayerData
     {
-        public int TOPE_MUNICION;// = 500
-        public float vida;
-        public float maxVida;
-        public float blindaje;
-        public int tipoPelota;
-        public int puntos;
-        public int municionPelotaDeHielo;
-        public int municionPelotaDeFuego;
-        public int municionPelotaFragmentadora;
-        public int municionPelotaDanzarina;
-        public int municionPelotaExplosiva;
-        public bool powerUpAumentarVida;
+        public int TOP_AMMO;// = 500
+        public float life;
+        public float maxLife;
+        public float armor;
+        public int ballType;
+        public int score;
+        public int ammoIceBall;
+        public int ammoFireBall;
+        public int ammoFragmentBall;
+        public int ammoDanceBall;
+        public int ammoExplociveBall;
+        public bool powerUpAddLife;
         public bool powerUpChalecoAntiGolpes;
-        public bool powerUpDobleDanio;
-        public bool Inmune;
-        public bool doblePuntuacion;
+        public bool powerUpDobleDamage;
+        public bool Immune;
+        public bool doblePoints;
         public bool InstaKill;
-        public bool activoInstaKill;
-        public float contInmune;
-        public float contDoblePuntuacion;
-        public float contInstaKill;
-        public float dileyActivacion;
-        public int oportunidades;
-        public int cantEnemigosAbatidos;
+        public bool activeInstaKill;
+        public float countImmune;
+        public float countDoblePoints;
+        public float countInstaKill;
+        public float dileyActive;
+        public int opportunities;
+        public int downcastEnemies;
     }
 
     [HideInInspector]
-    public datosJugador DatosJugador;
+    public PlayerData playerData;
     [HideInInspector]
-    public datosCargaNivel datosNivel;
+    public DataLoadingLevel levelData;
 
-    public void SetNivel(int nivel)
+    public void SetLevel(int level)
     {
-        datosNivel.I_nivelAcargar = nivel;
+        levelData.I_levelLoad = level;
     }
-    public void SetNivel(string nivel)
+    public void SetLevel(string level)
     {
-        datosNivel.S_nivelAcargar = nivel;
+        levelData.S_levelLoad = level;
     }
-    public int I_GetNivel()
+    public int I_GetLevel()
     {
-        return datosNivel.I_nivelAcargar;
+        return levelData.I_levelLoad;
     }
-    public string S_GetNivel()
+    public string S_GetLevel()
     {
-        return datosNivel.S_nivelAcargar;
+        return levelData.S_levelLoad;
     }
-    public void PasarNivel()
+    public void NextLevel()
     {
-        SceneManager.LoadScene(datosNivel.I_nivelAcargar);
+        SceneManager.LoadScene(levelData.I_levelLoad);
     }
-    public void SetDatosJugador(Jugador jugador)
+    public void SetPlayerData(Jugador player)
     {
-        DatosJugador.TOPE_MUNICION = jugador.GetTOPEMUNICION();
-        DatosJugador.vida = jugador.vida;
-        DatosJugador.maxVida = jugador.maxVida;
-        DatosJugador.blindaje = jugador.blindaje;
-        DatosJugador.tipoPelota = jugador.tipoPelota;
-        DatosJugador.puntos = jugador.GetPuntos();
-        DatosJugador.municionPelotaDeHielo = jugador.GetMunicionPelotaHielo();
-        DatosJugador.municionPelotaDeFuego = jugador.GetMunicionPelotaFuego();
-        DatosJugador.municionPelotaFragmentadora = jugador.GetMunicionPelotaFragmentadora();
-        DatosJugador.municionPelotaDanzarina = jugador.GetMunicionPelotaDanzarina();
-        DatosJugador.municionPelotaExplosiva = jugador.GetMunicionPelotaExplosiva();
-        DatosJugador.powerUpAumentarVida = jugador.GetPowerUpAumentarVida();
-        if (Jugador.GetJugador() != null)
+        playerData.TOP_AMMO = player.GetTOPAMMO();
+        playerData.life = player.life;
+        playerData.maxLife = player.maxLife;
+        playerData.armor = player.armor;
+        playerData.ballType = player.ballType;
+        playerData.score = player.GetScore();
+        playerData.ammoIceBall = player.GetAmmoIceBall();
+        playerData.ammoFireBall = player.GetAmmoFireBall();
+        playerData.ammoFragmentBall = player.GetAmmoFragmentBall();
+        playerData.ammoDanceBall = player.GetAmmoDanceBall();
+        playerData.ammoExplociveBall = player.GetAmmoExplociveBall();
+        playerData.powerUpAddLife = player.GetPowerUpAddLife();
+        if (Jugador.GetPlayer() != null)
         {
-            if(Jugador.GetJugador().blindaje> 0)
+            if(Jugador.GetPlayer().armor> 0)
             {
-                DatosJugador.powerUpChalecoAntiGolpes = true;
+                playerData.powerUpChalecoAntiGolpes = true;
             }
             else
             {
-                DatosJugador.powerUpChalecoAntiGolpes = false;
+                playerData.powerUpChalecoAntiGolpes = false;
             }
         }
-        DatosJugador.powerUpDobleDanio = jugador.GetPowerUpDobleDanio();
-        DatosJugador.Inmune = jugador.GetInmune();
-        DatosJugador.doblePuntuacion = jugador.GetDoblePuntuacion();
-        DatosJugador.InstaKill = jugador.GetInstaKill();
-        DatosJugador.activoInstaKill = jugador.GetActivarInstaKill();
-        DatosJugador.contInmune = jugador.GetContInmune();
-        DatosJugador.contDoblePuntuacion = jugador.GetContDoblePuntuacion();
-        DatosJugador.contInstaKill = jugador.GetContInstaKill();
-        DatosJugador.dileyActivacion = jugador.GetDileyActivacion();
-        DatosJugador.oportunidades = jugador.oportunidades;
+        playerData.powerUpDobleDamage = player.GetpowerUpDobleDamage();
+        playerData.Immune = player.GetImmune();
+        playerData.doblePoints = player.GetDoblePoints();
+        playerData.InstaKill = player.GetInstaKill();
+        playerData.activeInstaKill = player.GetActiveInstaKill();
+        playerData.countImmune = player.GetCountImmune();
+        playerData.countDoblePoints = player.GetCountDoblePoints();
+        playerData.countInstaKill = player.GetCountInstaKill();
+        playerData.dileyActive = player.GetDileyActive();
+        playerData.opportunities = player.opportunities;
         //DatosJugador.cantEnemigosAbatidos = jugador.cantAbatidos;
     }
 
-    public void SetValoresDelJugador(Jugador jugador)
+    public void SetPlayerValues(Jugador player)
     {
-        jugador.SetTOPEMUNICION(DatosJugador.TOPE_MUNICION);
-        jugador.vida = DatosJugador.vida;
-        jugador.maxVida = DatosJugador.maxVida;
-        jugador.blindaje = DatosJugador.blindaje;
-        jugador.tipoPelota = DatosJugador.tipoPelota;
-        jugador.SetPuntos(DatosJugador.puntos);
-        jugador.SetMunicionPelotaDeHielo(DatosJugador.municionPelotaDeHielo);
-        jugador.SetMunicionPelotaDeFuego(DatosJugador.municionPelotaDeFuego);
-        jugador.SetMunicionFragmentadora(DatosJugador.municionPelotaFragmentadora);
-        jugador.SetMunicionDanzarina(DatosJugador.municionPelotaDanzarina);
-        jugador.SetMunicionExplociva(DatosJugador.municionPelotaExplosiva);
-        jugador.SetChalecoAntiGolpes(DatosJugador.powerUpChalecoAntiGolpes);
-        jugador.SetDobleDanio(DatosJugador.powerUpDobleDanio);
-        jugador.SetInmune(DatosJugador.Inmune);
-        jugador.SetDoblePuntuacion(DatosJugador.doblePuntuacion);
-        jugador.SetInstaKill(DatosJugador.InstaKill);
-        jugador.SetActivarInstaKill(DatosJugador.activoInstaKill);
-        jugador.SetCountInmune(DatosJugador.contInmune);
-        jugador.SetCountDoblePuntiacion(DatosJugador.contDoblePuntuacion);
-        jugador.SetCountInstaKill(DatosJugador.contInstaKill);
-        jugador.SetDileyActivacion(DatosJugador.dileyActivacion);
-        jugador.oportunidades = DatosJugador.oportunidades;
-        jugador.cantAbatidos = DatosJugador.cantEnemigosAbatidos;
+        player.SetTOPAMMO(playerData.TOP_AMMO);
+        player.life = playerData.life;
+        player.maxLife = playerData.maxLife;
+        player.armor = playerData.armor;
+        player.ballType = playerData.ballType;
+        player.SetScore(playerData.score);
+        player.SetAmmoIceBall(playerData.ammoIceBall);
+        player.SetAmmoFireBall(playerData.ammoFireBall);
+        player.SetAmmoExplociveBall(playerData.ammoFragmentBall);
+        player.SetAmmoDanceBall(playerData.ammoDanceBall);
+        player.SetAmmoExplociveBall(playerData.ammoExplociveBall);
+        player.SetPowerUpArmor(playerData.powerUpChalecoAntiGolpes);
+        player.SetPowerUpDobleDamage(playerData.powerUpDobleDamage);
+        player.SetImmune(playerData.Immune);
+        player.SetDoblePoints(playerData.doblePoints);
+        player.SetInstaKill(playerData.InstaKill);
+        player.SetActiveInstaKill(playerData.activeInstaKill);
+        player.SetCountImmune(playerData.countImmune);
+        player.SetCountDoblePoints(playerData.countDoblePoints);
+        player.SetCountInstaKill(playerData.countInstaKill);
+        player.SetDileyActive(playerData.dileyActive);
+        player.opportunities = playerData.opportunities;
+        player.countKilled = playerData.downcastEnemies;
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

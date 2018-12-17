@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class MusicManager : MonoBehaviour {
 
     // Use this for initialization
     public AudioSource audioSource;
-    public AudioClip[] secuenciaCanciones;
+    public AudioClip[] songSequence;
     private int id;
 	void Start () {
         id = -1;
@@ -14,27 +16,27 @@ public class MusicManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        checkLimiteId();
+        CheckLimitId();
 	}
-    public void Reproducir()
+    public void PlayMusic()
     {
-        if (secuenciaCanciones[id] != null)
+        if (songSequence[id] != null)
         {
-            audioSource.clip = secuenciaCanciones[id];
+            audioSource.clip = songSequence[id];
             audioSource.Play();
         }
     }
-    public void Reproducir(int numCancion)
+    public void PlayMusic(int numCancion)
     {
-        if (secuenciaCanciones[numCancion] != null)
+        if (songSequence[numCancion] != null)
         {
-            audioSource.clip = secuenciaCanciones[numCancion];
+            audioSource.clip = songSequence[numCancion];
             audioSource.Play();
         }
     }
-    public void checkLimiteId()
+    public void CheckLimitId()
     {
-        if(id>= secuenciaCanciones.Length)
+        if(id>= songSequence.Length)
         {
             id = 0;
         }
@@ -44,7 +46,9 @@ public class MusicManager : MonoBehaviour {
         if(other.tag == "Player")
         {
             id++;
-            Reproducir();
+            PlayMusic();
         }
     }
 }
+
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

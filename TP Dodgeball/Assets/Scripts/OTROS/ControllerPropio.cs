@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class ControllerPropio : MonoBehaviour
 {
     float verticalAngle = 0;
@@ -31,3 +32,4 @@ public class ControllerPropio : MonoBehaviour
         transform.Rotate(0, horRot, 0);
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

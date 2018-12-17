@@ -2,38 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class PlacaDePresion : MonoBehaviour {
 
 	// Use this for initialization
-    private Animation animacion;
+    private Animation ANIMATION;
     public AnimationClip AnimationClip;
-    public GameObject[] objectosApagar;
-    public Enemigo Enemigo;
-    public PuertaRejas puerta;
-    public bool checkAbrirPuerta;
-    public bool activarPorCubo;
-    public bool activarPorJugador;
-    private bool unaVez;
+    public GameObject[] offObjects;
+    public Enemigo enemy;
+    public PuertaRejas door;
+    public bool checkOpenDoor;
+    public bool activateByCube;
+    public bool activateByPlayer;
+    private bool once;
 	void Start () {
-        animacion = GetComponent<Animation>();
-        if (Enemigo != null)
+        ANIMATION = GetComponent<Animation>();
+        if (enemy != null)
         {
-            Enemigo.gameObject.SetActive(false);
+            enemy.gameObject.SetActive(false);
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(checkAbrirPuerta)
+		if(checkOpenDoor)
         {
-            if (Enemigo != null)
+            if (enemy != null)
             {
-                if (Enemigo.vida <= 0)
+                if (enemy.life <= 0)
                 {
-                    if(puerta != null && !unaVez)
+                    if(door != null && !once)
                     {
-                        puerta.AbrirPuerta();
-                        unaVez = true;
+                        door.OpenDoor();
+                        once = true;
                     }
                 }
             }
@@ -41,35 +43,35 @@ public class PlacaDePresion : MonoBehaviour {
 	}
     private void OnCollisionEnter(Collision collision)
     {
-        if (activarPorCubo)
+        if (activateByCube)
         {
             if (collision.gameObject.tag == "CuboActivador")
             {
-                animacion.clip = AnimationClip;
-                animacion.Play();
-                for (int i = 0; i < objectosApagar.Length; i++)
+                ANIMATION.clip = AnimationClip;
+                ANIMATION.Play();
+                for (int i = 0; i < offObjects.Length; i++)
                 {
-                    objectosApagar[i].SetActive(false);
+                    offObjects[i].SetActive(false);
                 }
-                if (Enemigo != null)
+                if (enemy != null)
                 {
-                    Enemigo.gameObject.SetActive(true);
+                    enemy.gameObject.SetActive(true);
                 }
             }
         }
-        if(activarPorJugador)
+        if(activateByPlayer)
         {
             if (collision.gameObject.tag == "Player")
             {
-                animacion.clip = AnimationClip;
-                animacion.Play();
-                for (int i = 0; i < objectosApagar.Length; i++)
+                ANIMATION.clip = AnimationClip;
+                ANIMATION.Play();
+                for (int i = 0; i < offObjects.Length; i++)
                 {
-                    objectosApagar[i].SetActive(false);
+                    offObjects[i].SetActive(false);
                 }
-                if (Enemigo != null)
+                if (enemy != null)
                 {
-                    Enemigo.gameObject.SetActive(true);
+                    enemy.gameObject.SetActive(true);
                 }
             }
         }
@@ -77,8 +79,9 @@ public class PlacaDePresion : MonoBehaviour {
     private void OnCollisionExit(Collision collision)
     {
         
-        animacion.transform.localScale = new Vector3(transform.localScale.x, 0.1f, transform.localScale.z);
+        ANIMATION.transform.localScale = new Vector3(transform.localScale.x, 0.1f, transform.localScale.z);
 
     }
 
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

@@ -1,25 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class TargetJugador : MonoBehaviour {
-    public float ElevarVista;
-    private Jugador jugador;
+    public float elevateSight;
+    private Jugador player;
     private void Start()
     {
-        if(Jugador.instanciaJugador != null)
+        if(Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
     }
     void Update () {
-        TargetearJugador();
+        TargetPlayer();
 	}
-    public void TargetearJugador()
+    public void TargetPlayer()
     {
-        if(Jugador.GetJugador() != null)
+        if(Jugador.GetPlayer() != null)
         {
-            transform.LookAt(new Vector3(jugador.transform.position.x, jugador.transform.position.y+ ElevarVista, jugador.transform.position.z));
+            transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y+ elevateSight, player.transform.position.z));
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

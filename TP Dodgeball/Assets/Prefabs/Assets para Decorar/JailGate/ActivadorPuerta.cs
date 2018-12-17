@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class ActivadorPuerta : MonoBehaviour {
 
     // Use this for initialization
-    public PuertaRejas puerta;
-    public bool cerrar;
-    public bool abrir;
+    public PuertaRejas Door;
+    public bool close;
+    public bool open;
 	void Start () {
 		
 	}
@@ -20,22 +20,23 @@ public class ActivadorPuerta : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            if (cerrar)
+            if (close)
             {
-                if (puerta != null)
+                if (Door != null)
                 {
-                    puerta.SetCerrarPuerta(true);
-                    puerta.SetAbrirPuerta(false);
+                    Door.SetCloseDoor(true);
+                    Door.SetOpenDoor(false);
                 }
             }
-            if(abrir)
+            if(open)
             {
-                if(puerta != null)
+                if(Door != null)
                 {
-                    puerta.SetCerrarPuerta(false);
-                    puerta.SetAbrirPuerta(true);
+                    Door.SetCloseDoor(false);
+                    Door.SetOpenDoor(true);
                 }
             }
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

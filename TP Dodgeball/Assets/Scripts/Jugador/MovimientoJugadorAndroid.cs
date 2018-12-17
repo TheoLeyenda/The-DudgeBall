@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 
 public class MovimientoJugadorAndroid : MonoBehaviour {
 
     // Use this for initialization
-    public GameObject jugador;
+    public GameObject player;
     private Vector3 dir;
     private float x;
     private float z;
 	void Start () {
-        x = jugador.transform.position.x;
-        z = jugador.transform.position.z;
+        x = player.transform.position.x;
+        z = player.transform.position.z;
         dir = Vector3.zero;
     }
 	
@@ -19,32 +20,33 @@ public class MovimientoJugadorAndroid : MonoBehaviour {
 	void Update () {
 		
 	}
-    public void MoverAdelante()
+    public void MoveForward()
     {
         //z++;
         x++;
-        dir = new Vector3(x, jugador.transform.position.y, z);
-        jugador.transform.position = dir;
+        dir = new Vector3(x, player.transform.position.y, z);
+        player.transform.position = dir;
     }
-    public void MoverAtras()
+    public void MoveBack()
     {
         //z--;
-        dir = new Vector3(x, jugador.transform.position.y, z);
-        jugador.transform.position = dir;
-        jugador.transform.SetPositionAndRotation(transform.position, new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w));
+        dir = new Vector3(x, player.transform.position.y, z);
+        player.transform.position = dir;
+        player.transform.SetPositionAndRotation(transform.position, new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w));
     }
-    public void MoverIzquierda()
+    public void MoveLeft()
     {
        //x--;
-        dir = new Vector3(x, jugador.transform.position.y, z);
-        jugador.transform.position = dir;
-        jugador.transform.Rotate(0, -90, 0);
+        dir = new Vector3(x, player.transform.position.y, z);
+        player.transform.position = dir;
+        player.transform.Rotate(0, -90, 0);
     }
-    public void MoverDerecha()
+    public void MoveRight()
     {
         //x++;
-        dir = new Vector3(x, jugador.transform.position.y, z);
-        jugador.transform.position = dir;
-        jugador.transform.Rotate(0, 90, 0);
+        dir = new Vector3(x, player.transform.position.y, z);
+        player.transform.position = dir;
+        player.transform.Rotate(0, 90, 0);
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

@@ -1,204 +1,205 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 
 public class Submarino : Enemigo{
 
     public enum States
     {
-        Patrullar = 0,
-        PatrullarBulnerable,
-        PatrullarDisparando,
-        Seguir,
-        AtacarTorpedos,
-        AtacarConTodo,
-        Quieto,
+        patrol = 0,
+        patrolVulnerable,
+        patrolShooting,
+        follow,
+        attackTorpedos,
+        attackWithEverything,
+        still,
     }
-    private Jugador jugador;
+    private Jugador player;
     public PoolPelota poolTorpedos;
-    public float dileyDisparoTorpedos;
-    public float VelocidadMov;
+    public float dileyShootingTorpedos;
+    public float SpeedMov;
     public Transform[] waypoints;
-    public GameObject[] GeneradorTorpedos;
-    public States estados;
-    public GameObject particulasBurbujas;
-    public TorretaSubmarino[] torretas;
-    public float ReducirDanioPelotaComun;
-    public float ReducirDanioPelotaHielo;
-    public float ReducirDanioMiniPelota;
-    public float ReducirDanioExplocivo;
+    public GameObject[] GeneratorTorpedos;
+    public States state;
+    public GameObject particleBubbles;
+    public TorretaSubmarino[] turrets;
+    public float ReduceDamageCommonBall;
+    public float ReduceDamageIceBall;
+    public float ReduceDamageMiniBall;
+    public float ReduceDamageExplocive;
 
     private int id;
-    private float auxVelocidadMov;
-    private float timeEstado;
-    private float efectoFuego;
-    private float auxDileyDisparoTorpedos;
-    private bool puntoDebilActivado;
+    private float auxSpeedMov;
+    private float timeState;
+    private float effectFire;
+    private float auxDileyShootingTorpedos;
+    private bool WeakPointActived;
     private PoolObject poolObject;
     private Rigidbody rig;
 
-    public void Prendido()
+    public void On()
     {
         //PONER LO MISMO QUE EN EL "START();".
-        if (Jugador.instanciaJugador != null)
+        if (Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
         id = 0;
         poolObject = GetComponent<PoolObject>();
-        if (efectoCongelado != null)
+        if (effectFrozen != null)
         {
-            efectoCongelado.SetActive(false);
+            effectFrozen.SetActive(false);
         }
-        if (efectoQuemado != null)
+        if (effectBurned != null)
         {
-            efectoQuemado.SetActive(false);
+            effectBurned.SetActive(false);
         }
-        if (efectoMusica != null)
+        if (effectMusic != null)
         {
-            efectoMusica.SetActive(false);
+            effectMusic.SetActive(false);
         }
         rig = GetComponent<Rigidbody>();
         rig.velocity = Vector3.zero;
         rig.angularVelocity = Vector3.zero;
-        SetEstadoEnemigo(EstadoEnemigo.normal);
-        auxDileyDisparoTorpedos = dileyDisparoTorpedos;
+        SetEnemyState(EstadoEnemigo.normal);
+        auxDileyShootingTorpedos = dileyShootingTorpedos;
         
     }
     void Start () {
-        if(Jugador.instanciaJugador!= null)
+        if(Jugador.InstancePlayer!= null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
         id = 0;
         poolObject = GetComponent<PoolObject>();
-        if (efectoCongelado != null)
+        if (effectFrozen != null)
         {
-            efectoCongelado.SetActive(false);
+            effectFrozen.SetActive(false);
         }
-        if (efectoQuemado != null)
+        if (effectBurned != null)
         {
-            efectoQuemado.SetActive(false);
+            effectBurned.SetActive(false);
         }
-        if (efectoMusica != null)
+        if (effectMusic != null)
         {
-            efectoMusica.SetActive(false);
+            effectMusic.SetActive(false);
         }
         rig = GetComponent<Rigidbody>();
         rig.velocity = Vector3.zero;
         rig.angularVelocity = Vector3.zero;
-        SetEstadoEnemigo(EstadoEnemigo.normal);
-        auxDileyDisparoTorpedos = dileyDisparoTorpedos;
-        auxVelocidadMov = VelocidadMov;
+        SetEnemyState(EstadoEnemigo.normal);
+        auxDileyShootingTorpedos = dileyShootingTorpedos;
+        auxSpeedMov = SpeedMov;
     }
 	
 	// Update is called once per frame
 	void Update () { 
-        updateHP();
+        UpdateHP();
         UpdateStates();
-        if (puntoDebilActivado)
+        if (WeakPointActived)
         {
-            CheckMuerto();
+            CheckDead();
         }
-        if (timeEstado > 0)
+        if (timeState > 0)
         {
-            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
+            if (GetEnemyState() == EstadoEnemigo.dance)
             {
-                SetRotarY(90);
-                Rotar();
+                SetRotateY(90);
+                Rotate();
             }
-            if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.activeSelf)
+            if (GetEnemyState() == EstadoEnemigo.Burned || effectBurned.activeSelf)
             {
-                efectoFuego = efectoFuego + Time.deltaTime;
-                if (efectoFuego >= 1)
+                effectFire = effectFire + Time.deltaTime;
+                if (effectFire >= 1)
                 {
-                    if (jugador != null)
+                    if (player != null)
                     {
-                        if (jugador.GetDoblePuntuacion())
+                        if (player.GetDoblePoints())
                         {
-                            jugador.SumarPuntos(5 * 2);
+                            player.AddScore(5 * 2);
                         }
                         else
                         {
-                            jugador.SumarPuntos(5);
+                            player.AddScore(5);
                         }
-                        vida = vida - (GetDanioBolaFuego() + jugador.GetDanioAdicionalPelotaFuego());
-                        EstaMuerto();
+                        life = life - (GetDamageFireBall() + player.GetAdditionalDamageFireBall());
+                        IsDead();
                     }
-                    efectoFuego = 0;
+                    effectFire = 0;
                 }
-                if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
+                if (GetEnemyState() == EstadoEnemigo.frozen)
                 {
-                    VelocidadMov = 0;
+                    SpeedMov = 0;
                 }
             }
-            timeEstado = timeEstado - Time.deltaTime;
+            timeState = timeState - Time.deltaTime;
         }
 
-        if (timeEstado <= 0)
+        if (timeState <= 0)
         {
-            if (GetEstadoEnemigo() == EstadoEnemigo.congelado)
+            if (GetEnemyState() == EstadoEnemigo.frozen)
             {
 
-                VelocidadMov = auxVelocidadMov;
-                efectoCongelado.SetActive(false);
-                efectoQuemado.SetActive(false);
-                efectoMusica.SetActive(false);
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                SpeedMov = auxSpeedMov;
+                effectFrozen.SetActive(false);
+                effectBurned.SetActive(false);
+                effectMusic.SetActive(false);
+                SetEnemyState(EstadoEnemigo.normal);
 
             }
-            if (GetEstadoEnemigo() == EstadoEnemigo.bailando)
+            if (GetEnemyState() == EstadoEnemigo.dance)
             {
-                efectoMusica.SetActive(false);
-                efectoQuemado.SetActive(false);
-                efectoCongelado.SetActive(false);
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                effectMusic.SetActive(false);
+                effectBurned.SetActive(false);
+                effectFrozen.SetActive(false);
+                SetEnemyState(EstadoEnemigo.normal);
             }
-            if (GetEstadoEnemigo() == EstadoEnemigo.quemado)
+            if (GetEnemyState() == EstadoEnemigo.Burned)
             {
-                efectoQuemado.SetActive(false);
-                efectoMusica.SetActive(false);
-                efectoCongelado.SetActive(false);
-                SetEstadoEnemigo(EstadoEnemigo.normal);
+                effectBurned.SetActive(false);
+                effectMusic.SetActive(false);
+                effectFrozen.SetActive(false);
+                SetEnemyState(EstadoEnemigo.normal);
             }
         }
     }
 
     public void UpdateStates()
     {
-        switch ((int)estados)
+        switch ((int)state)
         {
-            case (int)States.Patrullar:
-                Patrullar();
+            case (int)States.patrol:
+                Patrol();
                 break;
-            case (int)States.PatrullarBulnerable:
-                PatrullarBulnerable();
+            case (int)States.patrolVulnerable:
+                PatrolVulnerable();
                 break;
-            case (int)States.PatrullarDisparando:
-                PatrullarDisparando();
+            case (int)States.patrolShooting:
+                PatrolShooting();
                 break;
-            case (int)States.Seguir:
-                Seguir();
+            case (int)States.follow:
+                Follow();
                 break;
-            case (int)States.AtacarTorpedos:
-                AtacarTorpedos();
+            case (int)States.attackTorpedos:
+                AttackTorpedos();
                 break;
-            case (int)States.AtacarConTodo:
-                AtacarConTodo();
+            case (int)States.attackWithEverything:
+                AttackWithEverything();
                 break;
-            case (int)States.Quieto:
-                Quieto();
+            case (int)States.still:
+                Still();
                 break;
         }
     }
 
     //------------------TENGO QUE HACER QUE SI TOCA CIERTO WAYPOINT PASE DE ESTADO A ESTADO Y CADA VEZ QUE TOQUE UN WAYPOINT HAGA "id++".-----------------------------//
 
-    public void Quieto()
+    public void Still()
     {
-        if (particulasBurbujas != null)
+        if (particleBubbles != null)
         {
-            particulasBurbujas.SetActive(false);
+            particleBubbles.SetActive(false);
         }
     }
    
@@ -206,16 +207,16 @@ public class Submarino : Enemigo{
     //Patrullar: patrulla moviéndose por los distintos waypoints(no tiene activo
     //Su punto débil)
     // TAG PARA ENTRAR EN "Patrullar()" = "WaypointPatrullaje"
-    public void Patrullar()
+    public void Patrol()
     {
-        for(int i = 0; i< torretas.Length; i++)
+        for(int i = 0; i< turrets.Length; i++)
         {
-            if(torretas[i] != null)
+            if(turrets[i] != null)
             {
-                torretas[i].SetDisparar(false);
+                turrets[i].SetShooting(false);
             }
         }
-        puntoDebilActivado = false;
+        WeakPointActived = false;
         if (waypoints.Length > 0)
         {
             if (id >= waypoints.Length)
@@ -226,7 +227,7 @@ public class Submarino : Enemigo{
             {
                 Vector3 target = waypoints[id].position;
                 transform.LookAt(target);
-                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+                transform.position = transform.position + transform.forward * Time.deltaTime * SpeedMov;
             }
         }
 
@@ -235,16 +236,16 @@ public class Submarino : Enemigo{
     //PatrullarBulnerable: en este estado el submarino patrulla pero tiene su
     //Punto débil activo.
     // TAG PARA ENTRAR EN "PatrullarBulnerable()" = "WaypointPatrullarBulnerable"
-    public void PatrullarBulnerable()
+    public void PatrolVulnerable()
     {
-        for (int i = 0; i < torretas.Length; i++)
+        for (int i = 0; i < turrets.Length; i++)
         {
-            if (torretas[i] != null)
+            if (turrets[i] != null)
             {
-                torretas[i].SetDisparar(false);
+                turrets[i].SetShooting(false);
             }
         }
-        puntoDebilActivado = true;
+        WeakPointActived = true;
         if (waypoints.Length > 0)
         {
             if (id >= waypoints.Length)
@@ -255,7 +256,7 @@ public class Submarino : Enemigo{
             {
                 Vector3 target = waypoints[id].position;
                 transform.LookAt(target);
-                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+                transform.position = transform.position + transform.forward * Time.deltaTime * SpeedMov;
             }
         }
     }
@@ -266,16 +267,16 @@ public class Submarino : Enemigo{
     //Por un waypoints especifico(tiene activo su punto débil), dispara sus
     //Torpedos.
     //TAG PARA ENTRAR EN "AtacarTorpedos()" = "WaypointAtacarTorpedos"
-    public void AtacarTorpedos()
+    public void AttackTorpedos()
     {
-        for (int i = 0; i < torretas.Length; i++)
+        for (int i = 0; i < turrets.Length; i++)
         {
-            if (torretas[i] != null)
+            if (turrets[i] != null)
             {
-                torretas[i].SetDisparar(false);
+                turrets[i].SetShooting(false);
             }
         }
-        puntoDebilActivado = true;
+        WeakPointActived = true;
         if (waypoints.Length > 0)
         {
             if (id >= waypoints.Length)
@@ -286,79 +287,79 @@ public class Submarino : Enemigo{
             {
                 Vector3 target = waypoints[id].position;
                 transform.LookAt(target);
-                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+                transform.position = transform.position + transform.forward * Time.deltaTime * SpeedMov;
                 
-                if(dileyDisparoTorpedos> 0)
+                if(dileyShootingTorpedos> 0)
                 {
-                    dileyDisparoTorpedos = dileyDisparoTorpedos - Time.deltaTime;
+                    dileyShootingTorpedos = dileyShootingTorpedos - Time.deltaTime;
                 }
-                if(dileyDisparoTorpedos<= 0)
+                if(dileyShootingTorpedos<= 0)
                 {
-                    for (int i = 0; i < GeneradorTorpedos.Length; i++)
+                    for (int i = 0; i < GeneratorTorpedos.Length; i++)
                     {                                                           // esta condicion del GetId() 
                                                                              //sirve para que no se pase del array
-                        if (GeneradorTorpedos[i].activeSelf == true && poolTorpedos.GetId() < poolTorpedos.count)
+                        if (GeneratorTorpedos[i].activeSelf == true && poolTorpedos.GetId() < poolTorpedos.count)
                         {
                             GameObject go = poolTorpedos.GetObject();
                             Torpedo torpedo = go.GetComponent<Torpedo>();
-                            go.transform.position = GeneradorTorpedos[i].transform.position;
-                            go.transform.rotation = GeneradorTorpedos[i].transform.rotation;
-                            torpedo.Prendido();
+                            go.transform.position = GeneratorTorpedos[i].transform.position;
+                            go.transform.rotation = GeneratorTorpedos[i].transform.rotation;
+                            torpedo.On();
                         }
                     }
-                    dileyDisparoTorpedos = auxDileyDisparoTorpedos;
+                    dileyShootingTorpedos = auxDileyShootingTorpedos;
                 }
             }
         }
     }
-    public void Seguir()
+    public void Follow()
     {
-        for (int i = 0; i < torretas.Length; i++)
+        for (int i = 0; i < turrets.Length; i++)
         {
-            if (torretas[i] != null)
+            if (turrets[i] != null)
             {
-                torretas[i].SetDisparar(false);
+                turrets[i].SetShooting(false);
             }
         }
-        puntoDebilActivado = true;
-        if(jugador != null)
+        WeakPointActived = true;
+        if(player != null)
         {
-            transform.LookAt(jugador.transform.position);
+            transform.LookAt(player.transform.position);
         }
-        transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
-        if (dileyDisparoTorpedos > 0)
+        transform.position = transform.position + transform.forward * Time.deltaTime * SpeedMov;
+        if (dileyShootingTorpedos > 0)
         {
-            dileyDisparoTorpedos = dileyDisparoTorpedos - Time.deltaTime;
+            dileyShootingTorpedos = dileyShootingTorpedos - Time.deltaTime;
         }
-        if (dileyDisparoTorpedos <= 0)
+        if (dileyShootingTorpedos <= 0)
         {
-            for (int i = 0; i < GeneradorTorpedos.Length; i++)
+            for (int i = 0; i < GeneratorTorpedos.Length; i++)
             {                                                           // esta condicion del GetId() 
                                                                         //sirve para que no se pase del array
-                if (GeneradorTorpedos[i].activeSelf == true && poolTorpedos.GetId() < poolTorpedos.count)
+                if (GeneratorTorpedos[i].activeSelf == true && poolTorpedos.GetId() < poolTorpedos.count)
                 {
                     GameObject go = poolTorpedos.GetObject();
                     Torpedo torpedo = go.GetComponent<Torpedo>();
-                    go.transform.position = GeneradorTorpedos[i].transform.position;
-                    go.transform.rotation = GeneradorTorpedos[i].transform.rotation;
-                    torpedo.Prendido();
+                    go.transform.position = GeneratorTorpedos[i].transform.position;
+                    go.transform.rotation = GeneratorTorpedos[i].transform.rotation;
+                    torpedo.On();
                 }
             }
-            dileyDisparoTorpedos = auxDileyDisparoTorpedos;
+            dileyShootingTorpedos = auxDileyShootingTorpedos;
         }
         // FALTA HACER QUE MIENTRAS SIGA ATAQUE.
     }
 
-    public void PatrullarDisparando()
+    public void PatrolShooting()
     {
-        for (int i = 0; i < torretas.Length; i++)
+        for (int i = 0; i < turrets.Length; i++)
         {
-            if (torretas[i] != null)
+            if (turrets[i] != null)
             {
-                torretas[i].SetDisparar(true);
+                turrets[i].SetShooting(true);
             }
         }
-        puntoDebilActivado = true;
+        WeakPointActived = true;
         if (waypoints.Length > 0)
         {
             if (id >= waypoints.Length)
@@ -369,21 +370,21 @@ public class Submarino : Enemigo{
             {
                 Vector3 target = waypoints[id].position;
                 transform.LookAt(target);
-                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+                transform.position = transform.position + transform.forward * Time.deltaTime * SpeedMov;
             }
         }
     }
 
-    public void AtacarConTodo()
+    public void AttackWithEverything()
     {
-        for (int i = 0; i < torretas.Length; i++)
+        for (int i = 0; i < turrets.Length; i++)
         {
-            if (torretas[i] != null)
+            if (turrets[i] != null)
             {
-                torretas[i].SetDisparar(true);
+                turrets[i].SetShooting(true);
             }
         }
-        puntoDebilActivado = true;
+        WeakPointActived = true;
         if (waypoints.Length > 0)
         {
             if (id >= waypoints.Length)
@@ -394,50 +395,50 @@ public class Submarino : Enemigo{
             {
                 Vector3 target = waypoints[id].position;
                 transform.LookAt(target);
-                transform.position = transform.position + transform.forward * Time.deltaTime * VelocidadMov;
+                transform.position = transform.position + transform.forward * Time.deltaTime * SpeedMov;
 
-                if (dileyDisparoTorpedos > 0)
+                if (dileyShootingTorpedos > 0)
                 {
-                    dileyDisparoTorpedos = dileyDisparoTorpedos - Time.deltaTime;
+                    dileyShootingTorpedos = dileyShootingTorpedos - Time.deltaTime;
                 }
-                if (dileyDisparoTorpedos <= 0)
+                if (dileyShootingTorpedos <= 0)
                 {
-                    for (int i = 0; i < GeneradorTorpedos.Length; i++)
+                    for (int i = 0; i < GeneratorTorpedos.Length; i++)
                     {                                                           // esta condicion del GetId() 
                                                                                 //sirve para que no se pase del array
-                        if (GeneradorTorpedos[i].activeSelf == true && poolTorpedos.GetId() < poolTorpedos.count)
+                        if (GeneratorTorpedos[i].activeSelf == true && poolTorpedos.GetId() < poolTorpedos.count)
                         {
                             GameObject go = poolTorpedos.GetObject();
                             Torpedo torpedo = go.GetComponent<Torpedo>();
-                            go.transform.position = GeneradorTorpedos[i].transform.position;
-                            go.transform.rotation = GeneradorTorpedos[i].transform.rotation;
-                            torpedo.Prendido();
+                            go.transform.position = GeneratorTorpedos[i].transform.position;
+                            go.transform.rotation = GeneratorTorpedos[i].transform.rotation;
+                            torpedo.On();
                         }
                     }
-                    dileyDisparoTorpedos = auxDileyDisparoTorpedos;
+                    dileyShootingTorpedos = auxDileyShootingTorpedos;
                 }
             }
         }
     }
 
 
-    public void CheckMuerto()
+    public void CheckDead()
     {
-        if (vida <= 0)
+        if (life <= 0)
         {
-            if (GetMuerto())
+            if (GetDead())
             {
-                if (jugador != null)
+                if (player != null)
                 {
-                    jugador.SumarPuntos(250);
+                    player.AddScore(250);
                 }
-                if (!estoyEnPool)
+                if (!i_AmInPool)
                 {
                     gameObject.SetActive(false);
                 }
-                if (estoyEnPool)
+                if (i_AmInPool)
                 {
-                    poolObject.Resiclarme();
+                    poolObject.Recycle();
                 }
             }
         }
@@ -446,7 +447,7 @@ public class Submarino : Enemigo{
     {
         if (other.tag == "WaypointPatrullaje")
         {
-            estados = States.Patrullar;
+            state = States.patrol;
             if (id >= waypoints.Length)
             {
                 id = 0;
@@ -458,7 +459,7 @@ public class Submarino : Enemigo{
         }
         if(other.tag == "WaypointAtacarConTodo")
         {
-            estados = States.AtacarConTodo;
+            state = States.attackWithEverything;
             if (id >= waypoints.Length)
             {
                 id = 0;
@@ -470,7 +471,7 @@ public class Submarino : Enemigo{
         }
         if (other.tag == "WaypointPatrullarBulnerable")
         {
-            estados = States.PatrullarBulnerable;
+            state = States.patrolVulnerable;
             if (id >= waypoints.Length)
             {
                 id = 0;
@@ -482,7 +483,7 @@ public class Submarino : Enemigo{
         }
         if (other.tag == "WaypointPatrullarDisparando")
         {
-            estados = States.PatrullarDisparando;
+            state = States.patrolShooting;
             if (id >= waypoints.Length)
             {
                 id = 0;
@@ -494,7 +495,7 @@ public class Submarino : Enemigo{
         }
         if (other.tag == "WaypointAtacarTorpedos")
         {
-            estados = States.AtacarTorpedos;
+            state = States.attackTorpedos;
             if (id >= waypoints.Length)
             {
                 id = 0;
@@ -504,124 +505,122 @@ public class Submarino : Enemigo{
                 id++;
             }
         }
-        if (puntoDebilActivado)
+        if (WeakPointActived)
         {
             if (other.gameObject.tag == "PelotaComun")
             {
-                if (jugador != null)
+                if (player != null)
                 {
-                    vida = vida - (GetDanioBolaComun() + jugador.GetDanioAdicionalPelotaComun() - ReducirDanioPelotaComun);
-                    EstaMuerto();
-                    if (jugador.GetDoblePuntuacion())
+                    life = life - (GetDamageCommonBall() + player.GetAdditionalDamageCommonBall() - ReduceDamageCommonBall);
+                    IsDead();
+                    if (player.GetDoblePoints())
                     {
-                        jugador.SumarPuntos(10 * 2);
+                        player.AddScore(10 * 2);
                     }
                     else
                     {
-                        jugador.SumarPuntos(10);
+                        player.AddScore(10);
                     }
                 }
             }
             if (other.gameObject.tag == "PelotaDeHielo")
             {
-                if (jugador != null)
+                if (player != null)
                 {
-                    if (jugador.GetDoblePuntuacion())
+                    if (player.GetDoblePoints())
                     {
-                        jugador.SumarPuntos(10 * 2);
+                        player.AddScore(10 * 2);
                     }
                     else
                     {
-                        jugador.SumarPuntos(10);
+                        player.AddScore(10);
                     }
-                    vida = vida - (GetDanioBolaHielo() + jugador.GetDanioAdicionalPelotaHielo()-ReducirDanioPelotaHielo);
+                    life = life - (GetDamageIceBall() + player.GetAdditionalDamageIceBall()-ReduceDamageIceBall);
                 }
-                EstaMuerto();
-                if (VelocidadMov > 0)
+                IsDead();
+                if (SpeedMov > 0)
                 {
-                    VelocidadMov = VelocidadMov - 5;
+                    SpeedMov = SpeedMov - 5;
 
                     //velMovimiento = 0;
                 }
-                if (VelocidadMov <= 0)
+                if (SpeedMov <= 0)
                 {
-                    SetEstadoEnemigo(EstadoEnemigo.congelado);
-                    efectoCongelado.SetActive(true);
-                    timeEstado = 2.5f;//tiempo por el cual el enemigo "Corredor" estara congelado
+                    SetEnemyState(EstadoEnemigo.frozen);
+                    effectFrozen.SetActive(true);
+                    timeState = 2.5f;//tiempo por el cual el enemigo "Corredor" estara congelado
                 }
             }
             if (other.gameObject.tag == "MiniPelota")
             {
-                if (jugador != null)
+                if (player != null)
                 {
-                    if (jugador.GetDoblePuntuacion())
+                    if (player.GetDoblePoints())
                     {
-                        jugador.SumarPuntos(10 * 2);
+                        player.AddScore(10 * 2);
                     }
                     else
                     {
-                        jugador.SumarPuntos(10);
+                        player.AddScore(10);
                     }
-                    vida = vida - (GetDanioMiniBola() + jugador.GetDanioAdicionalMiniPelota() - ReducirDanioMiniPelota);
-                    EstaMuerto();
+                    life = life - (GetDamageMiniBall() + player.GetAditionalDamageMiniBalls() - ReduceDamageMiniBall);
+                    IsDead();
                 }
             }
             if (other.gameObject.tag == "PelotaDanzarina")
             {
-                if (jugador != null)
+                if (player != null)
                 {
-                    if (jugador.GetDoblePuntuacion())
+                    if (player.GetDoblePoints())
                     {
-                        jugador.SumarPuntos(5 * 2);
+                        player.AddScore(5 * 2);
                     }
                     else
                     {
-                        jugador.SumarPuntos(5);
+                        player.AddScore(5);
                     }
                 }
-                if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+                if (GetEnemyState() != EstadoEnemigo.dance)
                 {
-                    timeEstado = 1.5f;//tiempo por el cual el enemigo estara bailando
+                    timeState = 1.5f;//tiempo por el cual el enemigo estara bailando
                 }
-                SetEstadoEnemigo(EstadoEnemigo.bailando);
-                efectoMusica.SetActive(true);
-                vida = vida - GetDanioBolaDanzarina();
-                EstaMuerto();
+                SetEnemyState(EstadoEnemigo.dance);
+                effectMusic.SetActive(true);
+                life = life - GetDamageDanceBall();
+                IsDead();
 
             }
             if (other.gameObject.tag == "PelotaDeFuego")
             {
-                if (GetEstadoEnemigo() != EstadoEnemigo.quemado)
+                if (GetEnemyState() != EstadoEnemigo.Burned)
                 {
-                    timeEstado = 7;
+                    timeState = 7;
                 }
-                if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+                if (GetEnemyState() != EstadoEnemigo.dance)
                 {
-                    SetEstadoEnemigo(EstadoEnemigo.quemado);
+                    SetEnemyState(EstadoEnemigo.Burned);
                 }
-                efectoQuemado.SetActive(true);
-                VelocidadMov = auxVelocidadMov;
+                effectBurned.SetActive(true);
+                SpeedMov = auxSpeedMov;
             }
             if (other.gameObject.tag == "PelotaExplociva")
             {
-                if (jugador != null)
+                if (player != null)
                 {
-                    if (jugador.GetDoblePuntuacion())
+                    if (player.GetDoblePoints())
                     {
-                        jugador.SumarPuntos(20 * 2);
+                        player.AddScore(20 * 2);
                     }
                     else
                     {
-                        jugador.SumarPuntos(20);
+                        player.AddScore(20);
                     }
-                    vida = vida - ((GetDanioBolaExplociva() + jugador.GetDanioAdicionalPelotaExplociva()) - ReducirDanioExplocivo);
+                    life = life - ((GetDamageExplociveBall() + player.GetAdditionalDamageExplociveBall()) - ReduceDamageExplocive);
                 }
-                EstaMuerto();
+                IsDead();
 
             }
         }
     }
 }
-/*
-       *FALTA CALIBRARLO PARA QUE EL DAÑO QUE RESIVA POR PELOTA (pelota comun,pelota explociva, pelota de hielo y fragmentadora) SEA MUY BAJO.
-*/
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

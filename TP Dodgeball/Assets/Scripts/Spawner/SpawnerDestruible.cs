@@ -2,53 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class SpawnerDestruible : Enemigo {
 
     // Use this for initialization
-    private float timeEstado;
-    private float efectoFuego;
-    private Jugador jugador;
+    private float timeState;
+    private float effectFire;
+    private Jugador player;
     void Start () {
-        if(Jugador.instanciaJugador != null)
+        if(Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
-        efectoFuego = 0;
-        efectoCongelado.SetActive(false);
-        efectoQuemado.SetActive(false);
-        efectoMusica.SetActive(false);
+        effectFire = 0;
+        effectFrozen.SetActive(false);
+        effectBurned.SetActive(false);
+        effectMusic.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if(vida <= 0)
+		if(life <= 0)
         {
-            jugador.SumarPuntos(150);
+            player.AddScore(150);
             gameObject.SetActive(false);
         }
-        if (timeEstado > 0)
+        if (timeState > 0)
         {
-            if (GetEstadoEnemigo() == EstadoEnemigo.quemado || efectoQuemado.activeSelf)
+            if (GetEnemyState() == EstadoEnemigo.Burned || effectBurned.activeSelf)
             {
-                efectoFuego = efectoFuego + Time.deltaTime;
-                if (efectoFuego >= 1)
+                effectFire = effectFire + Time.deltaTime;
+                if (effectFire >= 1)
                 {
-                    if (jugador != null)
+                    if (player != null)
                     {
-                        if (jugador.GetDoblePuntuacion())
+                        if (player.GetDoblePoints())
                         {
-                            jugador.SumarPuntos(5 * 2);
+                            player.AddScore(5 * 2);
                         }
                         else
                         {
-                            jugador.SumarPuntos(5);
+                            player.AddScore(5);
                         }
-                        vida = vida - (GetDanioBolaFuego() + jugador.GetDanioAdicionalPelotaFuego());
+                        life = life - (GetDamageFireBall() + player.GetAdditionalDamageFireBall());
                     }
-                    efectoFuego = 0;
+                    effectFire = 0;
                 }
             }
-            timeEstado = timeEstado - Time.deltaTime;
+            timeState = timeState - Time.deltaTime;
 
         }
     }
@@ -56,101 +58,103 @@ public class SpawnerDestruible : Enemigo {
     {
         if (other.gameObject.tag == "PelotaComun")
         {
-            if (jugador != null)
+            if (player != null)
             {
-                vida = vida - (GetDanioBolaComun() + jugador.GetDanioAdicionalPelotaComun());
-                if (jugador.GetDoblePuntuacion())
+                life = life - (GetDamageCommonBall() + player.GetAdditionalDamageCommonBall());
+                if (player.GetDoblePoints())
                 {
-                    jugador.SumarPuntos(10 * 2);
+                    player.AddScore(10 * 2);
                 }
                 else
                 {
-                    jugador.SumarPuntos(10);
+                    player.AddScore(10);
                 }
             }
-            updateHP();
+            UpdateHP();
         }
         if (other.gameObject.tag == "PelotaDeHielo")
         {
-            if (jugador != null)
+            if (player != null)
             {
-                if (jugador.GetDoblePuntuacion())
+                if (player.GetDoblePoints())
                 {
-                    jugador.SumarPuntos(10 * 2);
+                    player.AddScore(10 * 2);
                 }
                 else
                 {
-                    jugador.SumarPuntos(10);
+                    player.AddScore(10);
                 }
-                vida = vida - (GetDanioBolaHielo() + jugador.GetDanioAdicionalPelotaHielo());
+                life = life - (GetDamageIceBall() + player.GetAdditionalDamageIceBall());
             }
-            updateHP();
+            UpdateHP();
         }
         if (other.gameObject.tag == "MiniPelota")
         {
-            if (jugador != null)
+            if (player != null)
             {
-                if (jugador.GetDoblePuntuacion())
+                if (player.GetDoblePoints())
                 {
-                    jugador.SumarPuntos(10 * 2);
+                    player.AddScore(10 * 2);
                 }
                 else
                 {
-                    jugador.SumarPuntos(10);
+                    player.AddScore(10);
                 }
-                vida = vida - (GetDanioMiniBola() + jugador.GetDanioAdicionalMiniPelota());
+                life = life - (GetDamageMiniBall() + player.GetAditionalDamageMiniBalls());
             }
-            updateHP();
+            UpdateHP();
         }
         if (other.gameObject.tag == "PelotaDanzarina")
         {
-            if (jugador != null)
+            if (player != null)
             {
-                if (jugador.GetDoblePuntuacion())
+                if (player.GetDoblePoints())
                 {
-                    jugador.SumarPuntos(5 * 2);
+                    player.AddScore(5 * 2);
                 }
                 else
                 {
-                    jugador.SumarPuntos(5);
+                    player.AddScore(5);
                 }
             }
-            if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+            if (GetEnemyState() != EstadoEnemigo.dance)
             {
-                timeEstado = 7;//tiempo por el cual el enemigo estara bailando
+                timeState = 7;//tiempo por el cual el enemigo estara bailando
             }
-            SetEstadoEnemigo(EstadoEnemigo.bailando);
-            vida = vida - GetDanioBolaDanzarina();
-            updateHP();
+            SetEnemyState(EstadoEnemigo.dance);
+            life = life - GetDamageDanceBall();
+            UpdateHP();
         }
         if (other.gameObject.tag == "PelotaDeFuego")
         {
-            if (GetEstadoEnemigo() != EstadoEnemigo.quemado)
+            if (GetEnemyState() != EstadoEnemigo.Burned)
             {
-                timeEstado = 7;
+                timeState = 7;
             }
-            if (GetEstadoEnemigo() != EstadoEnemigo.bailando)
+            if (GetEnemyState() != EstadoEnemigo.dance)
             {
-                SetEstadoEnemigo(EstadoEnemigo.quemado);
+                SetEnemyState(EstadoEnemigo.Burned);
             }
-            efectoQuemado.SetActive(true);
-            updateHP();
+            effectBurned.SetActive(true);
+            UpdateHP();
         }
         if (other.gameObject.tag == "PelotaExplociva")
         {
-            if (jugador != null)
+            if (player != null)
             {
-                if (jugador.GetDoblePuntuacion())
+                if (player.GetDoblePoints())
                 {
-                    jugador.SumarPuntos(20 * 2);
+                    player.AddScore(20 * 2);
                 }
                 else
                 {
-                    jugador.SumarPuntos(20);
+                    player.AddScore(20);
                 }
-                vida = vida - (GetDanioBolaExplociva() + jugador.GetDanioAdicionalPelotaExplociva());
+                life = life - (GetDamageExplociveBall() + player.GetAdditionalDamageExplociveBall());
             }
-            updateHP();
+            UpdateHP();
         }
     }
 }
+
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

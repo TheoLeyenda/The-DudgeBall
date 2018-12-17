@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class ActivarDesactivarGameObjects : MonoBehaviour {
 
     // Use this for initialization
-    public GameObject[] objectsActivar;
-    public GameObject[] objectsDesactivar;
-    public void Activar()
+    public GameObject[] objectsActived;
+    public GameObject[] objectsDisable;
+    public void Actived()
     {
-        for (int i = 0; i < objectsActivar.Length; i++)
+        for (int i = 0; i < objectsActived.Length; i++)
         {
-            if (objectsActivar[i] != null)
+            if (objectsActived[i] != null)
             {
-                objectsActivar[i].SetActive(true);
+                objectsActived[i].SetActive(true);
             }
         }
-        for(int i = 0; i< objectsDesactivar.Length; i++)
+        for(int i = 0; i< objectsDisable.Length; i++)
         {
-            if (objectsDesactivar[i] != null)
+            if (objectsDisable[i] != null)
             {
-                objectsDesactivar[i].SetActive(false);
+                objectsDisable[i].SetActive(false);
             }
         }
         gameObject.SetActive(false);
@@ -30,7 +31,8 @@ public class ActivarDesactivarGameObjects : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            Activar();
+            Actived();
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

@@ -3,80 +3,82 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class TiempoEnJuego : MonoBehaviour {
 
     // Use this for initialization
-    public Text tiempo;
-    public float minutos;
-    public float segundos;
-    private float auxMinutos;
-    private float auxSegundos;
-    private Jugador jugador;
+    public Text time;
+    public float minutes;
+    public float seconds;
+    private float auxMinutes;
+    private float auxSeconds;
+    private Jugador player;
     private bool tiempoAcabado = false;
 	void Start () {
-        if(Jugador.instanciaJugador != null)
+        if(Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
-        auxMinutos = minutos;
-        auxSegundos = segundos;
+        auxMinutes = minutes;
+        auxSeconds = seconds;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        CheckTiempo();
+        CheckTime();
 	}
-    public void CheckTiempo()
+    public void CheckTime()
     {
-        if (segundos <= 0 && minutos <= 0)
+        if (seconds <= 0 && minutes <= 0)
         {
-            if (jugador != null)
+            if (player != null)
             {
                 tiempoAcabado = true;
-                jugador.vida = 0;
-                segundos = auxSegundos;
-                minutos = auxMinutos;
-                if (segundos >= 10)
+                player.life = 0;
+                seconds = auxSeconds;
+                minutes = auxMinutes;
+                if (seconds >= 10)
                 {
-                    tiempo.text = (int)minutos + ":" + (int)segundos;
+                    time.text = (int)minutes + ":" + (int)seconds;
                 }
-                if (segundos < 10)
+                if (seconds < 10)
                 {
-                    tiempo.text = (int)minutos + ":0" + (int)segundos;
+                    time.text = (int)minutes + ":0" + (int)seconds;
                 }
 
             }
         }
-        if (jugador != null)
+        if (player != null)
         {
             if (tiempoAcabado)
             {
-                segundos = auxSegundos;
-                minutos = auxMinutos;
+                seconds = auxSeconds;
+                minutes = auxMinutes;
                 tiempoAcabado = false;
-                if (segundos >= 10)
+                if (seconds >= 10)
                 {
-                    tiempo.text = (int)minutos + ":" + (int)segundos;
+                    time.text = (int)minutes + ":" + (int)seconds;
                 }
-                if (segundos < 10)
+                if (seconds < 10)
                 {
-                    tiempo.text = (int)minutos + ":0" + (int)segundos;
+                    time.text = (int)minutes + ":0" + (int)seconds;
                 }
             }
         }
-        if (segundos <= 0 && minutos > 0)
+        if (seconds <= 0 && minutes > 0)
         {
-            segundos = 59;
-            minutos--;
+            seconds = 59;
+            minutes--;
         }
-        if (segundos >= 10)
+        if (seconds >= 10)
         {
-            tiempo.text = (int)minutos + ":" + (int)segundos;
+            time.text = (int)minutes + ":" + (int)seconds;
         }
-        if (segundos < 10)
+        if (seconds < 10)
         {
-            tiempo.text = (int)minutos + ":0" + (int)segundos;
+            time.text = (int)minutes + ":0" + (int)seconds;
         }
-        segundos = segundos - Time.deltaTime;
+        seconds = seconds - Time.deltaTime;
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

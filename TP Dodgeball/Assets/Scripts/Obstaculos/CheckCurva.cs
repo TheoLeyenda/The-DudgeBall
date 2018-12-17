@@ -2,30 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class CheckCurva : MonoBehaviour {
 
     // Use this for initialization
-    public bool abajo;
-    public bool arriba;
-    public bool izquierda;
-    public bool derecha;
+    public bool down;//abajo
+    public bool up;//arriba
+    public bool left;//izquierda
+    public bool right;//derecha
 
-    public bool abajoArriba;
-    public bool abajoIzquierda;
-    public bool abajoDerecha;
-    public bool todoMenosArriba;
+    public bool down_up;
+    public bool down_left;
+    public bool down_right;
+    public bool everythingButUp;
 
-    public bool arribaDerecha;
-    public bool arribaIzquierda;
-    public bool todoMenosAbajo;
+    public bool up_right;
+    public bool up_left;
+    public bool everythingButDown;
 
-    public bool todasDirecciones;
+    public bool allDirections;
 
-    public bool todoMenosDerecha;
-    public bool todoMenosIzquierda;
+    public bool everythingButRight;
+    public bool everythingButLeft;
 
-    public bool DerechaIzquierda;
-    public bool ArribaAbajo;
+    public bool left_Right;
+    public bool up_down;
 
     private float centerX;
     private float centerZ;
@@ -43,7 +45,7 @@ public class CheckCurva : MonoBehaviour {
 
         if(other.tag == "Corredor" || other.tag == "Tirador")
         {
-            if(ArribaAbajo)
+            if(up_down)
             {
                 float opcion = Random.Range(0, 2);
                 if(opcion >= 1)
@@ -56,7 +58,7 @@ public class CheckCurva : MonoBehaviour {
                     other.transform.Rotate(0, -180, 0);
                 }
             }
-            if(DerechaIzquierda)
+            if(left_Right)
             {
                 float opcion = Random.Range(0, 2);
                 if (opcion >= 1)
@@ -71,26 +73,26 @@ public class CheckCurva : MonoBehaviour {
                 }
             }
             //other.transform.position = new Vector3(transform.position.x, other.transform.position.y, transform.position.z);
-            if (abajo)
+            if (down)
             {
                 //Abajo
                 other.transform.Rotate(0, -180, 0);
             }
-            if(arriba)
+            if(up)
             {
                 //no pasa nada porque sigue el mismo rumbo
             }
-            if(izquierda)
+            if(left)
             {
                 //Izquierda
                 other.transform.Rotate(0, 270, 0);
             }
-            if(derecha)
+            if(right)
             {
                 //Derecha
                 other.transform.Rotate(0, 90, 0);
             }
-            if(abajoArriba)
+            if(down_up)
             {
                 float opcion = Random.Range(0,2);
                 if(opcion >=1 )
@@ -104,7 +106,7 @@ public class CheckCurva : MonoBehaviour {
                     other.transform.Rotate(0, -180, 0);
                 }
             }
-            if(abajoIzquierda)
+            if(down_left)
             {
                 float opcion = Random.Range(0, 2);
                 if (opcion >= 1)
@@ -118,7 +120,7 @@ public class CheckCurva : MonoBehaviour {
                     other.transform.Rotate(0, -180, 0);
                 }
             }
-            if(abajoDerecha)
+            if(down_right)
             {
                 float opcion = Random.Range(0, 2);
                 if (opcion >= 1)
@@ -132,7 +134,7 @@ public class CheckCurva : MonoBehaviour {
                     other.transform.Rotate(0, -180, 0);
                 }
             }
-            if(todoMenosArriba)
+            if(everythingButUp)
             {
                 float opcion = Random.Range(0, 3);
                 if(opcion >= 0 && opcion <1)
@@ -151,7 +153,7 @@ public class CheckCurva : MonoBehaviour {
                     other.transform.Rotate(0, 90, 0);
                 }
             }
-            if(arribaDerecha)
+            if(up_right)
             {
                 float opcion = Random.Range(0, 2);
                 if(opcion >= 0 && opcion < 1)
@@ -165,7 +167,7 @@ public class CheckCurva : MonoBehaviour {
                     other.transform.Rotate(0, 90, 0);
                 }
             }
-            if(arribaIzquierda)
+            if(up_left)
             {
                 float opcion = Random.Range(0, 2);
                 Debug.Log(opcion);
@@ -180,7 +182,7 @@ public class CheckCurva : MonoBehaviour {
                     other.transform.Rotate(0, 270, 0);
                 }
             }
-            if(todoMenosAbajo)
+            if(everythingButDown)
             {
                 float opcion = Random.Range(0, 3);
                 if (opcion >= 0 && opcion < 1)
@@ -199,7 +201,7 @@ public class CheckCurva : MonoBehaviour {
                     other.transform.Rotate(0, 90, 0);
                 }
             }
-            if(todoMenosDerecha)
+            if(everythingButRight)
             {
                 float opcion = Random.Range(0, 3);
                 if (opcion >= 0 && opcion < 1)
@@ -218,7 +220,7 @@ public class CheckCurva : MonoBehaviour {
                     other.transform.Rotate(0, 180, 0);
                 }
             }
-            if(todoMenosIzquierda)
+            if(everythingButLeft)
             {
                 float opcion = Random.Range(0, 3);
                 if (opcion >= 0 && opcion < 1)
@@ -237,7 +239,7 @@ public class CheckCurva : MonoBehaviour {
                     other.transform.Rotate(0, 90, 0);
                 }
             }
-            if(todasDirecciones)
+            if(allDirections)
             {
                 float opcion = Random.Range(0, 4);
                 if (opcion >= 0 && opcion < 1)
@@ -264,3 +266,4 @@ public class CheckCurva : MonoBehaviour {
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

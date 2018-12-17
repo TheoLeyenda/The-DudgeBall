@@ -2,33 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class CheckDanioBomba : MonoBehaviour {
 
     // Use this for initialization
-    public float danio;
-    private Jugador jugador;
+    public float damage;
+    private Jugador player;
     private void Start()
     {
-        if(Jugador.instanciaJugador != null)
+        if(Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            if (jugador != null)
+            if (player != null)
             {
-                if (jugador.blindaje > 0)
+                if (player.armor > 0)
                 {
-                    jugador.blindaje = 0;
+                    player.armor = 0;
                 }
                 else
                 {
-                    jugador.vida = jugador.vida - danio;
+                    player.life = player.life - damage;
                 }
             }
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

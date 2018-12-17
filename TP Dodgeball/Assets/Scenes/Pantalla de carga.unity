@@ -248,13 +248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae59b259673d4f4f865d0a2f96deb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porsentaje: {fileID: 1344527008}
-  marcoBarraDeCarga: {fileID: 380251600}
-  carga: {fileID: 195779504}
-  porsentajeMaximoCarga: 100
-  velocidadCarga: 10
-  PantallaAcargar: 
-  usarString: 0
+  percentage: {fileID: 1344527008}
+  loadBarFrame: {fileID: 380251600}
+  load: {fileID: 195779504}
+  percentageLoadMaximun: 100
+  loadSpeed: 15
+  loadScreen: 
+  usingString: 0
+  notLoad: 0
 --- !u!4 &382483562
 Transform:
   m_ObjectHideFlags: 0

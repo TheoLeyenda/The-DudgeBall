@@ -2,27 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class Menus : MonoBehaviour {
 
     // Use this for initialization
-    private Jugador jugador;
-    public GameObject menuGeneral;
-    public GameObject menuPausa;
-    public GameObject menuOpciones;
-    public GameObject menuArmas;
-    public GameObject menuControles;
-    public GameObject menuObjetivo;
-    public GameObject menuMapa;
-    private bool activar_Desactivar;
+    private Jugador player;
+    public GameObject generalMenu;
+    public GameObject pauseMenu;
+    public GameObject optionsMenu;
+    public GameObject weaponsMenu;
+    public GameObject controlsMenu;
+    public GameObject objetiveMenu;
+    public GameObject mapMenu;
+    private bool activate_disable;
     void Start() {
-        if(Jugador.instanciaJugador != null)
+        if(Jugador.InstancePlayer != null)
         {
-            jugador = Jugador.instanciaJugador;
+            player = Jugador.InstancePlayer;
         }
-        activar_Desactivar = false;
-        if (menuPausa != null)
+        activate_disable = false;
+        if (pauseMenu != null)
         {
-            menuPausa.SetActive(false);
+            pauseMenu.SetActive(false);
         }
 	}
 	
@@ -30,16 +32,16 @@ public class Menus : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.P))
         {
-            ActivarMenuPausa();
+            ActivedPauseMenu();
         }
-        if(Jugador.GetJugador().jugadorAndroid)
+        if(Jugador.GetPlayer().playerAndroid)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-        ControlCursor(activar_Desactivar);
+        ControlCursor(activate_disable);
     }
-    public void DesbloquearCursor()
+    public void UnlockCursor()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -48,179 +50,181 @@ public class Menus : MonoBehaviour {
     {
         if (Activar_o_Desactivar)
         {
-            if (jugador != null)
+            if (player != null)
             {
-                if (jugador.jugadorWindows)
+                if (player.playerWindows)
                 {
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
-                    Jugador.GetJugador().enPausa = true;
+                    Jugador.GetPlayer().pause = true;
                    
                 }
             }
         }
         else
         {
-            if (jugador != null && jugador.jugadorAndroid == false)
+            if (player != null && player.playerAndroid == false)
             {
-                jugador.enPausa = false;
+                player.pause = false;
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
-    public void ActivarMenuGeneral()
+    public void ActivedGeneralMenu()
     {
-        menuGeneral.SetActive(true);
-        menuPausa.SetActive(true);
-        menuOpciones.SetActive(false);
-        menuControles.SetActive(false);
-        menuObjetivo.SetActive(false);
-        menuMapa.SetActive(false);
+        generalMenu.SetActive(true);
+        pauseMenu.SetActive(true);
+        optionsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
+        objetiveMenu.SetActive(false);
+        mapMenu.SetActive(false);
         if (GameManager.GetGameManager() != null)
         {
-            GameManager.GetGameManager().pausa = true;
+            GameManager.GetGameManager().pause = true;
         }
     }
-    public void DesactivarMenuGeneral()
+    public void DisableGeneralMenu()
     {
-        menuGeneral.SetActive(false);
-        menuPausa.SetActive(false);
-        menuOpciones.SetActive(false);
-        menuControles.SetActive(false);
-        menuObjetivo.SetActive(false);
-        menuMapa.SetActive(false);
+        generalMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
+        objetiveMenu.SetActive(false);
+        mapMenu.SetActive(false);
         if (GameManager.GetGameManager() != null)
         {
-            GameManager.GetGameManager().pausa = false;
+            GameManager.GetGameManager().pause = false;
         }
     }
-    public void ActivarMenuPausa()
+    public void ActivedPauseMenu()
     {
-        activar_Desactivar = true;
-        if (menuArmas != null && jugador != null)
+        activate_disable = true;
+        if (weaponsMenu != null && player != null)
         {
-            if (jugador.jugadorAndroid)
+            if (player.playerAndroid)
             {
-                if (menuPausa != null && menuOpciones != null && menuArmas.activeSelf == false)
+                if (pauseMenu != null && optionsMenu != null && weaponsMenu.activeSelf == false)
                 {
-                    menuPausa.SetActive(true);
-                    menuOpciones.SetActive(false);
-                    menuControles.SetActive(false);
-                    menuObjetivo.SetActive(false);
-                    menuMapa.SetActive(false);
+                    pauseMenu.SetActive(true);
+                    optionsMenu.SetActive(false);
+                    controlsMenu.SetActive(false);
+                    objetiveMenu.SetActive(false);
+                    mapMenu.SetActive(false);
                     if (GameManager.GetGameManager() != null)
                     {
-                        GameManager.GetGameManager().pausa = true;
+                        GameManager.GetGameManager().pause = true;
                     }
                 }
             }
         }
-        if(jugador != null)
+        if(player != null)
         {
-            if(jugador.jugadorWindows)
+            if(player.playerWindows)
             {
-                if (menuPausa != null && menuOpciones != null)
+                if (pauseMenu != null && optionsMenu != null)
                 {
-                    menuPausa.SetActive(true);
-                    menuOpciones.SetActive(false);
-                    menuControles.SetActive(false);
-                    menuObjetivo.SetActive(false);
-                    menuMapa.SetActive(false);
+                    pauseMenu.SetActive(true);
+                    optionsMenu.SetActive(false);
+                    controlsMenu.SetActive(false);
+                    objetiveMenu.SetActive(false);
+                    mapMenu.SetActive(false);
                     if (GameManager.GetGameManager() != null)
                     {
-                        GameManager.GetGameManager().pausa = true;
+                        GameManager.GetGameManager().pause = true;
                     }
                 }
             }
         }
     }
    
-    public void ActivarMenuControles()
+    public void ActivedControlsMenu()
     {
-        if(menuControles != null)
+        if(controlsMenu != null)
         {
-            menuControles.SetActive(true);
-            menuPausa.SetActive(false);
-            menuOpciones.SetActive(false);
-            menuObjetivo.SetActive(false);
-            menuMapa.SetActive(false);
+            controlsMenu.SetActive(true);
+            pauseMenu.SetActive(false);
+            optionsMenu.SetActive(false);
+            objetiveMenu.SetActive(false);
+            mapMenu.SetActive(false);
             if (GameManager.GetGameManager() != null)
             {
-                GameManager.GetGameManager().pausa = true;
+                GameManager.GetGameManager().pause = true;
             }
         }
     }
-    public void DesactivarMenuPausa()
+    public void DisablePauseMenu()
     {
-        activar_Desactivar = false;
-        if (menuPausa != null && menuOpciones != null)
+        activate_disable = false;
+        if (pauseMenu != null && optionsMenu != null)
         {
-            menuPausa.SetActive(false);
+            pauseMenu.SetActive(false);
             if (GameManager.GetGameManager() != null)
             {
-                GameManager.GetGameManager().pausa = false;
+                GameManager.GetGameManager().pause = false;
             }
         }
     }
-    public void ActivarMenuOpciones()
+    public void ActivedOptionsMenu()
     {
-        if(menuOpciones != null && menuPausa != null)
+        if(optionsMenu != null && pauseMenu != null)
         {
-            menuPausa.SetActive(false);
-            menuOpciones.SetActive(true);
-            menuControles.SetActive(false);
-            menuObjetivo.SetActive(false);
-            menuMapa.SetActive(false);
+            pauseMenu.SetActive(false);
+            optionsMenu.SetActive(true);
+            controlsMenu.SetActive(false);
+            objetiveMenu.SetActive(false);
+            mapMenu.SetActive(false);
             if (GameManager.GetGameManager() != null)
             {
-                GameManager.GetGameManager().pausa = true;
+                GameManager.GetGameManager().pause = true;
             }
         }
     }
-    public void VolverMenuPausa()
+    public void ReturnMenuPause()
     {
-        if (menuOpciones != null && menuPausa != null)
+        if (optionsMenu != null && pauseMenu != null)
         {
-            menuPausa.SetActive(true);
-            menuOpciones.SetActive(false);
-            menuControles.SetActive(false);
-            menuObjetivo.SetActive(false);
-            menuMapa.SetActive(false);
+            pauseMenu.SetActive(true);
+            optionsMenu.SetActive(false);
+            controlsMenu.SetActive(false);
+            objetiveMenu.SetActive(false);
+            mapMenu.SetActive(false);
             if (GameManager.GetGameManager() != null)
             {
-                GameManager.GetGameManager().pausa = true;
+                GameManager.GetGameManager().pause = true;
             }
         }
     }
-    public void ActivarMenuObjetivo()
+    public void ActivedObjetiveMenu()
     {
-        if(menuObjetivo != null)
+        if(objetiveMenu != null)
         {
-            menuObjetivo.SetActive(true);
-            menuPausa.SetActive(false);
-            menuOpciones.SetActive(false);
-            menuControles.SetActive(false);
-            menuMapa.SetActive(false);
+            objetiveMenu.SetActive(true);
+            pauseMenu.SetActive(false);
+            optionsMenu.SetActive(false);
+            controlsMenu.SetActive(false);
+            mapMenu.SetActive(false);
             if (GameManager.GetGameManager() != null)
             {
-                GameManager.GetGameManager().pausa = true;
+                GameManager.GetGameManager().pause = true;
             }
         }
     }
-    public void ActivarMenuMapa()
+    public void ActivedMapMenu()
     {
-        if(menuPausa != null)
+        if(pauseMenu != null)
         {
-            menuObjetivo.SetActive(false);
-            menuPausa.SetActive(false);
-            menuOpciones.SetActive(false);
-            menuControles.SetActive(false);
-            menuMapa.SetActive(true);
+            objetiveMenu.SetActive(false);
+            pauseMenu.SetActive(false);
+            optionsMenu.SetActive(false);
+            controlsMenu.SetActive(false);
+            mapMenu.SetActive(true);
         }
         if (GameManager.GetGameManager() != null)
         {
-            GameManager.GetGameManager().pausa = true;
+            GameManager.GetGameManager().pause = true;
         }
     }
 }
+
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

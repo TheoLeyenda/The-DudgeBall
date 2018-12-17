@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 public class ParteSuperiorCuerpo : MonoBehaviour {
 
     // Use this for initialization
     public Kraken kraken;
-    public float Danio;
+    public float Damage;
 	void Start () {
 		
 	}
@@ -22,9 +23,9 @@ public class ParteSuperiorCuerpo : MonoBehaviour {
             
             Rigidbody rigP = other.GetComponent<Rigidbody>();
             rigP.velocity = Vector3.zero;
-            rigP.AddRelativeForce(-Jugador.GetJugador().transform.forward * kraken.potenciaAtaque, ForceMode.Impulse);
-            Jugador.GetJugador().rigJugador = rigP;
-            Jugador.GetJugador().vida = Jugador.GetJugador().vida - Danio;
+            rigP.AddRelativeForce(-Jugador.GetPlayer().transform.forward * kraken.powerAttack, ForceMode.Impulse);
+            Jugador.GetPlayer().rigJugador = rigP;
+            Jugador.GetPlayer().life = Jugador.GetPlayer().life - Damage;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -34,8 +35,9 @@ public class ParteSuperiorCuerpo : MonoBehaviour {
             Debug.Log("Entre");
             Rigidbody rigP = collision.gameObject.GetComponent<Rigidbody>();
             rigP.velocity = Vector3.zero;
-            rigP.AddRelativeForce(-Jugador.GetJugador().transform.forward * kraken.potenciaAtaque, ForceMode.Impulse);
-            Jugador.GetJugador().rigJugador = rigP;
+            rigP.AddRelativeForce(-Jugador.GetPlayer().transform.forward * kraken.powerAttack, ForceMode.Impulse);
+            Jugador.GetPlayer().rigJugador = rigP;
         }
     }
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

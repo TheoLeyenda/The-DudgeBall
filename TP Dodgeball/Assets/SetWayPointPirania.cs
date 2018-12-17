@@ -2,28 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
+
 public class SetWayPointPirania : MonoBehaviour {
 
     // Use this for initialization
-    public List<Pirania> piranias;
+    public List<Pirania> piranha;
     public List<Transform> WaypointsWindows;
     public List<Transform> WaypointAndroid;
-    private int idPirania = 0;
+    private int idPiranha = 0;
     private int idWaypointWindows = 0;
     private int idWaypointAndroid;
-    private Jugador instanciaJugador;
+    private Jugador instancePlayer;
 	void Start () {
-        if (Jugador.instanciaJugador != null)
+        if (Jugador.InstancePlayer != null)
         {
-            instanciaJugador = Jugador.instanciaJugador;
+            instancePlayer = Jugador.InstancePlayer;
         }
         GameObject[] auxWayPointWindows;
         auxWayPointWindows = GameObject.FindGameObjectsWithTag("WaypointPiraniaWindows");
 
         GameObject[] auxPirania = null;
-        for (int i = 0; i < piranias.Count; i++)
+        for (int i = 0; i < piranha.Count; i++)
         {
-            auxPirania[i] = piranias[i].gameObject;
+            auxPirania[i] = piranha[i].gameObject;
         }
 
         GameObject[] auxWayPointAndroid;
@@ -36,27 +38,27 @@ public class SetWayPointPirania : MonoBehaviour {
 
         for(int i = 0; i< auxPirania.Length; i++)
         {
-            piranias.Add(auxPirania[i].GetComponent<Pirania>());
+            piranha.Add(auxPirania[i].GetComponent<Pirania>());
         }
 
         for(int i = 0; i< auxWayPointAndroid.Length; i++)
         {
             WaypointAndroid.Add(auxWayPointAndroid[i].transform);
         }
-        while(piranias.Count != 0)
+        while(piranha.Count != 0)
         {
             while (WaypointsWindows.Count != 0)
             {
-                if(instanciaJugador.jugadorAndroid)
+                if(instancePlayer.playerAndroid)
                 {
-                    piranias[idPirania].SetWaypoint(WaypointAndroid[idWaypointAndroid]);
-                    piranias.Remove(piranias[idPirania]);
+                    piranha[idPiranha].SetWaypoint(WaypointAndroid[idWaypointAndroid]);
+                    piranha.Remove(piranha[idPiranha]);
                     WaypointAndroid.Remove(WaypointAndroid[idWaypointAndroid]);
                 }
-                if(instanciaJugador.jugadorWindows)
+                if(instancePlayer.playerWindows)
                 {
-                    piranias[idPirania].SetWaypoint(WaypointsWindows[idWaypointWindows]);
-                    piranias.Remove(piranias[idPirania]);
+                    piranha[idPiranha].SetWaypoint(WaypointsWindows[idWaypointWindows]);
+                    piranha.Remove(piranha[idPiranha]);
                     WaypointsWindows.Remove(WaypointsWindows[idWaypointWindows]);
                 }
                 //idWaypoint++;
@@ -72,3 +74,4 @@ public class SetWayPointPirania : MonoBehaviour {
          
 	}
 }
+//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
