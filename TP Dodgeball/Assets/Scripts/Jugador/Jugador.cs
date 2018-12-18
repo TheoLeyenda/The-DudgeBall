@@ -141,15 +141,15 @@ public class Jugador : MonoBehaviour {
         InstancePlayer = this;
         ballType = 1;
         AmmoIceBall = 0;
-        if (DataStructure.GetEstructuraDatosAuxiliares() != null)
+        if (DataStructure.GetAuxiliaryDataStructure() != null)
         {
-            if (DataStructure.GetEstructuraDatosAuxiliares().once)
+            if (DataStructure.GetAuxiliaryDataStructure().once)
             {
-                DataStructure.GetEstructuraDatosAuxiliares().once = false;
+                DataStructure.GetAuxiliaryDataStructure().once = false;
             }
             else
             {
-                DataStructure.GetEstructuraDatosAuxiliares().SetPlayerValues(Jugador.GetPlayer());
+                DataStructure.GetAuxiliaryDataStructure().SetPlayerValues(Jugador.GetPlayer());
            }
         }
     }
@@ -350,13 +350,13 @@ public class Jugador : MonoBehaviour {
         }
         if(other.tag == "ZonaRespawn")
         {
-            if (DataStructure.GetEstructuraDatosAuxiliares() != null)
+            if (DataStructure.GetAuxiliaryDataStructure() != null)
             {
                 
-                DataStructure.GetEstructuraDatosAuxiliares().SetPlayerData(Jugador.GetPlayer());
+                DataStructure.GetAuxiliaryDataStructure().SetPlayerData(Jugador.GetPlayer());
                 if (armor > 0)
                 {
-                    DataStructure.GetEstructuraDatosAuxiliares().playerData.armor = armor;
+                    DataStructure.GetAuxiliaryDataStructure().playerData.armor = armor;
                     logoArmor.SetActive(true);
                     textArmor.gameObject.SetActive(true);
                 }

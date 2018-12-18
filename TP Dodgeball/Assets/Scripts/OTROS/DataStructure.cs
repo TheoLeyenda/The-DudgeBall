@@ -26,7 +26,7 @@ public class DataStructure : MonoBehaviour {
             this.gameObject.SetActive(false);
         }
     }
-    public static DataStructure GetEstructuraDatosAuxiliares()
+    public static DataStructure GetAuxiliaryDataStructure()
     {
         return auxiliaryDataStructure;
     }

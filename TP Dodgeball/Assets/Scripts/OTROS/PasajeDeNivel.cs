@@ -23,13 +23,13 @@ public class PasajeDeNivel : MonoBehaviour {
     {
         if(other.tag == "Player")
         {
-            if (DataStructure.GetEstructuraDatosAuxiliares() != null)
+            if (DataStructure.GetAuxiliaryDataStructure() != null)
             {
 
-                DataStructure.GetEstructuraDatosAuxiliares().SetPlayerData(player);
+                DataStructure.GetAuxiliaryDataStructure().SetPlayerData(player);
                 if (player.armor > 0)
                 {
-                    DataStructure.GetEstructuraDatosAuxiliares().playerData.armor = player.armor;
+                    DataStructure.GetAuxiliaryDataStructure().playerData.armor = player.armor;
                     player.logoArmor.SetActive(true);
                     player.textArmor.gameObject.SetActive(true);
                 }

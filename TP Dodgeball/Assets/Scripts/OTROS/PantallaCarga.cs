@@ -24,9 +24,10 @@ public class PantallaCarga : MonoBehaviour {
 	void Start () {
         System.GC.Collect();
         percentageLoad = 0;
-        if(DataStructure.auxiliaryDataStructure != null)
+        dataStructure = DataStructure.GetAuxiliaryDataStructure();
+        if (dataStructure == null)
         {
-            dataStructure = DataStructure.auxiliaryDataStructure;
+            Debug.Log("ES NULO ÑERI");
         }
         nextLevel = false;
 	}
