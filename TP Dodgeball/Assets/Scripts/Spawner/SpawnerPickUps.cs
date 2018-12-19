@@ -7,7 +7,7 @@ using UnityEngine;
 public class SpawnerPickUps : MonoBehaviour {
 
     // Use this for initialization
-    public PoolPelota poolpickUp;
+    public Pool poolpickUp;
     private PoolObject poolObject;
     private void Start()
     {

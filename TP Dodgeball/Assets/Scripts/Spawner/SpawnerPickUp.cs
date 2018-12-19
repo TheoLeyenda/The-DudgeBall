@@ -25,7 +25,7 @@ public class SpawnerPickUp : MonoBehaviour {
         {
             dileyActived = dileyActived - Time.deltaTime;
         }
-        if (Jugador.GetPlayer() != null)
+        if (Player.GetPlayer() != null)
         {
             if (dileyActived <= 0 )
             {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 //TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
-public class Pirania : Enemigo {
+public class Pirania : Enemy {
 
     // Use this for initialization
     public enum States
@@ -23,9 +23,9 @@ public class Pirania : Enemigo {
     public Transform[] waypoints;
     public Transform waypointPlayerAndroid;
     public Transform waypointPlayerWindows;
-    private Jugador instancePlayer;
+    private Player instancePlayer;
     void Start () {
-        instancePlayer = Jugador.InstancePlayer;
+        instancePlayer = Player.InstancePlayer;
         initialPoint = transform.position;
         initialRotation = transform.rotation;
 	}
@@ -77,7 +77,7 @@ public class Pirania : Enemigo {
     }
     public void SetWaypoint(Transform waypointPosition)
     {
-        if(Jugador.InstancePlayer != null)
+        if(Player.InstancePlayer != null)
         {
             if(instancePlayer.playerAndroid)
             {
@@ -91,9 +91,9 @@ public class Pirania : Enemigo {
     }
     public void Attack()
     {
-        if (Jugador.GetPlayer() != null)
+        if (Player.GetPlayer() != null)
         {
-            if (Jugador.GetPlayer().playerWindows && Jugador.GetPlayer().playerAndroid == false)
+            if (Player.GetPlayer().playerWindows && Player.GetPlayer().playerAndroid == false)
             {
                 if (waypointPlayerWindows != null)
                 {
@@ -105,7 +105,7 @@ public class Pirania : Enemigo {
                     }
                 }
             }
-            if (Jugador.GetPlayer().playerAndroid && Jugador.GetPlayer().playerWindows == false)
+            if (Player.GetPlayer().playerAndroid && Player.GetPlayer().playerWindows == false)
             {
                 if(waypointPlayerAndroid != null)
                 {
@@ -147,56 +147,56 @@ public class Pirania : Enemigo {
         
         if(other.tag == "Player")
         {
-            if (Jugador.GetPlayer() != null)
+            if (Player.GetPlayer() != null)
             {
-                Jugador.GetPlayer().life = Jugador.GetPlayer().life - damage;
+                Player.GetPlayer().life = Player.GetPlayer().life - damage;
             }
         }
         if (other.gameObject.tag == "PelotaComun")
         {
-            if (Jugador.GetPlayer() != null)
+            if (Player.GetPlayer() != null)
             {
-                life = life - (GetDamageCommonBall() + Jugador.GetPlayer().GetAdditionalDamageCommonBall());
+                life = life - (GetDamageCommonBall() + Player.GetPlayer().GetAdditionalDamageCommonBall());
                 IsDead();
-                if (Jugador.GetPlayer().GetDoblePoints())
+                if (Player.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetPlayer().AddScore(10 * 2);
+                    Player.GetPlayer().AddScore(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetPlayer().AddScore(10);
+                    Player.GetPlayer().AddScore(10);
                 }
             }
         }
         if (other.gameObject.tag == "PelotaDeHielo")
         {
-            if (Jugador.GetPlayer() != null)
+            if (Player.GetPlayer() != null)
             {
-                if (Jugador.GetPlayer().GetDoblePoints())
+                if (Player.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetPlayer().AddScore(10 * 2);
+                    Player.GetPlayer().AddScore(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetPlayer().AddScore(10);
+                    Player.GetPlayer().AddScore(10);
                 }
-                life = life - (GetDamageIceBall() + Jugador.GetPlayer().GetAdditionalDamageIceBall());
+                life = life - (GetDamageIceBall() + Player.GetPlayer().GetAdditionalDamageIceBall());
             }
             IsDead();
         }
         if (other.gameObject.tag == "MiniPelota")
         {
-            if (Jugador.GetPlayer() != null)
+            if (Player.GetPlayer() != null)
             {
-                if (Jugador.GetPlayer().GetDoblePoints())
+                if (Player.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetPlayer().AddScore(10 * 2);
+                    Player.GetPlayer().AddScore(10 * 2);
                 }
                 else
                 {
-                    Jugador.GetPlayer().AddScore(10);
+                    Player.GetPlayer().AddScore(10);
                 }
-                life = life - (GetDamageMiniBall() + Jugador.GetPlayer().GetAditionalDamageMiniBalls());
+                life = life - (GetDamageMiniBall() + Player.GetPlayer().GetAditionalDamageMiniBalls());
                 IsDead();
             }
         }

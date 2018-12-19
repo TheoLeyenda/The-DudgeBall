@@ -13,10 +13,10 @@ public class GameManager : MonoBehaviour {
     public Text TextRoundAndroid;
     [HideInInspector]
     public int enemyAmountOnScreen;
-    public CambiarMaterialPuertas changeMaterial;
-    public SpawnerEnemigos[] spawnersEnemy;
-    public TiradorEstatico[] turrets;
-    public SpawnerTrampa[] traps;
+    public SwitchMaterialDoor changeMaterial;
+    public SpawnerEnemy[] spawnersEnemy;
+    public StaticShooter[] turrets;
+    public SpawnerTrap[] traps;
     private bool start;
     private static GameManager instanceGameManager;
     private int Round;

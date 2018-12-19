@@ -7,7 +7,7 @@ using UnityEngine;
 public class PoolObject : MonoBehaviour {
 
     // Use this for initialization
-    public PoolPelota pool;
+    public Pool pool;
 	void Start () {
 	}
 	

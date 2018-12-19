@@ -89,7 +89,7 @@ public class DataStructure : MonoBehaviour {
     {
         SceneManager.LoadScene(levelData.I_levelLoad);
     }
-    public void SetPlayerData(Jugador player)
+    public void SetPlayerData(Player player)
     {
         playerData.TOP_AMMO = player.GetTOPAMMO();
         playerData.life = player.life;
@@ -103,9 +103,9 @@ public class DataStructure : MonoBehaviour {
         playerData.ammoDanceBall = player.GetAmmoDanceBall();
         playerData.ammoExplociveBall = player.GetAmmoExplociveBall();
         playerData.powerUpAddLife = player.GetPowerUpAddLife();
-        if (Jugador.GetPlayer() != null)
+        if (Player.GetPlayer() != null)
         {
-            if(Jugador.GetPlayer().armor> 0)
+            if(Player.GetPlayer().armor> 0)
             {
                 playerData.powerUpChalecoAntiGolpes = true;
             }
@@ -127,7 +127,7 @@ public class DataStructure : MonoBehaviour {
         //DatosJugador.cantEnemigosAbatidos = jugador.cantAbatidos;
     }
 
-    public void SetPlayerValues(Jugador player)
+    public void SetPlayerValues(Player player)
     {
         player.SetTOPAMMO(playerData.TOP_AMMO);
         player.life = playerData.life;

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
-public class Torpedo : Enemigo {
+public class Torpedo : Enemy {
 
     // Use this for initialization
     public float speed;
     public float initialSpeed;
     public float damage;
-    public PoolPelota pool;
+    public Pool pool;
     public float dileyForward;
     public GameObject bubbles;
 
@@ -112,9 +112,9 @@ public class Torpedo : Enemigo {
             if (dileyForward < 0)
             {
                 bubbles.SetActive(true);
-                if (Jugador.GetPlayer() != null)
+                if (Player.GetPlayer() != null)
                 {
-                    transform.LookAt(Jugador.GetPlayer().transform.position);
+                    transform.LookAt(Player.GetPlayer().transform.position);
                     transform.position = transform.position + transform.forward * Time.deltaTime * speed;
                 }
             }
@@ -127,9 +127,9 @@ public class Torpedo : Enemigo {
         {
             if (GetDead())
             {
-                if (Jugador.GetPlayer() != null)
+                if (Player.GetPlayer() != null)
                 {
-                    Jugador.GetPlayer().AddScore(250);
+                    Player.GetPlayer().AddScore(250);
                 }
                 if (!i_AmInPool)
                 {
@@ -146,33 +146,33 @@ public class Torpedo : Enemigo {
     {
         if (other.gameObject.tag == "PelotaComun")
         {
-            if (Jugador.GetPlayer() != null)
+            if (Player.GetPlayer() != null)
             {
-                life = life - (GetDamageCommonBall() + Jugador.GetPlayer().GetAdditionalDamageCommonBall());
+                life = life - (GetDamageCommonBall() + Player.GetPlayer().GetAdditionalDamageCommonBall());
                 IsDead();
-                if (Jugador.GetPlayer().GetDoblePoints())
+                if (Player.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetPlayer().AddScore(1 * 2);
+                    Player.GetPlayer().AddScore(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetPlayer().AddScore(1);
+                    Player.GetPlayer().AddScore(1);
                 }
             }
         }
         if (other.gameObject.tag == "PelotaDeHielo")
         {
-            if (Jugador.GetPlayer() != null)
+            if (Player.GetPlayer() != null)
             {
-                if (Jugador.GetPlayer().GetDoblePoints())
+                if (Player.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetPlayer().AddScore(1 * 2);
+                    Player.GetPlayer().AddScore(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetPlayer().AddScore(1);
+                    Player.GetPlayer().AddScore(1);
                 }
-                life = life - (GetDamageIceBall() + Jugador.GetPlayer().GetAdditionalDamageIceBall());
+                life = life - (GetDamageIceBall() + Player.GetPlayer().GetAdditionalDamageIceBall());
             }
             IsDead();
             if (speed > 0 || initialSpeed > 0)
@@ -190,31 +190,31 @@ public class Torpedo : Enemigo {
         }
         if (other.gameObject.tag == "MiniPelota")
         {
-            if (Jugador.GetPlayer() != null)
+            if (Player.GetPlayer() != null)
             {
-                if (Jugador.GetPlayer().GetDoblePoints())
+                if (Player.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetPlayer().AddScore(1 * 2);
+                    Player.GetPlayer().AddScore(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetPlayer().AddScore(1);
+                    Player.GetPlayer().AddScore(1);
                 }
-                life = life - (GetDamageMiniBall() + Jugador.GetPlayer().GetAditionalDamageMiniBalls());
+                life = life - (GetDamageMiniBall() + Player.GetPlayer().GetAditionalDamageMiniBalls());
                 IsDead();
             }
         }
         if (other.gameObject.tag == "PelotaDanzarina")
         {
-            if (Jugador.GetPlayer() != null)
+            if (Player.GetPlayer() != null)
             {
-                if (Jugador.GetPlayer().GetDoblePoints())
+                if (Player.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetPlayer().AddScore(1 * 2);
+                    Player.GetPlayer().AddScore(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetPlayer().AddScore(1);
+                    Player.GetPlayer().AddScore(1);
                 }
             }
             if (GetEnemyState() != EstadoEnemigo.dance)
@@ -229,32 +229,32 @@ public class Torpedo : Enemigo {
         }
         if (other.gameObject.tag == "PelotaExplociva")
         {
-            if (Jugador.GetPlayer() != null)
+            if (Player.GetPlayer() != null)
             {
-                if (Jugador.GetPlayer().GetDoblePoints())
+                if (Player.GetPlayer().GetDoblePoints())
                 {
-                    Jugador.GetPlayer().AddScore(1 * 2);
+                    Player.GetPlayer().AddScore(1 * 2);
                 }
                 else
                 {
-                    Jugador.GetPlayer().AddScore(1);
+                    Player.GetPlayer().AddScore(1);
                 }
-                life = life - (GetDamageExplociveBall() + Jugador.GetPlayer().GetAdditionalDamageExplociveBall());
+                life = life - (GetDamageExplociveBall() + Player.GetPlayer().GetAdditionalDamageExplociveBall());
             }
             IsDead();
 
         }
         if(other.gameObject.tag == "Player")
         {
-            if(Jugador.GetPlayer() != null)
+            if(Player.GetPlayer() != null)
             {
-                if (Jugador.InstancePlayer.armor > 0)
+                if (Player.InstancePlayer.armor > 0)
                 {
-                    Jugador.InstancePlayer.armor = Jugador.InstancePlayer.armor - damage;
+                    Player.InstancePlayer.armor = Player.InstancePlayer.armor - damage;
                 }
                 else
                 {
-                    Jugador.GetPlayer().life = Jugador.GetPlayer().life - damage;
+                    Player.GetPlayer().life = Player.GetPlayer().life - damage;
                 }
                 if (i_AmInPool)
                 {

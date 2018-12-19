@@ -7,7 +7,7 @@ using UnityEngine;
 public class Menus : MonoBehaviour {
 
     // Use this for initialization
-    private Jugador player;
+    private Player player;
     public GameObject generalMenu;
     public GameObject pauseMenu;
     public GameObject optionsMenu;
@@ -17,9 +17,9 @@ public class Menus : MonoBehaviour {
     public GameObject mapMenu;
     private bool activate_disable;
     void Start() {
-        if(Jugador.InstancePlayer != null)
+        if(Player.InstancePlayer != null)
         {
-            player = Jugador.InstancePlayer;
+            player = Player.InstancePlayer;
         }
         activate_disable = false;
         if (pauseMenu != null)
@@ -34,7 +34,7 @@ public class Menus : MonoBehaviour {
         {
             ActivedPauseMenu();
         }
-        if(Jugador.GetPlayer().playerAndroid)
+        if(Player.GetPlayer().playerAndroid)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -56,7 +56,7 @@ public class Menus : MonoBehaviour {
                 {
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
-                    Jugador.GetPlayer().pause = true;
+                    Player.GetPlayer().pause = true;
                    
                 }
             }

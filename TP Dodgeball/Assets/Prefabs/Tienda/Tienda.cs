@@ -97,9 +97,9 @@ public class Tienda : MonoBehaviour
     }
     public void OpeningStore()
     {
-        if (Jugador.GetPlayer() != null)
+        if (Player.GetPlayer() != null)
         {
-            if (Jugador.GetPlayer().playerWindows && Jugador.GetPlayer().playerAndroid == false)
+            if (Player.GetPlayer().playerWindows && Player.GetPlayer().playerAndroid == false)
             {
                 text.gameObject.SetActive(true);
                 if (Input.GetKey(KeyCode.E))
@@ -108,7 +108,7 @@ public class Tienda : MonoBehaviour
                     //prende el camvas de tienda
                 }
             }
-            if (Jugador.GetPlayer().playerAndroid && Jugador.GetPlayer().playerWindows == false)
+            if (Player.GetPlayer().playerAndroid && Player.GetPlayer().playerWindows == false)
             {
                 boton.SetActive(true);
                 //al apretar el boton en pantalla prende la tienda
@@ -117,18 +117,18 @@ public class Tienda : MonoBehaviour
     }
     public void OpeningCamvasStore()
     {
-        if(Jugador.GetPlayer() != null)
+        if(Player.GetPlayer() != null)
         {
-            Jugador.GetPlayer().inStore = true;
+            Player.GetPlayer().inStore = true;
         }
         OpenStore = true;
-        if (Jugador.GetPlayer().playerWindows && Jugador.GetPlayer().playerAndroid == false)
+        if (Player.GetPlayer().playerWindows && Player.GetPlayer().playerAndroid == false)
         {
             camvasStoreWindows.SetActive(true);
             text.gameObject.SetActive(false);
-            Jugador.GetPlayer().inStore = true;
+            Player.GetPlayer().inStore = true;
         }
-        if (Jugador.GetPlayer().playerAndroid && Jugador.GetPlayer().playerWindows == false)
+        if (Player.GetPlayer().playerAndroid && Player.GetPlayer().playerWindows == false)
         {
             camvasStoreAndroid.SetActive(true);
             boton.SetActive(false);
@@ -146,16 +146,16 @@ public class Tienda : MonoBehaviour
     public void ClosingStore()
     {
         OpenStore = false;
-        if (Jugador.GetPlayer() != null)
+        if (Player.GetPlayer() != null)
         {
-            Jugador.GetPlayer().inStore = false;
+            Player.GetPlayer().inStore = false;
         }
-        if (Jugador.GetPlayer().playerWindows && Jugador.GetPlayer().playerAndroid == false)
+        if (Player.GetPlayer().playerWindows && Player.GetPlayer().playerAndroid == false)
         {
             camvasStoreWindows.SetActive(false);
-            Jugador.GetPlayer().inStore = false;
+            Player.GetPlayer().inStore = false;
         }
-        if (Jugador.GetPlayer().playerAndroid && Jugador.GetPlayer().playerWindows == false)
+        if (Player.GetPlayer().playerAndroid && Player.GetPlayer().playerWindows == false)
         {
             camvasStoreAndroid.SetActive(false);
             if (menuWeaponAndroid != null)
@@ -171,51 +171,51 @@ public class Tienda : MonoBehaviour
     }
     public void Buy(int numBuy)
     {
-        if (Jugador.GetPlayer() != null)
+        if (Player.GetPlayer() != null)
         {
             if (numBuy == 0)
             {
                 ClosingStore();
             }
-            if (PriceChargerIce <= Jugador.GetPlayer().GetScore() && numBuy == 1)
+            if (PriceChargerIce <= Player.GetPlayer().GetScore() && numBuy == 1)
             {
-                Jugador.GetPlayer().AddAmmoIceBall(12);
-                Jugador.GetPlayer().SubtractScore(PriceChargerIce);
+                Player.GetPlayer().AddAmmoIceBall(12);
+                Player.GetPlayer().SubtractScore(PriceChargerIce);
             }
-            if (PriceChargerFire <= Jugador.GetPlayer().GetScore() && numBuy == 2)
+            if (PriceChargerFire <= Player.GetPlayer().GetScore() && numBuy == 2)
             {
-                Jugador.GetPlayer().AddAmmoFireBall(12);
-                Jugador.GetPlayer().SubtractScore(PriceChargerFire);
+                Player.GetPlayer().AddAmmoFireBall(12);
+                Player.GetPlayer().SubtractScore(PriceChargerFire);
             }
-            if (PriceChargerFragment <= Jugador.GetPlayer().GetScore() && numBuy == 3)
+            if (PriceChargerFragment <= Player.GetPlayer().GetScore() && numBuy == 3)
             {
-                Jugador.GetPlayer().AddAmmoFragmentBall(30);
-                Jugador.GetPlayer().SubtractScore(PriceChargerFragment);
+                Player.GetPlayer().AddAmmoFragmentBall(30);
+                Player.GetPlayer().SubtractScore(PriceChargerFragment);
             }
-            if (PriceChargerDancer <= Jugador.GetPlayer().GetScore() && numBuy == 4)
+            if (PriceChargerDancer <= Player.GetPlayer().GetScore() && numBuy == 4)
             {
-                Jugador.GetPlayer().AddAmmoDanceBall(8);
-                Jugador.GetPlayer().SubtractScore(PriceChargerDancer);
+                Player.GetPlayer().AddAmmoDanceBall(8);
+                Player.GetPlayer().SubtractScore(PriceChargerDancer);
             }
-            if (PriceChargerExplocive <= Jugador.GetPlayer().GetScore() && numBuy == 5)
+            if (PriceChargerExplocive <= Player.GetPlayer().GetScore() && numBuy == 5)
             {
-                Jugador.GetPlayer().AddAmmoExplocive(10);
-                Jugador.GetPlayer().SubtractScore(PriceChargerExplocive);
+                Player.GetPlayer().AddAmmoExplocive(10);
+                Player.GetPlayer().SubtractScore(PriceChargerExplocive);
             }
-            if (PriceLife <= Jugador.GetPlayer().GetScore() && numBuy == 6)
+            if (PriceLife <= Player.GetPlayer().GetScore() && numBuy == 6)
             {
-                Jugador.GetPlayer().AddedLife();
-                Jugador.GetPlayer().SubtractScore(PriceLife);
+                Player.GetPlayer().AddedLife();
+                Player.GetPlayer().SubtractScore(PriceLife);
             }
-            if (PriceArmor <= Jugador.GetPlayer().GetScore() && numBuy == 7)
+            if (PriceArmor <= Player.GetPlayer().GetScore() && numBuy == 7)
             {
-                Jugador.GetPlayer().Armor();
-                Jugador.GetPlayer().SubtractScore(PriceArmor);
+                Player.GetPlayer().Armor();
+                Player.GetPlayer().SubtractScore(PriceArmor);
             }
-            if (PriceDobleDamage <= Jugador.GetPlayer().GetScore() && numBuy == 8)
+            if (PriceDobleDamage <= Player.GetPlayer().GetScore() && numBuy == 8)
             {
-                Jugador.GetPlayer().DobleDamage();
-                Jugador.GetPlayer().SubtractScore(PriceDobleDamage);
+                Player.GetPlayer().DobleDamage();
+                Player.GetPlayer().SubtractScore(PriceDobleDamage);
             }
         }
     }
@@ -228,11 +228,11 @@ public class Tienda : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (Jugador.GetPlayer().playerWindows && Jugador.GetPlayer().playerAndroid == false)
+        if (Player.GetPlayer().playerWindows && Player.GetPlayer().playerAndroid == false)
         {
             text.gameObject.SetActive(false);
         }
-        if (Jugador.GetPlayer().playerAndroid && Jugador.GetPlayer().playerWindows == false)
+        if (Player.GetPlayer().playerAndroid && Player.GetPlayer().playerWindows == false)
         {
             boton.SetActive(false);
         }

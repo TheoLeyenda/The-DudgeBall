@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 //TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
-public class Kraken : Enemigo {
+public class Kraken : Enemy {
 
     public struct RotationData
     {
@@ -27,7 +27,7 @@ public class Kraken : Enemigo {
     }
 
     // Use this for initialization
-    private Jugador Player;
+    private Player Player;
     private States states;
     private PoolObject poolObject;
     private Rigidbody rig;
@@ -55,7 +55,7 @@ public class Kraken : Enemigo {
     public float dileyShoot;
     public GameObject[] generatorBall;
     public Transform[] waypoints;
-    public PoolPelota poolInkBall;
+    public Pool poolInkBall;
     public float dileyImpulse;
     public float PowerImpulseMov;
     public BoxCollider weakPoint;
@@ -64,9 +64,9 @@ public class Kraken : Enemigo {
     //public float impulsoDeAtaque;
 
     void Start () {
-        if (Jugador.InstancePlayer != null)
+        if (Player.InstancePlayer != null)
         {
-            Player = Jugador.InstancePlayer;
+            Player = Player.InstancePlayer;
         }
         auxDileyMovRight = DileyMovRight;
         auxDileyMovLeft = DileyMovLeft;
@@ -128,7 +128,7 @@ public class Kraken : Enemigo {
                 if (generatorBall[i].activeSelf == true)
                 {
                     GameObject go = poolInkBall.GetObject();
-                    PelotaEnemigo pelota = go.GetComponent<PelotaEnemigo>();
+                    EnemyBall pelota = go.GetComponent<EnemyBall>();
                     go.transform.position = generatorBall[i].transform.position;
                     go.transform.rotation = generatorBall[i].transform.rotation;
                     pelota.Shoot();

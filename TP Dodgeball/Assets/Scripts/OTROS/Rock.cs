@@ -2,30 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
-public class pickUp : MonoBehaviour {
+public class Rock : MonoBehaviour {
 
     // Use this for initialization
-    public Pool pool;
+    public Pool poolRock;
     private PoolObject poolObject;
+    private Rigidbody rig;
     void Start () {
-		
-	}
+        poolObject = GetComponent<PoolObject>();
+        rig = GetComponent<Rigidbody>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-    public void On()
-    {
-        poolObject = GetComponent<PoolObject>();
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "RompeObjetos")
         {
+            rig.velocity = Vector3.zero;
+            rig.angularVelocity = Vector3.zero;
             poolObject.Recycle();
         }
     }
 }
-//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

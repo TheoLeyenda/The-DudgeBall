@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActivadorPuerta : MonoBehaviour {
 
     // Use this for initialization
-    public PuertaRejas Door;
+    public BarsDoor Door;
     public bool close;
     public bool open;
 	void Start () {
