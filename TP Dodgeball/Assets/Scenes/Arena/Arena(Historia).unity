@@ -5171,6 +5171,15 @@ Prefab:
       propertyPath: AuxDileyActived
       value: 38
       objectReference: {fileID: 0}
+    - target: {fileID: 23926733881250264, guid: c821fbe5ec7213641868fbfaa5da576b,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0212470964009c64091261dd77dad58e, type: 2}
+    - target: {fileID: 1234401968755556, guid: c821fbe5ec7213641868fbfaa5da576b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c821fbe5ec7213641868fbfaa5da576b, type: 2}
   m_IsPrefabAsset: 0
