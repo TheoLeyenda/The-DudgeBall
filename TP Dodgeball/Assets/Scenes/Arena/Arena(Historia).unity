@@ -478,6 +478,12 @@ Prefab:
       propertyPath: damage
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -616,6 +622,31 @@ Prefab:
       value: 
       objectReference: {fileID: 1175744286445056, guid: f9120bdba750d49478b8738d20c8ca17,
         type: 2}
+    - target: {fileID: 114288691787260422, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+        type: 2}
+      propertyPath: poolEnemy
+      value: 
+      objectReference: {fileID: 615773350}
+    - target: {fileID: 114288691787260422, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+        type: 2}
+      propertyPath: count
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114288691787260422, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+        type: 2}
+      propertyPath: RangeX
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 114288691787260422, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+        type: 2}
+      propertyPath: RangeZ
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114288691787260422, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+        type: 2}
+      propertyPath: generateOnStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cdb09311aecbb9468e9cea3ea3f2beb, type: 2}
   m_IsPrefabAsset: 0
@@ -1546,6 +1577,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1867182855065890, guid: 41cda1ae51cbd36489338f57488d7dc4,
     type: 2}
   m_PrefabInternal: {fileID: 579082488}
+--- !u!114 &615773350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114423985281525476, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+    type: 2}
+  m_PrefabInternal: {fileID: 519265612}
+  m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
 --- !u!1 &618279850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,6 +2118,17 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2d359284f512a0449e4b7b8ba4f10ac, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &843521616 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1847242688161668, guid: c7315278db52f9a42a0a2eef308e8161,
+    type: 2}
+  m_PrefabInternal: {fileID: 963241628}
+--- !u!114 &858172877 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114423985281525476, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1250089338}
+  m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
 --- !u!1001 &895733681
 Prefab:
   m_ObjectHideFlags: 0
@@ -2205,6 +2253,12 @@ Prefab:
       propertyPath: auxLife
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -2995,6 +3049,153 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitApp
       objectReference: {fileID: 0}
+    - target: {fileID: 114910202348035694, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1023969231730914, guid: 0afc9e070cd40b740b584c783ac3c091,
+        type: 2}
+    - target: {fileID: 114423172171495220, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1596574118440736, guid: 6273235e2f34197459c39850e1b6a1a1,
+        type: 2}
+    - target: {fileID: 114969575446318530, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97,
+        type: 2}
+    - target: {fileID: 114877556546570764, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1348130759821816, guid: e4131c101794b3c4fbab345abfcfe07a,
+        type: 2}
+    - target: {fileID: 114604925236026020, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1800293553698766, guid: e77bd896efda7e24a9a03533982adad2,
+        type: 2}
+    - target: {fileID: 114375669449218786, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1568372136336738, guid: d5187cad0dacadd4ba2b30a325c5ccec,
+        type: 2}
+    - target: {fileID: 114893517162850426, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1861712495628024, guid: 0b0609db6dea8ae479b5bdeb74dd9a22,
+        type: 2}
+    - target: {fileID: 114149281592941518, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Black
+      value: 
+      objectReference: {fileID: 2100000, guid: 217fb25d37c82a148be7f76aa6226ca5, type: 2}
+    - target: {fileID: 114149281592941518, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Ice
+      value: 
+      objectReference: {fileID: 2100000, guid: dbe3ca9df6404444ebbc0c4090529f8c, type: 2}
+    - target: {fileID: 114149281592941518, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Fragment
+      value: 
+      objectReference: {fileID: 2100000, guid: 7409c0000b569ed448a9768dcdd34ab6, type: 2}
+    - target: {fileID: 114149281592941518, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Dancer
+      value: 
+      objectReference: {fileID: 2100000, guid: 71e01b6c98e26d7478d19c4e42b57ae6, type: 2}
+    - target: {fileID: 114149281592941518, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Fire
+      value: 
+      objectReference: {fileID: 2100000, guid: eba45cf00ff91b34498e3b1d8478b219, type: 2}
+    - target: {fileID: 114149281592941518, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: GeneratorCommonBall
+      value: 
+      objectReference: {fileID: 963241680}
+    - target: {fileID: 114149281592941518, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: GeneratorExplocive
+      value: 
+      objectReference: {fileID: 963241679}
+    - target: {fileID: 114900181614511554, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: GeneratorExplocive
+      value: 
+      objectReference: {fileID: 963241679}
+    - target: {fileID: 114900181614511554, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: GeneratorCommonBall
+      value: 
+      objectReference: {fileID: 963241680}
+    - target: {fileID: 114900181614511554, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Black
+      value: 
+      objectReference: {fileID: 2100000, guid: 217fb25d37c82a148be7f76aa6226ca5, type: 2}
+    - target: {fileID: 114900181614511554, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Ice
+      value: 
+      objectReference: {fileID: 2100000, guid: dbe3ca9df6404444ebbc0c4090529f8c, type: 2}
+    - target: {fileID: 114900181614511554, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Fragment
+      value: 
+      objectReference: {fileID: 2100000, guid: 7409c0000b569ed448a9768dcdd34ab6, type: 2}
+    - target: {fileID: 114900181614511554, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Dancer
+      value: 
+      objectReference: {fileID: 2100000, guid: 71e01b6c98e26d7478d19c4e42b57ae6, type: 2}
+    - target: {fileID: 114900181614511554, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: Fire
+      value: 
+      objectReference: {fileID: 2100000, guid: eba45cf00ff91b34498e3b1d8478b219, type: 2}
+    - target: {fileID: 114327145164486188, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1749509561}
+    - target: {fileID: 114327145164486188, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: generalMenu
+      value: 
+      objectReference: {fileID: 1798209797}
+    - target: {fileID: 114327145164486188, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: optionsMenu
+      value: 
+      objectReference: {fileID: 1724588652}
+    - target: {fileID: 114327145164486188, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: controlsMenu
+      value: 
+      objectReference: {fileID: 843521616}
+    - target: {fileID: 114327145164486188, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: objetiveMenu
+      value: 
+      objectReference: {fileID: 1428157058}
+    - target: {fileID: 114327145164486188, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: mapMenu
+      value: 
+      objectReference: {fileID: 1376381282}
+    - target: {fileID: 114327145164486188, guid: c7315278db52f9a42a0a2eef308e8161,
+        type: 2}
+      propertyPath: weaponsMenu
+      value: 
+      objectReference: {fileID: 963241678}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7315278db52f9a42a0a2eef308e8161, type: 2}
   m_IsPrefabAsset: 0
@@ -3404,6 +3605,12 @@ Prefab:
       propertyPath: damage
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -3625,6 +3832,12 @@ Prefab:
       propertyPath: damage
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -3700,7 +3913,7 @@ Prefab:
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: turrets.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
@@ -4002,47 +4215,47 @@ Prefab:
         type: 2}
       propertyPath: turrets.Array.data[2]
       value: 
-      objectReference: {fileID: 1527210815}
+      objectReference: {fileID: 1758683712}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: turrets.Array.data[3]
       value: 
-      objectReference: {fileID: 1890727135}
+      objectReference: {fileID: 1527210815}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: turrets.Array.data[4]
       value: 
-      objectReference: {fileID: 1217845053}
+      objectReference: {fileID: 1890727135}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: turrets.Array.data[5]
       value: 
-      objectReference: {fileID: 1804275104}
+      objectReference: {fileID: 1217845053}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: turrets.Array.data[6]
       value: 
-      objectReference: {fileID: 895733683}
+      objectReference: {fileID: 1804275104}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: turrets.Array.data[7]
       value: 
-      objectReference: {fileID: 2133390996}
+      objectReference: {fileID: 895733683}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: turrets.Array.data[8]
       value: 
-      objectReference: {fileID: 1068728767}
+      objectReference: {fileID: 2133390996}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: turrets.Array.data[9]
       value: 
-      objectReference: {fileID: 1902504547}
+      objectReference: {fileID: 1068728767}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: turrets.Array.data[10]
       value: 
-      objectReference: {fileID: 998125539}
+      objectReference: {fileID: 1902504547}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: traps.Array.data[0]
@@ -4098,6 +4311,11 @@ Prefab:
       propertyPath: armor
       value: 
       objectReference: {fileID: 124041480}
+    - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
+        type: 2}
+      propertyPath: turrets.Array.data[11]
+      value: 
+      objectReference: {fileID: 998125539}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22be2c205a3338845af4b2ce9ae257b7, type: 2}
   m_IsPrefabAsset: 0
@@ -4336,6 +4554,12 @@ Prefab:
       propertyPath: damage
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -4464,6 +4688,31 @@ Prefab:
       value: 
       objectReference: {fileID: 1175744286445056, guid: f9120bdba750d49478b8738d20c8ca17,
         type: 2}
+    - target: {fileID: 114288691787260422, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+        type: 2}
+      propertyPath: RangeX
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 114288691787260422, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+        type: 2}
+      propertyPath: RangeZ
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114288691787260422, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+        type: 2}
+      propertyPath: count
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114288691787260422, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+        type: 2}
+      propertyPath: generateOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114288691787260422, guid: 2cdb09311aecbb9468e9cea3ea3f2beb,
+        type: 2}
+      propertyPath: poolEnemy
+      value: 
+      objectReference: {fileID: 858172877}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cdb09311aecbb9468e9cea3ea3f2beb, type: 2}
   m_IsPrefabAsset: 0
@@ -4551,6 +4800,31 @@ Prefab:
       value: 
       objectReference: {fileID: 1127270165431172, guid: 9fbcce699e12ad4459da98e1fd3bd122,
         type: 2}
+    - target: {fileID: 114522733005126892, guid: 32de4d125aa72804dbe63d80f0261af9,
+        type: 2}
+      propertyPath: poolEnemy
+      value: 
+      objectReference: {fileID: 1928686903}
+    - target: {fileID: 114522733005126892, guid: 32de4d125aa72804dbe63d80f0261af9,
+        type: 2}
+      propertyPath: RangeX
+      value: 63
+      objectReference: {fileID: 0}
+    - target: {fileID: 114522733005126892, guid: 32de4d125aa72804dbe63d80f0261af9,
+        type: 2}
+      propertyPath: RangeZ
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114522733005126892, guid: 32de4d125aa72804dbe63d80f0261af9,
+        type: 2}
+      propertyPath: count
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114522733005126892, guid: 32de4d125aa72804dbe63d80f0261af9,
+        type: 2}
+      propertyPath: generateOnStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32de4d125aa72804dbe63d80f0261af9, type: 2}
   m_IsPrefabAsset: 0
@@ -4788,6 +5062,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1561107723486474, guid: f84031db0b9b8c548b62194b4a6185fb,
     type: 2}
   m_PrefabInternal: {fileID: 1342107133}
+--- !u!1 &1376381282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1080642438964796, guid: c7315278db52f9a42a0a2eef308e8161,
+    type: 2}
+  m_PrefabInternal: {fileID: 963241628}
+--- !u!1 &1428157058 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1488547528615414, guid: c7315278db52f9a42a0a2eef308e8161,
+    type: 2}
+  m_PrefabInternal: {fileID: 963241628}
 --- !u!114 &1435989814 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114197804725938436, guid: c2d359284f512a0449e4b7b8ba4f10ac,
@@ -4876,6 +5160,16 @@ Prefab:
         type: 2}
       propertyPath: rotation
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726979096128992, guid: c821fbe5ec7213641868fbfaa5da576b,
+        type: 2}
+      propertyPath: dileyActived
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726979096128992, guid: c821fbe5ec7213641868fbfaa5da576b,
+        type: 2}
+      propertyPath: AuxDileyActived
+      value: 38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c821fbe5ec7213641868fbfaa5da576b, type: 2}
@@ -5004,6 +5298,12 @@ Prefab:
       propertyPath: damage
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -5098,6 +5398,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1209364812908650, guid: fd2058729e7a69145b26dda787fd78ed,
     type: 2}
   m_PrefabInternal: {fileID: 1043707488}
+--- !u!1 &1724588652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1570196274429462, guid: c7315278db52f9a42a0a2eef308e8161,
+    type: 2}
+  m_PrefabInternal: {fileID: 963241628}
+--- !u!1 &1749509561 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1935722373166986, guid: c7315278db52f9a42a0a2eef308e8161,
+    type: 2}
+  m_PrefabInternal: {fileID: 963241628}
 --- !u!1001 &1758683710
 Prefab:
   m_ObjectHideFlags: 0
@@ -5222,6 +5532,12 @@ Prefab:
       propertyPath: damage
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -5277,6 +5593,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6,
     type: 2}
   m_PrefabInternal: {fileID: 1758683710}
+--- !u!1 &1798209797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1776303466277742, guid: c7315278db52f9a42a0a2eef308e8161,
+    type: 2}
+  m_PrefabInternal: {fileID: 963241628}
 --- !u!1001 &1804275102
 Prefab:
   m_ObjectHideFlags: 0
@@ -5401,6 +5722,12 @@ Prefab:
       propertyPath: damage
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -5619,6 +5946,12 @@ Prefab:
       propertyPath: damage
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -5798,6 +6131,12 @@ Prefab:
       propertyPath: auxLife
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -5853,6 +6192,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6,
     type: 2}
   m_PrefabInternal: {fileID: 1902504545}
+--- !u!114 &1928686903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114854161380543380, guid: 32de4d125aa72804dbe63d80f0261af9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1272255466}
+  m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
 --- !u!1 &1982003302 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1561107723486474, guid: f84031db0b9b8c548b62194b4a6185fb,
@@ -5987,6 +6332,12 @@ Prefab:
       propertyPath: damage
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0
@@ -6286,6 +6637,12 @@ Prefab:
       propertyPath: damage
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114593792719966964, guid: cc3b4c5d665194e45a49a2a27591f6f6,
+        type: 2}
+      propertyPath: Ball
+      value: 
+      objectReference: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
   m_IsPrefabAsset: 0

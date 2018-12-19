@@ -324,14 +324,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 114520711564998794, guid: b08e617dcde083244bf92f3e57c089d3, type: 2}
-  potencia: 85
-  tiempoVida: 5
-  danio: 15
-  generador: {fileID: 1085660676339224, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
-  pelotaTinta: 0
-  flecha: 0
+  power: 85
+  timeLife: 5
+  damage: 15
+  generator: {fileID: 1085660676339224, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
+  tinteBall: 0
+  arrow: 0
   Audio: {fileID: 82191076663253450}
-  clipPelotaTinta: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
-  clipBala: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
-  clipPelotaRugby: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
-  clipFlecha: {fileID: 8300000, guid: 677495dfb934e474f89bf4b5f66c0200, type: 3}
+  clipTinteBall: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
+  clipBullet: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
+  clipRugbyBall: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
+  clipArrow: {fileID: 8300000, guid: 677495dfb934e474f89bf4b5f66c0200, type: 3}

@@ -244,15 +244,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c561542cb788814da6ba458871efc29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Negro: {fileID: 2100000, guid: 217fb25d37c82a148be7f76aa6226ca5, type: 2}
-  Hielo: {fileID: 2100000, guid: dbe3ca9df6404444ebbc0c4090529f8c, type: 2}
+  Black: {fileID: 2100000, guid: 217fb25d37c82a148be7f76aa6226ca5, type: 2}
+  Ice: {fileID: 2100000, guid: dbe3ca9df6404444ebbc0c4090529f8c, type: 2}
   Normal: {fileID: 2100000, guid: cc1c241b4e0d0b24dad8f16bfe26d6a8, type: 2}
-  Fragmentadora: {fileID: 2100000, guid: 7409c0000b569ed448a9768dcdd34ab6, type: 2}
-  Danzarina: {fileID: 2100000, guid: 71e01b6c98e26d7478d19c4e42b57ae6, type: 2}
-  Fuego: {fileID: 2100000, guid: eba45cf00ff91b34498e3b1d8478b219, type: 2}
-  GeneradorExplocivos: {fileID: 1474206933810920}
-  GeneradorPelotaComun: {fileID: 1225115159264760, guid: dae46b989bb8c084085140e08e1f962f,
+  Fragment: {fileID: 2100000, guid: 7409c0000b569ed448a9768dcdd34ab6, type: 2}
+  Dancer: {fileID: 2100000, guid: 71e01b6c98e26d7478d19c4e42b57ae6, type: 2}
+  Fire: {fileID: 2100000, guid: eba45cf00ff91b34498e3b1d8478b219, type: 2}
+  GeneratorExplocive: {fileID: 1474206933810920}
+  GeneratorCommonBall: {fileID: 1225115159264760, guid: dae46b989bb8c084085140e08e1f962f,
     type: 2}
+  JugadorWindows: 0
 --- !u!135 &135361639421679180
 SphereCollider:
   m_ObjectHideFlags: 1

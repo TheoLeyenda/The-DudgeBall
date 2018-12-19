@@ -707,11 +707,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Base: {fileID: 114137680425862538}
-  power: 0
-  timeLife: 0
-  auxTimeLife: 0
-  typeRoute: 0
-  BaseBall: {fileID: 0}
+  power: 45
+  timeLife: 5
+  auxTimeLife: 5
+  typeRoute: 1
+  BaseBall: {fileID: 1844002172998342}
   Audio: {fileID: 82199748977210634}
   clip: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
 --- !u!114 &114137680425862538
@@ -725,13 +725,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02554d9233c7f84995ffd16ef18cfc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
-  CAMERA: {fileID: 0}
-  lifeTime: 0
-  miniBall1: {fileID: 0}
-  miniBall2: {fileID: 0}
-  miniBall3: {fileID: 0}
-  baseBall: {fileID: 0}
+  power: 50
+  CAMERA: {fileID: 20261469279242880, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
+  lifeTime: 0.1
+  miniBall1: {fileID: 1844076285619678}
+  miniBall2: {fileID: 1092132270921822}
+  miniBall3: {fileID: 1525216404265140}
+  baseBall: {fileID: 1225115159264760, guid: dae46b989bb8c084085140e08e1f962f, type: 2}
 --- !u!114 &114334649067506076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -744,11 +744,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Base: {fileID: 114137680425862538}
-  power: 0
-  timeLife: 0
-  auxTimeLife: 0
-  typeRoute: 0
-  BaseBall: {fileID: 0}
+  power: 45
+  timeLife: 5
+  auxTimeLife: 5
+  typeRoute: 2
+  BaseBall: {fileID: 1844002172998342}
   Audio: {fileID: 82391379904623138}
   clip: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
 --- !u!114 &114897966202900200
@@ -763,11 +763,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Base: {fileID: 114137680425862538}
-  power: 0
-  timeLife: 0
-  auxTimeLife: 0
-  typeRoute: 0
-  BaseBall: {fileID: 0}
+  power: 45
+  timeLife: 5
+  auxTimeLife: 5
+  typeRoute: 3
+  BaseBall: {fileID: 1844002172998342}
   Audio: {fileID: 82475273845545746}
   clip: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
 --- !u!114 &114964182685187124
