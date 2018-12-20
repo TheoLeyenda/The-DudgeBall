@@ -183,7 +183,6 @@ public class Player : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
-            //LeanRodrigez98
         }
         ControlCursor();
         if(DoblePoints)

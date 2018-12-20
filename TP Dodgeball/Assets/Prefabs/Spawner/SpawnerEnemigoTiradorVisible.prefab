@@ -93,22 +93,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1283069939045182
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4218057901726716}
-  - component: {fileID: 114969029060586902}
-  m_Layer: 0
-  m_Name: PoolInstaKill
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1322649756598346
 GameObject:
   m_ObjectHideFlags: 1
@@ -162,7 +146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1383426923196264
 GameObject:
   m_ObjectHideFlags: 1
@@ -192,22 +176,6 @@ GameObject:
   - component: {fileID: 23445808759832998}
   m_Layer: 0
   m_Name: Low
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1443392140793860
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4816252826504678}
-  - component: {fileID: 114140044230969238}
-  m_Layer: 0
-  m_Name: poolPowerUpInmune
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,22 +261,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1820116212594136
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4606943399543880}
-  - component: {fileID: 114162152714850318}
-  m_Layer: 0
-  m_Name: PoolDoblePuntuacion
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1824706541758996
 GameObject:
   m_ObjectHideFlags: 1
@@ -364,9 +316,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375511096941506}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 45.824696, y: 0.5, z: 21.875994}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 5.5334535, y: -3.5200043, z: -20.56998}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4336549284294112}
   - {fileID: 4469213465256140}
@@ -440,19 +392,6 @@ Transform:
   m_Father: {fileID: 4469213465256140}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4218057901726716
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1283069939045182}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 357.7248, y: 225.07335, z: 104.291794}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4469213465256140}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4254526414865936
 Transform:
   m_ObjectHideFlags: 1
@@ -524,9 +463,6 @@ Transform:
   - {fileID: 4977474008004352}
   - {fileID: 4254526414865936}
   - {fileID: 4842583086207670}
-  - {fileID: 4816252826504678}
-  - {fileID: 4606943399543880}
-  - {fileID: 4218057901726716}
   - {fileID: 4502093900841266}
   - {fileID: 4975281520324206}
   m_Father: {fileID: 4037735106990678}
@@ -543,20 +479,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 2.41854}
   m_Children: []
   m_Father: {fileID: 4469213465256140}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4606943399543880
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1820116212594136}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 351.555, y: 80.33885, z: 110.217415}
-  m_LocalScale: {x: 1, y: 0.36150673, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4469213465256140}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4642568937628074
 Transform:
@@ -599,19 +522,6 @@ Transform:
   m_Father: {fileID: 4469213465256140}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!4 &4816252826504678
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443392140793860}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -67.55594, y: -6.450924, z: 13.75692}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4469213465256140}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4842583086207670
 Transform:
   m_ObjectHideFlags: 1
@@ -636,7 +546,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.19999999, z: 1}
   m_Children: []
   m_Father: {fileID: 4469213465256140}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4977474008004352
 Transform:
@@ -957,32 +867,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0223646, y: 2.8453116, z: 1.0530682}
   m_Center: {x: 0.08641291, y: 1.3726037, z: -0.33995914}
---- !u!114 &114140044230969238
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443392140793860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pelota: {fileID: 1278114312916220, guid: 37acd911ec02188498101b430ac67a82, type: 2}
-  count: 3
---- !u!114 &114162152714850318
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1820116212594136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pelota: {fileID: 1134810615268926, guid: f1edec69d96a9e54382f31568f44e217, type: 2}
-  count: 3
 --- !u!114 &114229679344019786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -994,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1287565174351690, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
+  Ball: {fileID: 1287565174351690, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
   count: 75
 --- !u!114 &114335460605476496
 MonoBehaviour:
@@ -1008,16 +892,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolEnemigo: {fileID: 114229679344019786}
-  cantEnemigosInicial: 1
-  dileyCreacion: 30
-  rangoX: 0
-  rangoZ: 0
-  velocidadEnemigo: 3
-  IncrementoCreacion: 2
-  tipoEnemigo: 2
-  patronEnemigo: 1
-  rangoVisionEnemigo: 100
-  EvitarCreacionInstantanea: 0
+  initialEnemyAmount: 1
+  dileyCreation: 30
+  rangeX: 0
+  rangeZ: 0
+  enemySpeed: 2.5
+  incrementCreation: 2
+  enemyType: 2
+  enemyPattern: 1
+  damageShooter: 0
+  powerShooter: 0
+  enemyVisionRange: 100
+  avoidInstantCreation: 0
+  activedInstantCreation: 0
+  DileyShooter: 1.2
 --- !u!114 &114433916577720632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1029,14 +917,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b287d181c574c754eb642d24519e32a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 350
-  maxVida: 350
-  BarraVida: {fileID: 1097381422548854}
-  marcoBarra: {fileID: 1745920307015548}
-  efectoQuemado: {fileID: 1101388532885162}
-  efectoCongelado: {fileID: 1322649756598346}
-  efectoMusica: {fileID: 1117923372613546}
-  estoyEnPool: 0
+  life: 350
+  maxLife: 350
+  lifeBar: {fileID: 1097381422548854}
+  framework: {fileID: 1745920307015548}
+  effectBurned: {fileID: 1101388532885162}
+  effectFrozen: {fileID: 1322649756598346}
+  effectMusic: {fileID: 1117923372613546}
+  i_AmInPool: 0
 --- !u!114 &114548780373719642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1048,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
+  Ball: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
   count: 20
 --- !u!114 &114623894331334960
 MonoBehaviour:
@@ -1061,7 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a67ae44706447446abecff1958f2c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zona: 0
+  zone: 4
 --- !u!114 &114896843710353756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1073,27 +961,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd82d50f4f443a4ea2fdaa035da48f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 350
-  maxVida: 350
-  BarraVida: {fileID: 1097381422548854}
-  marcoBarra: {fileID: 1745920307015548}
-  efectoQuemado: {fileID: 1101388532885162}
-  efectoCongelado: {fileID: 1322649756598346}
-  efectoMusica: {fileID: 1117923372613546}
-  estoyEnPool: 0
---- !u!114 &114969029060586902
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1283069939045182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pelota: {fileID: 1241760798131488, guid: 9142309ec773ed64dbbd99335ba57289, type: 2}
-  count: 3
+  life: 350
+  maxLife: 350
+  lifeBar: {fileID: 1097381422548854}
+  framework: {fileID: 1745920307015548}
+  effectBurned: {fileID: 1101388532885162}
+  effectFrozen: {fileID: 1322649756598346}
+  effectMusic: {fileID: 1117923372613546}
+  i_AmInPool: 0
 --- !u!198 &198050156698924148
 ParticleSystem:
   m_ObjectHideFlags: 1

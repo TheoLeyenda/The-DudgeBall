@@ -74,14 +74,14 @@ GameObject:
   - component: {fileID: 114357528562018418}
   - component: {fileID: 65070037355188606}
   - component: {fileID: 114471561585266810}
-  - component: {fileID: 114415103357349048}
+  - component: {fileID: 114978018298190080}
   m_Layer: 0
   m_Name: SpawnerEnemigoCorredorVisible
   m_TagString: SpawnerEnemigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1283637088649196
 GameObject:
   m_ObjectHideFlags: 1
@@ -131,22 +131,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1608773969612058
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4306112334709260}
-  - component: {fileID: 114592823724067544}
-  m_Layer: 0
-  m_Name: poolPowerUpInmune
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1645557689504948
 GameObject:
   m_ObjectHideFlags: 1
@@ -177,22 +161,6 @@ GameObject:
   m_Layer: 0
   m_Name: Aspecto
   m_TagString: Corredor
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1680881610218480
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4023999519759334}
-  - component: {fileID: 114718678698511378}
-  m_Layer: 0
-  m_Name: PoolInstaKill
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,22 +230,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1869716615538276
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4313723427172150}
-  - component: {fileID: 114396542579211580}
-  m_Layer: 0
-  m_Name: PoolDoblePuntuacion
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1875627042028662
 GameObject:
   m_ObjectHideFlags: 1
@@ -293,19 +245,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4023999519759334
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1680881610218480}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 357.7248, y: 225.07335, z: 104.291794}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4312769897302094}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4054395753743408
 Transform:
   m_ObjectHideFlags: 1
@@ -327,9 +266,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197206476974330}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -38.653828, y: 6.3600006, z: -34.21716}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 47.60997, y: -3.5200043, z: 10.149976}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4878438714552276}
   - {fileID: 4175284005422334}
@@ -337,7 +276,7 @@ Transform:
   - {fileID: 4312769897302094}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4175284005422334
 Transform:
   m_ObjectHideFlags: 1
@@ -390,19 +329,6 @@ Transform:
   m_Father: {fileID: 4312769897302094}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!4 &4306112334709260
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1608773969612058}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -67.22459, y: -2.5417264, z: 13.07432}
-  m_LocalScale: {x: 1, y: 0.36150673, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4312769897302094}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4312769897302094
 Transform:
   m_ObjectHideFlags: 1
@@ -418,25 +344,9 @@ Transform:
   - {fileID: 4054395753743408}
   - {fileID: 4736511390117484}
   - {fileID: 4510450750297472}
-  - {fileID: 4306112334709260}
-  - {fileID: 4313723427172150}
-  - {fileID: 4023999519759334}
   - {fileID: 4893351121962184}
   m_Father: {fileID: 4147300526636804}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4313723427172150
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1869716615538276}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 351.555, y: 80.33885, z: 110.217415}
-  m_LocalScale: {x: 1, y: 0.36150673, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4312769897302094}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4510450750297472
 Transform:
@@ -502,7 +412,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4312769897302094}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4921825271848944
 Transform:
@@ -764,16 +674,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolEnemigo: {fileID: 114387459403274736}
-  cantEnemigosInicial: 1
-  dileyCreacion: 30
-  rangoX: 0
-  rangoZ: 0
-  velocidadEnemigo: 3
-  IncrementoCreacion: 1
-  tipoEnemigo: 1
-  patronEnemigo: 1
-  rangoVisionEnemigo: 100
-  EvitarCreacionInstantanea: 0
+  initialEnemyAmount: 1
+  dileyCreation: 30
+  rangeX: 0
+  rangeZ: 0
+  enemySpeed: 4
+  incrementCreation: 1
+  enemyType: 1
+  enemyPattern: 1
+  damageShooter: 0
+  powerShooter: 0
+  enemyVisionRange: 100
+  avoidInstantCreation: 0
+  activedInstantCreation: 0
+  DileyShooter: 0
 --- !u!114 &114357528562018418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -785,14 +699,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b287d181c574c754eb642d24519e32a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 350
-  maxVida: 350
-  BarraVida: {fileID: 1057336801560990}
-  marcoBarra: {fileID: 1730244785305890}
-  efectoQuemado: {fileID: 1026368354143678}
-  efectoCongelado: {fileID: 1189638629954462}
-  efectoMusica: {fileID: 1805855685627830}
-  estoyEnPool: 0
+  life: 350
+  maxLife: 350
+  lifeBar: {fileID: 1057336801560990}
+  framework: {fileID: 1730244785305890}
+  effectBurned: {fileID: 1026368354143678}
+  effectFrozen: {fileID: 1189638629954462}
+  effectMusic: {fileID: 1805855685627830}
+  i_AmInPool: 0
 --- !u!114 &114387459403274736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -804,33 +718,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1191930640314322, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
+  Ball: {fileID: 1191930640314322, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
   count: 75
---- !u!114 &114396542579211580
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1869716615538276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pelota: {fileID: 1134810615268926, guid: f1edec69d96a9e54382f31568f44e217, type: 2}
-  count: 3
---- !u!114 &114415103357349048
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1197206476974330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a67ae44706447446abecff1958f2c13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zona: 0
 --- !u!114 &114471561585266810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -842,40 +731,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd82d50f4f443a4ea2fdaa035da48f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 350
-  maxVida: 350
-  BarraVida: {fileID: 1057336801560990}
-  marcoBarra: {fileID: 1730244785305890}
-  efectoQuemado: {fileID: 1026368354143678}
-  efectoCongelado: {fileID: 1189638629954462}
-  efectoMusica: {fileID: 1805855685627830}
-  estoyEnPool: 0
---- !u!114 &114592823724067544
+  life: 350
+  maxLife: 350
+  lifeBar: {fileID: 1057336801560990}
+  framework: {fileID: 1730244785305890}
+  effectBurned: {fileID: 1026368354143678}
+  effectFrozen: {fileID: 1189638629954462}
+  effectMusic: {fileID: 1805855685627830}
+  i_AmInPool: 0
+--- !u!114 &114978018298190080
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1608773969612058}
+  m_GameObject: {fileID: 1197206476974330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a67ae44706447446abecff1958f2c13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1278114312916220, guid: 37acd911ec02188498101b430ac67a82, type: 2}
-  count: 3
---- !u!114 &114718678698511378
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1680881610218480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pelota: {fileID: 1241760798131488, guid: 9142309ec773ed64dbbd99335ba57289, type: 2}
-  count: 3
+  zone: 4
 --- !u!198 &198333760193125096
 ParticleSystem:
   m_ObjectHideFlags: 1

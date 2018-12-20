@@ -1214,7 +1214,7 @@ MonoBehaviour:
   poolShooter: {fileID: 114343732359657828, guid: c2d359284f512a0449e4b7b8ba4f10ac,
     type: 2}
   rugbyBalls: {fileID: 114784017348185434}
-  speed: 0
+  speed: 3.8
   dilay: 1.5
   ball: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
   generatorBall: {fileID: 1085660676339224}
@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ball: {fileID: 0}
+  Ball: {fileID: 1278114312916220, guid: 37acd911ec02188498101b430ac67a82, type: 2}
   count: 3
 --- !u!114 &114703426975621058
 MonoBehaviour:
@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ball: {fileID: 0}
+  Ball: {fileID: 1134810615268926, guid: f1edec69d96a9e54382f31568f44e217, type: 2}
   count: 3
 --- !u!114 &114784017348185434
 MonoBehaviour:
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ball: {fileID: 0}
+  Ball: {fileID: 1241760798131488, guid: 9142309ec773ed64dbbd99335ba57289, type: 2}
   count: 3
 --- !u!114 &114942627227381640
 MonoBehaviour:
