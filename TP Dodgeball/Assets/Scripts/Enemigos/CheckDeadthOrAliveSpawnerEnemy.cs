@@ -18,6 +18,7 @@ public class CheckDeadthOrAliveSpawnerEnemy : MonoBehaviour {
     {
         if(once)
         {
+            
             once = false;
             if (labyrinthManager != null)
             {

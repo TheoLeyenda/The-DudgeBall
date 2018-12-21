@@ -815,6 +815,10 @@ Prefab:
       propertyPath: m_Name
       value: SpawnerEnemigoCorredorVisible (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1197206476974330, guid: 7b0168814dd089944a71c6c1421fd4c0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b0168814dd089944a71c6c1421fd4c0, type: 2}
   m_IsPrefabAsset: 0
@@ -2814,7 +2818,7 @@ Prefab:
     - target: {fileID: 114842823547543208, guid: 80c086db8f168ba4eba50bc7bf44b626,
         type: 2}
       propertyPath: SpawnersDestroyedByArea.Array.size
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114842823547543208, guid: 80c086db8f168ba4eba50bc7bf44b626,
         type: 2}
@@ -2981,6 +2985,16 @@ Prefab:
         type: 2}
       propertyPath: currentZone
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114842823547543208, guid: 80c086db8f168ba4eba50bc7bf44b626,
+        type: 2}
+      propertyPath: SpawnersQuantityByArea.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114842823547543208, guid: 80c086db8f168ba4eba50bc7bf44b626,
+        type: 2}
+      propertyPath: SpawnersQuantityByArea.Array.data[4]
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80c086db8f168ba4eba50bc7bf44b626, type: 2}
@@ -3655,11 +3669,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1205172325929664, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1691129007219654, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224881773466407684, guid: 41cda1ae51cbd36489338f57488d7dc4,
         type: 2}
@@ -6618,6 +6632,10 @@ Prefab:
       propertyPath: m_Name
       value: SpawnerEnemigoCorredorVisible (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1197206476974330, guid: 7b0168814dd089944a71c6c1421fd4c0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b0168814dd089944a71c6c1421fd4c0, type: 2}
   m_IsPrefabAsset: 0
@@ -7934,6 +7952,10 @@ Prefab:
       propertyPath: Audio
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1368723099192780, guid: b08e617dcde083244bf92f3e57c089d3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b08e617dcde083244bf92f3e57c089d3, type: 2}
   m_IsPrefabAsset: 0
@@ -8876,6 +8898,10 @@ Prefab:
     - target: {fileID: 1375511096941506, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}
       propertyPath: m_Name
       value: SpawnerEnemigoTiradorVisible (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375511096941506, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}
@@ -10212,6 +10238,10 @@ Prefab:
       propertyPath: m_Name
       value: SpawnerEnemigoCorredorVisible (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1197206476974330, guid: 7b0168814dd089944a71c6c1421fd4c0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b0168814dd089944a71c6c1421fd4c0, type: 2}
   m_IsPrefabAsset: 0
@@ -10259,6 +10289,10 @@ Prefab:
     - target: {fileID: 4037735106990678, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375511096941506, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}
@@ -10460,6 +10494,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4147300526636804, guid: 7b0168814dd089944a71c6c1421fd4c0, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197206476974330, guid: 7b0168814dd089944a71c6c1421fd4c0, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -12082,6 +12120,10 @@ Prefab:
       propertyPath: m_Name
       value: SpawnerEnemigoTiradorVisible (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1375511096941506, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}
   m_IsPrefabAsset: 0
@@ -13259,6 +13301,10 @@ Prefab:
     - target: {fileID: 1375511096941506, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}
       propertyPath: m_Name
       value: SpawnerEnemigoTiradorVisible (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375511096941506, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03406dc50eb96304e921b4e4bfa2736d, type: 2}

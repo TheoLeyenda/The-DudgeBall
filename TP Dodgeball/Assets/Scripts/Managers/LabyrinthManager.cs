@@ -127,34 +127,34 @@ public class LabyrinthManager : MonoBehaviour
                     imageRunnerWindows.SetActive(true);
                     imageShooterWindows.SetActive(true);
                 }
+            }
+            if (Player.GetPlayer().playerAndroid)
+            {
+                if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
+                {
+                    objetiveAndroid.text = SpawnersDestroyedByArea[1] + "/" + SpawnersQuantityByArea[1] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
+                    imageRunnerAndroid.SetActive(true);
+                    imageShooterAndroid.SetActive(true);
+                }
+            }
+            if (SpawnersQuantityByArea[1] <= SpawnersDestroyedByArea[1])
+            {
+                currentZone++;
+                if (doors[1] != null)
+                {
+                    doors[1].SetActive(false);
+                }
+                if (Player.GetPlayer().playerWindows)
+                {
+                    objetiveWindows.text = " ";
+                    imageRunnerWindows.SetActive(false);
+                    imageShooterWindows.SetActive(false);
+                }
                 if (Player.GetPlayer().playerAndroid)
                 {
-                    if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
-                    {
-                        objetiveAndroid.text = SpawnersDestroyedByArea[1] + "/" + SpawnersQuantityByArea[1] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
-                        imageRunnerAndroid.SetActive(true);
-                        imageShooterAndroid.SetActive(true);
-                    }
-                }
-                if (SpawnersQuantityByArea[1] <= SpawnersDestroyedByArea[1])
-                {
-                    currentZone++;
-                    if (doors[1] != null)
-                    {
-                        doors[1].SetActive(false);
-                    }
-                    if (Player.GetPlayer().playerWindows)
-                    {
-                        objetiveWindows.text = " ";
-                        imageRunnerWindows.SetActive(false);
-                        imageShooterWindows.SetActive(false);
-                    }
-                    if (Player.GetPlayer().playerAndroid)
-                    {
-                        objetiveAndroid.text = " ";
-                        imageRunnerAndroid.SetActive(false);
-                        imageShooterAndroid.SetActive(false);
-                    }
+                    objetiveAndroid.text = " ";
+                    imageRunnerAndroid.SetActive(false);
+                    imageShooterAndroid.SetActive(false);
                 }
             }
         }
@@ -171,34 +171,34 @@ public class LabyrinthManager : MonoBehaviour
                     imageRunnerWindows.SetActive(true);
                     imageShooterWindows.SetActive(true);
                 }
+            }
+            if (Player.GetPlayer().playerAndroid)
+            {
+                if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
+                {
+                    objetiveAndroid.text = SpawnersDestroyedByArea[2] + "/" + SpawnersQuantityByArea[2] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
+                    imageRunnerAndroid.SetActive(true);
+                    imageShooterAndroid.SetActive(true);
+                }
+            }
+            if (SpawnersQuantityByArea[2] <= SpawnersDestroyedByArea[2])
+            {
+                currentZone++;
+                if (doors[2] != null)
+                {
+                    doors[2].SetActive(false);
+                }
+                if (Player.GetPlayer().playerWindows)
+                {
+                    objetiveWindows.text = " ";
+                    imageRunnerWindows.SetActive(false);
+                    imageShooterWindows.SetActive(false);
+                }
                 if (Player.GetPlayer().playerAndroid)
                 {
-                    if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
-                    {
-                        objetiveAndroid.text = SpawnersDestroyedByArea[2] + "/" + SpawnersQuantityByArea[2] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
-                        imageRunnerAndroid.SetActive(true);
-                        imageShooterAndroid.SetActive(true);
-                    }
-                }
-                if (SpawnersQuantityByArea[2] <= SpawnersDestroyedByArea[2])
-                {
-                    currentZone++;
-                    if (doors[2] != null)
-                    {
-                        doors[2].SetActive(false);
-                    }
-                    if (Player.GetPlayer().playerWindows)
-                    {
-                        objetiveWindows.text = " ";
-                        imageRunnerWindows.SetActive(false);
-                        imageShooterWindows.SetActive(false);
-                    }
-                    if (Player.GetPlayer().playerAndroid)
-                    {
-                        objetiveAndroid.text = " ";
-                        imageRunnerAndroid.SetActive(false);
-                        imageShooterAndroid.SetActive(false);
-                    }
+                    objetiveAndroid.text = " ";
+                    imageRunnerAndroid.SetActive(false);
+                    imageShooterAndroid.SetActive(false);
                 }
             }
         }
@@ -207,6 +207,15 @@ public class LabyrinthManager : MonoBehaviour
     {
         if (Player.GetPlayer() != null)
         {
+            if (Player.GetPlayer().playerAndroid)
+            {
+                if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
+                {
+                    objetiveAndroid.text = SpawnersDestroyedByArea[3] + "/" + SpawnersQuantityByArea[3] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
+                    imageRunnerAndroid.SetActive(true);
+                    imageShooterAndroid.SetActive(true);
+                }
+            }
             if (Player.GetPlayer().playerWindows)
             {
                 if (objetiveWindows != null && imageRunnerWindows != null && imageShooterWindows != null)
@@ -215,34 +224,25 @@ public class LabyrinthManager : MonoBehaviour
                     imageRunnerWindows.SetActive(true);
                     imageShooterWindows.SetActive(true);
                 }
+            }
+            if (SpawnersQuantityByArea[3] <= SpawnersDestroyedByArea[3])
+            {
+                currentZone++;
+                if (doors[3] != null)
+                {
+                    doors[3].SetActive(false);
+                }
+                if (Player.GetPlayer().playerWindows)
+                {
+                    objetiveWindows.text = " ";
+                    imageRunnerWindows.SetActive(false);
+                    imageShooterWindows.SetActive(false);
+                }
                 if (Player.GetPlayer().playerAndroid)
                 {
-                    if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
-                    {
-                        objetiveAndroid.text = SpawnersDestroyedByArea[3] + "/" + SpawnersQuantityByArea[3] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
-                        imageRunnerAndroid.SetActive(true);
-                        imageShooterAndroid.SetActive(true);
-                    }
-                }
-                if (SpawnersQuantityByArea[3] <= SpawnersDestroyedByArea[3])
-                {
-                    currentZone++;
-                    if (doors[3] != null)
-                    {
-                        doors[3].SetActive(false);
-                    }
-                    if (Player.GetPlayer().playerWindows)
-                    {
-                        objetiveWindows.text = " ";
-                        imageRunnerWindows.SetActive(false);
-                        imageShooterWindows.SetActive(false);
-                    }
-                    if (Player.GetPlayer().playerAndroid)
-                    {
-                        objetiveAndroid.text = " ";
-                        imageRunnerAndroid.SetActive(false);
-                        imageShooterAndroid.SetActive(false);
-                    }
+                    objetiveAndroid.text = " ";
+                    imageRunnerAndroid.SetActive(false);
+                    imageShooterAndroid.SetActive(false);
                 }
             }
         }
@@ -251,6 +251,15 @@ public class LabyrinthManager : MonoBehaviour
     {
         if (Player.GetPlayer() != null)
         {
+            if (Player.GetPlayer().playerAndroid)
+            {
+                if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
+                {
+                    objetiveAndroid.text = SpawnersDestroyedByArea[4] + "/" + SpawnersQuantityByArea[4] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
+                    imageRunnerAndroid.SetActive(true);
+                    imageShooterAndroid.SetActive(true);
+                }
+            }
             if (Player.GetPlayer().playerWindows)
             {
                 if (objetiveWindows != null && imageRunnerWindows != null && imageShooterWindows != null)
@@ -259,37 +268,27 @@ public class LabyrinthManager : MonoBehaviour
                     imageRunnerWindows.SetActive(true);
                     imageShooterWindows.SetActive(true);
                 }
+            }
+            if (SpawnersQuantityByArea[4] <= SpawnersDestroyedByArea[4])
+            {
+                currentZone++;
+                if (doors[4] != null)
+                {
+                    doors[4].SetActive(false);
+                }
+                if (Player.GetPlayer().playerWindows)
+                {
+                    objetiveWindows.text = " ";
+                    imageRunnerWindows.SetActive(false);
+                    imageShooterWindows.SetActive(false);
+                }
                 if (Player.GetPlayer().playerAndroid)
                 {
-                    if (objetiveAndroid != null && imageRunnerAndroid != null && imageShooterAndroid != null)
-                    {
-                        objetiveAndroid.text = SpawnersDestroyedByArea[4] + "/" + SpawnersQuantityByArea[4] + " " + imageRunnerAndroid + " " + imageShooterAndroid;
-                        imageRunnerAndroid.SetActive(true);
-                        imageShooterAndroid.SetActive(true);
-                    }
-                }
-                if (SpawnersQuantityByArea[4] <= SpawnersDestroyedByArea[4])
-                {
-                    currentZone++;
-                    if (doors[4] != null)
-                    {
-                        doors[4].SetActive(false);
-                    }
-                    if (Player.GetPlayer().playerWindows)
-                    {
-                        objetiveWindows.text = " ";
-                        imageRunnerWindows.SetActive(false);
-                        imageShooterWindows.SetActive(false);
-                    }
-                    if (Player.GetPlayer().playerAndroid)
-                    {
-                        objetiveAndroid.text = " ";
-                        imageRunnerAndroid.SetActive(false);
-                        imageShooterAndroid.SetActive(false);
-                    }
+                    objetiveAndroid.text = " ";
+                    imageRunnerAndroid.SetActive(false);
+                    imageShooterAndroid.SetActive(false);
                 }
             }
         }
     }
-    //MISMO CODIGO CAMBIO LOS SUB INDICES DE LOS ARRAYS(PARA COPIARLO Y GENERAR EL SIGUIENTE CHECKZONA COPIAR PEGAR Y CAMBIAR ESTOS SUB INDICES)
 }
