@@ -26,6 +26,7 @@ public class Submarine : Enemy{
     public float ReduceDamageIceBall;
     public float ReduceDamageMiniBall;
     public float ReduceDamageExplocive;
+    
 
     private int id;
     private float auxSpeedMov;

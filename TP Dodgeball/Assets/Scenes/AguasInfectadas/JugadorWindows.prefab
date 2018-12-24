@@ -2051,7 +2051,6 @@ GameObject:
   - component: {fileID: 20009264493605508}
   - component: {fileID: 81724601927953082}
   - component: {fileID: 114805714906080916}
-  - component: {fileID: 114255957472591962}
   m_Layer: 0
   m_Name: mapa
   m_TagString: Untagged
@@ -3320,7 +3319,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1861915832769912
 GameObject:
   m_ObjectHideFlags: 1
@@ -4037,8 +4036,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1587226046319332}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 44.36, y: 56.3, z: -1.807}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 44.36, y: 56.3, z: -1.8070002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4686124736474798}
@@ -5657,7 +5656,8 @@ AudioSource:
   m_GameObject: {fileID: 1587226046319332}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243320645473009444, guid: 42344e02b39ea7e429f3b8ac0bd728ae,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -5752,7 +5752,8 @@ AudioSource:
   m_GameObject: {fileID: 1946557173579314}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243286311598226616, guid: 42344e02b39ea7e429f3b8ac0bd728ae,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -6300,7 +6301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1023969231730914, guid: 0afc9e070cd40b740b584c783ac3c091, type: 2}
+  Ball: {fileID: 1023969231730914, guid: 0afc9e070cd40b740b584c783ac3c091, type: 2}
   count: 100
 --- !u!114 &114080109821996998
 MonoBehaviour:
@@ -6383,7 +6384,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114490579535032676}
-        m_MethodName: VolverMenuPausa
+        m_MethodName: ActivedPauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6524,7 +6525,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114490579535032676}
-        m_MethodName: ActivarMenuControles
+        m_MethodName: ActivedControlsMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6972,7 +6973,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114679691637618314}
-        m_MethodName: SiguientePagina
+        m_MethodName: NextPages
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7096,7 +7097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1596574118440736, guid: 6273235e2f34197459c39850e1b6a1a1, type: 2}
+  Ball: {fileID: 1596574118440736, guid: 6273235e2f34197459c39850e1b6a1a1, type: 2}
   count: 100
 --- !u!114 &114194155345792108
 MonoBehaviour:
@@ -7478,7 +7479,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114490579535032676}
-        m_MethodName: VolverMenuPausa
+        m_MethodName: ActivedPauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7639,18 +7640,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114255957472591962
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1540576220740566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9be85edfca40cf844b1a67a362620519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camara: {fileID: 1540576220740566}
 --- !u!114 &114286661827715630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7765,7 +7754,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114959350871391780}
-        m_MethodName: salirApp
+        m_MethodName: ExitApp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7788,7 +7777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1800293553698766, guid: e77bd896efda7e24a9a03533982adad2, type: 2}
+  Ball: {fileID: 1800293553698766, guid: e77bd896efda7e24a9a03533982adad2, type: 2}
   count: 100
 --- !u!114 &114312248465653020
 MonoBehaviour:
@@ -7948,7 +7937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1348130759821816, guid: e4131c101794b3c4fbab345abfcfe07a, type: 2}
+  Ball: {fileID: 1348130759821816, guid: e4131c101794b3c4fbab345abfcfe07a, type: 2}
   count: 100
 --- !u!114 &114331151602328902
 MonoBehaviour:
@@ -8174,7 +8163,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114490579535032676}
-        m_MethodName: ActivarMenuObjetivo
+        m_MethodName: ActivedObjetiveMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8197,9 +8186,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8116e10ea593f247a2810eac4fc7e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nivel: Aguas_Infectadas
-  numeroNivel: 0
-  NivelPorNumero: 0
+  level: Aguas_Infectadas
+  numberLevel: 0
+  levelByNumber: 0
 --- !u!114 &114398737085251886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8238,47 +8227,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1a86d5621525749ab99db402431e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enPausa: 0
-  vida: 100
-  maxVida: 100
-  blindaje: 0
-  tipoPelota: 1
-  contar: 0
-  corredor: {fileID: 114956403617915710, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
-  tirador: {fileID: 114942627227381640, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
-  tiradorEstatico: {fileID: 114599259994121654, guid: b08e617dcde083244bf92f3e57c089d3,
+  pause: 0
+  life: 100
+  maxLife: 100
+  armor: 0
+  ballType: 0
+  count: 0
+  runner: {fileID: 114956403617915710, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
+  shooter: {fileID: 114942627227381640, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
+  staticShooter: {fileID: 114599259994121654, guid: b08e617dcde083244bf92f3e57c089d3,
     type: 2}
-  pinchos: {fileID: 114374035735643230, guid: f9120bdba750d49478b8738d20c8ca17, type: 2}
-  jugadorWindows: 1
-  jugadorAndroid: 0
+  skewers: {fileID: 114374035735643230, guid: f9120bdba750d49478b8738d20c8ca17, type: 2}
+  playerWindows: 1
+  playerAndroid: 0
   rigJugador: {fileID: 54155911931235646}
-  oportunidades: 0
+  opportunities: 50
   posRespawn: {fileID: 4288575298471362}
-  textVida: {fileID: 114846582189781358}
-  textPuntos: {fileID: 114202625754552626}
-  textBlindaje: {fileID: 114969500675039780}
-  TextOportunidades: {fileID: 114036412560529094}
-  textMunicionPelotaDeHielo: {fileID: 114497093083608618}
-  textMunicionPelotaDeFuego: {fileID: 114603763641137272}
-  textMunicionPelotaFragmentadora: {fileID: 114543077939294762}
-  textMunicionPelotaDanzarina: {fileID: 114538096203232026}
-  textMunicionPelotaExplosiva: {fileID: 114667774067031268}
-  blockHielo: {fileID: 1965037223826466}
-  blockFuego: {fileID: 1325508254705196}
-  blockDanzarina: {fileID: 1716828727875252}
-  blockFragmentadora: {fileID: 1192212658432442}
-  blockExplosiva: {fileID: 1913538651811116}
-  desbloqueadoHielo: {fileID: 1839988099218938}
-  desbloqueadoFuego: {fileID: 1820111810684518}
-  desbloqueadoDanzarina: {fileID: 1750816455622550}
-  desbloqueadoFragmentadora: {fileID: 1372238968789778}
-  desbloqueadoExplosiva: {fileID: 1489713283856880}
-  powerUpChalecoAntiGolpes: 0
-  logoBlindaje: {fileID: 1504829076030814}
-  logoDobleDanio: {fileID: 1295550098499786}
-  EnTienda: 0
-  logoInmulnerabilidad: {fileID: 1145607669483114}
-  logoDoblePuntaje: {fileID: 1086094700327534}
+  countKilled: 0
+  textLife: {fileID: 114846582189781358}
+  textScore: {fileID: 114202625754552626}
+  textArmor: {fileID: 114969500675039780}
+  TextOpportunities: {fileID: 114036412560529094}
+  textAmmoIceBall: {fileID: 114497093083608618}
+  textAmmoFireBall: {fileID: 114603763641137272}
+  textAmmoFragmentBall: {fileID: 114543077939294762}
+  textAmmoDanceBall: {fileID: 114538096203232026}
+  textAmmoExplociveBall: {fileID: 114667774067031268}
+  lockedIce: {fileID: 1965037223826466}
+  lockedFire: {fileID: 1325508254705196}
+  lockedDance: {fileID: 1716828727875252}
+  lockedFragment: {fileID: 1192212658432442}
+  lockedExplosive: {fileID: 1913538651811116}
+  unlockedIce: {fileID: 1839988099218938}
+  unlockedFire: {fileID: 1820111810684518}
+  unlockedDance: {fileID: 1750816455622550}
+  unlockedFragment: {fileID: 1372238968789778}
+  unlockedExplocive: {fileID: 1489713283856880}
+  powerUpArmor: 0
+  logoArmor: {fileID: 1504829076030814}
+  logoDobleDamage: {fileID: 1295550098499786}
+  inStore: 0
+  logoImulnerability: {fileID: 1145607669483114}
+  logoDoblePoints: {fileID: 1086094700327534}
   logoInstaKill: {fileID: 1579354135743244}
 --- !u!114 &114415884637749950
 MonoBehaviour:
@@ -8347,7 +8337,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114490579535032676}
-        m_MethodName: DesactivarMenuPausa
+        m_MethodName: DisablePauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8657,13 +8647,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96414841caf2cc5429e542697538c203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuGeneral: {fileID: 1559182968875824}
-  menuPausa: {fileID: 1777554400610904}
-  menuOpciones: {fileID: 1887031386272534}
-  menuArmas: {fileID: 1022054088807122}
-  menuControles: {fileID: 1722114047782356}
-  menuObjetivo: {fileID: 1022054088807122}
-  menuMapa: {fileID: 1979907307755800}
+  generalMenu: {fileID: 1559182968875824}
+  pauseMenu: {fileID: 1777554400610904}
+  optionsMenu: {fileID: 1887031386272534}
+  weaponsMenu: {fileID: 0}
+  controlsMenu: {fileID: 1722114047782356}
+  objetiveMenu: {fileID: 1022054088807122}
+  mapMenu: {fileID: 1979907307755800}
 --- !u!114 &114497093083608618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8764,7 +8754,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114679691637618314}
-        m_MethodName: AnteriorPagina
+        m_MethodName: BackPages
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8853,14 +8843,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c561542cb788814da6ba458871efc29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Negro: {fileID: 2100000, guid: 217fb25d37c82a148be7f76aa6226ca5, type: 2}
-  Hielo: {fileID: 2100000, guid: dbe3ca9df6404444ebbc0c4090529f8c, type: 2}
+  Black: {fileID: 2100000, guid: 217fb25d37c82a148be7f76aa6226ca5, type: 2}
+  Ice: {fileID: 2100000, guid: dbe3ca9df6404444ebbc0c4090529f8c, type: 2}
   Normal: {fileID: 2100000, guid: cc1c241b4e0d0b24dad8f16bfe26d6a8, type: 2}
-  Fragmentadora: {fileID: 2100000, guid: 7409c0000b569ed448a9768dcdd34ab6, type: 2}
-  Danzarina: {fileID: 2100000, guid: 71e01b6c98e26d7478d19c4e42b57ae6, type: 2}
-  Fuego: {fileID: 2100000, guid: eba45cf00ff91b34498e3b1d8478b219, type: 2}
-  GeneradorExplocivos: {fileID: 1175442667121166}
-  GeneradorPelotaComun: {fileID: 1237327193784922}
+  Fragment: {fileID: 2100000, guid: 7409c0000b569ed448a9768dcdd34ab6, type: 2}
+  Dancer: {fileID: 2100000, guid: 71e01b6c98e26d7478d19c4e42b57ae6, type: 2}
+  Fire: {fileID: 2100000, guid: eba45cf00ff91b34498e3b1d8478b219, type: 2}
+  GeneratorExplocive: {fileID: 1175442667121166}
+  GeneratorCommonBall: {fileID: 1237327193784922}
   JugadorWindows: 1
 --- !u!114 &114552928379883506
 MonoBehaviour:
@@ -9062,8 +9052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7392ed018b66a4cb2a5888735ebbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsActivar: []
-  objectsDesactivar: []
+  objectsActived: []
+  objectsDisable: []
 --- !u!114 &114616718848416260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9241,7 +9231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1861712495628024, guid: 0b0609db6dea8ae479b5bdeb74dd9a22, type: 2}
+  Ball: {fileID: 1861712495628024, guid: 0b0609db6dea8ae479b5bdeb74dd9a22, type: 2}
   count: 100
 --- !u!114 &114653388677228358
 MonoBehaviour:
@@ -9281,7 +9271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1568372136336738, guid: d5187cad0dacadd4ba2b30a325c5ccec, type: 2}
+  Ball: {fileID: 1568372136336738, guid: d5187cad0dacadd4ba2b30a325c5ccec, type: 2}
   count: 100
 --- !u!114 &114664840734311154
 MonoBehaviour:
@@ -9422,12 +9412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a73bc505ff126a4099e47eae47389d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paginas:
-  - {fileID: 1169712333857494}
-  - {fileID: 1696478187541088}
-  - {fileID: 1323907360788444}
-  - {fileID: 1869471855298798}
-  - {fileID: 1263334370119528}
+  pages: []
 --- !u!114 &114683846680983500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9716,7 +9701,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114490579535032676}
-        m_MethodName: ActivarMenuOpciones
+        m_MethodName: ActivedOptionsMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9755,7 +9740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
+  Ball: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
   count: 50
 --- !u!114 &114743362464685058
 MonoBehaviour:
@@ -9890,7 +9875,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114490579535032676}
-        m_MethodName: ActivarMenuPausa
+        m_MethodName: ActivedPauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9942,7 +9927,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114490579535032676}
-        m_MethodName: VolverMenuPausa
+        m_MethodName: ActivedPauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9953,7 +9938,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114942654463926976}
-        m_MethodName: PrenderCamaraPrincipal
+        m_MethodName: OnMainCamera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10003,7 +9988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be85edfca40cf844b1a67a362620519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camara: {fileID: 1540576220740566}
+  _camera: {fileID: 1540576220740566}
 --- !u!114 &114805994700456606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10481,9 +10466,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca216f383d3ec144783720f6270cabfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempo: {fileID: 114127321178357288}
-  minutos: 1
-  segundos: 0
+  time: {fileID: 0}
+  minutes: 0
+  seconds: 0
 --- !u!114 &114892246632996708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10663,24 +10648,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9089601efcdbfca48ba6fbd8a1e859ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sonido: {fileID: 82854284724692380}
-  sonidoPelotaComun: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
-  sonidoPelotaHielo: {fileID: 0}
-  sonidoPelotaDanzarina: {fileID: 0}
-  sonidoPelotaFuego: {fileID: 0}
-  sonidoPelotaExplociva: {fileID: 0}
-  sonidoPelotaFragmentadora: {fileID: 0}
-  PelotaComun: {fileID: 114077064237790798}
-  pelotaDeHielo: {fileID: 114653031880613466}
-  pelotaFragmentadora: {fileID: 114303604508439366}
-  pelotaDanzarina: {fileID: 114193539724056846}
-  pelotaDeFuego: {fileID: 114654545254460896}
-  pelotaExplociva: {fileID: 114325116628448260}
-  generador: {fileID: 1237327193784922}
-  generadorExplicivos: {fileID: 1175442667121166}
-  jugador: {fileID: 4288575298471362}
-  panelArmas: {fileID: 0}
-  jugadorWindows: 1
+  sound: {fileID: 82854284724692380}
+  soundCommonBall: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
+  soundIceBall: {fileID: 8300000, guid: 44160caba23ec6f48ab30f39d1ffbd77, type: 3}
+  soundDanceBall: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
+  soundFireBall: {fileID: 8300000, guid: 36b227b04c34d4e478f40a6b32e0a639, type: 3}
+  soundExplociveBall: {fileID: 0}
+  soundFragmentBall: {fileID: 8300000, guid: 12ecd775c11d3e640b2219298a7bcb80, type: 3}
+  CommonBall: {fileID: 114077064237790798}
+  IceBall: {fileID: 114653031880613466}
+  FragmentBall: {fileID: 114303604508439366}
+  DanceBall: {fileID: 114193539724056846}
+  FireBall: {fileID: 114654545254460896}
+  ExplociveBall: {fileID: 114325116628448260}
+  generator: {fileID: 1237327193784922}
+  generatorExplocive: {fileID: 1175442667121166}
+  player: {fileID: 4288575298471362}
+  weaponsPanel: {fileID: 0}
+  playerWindows: 1
 --- !u!114 &114936373353065522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10721,7 +10706,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114942654463926976}
-        m_MethodName: PrenderCamaraSecundaria
+        m_MethodName: OnSecundaryCamera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10732,7 +10717,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 114490579535032676}
-        m_MethodName: ActivarMenuMapa
+        m_MethodName: ActivedMapMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10838,14 +10823,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114397495362421318}
-        m_MethodName: pasarNivel
+        m_MethodName: NextLevel
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Aguas_Infectadas(Parte 2)
+          m_StringArgument: Aguas_Infectadas
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -10861,15 +10846,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7276ca5190b8ef4d8c17b60acd049eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camaraPrincipal: {fileID: 1198061519888498}
-  camaraSecundaria: {fileID: 1540576220740566}
-  cosasEnPantalla:
+  cameraPrincipal: {fileID: 1198061519888498}
+  cameraSecond: {fileID: 1540576220740566}
+  ObjectsOnScreen:
   - {fileID: 1706546481543612}
   - {fileID: 1010821795632600}
   - {fileID: 1064032670641546}
   - {fileID: 1529895428715914}
   - {fileID: 1300822819003940}
-  sombrero: {fileID: 1385029695436112}
+  hat: {fileID: 0}
 --- !u!114 &114945024436584386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10966,7 +10951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c803a65c49039da4da9bb0bddf6118f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DesactivarUpdate: 1
+  DisableUpdate: 1
 --- !u!114 &114963728105632852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11090,14 +11075,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c561542cb788814da6ba458871efc29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Negro: {fileID: 2100000, guid: 217fb25d37c82a148be7f76aa6226ca5, type: 2}
-  Hielo: {fileID: 2100000, guid: dbe3ca9df6404444ebbc0c4090529f8c, type: 2}
+  Black: {fileID: 2100000, guid: 217fb25d37c82a148be7f76aa6226ca5, type: 2}
+  Ice: {fileID: 2100000, guid: dbe3ca9df6404444ebbc0c4090529f8c, type: 2}
   Normal: {fileID: 2100000, guid: cc1c241b4e0d0b24dad8f16bfe26d6a8, type: 2}
-  Fragmentadora: {fileID: 2100000, guid: 7409c0000b569ed448a9768dcdd34ab6, type: 2}
-  Danzarina: {fileID: 2100000, guid: 71e01b6c98e26d7478d19c4e42b57ae6, type: 2}
-  Fuego: {fileID: 2100000, guid: eba45cf00ff91b34498e3b1d8478b219, type: 2}
-  GeneradorExplocivos: {fileID: 1175442667121166}
-  GeneradorPelotaComun: {fileID: 1237327193784922}
+  Fragment: {fileID: 2100000, guid: 7409c0000b569ed448a9768dcdd34ab6, type: 2}
+  Dancer: {fileID: 2100000, guid: 71e01b6c98e26d7478d19c4e42b57ae6, type: 2}
+  Fire: {fileID: 2100000, guid: eba45cf00ff91b34498e3b1d8478b219, type: 2}
+  GeneratorExplocive: {fileID: 1175442667121166}
+  GeneratorCommonBall: {fileID: 1237327193784922}
   JugadorWindows: 1
 --- !u!114 &114989909579243342
 MonoBehaviour:

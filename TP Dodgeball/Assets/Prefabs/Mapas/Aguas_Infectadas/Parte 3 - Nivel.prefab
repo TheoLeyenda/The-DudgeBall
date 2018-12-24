@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 33908826212566566}
   - component: {fileID: 23913696424386440}
   - component: {fileID: 114144237047113716}
+  - component: {fileID: 82518786638863360}
   m_Layer: 0
   m_Name: TORRETA
   m_TagString: Untagged
@@ -961,6 +962,7 @@ GameObject:
   - component: {fileID: 114486766591962700}
   - component: {fileID: 54724655157421132}
   - component: {fileID: 65379223040494480}
+  - component: {fileID: 82934463287104932}
   m_Layer: 0
   m_Name: Submarine
   m_TagString: Untagged
@@ -3088,6 +3090,7 @@ GameObject:
   - component: {fileID: 33247266201515808}
   - component: {fileID: 23220735613490666}
   - component: {fileID: 114254548964874480}
+  - component: {fileID: 82303958090343408}
   m_Layer: 0
   m_Name: TORRETA
   m_TagString: Untagged
@@ -5260,6 +5263,7 @@ GameObject:
   - component: {fileID: 114799493087047184}
   - component: {fileID: 54989194952534104}
   - component: {fileID: 65809614262118436}
+  - component: {fileID: 82611574460865852}
   m_Layer: 0
   m_Name: Submarine (1)
   m_TagString: Untagged
@@ -10794,7 +10798,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100002, guid: aad891a0d85271c42940727667edc40d, type: 3}
+  - {fileID: 2100000, guid: 0f25c18f9af0aac48a7bc54256ab13f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16324,7 +16328,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100002, guid: aad891a0d85271c42940727667edc40d, type: 3}
+  - {fileID: 2100000, guid: 0f25c18f9af0aac48a7bc54256ab13f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19320,6 +19324,291 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3233229, y: 7.2133827, z: 90.39235}
   m_Center: {x: 0.16166149, y: 3.1066914, z: -57.91206}
+--- !u!82 &82303958090343408
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1538998213678544}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &82518786638863360
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1034481479671940}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &82611574460865852
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979494768485860}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!82 &82868973681686074
 AudioSource:
   m_ObjectHideFlags: 1
@@ -19334,6 +19623,101 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &82934463287104932
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1159808710089438}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -19866,7 +20250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8, type: 2}
+  Ball: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8, type: 2}
   count: 50
 --- !u!114 &114047843341573698
 MonoBehaviour:
@@ -19879,9 +20263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7392ed018b66a4cb2a5888735ebbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsActivar:
+  objectsActived:
   - {fileID: 1931404431924520}
-  objectsDesactivar: []
+  objectsDisable: []
 --- !u!114 &114079851919686662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19894,9 +20278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationClip: {fileID: 7400000, guid: fe447a80c11123548a5032969aaa93b6, type: 2}
-  velocidad: 5
-  tiempoMov: 0.5
-  objetosActivar:
+  speed: 5
+  timeMov: 0.5
+  ActivateObjects:
   - {fileID: 1999828453846910}
   - {fileID: 1046084645330526}
 --- !u!114 &114096933693994210
@@ -19910,26 +20294,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4011f5e7fa8fc7648bb43d4cfd3b676d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextRonda: {fileID: 0}
-  TextRondaAndroid: {fileID: 0}
-  cantEnemigosEnPantalla: 0
-  cambiarMaterial: {fileID: 0}
-  spawnersEnemigos: []
-  torretas: []
-  trampas: []
-  supervivencia: 0
-  historia: 1
-  verificarRonda: 0
-  verificarVictoria: 0
-  RondaVictoria: 0
-  limiteMuertes: 0
-  mapaActual: 
-  mapaSiguiente: 
-  pasarNivel: 0
-  pausa: 0
-  puerta: {fileID: 0}
-  corazon: {fileID: 0}
-  blindaje: {fileID: 0}
+  TextRoundWindows: {fileID: 0}
+  TextRoundAndroid: {fileID: 0}
+  enemyAmountOnScreen: 0
+  changeMaterial: {fileID: 0}
+  spawnersEnemy: []
+  turrets: []
+  traps: []
+  survival: 0
+  history: 1
+  checkRound: 0
+  checkVictory: 0
+  RoundVictory: 0
+  deathLimit: 0
+  currentMap: 
+  nextMap: 
+  nextLevel: 0
+  pause: 0
+  door: {fileID: 0}
+  heart: {fileID: 0}
+  armor: {fileID: 0}
   checkPoint: {fileID: 0}
 --- !u!114 &114114704906725222
 MonoBehaviour:
@@ -19942,9 +20326,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca06fe838042f1d41b164d15dc1df6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolBalas: {fileID: 114781652093431892}
-  generadorBala: {fileID: 1246990219892136}
+  poolBullets: {fileID: 114781652093431892}
+  generatorBullet: {fileID: 1246990219892136}
   dilay: 0.5
+  clip: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!114 &114144237047113716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19956,9 +20342,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca06fe838042f1d41b164d15dc1df6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolBalas: {fileID: 114942803244298640}
-  generadorBala: {fileID: 1723328712360900}
+  poolBullets: {fileID: 114942803244298640}
+  generatorBullet: {fileID: 1723328712360900}
   dilay: 0.5
+  clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
+  Audio: {fileID: 82518786638863360}
 --- !u!114 &114216940009111152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19970,9 +20358,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca06fe838042f1d41b164d15dc1df6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolBalas: {fileID: 114000359418752284}
-  generadorBala: {fileID: 1854246616193898}
+  poolBullets: {fileID: 114000359418752284}
+  generatorBullet: {fileID: 1854246616193898}
   dilay: 0.5
+  clip: {fileID: 0}
+  Audio: {fileID: 0}
 --- !u!114 &114254548964874480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19984,9 +20374,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca06fe838042f1d41b164d15dc1df6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolBalas: {fileID: 114543980214860308}
-  generadorBala: {fileID: 1734721983872722}
+  poolBullets: {fileID: 114543980214860308}
+  generatorBullet: {fileID: 1734721983872722}
   dilay: 0.5
+  clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
+  Audio: {fileID: 82303958090343408}
 --- !u!114 &114255941230054916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19998,7 +20390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ef66c4b7833b54aa425179cb5e6162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotacion: 5
+  rotation: 5
 --- !u!114 &114431068642250954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20011,17 +20403,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 114278132201739938, guid: 083ffb85571e288438aa40b9aa3b6710, type: 2}
-  potencia: 100
-  tiempoVida: 5
-  danio: 20
-  generador: {fileID: 1734721983872722}
-  pelotaTinta: 0
-  flecha: 0
+  power: 0
+  timeLife: 0
+  damage: 0
+  generator: {fileID: 0}
+  tinteBall: 0
+  arrow: 0
   Audio: {fileID: 0}
-  clipPelotaTinta: {fileID: 0}
-  clipBala: {fileID: 0}
-  clipPelotaRugby: {fileID: 0}
-  clipFlecha: {fileID: 0}
+  clipTinteBall: {fileID: 0}
+  clipBullet: {fileID: 0}
+  clipRugbyBall: {fileID: 0}
+  clipArrow: {fileID: 0}
 --- !u!114 &114437108394355402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20034,17 +20426,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 114278132201739938, guid: 083ffb85571e288438aa40b9aa3b6710, type: 2}
-  potencia: 100
-  tiempoVida: 5
-  danio: 20
-  generador: {fileID: 1723328712360900}
-  pelotaTinta: 0
-  flecha: 0
+  power: 0
+  timeLife: 0
+  damage: 0
+  generator: {fileID: 0}
+  tinteBall: 0
+  arrow: 0
   Audio: {fileID: 0}
-  clipPelotaTinta: {fileID: 0}
-  clipBala: {fileID: 0}
-  clipPelotaRugby: {fileID: 0}
-  clipFlecha: {fileID: 0}
+  clipTinteBall: {fileID: 0}
+  clipBullet: {fileID: 0}
+  clipRugbyBall: {fileID: 0}
+  clipArrow: {fileID: 0}
 --- !u!114 &114486766591962700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20056,17 +20448,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754942bd3c3e395439be6ce4fdfb4b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 800
-  maxVida: 800
-  BarraVida: {fileID: 1736326910768268}
-  marcoBarra: {fileID: 1226155297688938}
-  efectoQuemado: {fileID: 1014534539644370}
-  efectoCongelado: {fileID: 1303529175412750}
-  efectoMusica: {fileID: 1040163656878886}
-  estoyEnPool: 0
+  life: 800
+  maxLife: 800
+  lifeBar: {fileID: 1736326910768268}
+  framework: {fileID: 1226155297688938}
+  effectBurned: {fileID: 1014534539644370}
+  effectFrozen: {fileID: 1303529175412750}
+  effectMusic: {fileID: 1040163656878886}
+  i_AmInPool: 0
   poolTorpedos: {fileID: 114610870905821802}
-  dileyDisparoTorpedos: 1.5
-  VelocidadMov: 12
+  dileyShootingTorpedos: 1.5
+  SpeedMov: 12
   waypoints:
   - {fileID: 4215710732095226}
   - {fileID: 4955108869719642}
@@ -20089,18 +20481,18 @@ MonoBehaviour:
   - {fileID: 4247183804872572}
   - {fileID: 4012741760799896}
   - {fileID: 4057759204115574}
-  GeneradorTorpedos:
+  GeneratorTorpedos:
   - {fileID: 1539792419756586}
   - {fileID: 1712880941891396}
-  estados: 0
-  particulasBurbujas: {fileID: 1951913612233008}
-  torretas:
+  state: 0
+  particleBubbles: {fileID: 1951913612233008}
+  turrets:
   - {fileID: 114114704906725222}
   - {fileID: 114216940009111152}
-  ReducirDanioPelotaComun: 21
-  ReducirDanioPelotaHielo: 0
-  ReducirDanioMiniPelota: 7
-  ReducirDanioExplocivo: 30
+  ReduceDamageCommonBall: 21
+  ReduceDamageIceBall: 0
+  ReduceDamageMiniBall: 7
+  ReduceDamageExplocive: 30
 --- !u!114 &114527245843914644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20112,8 +20504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167d25c7d4d8b794aad94f6b98f99b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puertaRejas: {fileID: 114079851919686662}
-  enemigos:
+  gateOfBars: {fileID: 114079851919686662}
+  Enemy:
   - {fileID: 114799493087047184}
   - {fileID: 114486766591962700}
 --- !u!114 &114543980214860308
@@ -20127,7 +20519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8, type: 2}
+  Ball: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8, type: 2}
   count: 50
 --- !u!114 &114594343305171248
 MonoBehaviour:
@@ -20141,17 +20533,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 114278132201739938, guid: 083ffb85571e288438aa40b9aa3b6710, type: 2}
-  potencia: 100
-  tiempoVida: 5
-  danio: 20
-  generador: {fileID: 1854246616193898}
-  pelotaTinta: 0
-  flecha: 0
+  power: 0
+  timeLife: 0
+  damage: 0
+  generator: {fileID: 0}
+  tinteBall: 0
+  arrow: 0
   Audio: {fileID: 0}
-  clipPelotaTinta: {fileID: 0}
-  clipBala: {fileID: 0}
-  clipPelotaRugby: {fileID: 0}
-  clipFlecha: {fileID: 0}
+  clipTinteBall: {fileID: 0}
+  clipBullet: {fileID: 0}
+  clipRugbyBall: {fileID: 0}
+  clipArrow: {fileID: 0}
 --- !u!114 &114610870905821802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20163,7 +20555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1933769232673386, guid: 5949a3791a1aea04e8b30f165be8d23e, type: 2}
+  Ball: {fileID: 1933769232673386, guid: 5949a3791a1aea04e8b30f165be8d23e, type: 2}
   count: 100
 --- !u!114 &114633901568229436
 MonoBehaviour:
@@ -20177,17 +20569,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 114278132201739938, guid: 083ffb85571e288438aa40b9aa3b6710, type: 2}
-  potencia: 100
-  tiempoVida: 5
-  danio: 20
-  generador: {fileID: 1246990219892136}
-  pelotaTinta: 0
-  flecha: 0
+  power: 0
+  timeLife: 0
+  damage: 0
+  generator: {fileID: 0}
+  tinteBall: 0
+  arrow: 0
   Audio: {fileID: 0}
-  clipPelotaTinta: {fileID: 0}
-  clipBala: {fileID: 0}
-  clipPelotaRugby: {fileID: 0}
-  clipFlecha: {fileID: 0}
+  clipTinteBall: {fileID: 0}
+  clipBullet: {fileID: 0}
+  clipRugbyBall: {fileID: 0}
+  clipArrow: {fileID: 0}
 --- !u!114 &114752909252878442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20199,20 +20591,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7392ed018b66a4cb2a5888735ebbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsActivar:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  objectsDesactivar:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  objectsActived: []
+  objectsDisable: []
 --- !u!114 &114771355757333096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20224,7 +20604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1933769232673386, guid: 5949a3791a1aea04e8b30f165be8d23e, type: 2}
+  Ball: {fileID: 1933769232673386, guid: 5949a3791a1aea04e8b30f165be8d23e, type: 2}
   count: 100
 --- !u!114 &114781652093431892
 MonoBehaviour:
@@ -20237,7 +20617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8, type: 2}
+  Ball: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8, type: 2}
   count: 50
 --- !u!114 &114799493087047184
 MonoBehaviour:
@@ -20250,17 +20630,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754942bd3c3e395439be6ce4fdfb4b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 800
-  maxVida: 800
-  BarraVida: {fileID: 1056383155435220}
-  marcoBarra: {fileID: 1054888263127140}
-  efectoQuemado: {fileID: 1691637588804992}
-  efectoCongelado: {fileID: 1614688983032562}
-  efectoMusica: {fileID: 1406822579731088}
-  estoyEnPool: 0
+  life: 800
+  maxLife: 800
+  lifeBar: {fileID: 1056383155435220}
+  framework: {fileID: 1054888263127140}
+  effectBurned: {fileID: 1691637588804992}
+  effectFrozen: {fileID: 1614688983032562}
+  effectMusic: {fileID: 1406822579731088}
+  i_AmInPool: 0
   poolTorpedos: {fileID: 114771355757333096}
-  dileyDisparoTorpedos: 1.5
-  VelocidadMov: 12
+  dileyShootingTorpedos: 1.5
+  SpeedMov: 12
   waypoints:
   - {fileID: 4057759204115574}
   - {fileID: 4012741760799896}
@@ -20283,18 +20663,18 @@ MonoBehaviour:
   - {fileID: 4851965135064130}
   - {fileID: 4955108869719642}
   - {fileID: 4215710732095226}
-  GeneradorTorpedos:
+  GeneratorTorpedos:
   - {fileID: 1833990874470448}
   - {fileID: 1564960321727164}
-  estados: 0
-  particulasBurbujas: {fileID: 1322293265972346}
-  torretas:
+  state: 0
+  particleBubbles: {fileID: 1322293265972346}
+  turrets:
   - {fileID: 114144237047113716}
   - {fileID: 114254548964874480}
-  ReducirDanioPelotaComun: 21
-  ReducirDanioPelotaHielo: 0
-  ReducirDanioMiniPelota: 7
-  ReducirDanioExplocivo: 30
+  ReduceDamageCommonBall: 21
+  ReduceDamageIceBall: 0
+  ReduceDamageMiniBall: 7
+  ReduceDamageExplocive: 30
 --- !u!114 &114828310337466712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20306,20 +20686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7392ed018b66a4cb2a5888735ebbc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsActivar:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  objectsDesactivar:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  objectsActived: []
+  objectsDisable: []
 --- !u!114 &114942803244298640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -20331,7 +20699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1034f2fa3c47347bbb4c7ac036774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pelota: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8, type: 2}
+  Ball: {fileID: 1062565705993650, guid: 1881db3939c4860438b0bb9b823889d8, type: 2}
   count: 50
 --- !u!135 &135037292448722364
 SphereCollider:

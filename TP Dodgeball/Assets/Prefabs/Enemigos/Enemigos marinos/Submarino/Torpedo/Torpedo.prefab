@@ -622,20 +622,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99b142f60aae2e4483e8c462543ebda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 200
-  maxVida: 200
-  BarraVida: {fileID: 0}
-  marcoBarra: {fileID: 0}
-  efectoQuemado: {fileID: 0}
-  efectoCongelado: {fileID: 1498712884005780}
-  efectoMusica: {fileID: 1671471583394268}
-  estoyEnPool: 1
-  Velocidad: 9
-  VelocidadInicial: 16
-  Danio: 35
+  life: 200
+  maxLife: 200
+  lifeBar: {fileID: 0}
+  framework: {fileID: 0}
+  effectBurned: {fileID: 0}
+  effectFrozen: {fileID: 1498712884005780}
+  effectMusic: {fileID: 1671471583394268}
+  i_AmInPool: 1
+  speed: 9
+  initialSpeed: 16
+  damage: 35
   pool: {fileID: 0}
-  dileyAdelante: 1
-  burbujas: {fileID: 1979000548018206}
+  dileyForward: 1
+  bubbles: {fileID: 1979000548018206}
   Audio: {fileID: 82679527416535220}
   clipTorpedo: {fileID: 8300000, guid: 1125abd91d8129e47b70570de30e0e7a, type: 3}
 --- !u!198 &198254398450401276

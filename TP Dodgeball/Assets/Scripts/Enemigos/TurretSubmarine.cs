@@ -12,6 +12,9 @@ public class TurretSubmarine : MonoBehaviour {
     public float dilay;
     private float auxDilay;
     private bool shooting;
+    public AudioClip clip;
+    public AudioSource Audio;
+
     void Start() {
         if (Player.InstancePlayer != null)
         {
@@ -37,6 +40,10 @@ public class TurretSubmarine : MonoBehaviour {
                 go.transform.position = generatorBullet.transform.position;
                 go.transform.rotation = generatorBullet.transform.rotation;
                 bullet.Shoot();
+                if (Audio != null && clip != null)
+                {
+                    Audio.PlayOneShot(clip);
+                }
             }
         }
     }
