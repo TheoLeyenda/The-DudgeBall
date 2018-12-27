@@ -277,15 +277,15 @@ public class Player : MonoBehaviour {
         {
             //definido en enemigo
         }
-        textLife.text = "VIDA: " + (int)life;
-        textScore.text = "PUNTOS: " + score;
+        textLife.text = "" + (int)life;
+        textScore.text = "" + score;
         if (opportunities > -1 && TextOpportunities != null)
         {
-            TextOpportunities.text = "OPORTUNIDADES: " + opportunities;
+            TextOpportunities.text = "" + opportunities;
         }
         if(textArmor != null)
         {
-            textArmor.text = "BLINDAJE:" + (int)armor;
+            textArmor.text = "" + (int)armor;
         }
         if (life <= 0)
         {

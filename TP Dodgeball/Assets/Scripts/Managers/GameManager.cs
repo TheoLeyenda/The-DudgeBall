@@ -295,11 +295,11 @@ public class GameManager : MonoBehaviour {
     {
         if (TextRoundWindows != null)
         {
-            TextRoundWindows.text = "RONDA: " + Round;
+            TextRoundWindows.text = "" + Round;
         }
         if (TextRoundAndroid != null)
         {
-            TextRoundAndroid.text = "RONDA: " + Round;
+            TextRoundAndroid.text = "" + Round;
         }
     }
     public void SetEnemyAmoutOnScreen(int _enemyAmountOnScreen)
