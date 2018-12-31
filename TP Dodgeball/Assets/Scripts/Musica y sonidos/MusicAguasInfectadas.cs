@@ -47,14 +47,12 @@ public class MusicAguasInfectadas : MonoBehaviour {
         {
             if(song1)
             {
-                Debug.Log("Song1");
                 audioSource.clip = clips[0];
                 audioSource.Play();
                 song1 = false;
             }
             if(song2)
             {
-                Debug.Log("Song2");
                 audioSource.clip = clips[1];
                 audioSource.Play();
                 song2 = false;
