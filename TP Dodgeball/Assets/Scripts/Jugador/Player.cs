@@ -30,6 +30,11 @@ public class Player : MonoBehaviour {
     public Rigidbody rigJugador;
     public int opportunities;
     public Transform posRespawn;
+    public AudioSource audioSource;
+    public AudioClip clipPickUpAmmo;
+    public AudioClip clipPickUpVida;
+    public AudioClip clipPickUpArmor;
+    public AudioClip clipPowerUp;
 
     [HideInInspector]
     public int countKilled = 0;
@@ -336,11 +341,7 @@ public class Player : MonoBehaviour {
         {
             SceneManager.LoadScene("JUEGO COMPLETADO");
         }
-        if (other.tag == "PickUpChalecoAntiGolpes")
-        {
-            powerUpArmor = true;
-            other.gameObject.SetActive(false);
-        }
+       
         if(other.tag == "RompeObjetos")
         {
             //SceneManager.LoadScene("GameOver");
@@ -364,12 +365,14 @@ public class Player : MonoBehaviour {
         }
         if(other.tag == "PoderInmune")
         {
+            audioSource.PlayOneShot(clipPowerUp);
             other.gameObject.SetActive(false);
             Immune = true;
             countImmune = 15;
         }
         if(other.tag == "DoblePuntuacion")
         {
+            audioSource.PlayOneShot(clipPowerUp);
             other.gameObject.SetActive(false);
             DoblePoints = true;
             countDoblePoints = 20;
@@ -377,13 +380,31 @@ public class Player : MonoBehaviour {
         }
         if (other.tag == "InstaKill")
         {
+            audioSource.PlayOneShot(clipPowerUp);
             other.gameObject.SetActive(false);
             InstaKill = true;
             activeInstaKill = true;
             countInstaKill = 12;
         }
+        if (other.tag == "PickUpChalecoAntiGolpes")
+        {
+            audioSource.PlayOneShot(clipPickUpArmor);
+            powerUpArmor = true;
+            other.gameObject.SetActive(false);
+        }
+        if (other.tag == "PickUpVida")
+        {
+            audioSource.PlayOneShot(clipPickUpVida);
+            life = life + 100;
+            if (life > maxLife)
+            {
+                life = maxLife;
+            }
+            other.gameObject.SetActive(false);
+        }
         if (other.tag == "PickUpHielo")
         {
+            audioSource.PlayOneShot(clipPickUpAmmo);
             AmmoIceBall = AmmoIceBall + 12;
             count = true;
             if (lockedIce != null)
@@ -398,6 +419,7 @@ public class Player : MonoBehaviour {
         }
         if (other.tag == "PickUpFuego")
         {
+            audioSource.PlayOneShot(clipPickUpAmmo);
             AmmoFireBall = AmmoFireBall + 12;
             count = true;
             if (lockedFire != null)
@@ -412,6 +434,7 @@ public class Player : MonoBehaviour {
         }
         if (other.tag == "PickUpDanzarina")
         {
+            audioSource.PlayOneShot(clipPickUpAmmo);
             AmmoDanceBall = AmmoDanceBall + 8;
             count = true;
             if (lockedDance != null)
@@ -426,6 +449,7 @@ public class Player : MonoBehaviour {
         }
         if (other.tag == "PickUpFragmentadora")
         {
+            audioSource.PlayOneShot(clipPickUpAmmo);
             AmmoFragmentBall = AmmoFragmentBall + 30;
             count = true;
             if (lockedFragment != null)
@@ -440,6 +464,7 @@ public class Player : MonoBehaviour {
         }
         if (other.tag == "PickUpExplosivo")
         {
+            audioSource.PlayOneShot(clipPickUpAmmo);
             AmmoExplociveBall = AmmoExplociveBall + 10;
             count = true;
             if (lockedExplosive != null)
@@ -452,15 +477,7 @@ public class Player : MonoBehaviour {
             }
             other.gameObject.SetActive(false);
         }
-        if(other.tag == "PickUpVida")
-        {
-            life = life + 100;
-            if(life>maxLife)
-            {
-                life = maxLife;
-            }
-            other.gameObject.SetActive(false);
-        }
+        
         //AQUI RESIVO DAÑO
         
     }
