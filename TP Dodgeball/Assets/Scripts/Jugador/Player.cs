@@ -8,6 +8,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class Player : MonoBehaviour {
 
     // Use this for initialization
+    public GameObject CamvasDeath;
+    public GameObject[] ObjectsOtherCamvas;
+    public Text textVidasRestantes;
     [HideInInspector]
     public bool pause;
     public static Player InstancePlayer;
@@ -35,6 +38,7 @@ public class Player : MonoBehaviour {
     public AudioClip clipPickUpVida;
     public AudioClip clipPickUpArmor;
     public AudioClip clipPowerUp;
+   
 
     [HideInInspector]
     public int countKilled = 0;
@@ -292,28 +296,7 @@ public class Player : MonoBehaviour {
         {
             textArmor.text = "" + (int)armor;
         }
-        if (life <= 0)
-        {
-            opportunities = opportunities - 1;
-            if (life <= 0 && opportunities < 0)
-            {
-                SceneManager.LoadScene("GameOver");
-                gameObject.SetActive(false);
-            }
-            else
-            {
-                if (posRespawn != null)
-                {
-                    transform.position = posRespawn.position;
-                    life = 100;
-                }
-                else
-                {
-                    SceneManager.LoadScene("GameOver");
-                    gameObject.SetActive(false);
-                }
-            }
-        }
+       
         if (textAmmoIceBall != null)
         {
             textAmmoIceBall.text = AmmoIceBall + "";
@@ -333,6 +316,38 @@ public class Player : MonoBehaviour {
         if (textAmmoExplociveBall != null)
         {
             textAmmoExplociveBall.text = AmmoExplociveBall + "";
+        }
+        if (life <= 0)
+        {
+            opportunities = opportunities - 1;
+            if (life <= 0 && opportunities < 0)
+            {
+                SceneManager.LoadScene("GameOver");
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                if (posRespawn != null)
+                {
+                    for (int i = 0; i < ObjectsOtherCamvas.Length; i++)
+                    {
+                        ObjectsOtherCamvas[i].SetActive(false);
+                    }
+                    textVidasRestantes.text = "" + opportunities;
+                    CamvasDeath.SetActive(true);
+                    GameManager.instanceGameManager.pause = true;
+                    pause = true;
+                    ControlCursor();
+                    life = 100;
+                    //transform.position = posRespawn.position;
+
+                }
+                else
+                {
+                    SceneManager.LoadScene("GameOver");
+                    gameObject.SetActive(false);
+                }
+            }
         }
     }
     private void OnTriggerEnter(Collider other)

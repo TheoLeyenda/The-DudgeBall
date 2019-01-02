@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     public StaticShooter[] turrets;
     public SpawnerTrap[] traps;
     private bool start;
-    private static GameManager instanceGameManager;
+    public static GameManager instanceGameManager;
     private int Round;
     public bool survival;
     public bool history;

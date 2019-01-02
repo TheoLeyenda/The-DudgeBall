@@ -38,6 +38,8 @@ public class DataStructure : MonoBehaviour {
     
     public struct PlayerData
     {
+        public bool playerWindows;
+        public bool playerAndroid;
         public int TOP_AMMO;// = 500
         public float life;
         public float maxLife;
@@ -124,6 +126,8 @@ public class DataStructure : MonoBehaviour {
         playerData.countInstaKill = player.GetCountInstaKill();
         playerData.dileyActive = player.GetDileyActive();
         playerData.opportunities = player.opportunities;
+        playerData.playerWindows = player.playerWindows;
+        playerData.playerAndroid = player.playerAndroid;
         //DatosJugador.cantEnemigosAbatidos = jugador.cantAbatidos;
     }
 
@@ -152,6 +156,8 @@ public class DataStructure : MonoBehaviour {
         player.SetDileyActive(playerData.dileyActive);
         player.opportunities = playerData.opportunities;
         player.countKilled = playerData.downcastEnemies;
+        player.playerAndroid = playerData.playerAndroid;
+        player.playerWindows = playerData.playerWindows;
     }
 }
 //TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
