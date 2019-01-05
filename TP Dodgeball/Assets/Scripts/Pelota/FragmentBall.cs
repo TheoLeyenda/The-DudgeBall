@@ -67,7 +67,7 @@ public class FragmentBall : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         
-        if (other.gameObject.tag != "MiniPelota")
+        if (other.gameObject.tag != "MiniPelota" && other.tag != "Player" && other.tag != "GeneradorPelotaEnemigo")
         {
             if (miniBall1 != null && miniBall2 != null && miniBall3 != null)
             {

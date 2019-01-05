@@ -104,15 +104,18 @@ public class ExplociveBall : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (sound != null && explotionSound != null)
+        if (other.tag != "Player" && other.tag != "GeneradorPelotaEnemigo")
         {
-            sound.clip = explotionSound;
-            sound.PlayOneShot(explotionSound);
+            if (sound != null && explotionSound != null)
+            {
+                sound.clip = explotionSound;
+                sound.PlayOneShot(explotionSound);
+            }
+            Detonate();
+            explotionEffect.SetActive(true);
+            destroy = true;
+            tell = true;
         }
-        Detonate();
-        explotionEffect.SetActive(true);
-        destroy = true;
-        tell = true;
     }
 
 }

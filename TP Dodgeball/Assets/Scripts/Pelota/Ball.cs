@@ -47,10 +47,10 @@ public class Ball : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
 
-        //if (other.tag != "PelotaDeTinta")
-        //{
+        if (other.tag != "Player" && other.tag != "GeneradorPelotaEnemigo")
+        {
             timeLife = 0;
-        //}
+        }
     }
     public float GetTimeLife()
     {

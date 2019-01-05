@@ -1328,7 +1328,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1707922179591550, guid: a2662a1754c3cee4b9207cf71b432619, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114480284310019542, guid: a2662a1754c3cee4b9207cf71b432619,
         type: 2}
@@ -6991,7 +6991,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 0f25c18f9af0aac48a7bc54256ab13f0, type: 2}
     - target: {fileID: 1223623687078014, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 23263293262107726, guid: 22fbf85202868614285bd6483b007f2f,
         type: 2}
@@ -7221,7 +7221,37 @@ Prefab:
       propertyPath: m_Constraints
       value: 84
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1223623687078014, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
+      propertyPath: m_TagString
+      value: GeneradorPelotaEnemigo
+      objectReference: {fileID: 0}
+    - target: {fileID: 82143632314112476, guid: 22fbf85202868614285bd6483b007f2f,
+        type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509309016894892, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991020056814320, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.276
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991020056814320, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991020056814320, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.985
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114979392961287718, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
+    - {fileID: 65311142149197714, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
+    - {fileID: 54999407301217848, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
+    - {fileID: 114236050303284798, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
+    - {fileID: 65059701171929420, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 22fbf85202868614285bd6483b007f2f, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1031065018 stripped
@@ -7915,6 +7945,87 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1684350703631834, guid: 22fbf85202868614285bd6483b007f2f,
     type: 2}
   m_PrefabInternal: {fileID: 1031065017}
+--- !u!1 &1031065150 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1452674931932668, guid: 22fbf85202868614285bd6483b007f2f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1031065017}
+--- !u!82 &1031065151 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 82143632314112476, guid: 22fbf85202868614285bd6483b007f2f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1031065017}
+--- !u!54 &1031065152
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1031065150}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 94
+  m_CollisionDetection: 0
+--- !u!114 &1031065153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1031065150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f7f33a09e25dc4c9b055be6c5f52ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 300
+  maxLife: 300
+  lifeBar: {fileID: 1031065115}
+  framework: {fileID: 1031065116}
+  effectBurned: {fileID: 1031065120}
+  effectFrozen: {fileID: 1031065119}
+  effectMusic: {fileID: 1031065118}
+  i_AmInPool: 0
+  range: 14.3
+  sphere: {fileID: 1031065154}
+  auxLife: 300
+  rugbyBalls: {fileID: 1031065117}
+  dilay: 1
+  Ball: {fileID: 1105829851878048, guid: 4d98a32d261867c4a9d779440981ca97, type: 2}
+  generatorBalls: {fileID: 1031065121}
+  shooter: {fileID: 1031065018}
+  movementType: 0
+  damage: 25
+  Audio: {fileID: 1031065151}
+  clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
+  turret: {fileID: 1031065018}
+--- !u!135 &1031065154
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1031065018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.00001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1031065155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1031065018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c199a3597ef7e4840a2b639f6c2504f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staticTurret: {fileID: 1031065153}
 --- !u!114 &1031065453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7944,6 +8055,18 @@ MonoBehaviour:
   - {fileID: 1031065019}
   - {fileID: 1031065018}
   objectsDisable: []
+--- !u!65 &1031065456
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1031065150}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.17636, y: 4.5666375, z: 2.6432772}
+  m_Center: {x: 0.36985636, y: -0.5865629, z: -1.792615}
 --- !u!1 &1065646910 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1862260960101854, guid: a2662a1754c3cee4b9207cf71b432619,
@@ -10490,7 +10613,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4288575298471362, guid: 9c684f7f2962bcb4dbbe1a904867505c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.8070002
+      value: -1.807
       objectReference: {fileID: 0}
     - target: {fileID: 4288575298471362, guid: 9c684f7f2962bcb4dbbe1a904867505c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10539,7 +10662,7 @@ Prefab:
       objectReference: {fileID: 269017556}
     - target: {fileID: 1587226046319332, guid: 9c684f7f2962bcb4dbbe1a904867505c, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1646510832069404, guid: 9c684f7f2962bcb4dbbe1a904867505c, type: 2}
       propertyPath: m_IsActive

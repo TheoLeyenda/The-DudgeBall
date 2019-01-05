@@ -66,7 +66,7 @@ public class SmallBalls : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "PelotaFragmentadora" && other.gameObject.tag != "MiniPelota")
+        if (other.gameObject.tag != "PelotaFragmentadora" && other.gameObject.tag != "MiniPelota" && other.tag != "Player" && other.tag != "GeneradorPelotaEnemigo")
         {
             //Destroy(this.gameObject);
             recycle = true;

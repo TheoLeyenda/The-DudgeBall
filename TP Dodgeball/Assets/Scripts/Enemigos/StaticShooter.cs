@@ -6,6 +6,9 @@ public class StaticShooter : Enemy
 {
 
     // Use this for initialization
+    public float range;
+    private bool shooting;
+    public SphereCollider sphere;
     private Player player;
     public float auxLife;
     public Pool rugbyBalls;
@@ -24,9 +27,18 @@ public class StaticShooter : Enemy
     public float damage;
     public AudioSource Audio;
     public AudioClip clip;
-
+    public GameObject turret;
     void Start()
     {
+        if (sphere != null)
+        {
+            sphere.radius = range;
+            if (range <= 1)
+            {
+                sphere.enabled = false;
+            }
+        }
+        shooting = false;
         if(Player.InstancePlayer != null)
         {
             player = Player.InstancePlayer;
@@ -72,24 +84,23 @@ public class StaticShooter : Enemy
         UpdateHP();
         rig.Sleep();
         //EstaMuerto();
-        if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
+        if (range <= 1 || shooting)
         {
-            Movimiento();
-        }
-        if (dilay <= 0)
-        {
-            dilay = auxDilay;
-            ThrowBall();
-        }
-        if (dilay > 0)
-        {
-            dilay = dilay - Time.deltaTime;
+            TimeThrowBall();
+            if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
+            {
+                Movimiento();
+            }
         }
         if (GetDead())
         {
-            if (!i_AmInPool)
+            if (!i_AmInPool && turret == null)
             {
                 gameObject.SetActive(false);
+            }
+            if(!i_AmInPool && turret != null)
+            {
+                turret.gameObject.SetActive(false);
             }
         }
         if (timeState > 0)
@@ -148,17 +159,47 @@ public class StaticShooter : Enemy
         }
 
     }
+    public void TimeThrowBall()
+    {
+        if (dilay <= 0)
+        {
+            dilay = auxDilay;
+            ThrowBall();
+        }
+        if (dilay > 0)
+        {
+            dilay = dilay - Time.deltaTime;
+        }
+    }
+
     public void Movimiento()
     {
-        if (player != null)
+        if (turret == null)
         {
-            if (movementType == 0)
+            if (player != null)
             {
-                transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                if (movementType == 0)
+                {
+                    transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                }
+                if (movementType == 1)
+                {
+                    transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
+                }
             }
-            if(movementType == 1)
-            {
-                transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
+        }
+        else
+        {
+            if (player != null)
+            { 
+                if (movementType == 0)
+                {
+                    turret.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                }
+                if (movementType == 1)
+                {
+                    turret.transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z));
+                }
             }
         }
     }
@@ -178,6 +219,14 @@ public class StaticShooter : Enemy
         {
             ball.damage = damage;
         }
+    }
+    public void SetShooting(bool _shooting)
+    {
+        shooting = _shooting;
+    }
+    public bool GetShooting()
+    {
+        return shooting;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -283,6 +332,20 @@ public class StaticShooter : Enemy
                 }
                 life = life - (GetDamageExplociveBall() + player.GetAdditionalDamageExplociveBall());
             }
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            shooting = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            shooting = false;
         }
     }
 }

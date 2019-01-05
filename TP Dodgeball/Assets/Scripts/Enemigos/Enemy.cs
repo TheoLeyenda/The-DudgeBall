@@ -207,4 +207,3 @@ public class Enemy : MonoBehaviour {
     }
 
 }
-//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

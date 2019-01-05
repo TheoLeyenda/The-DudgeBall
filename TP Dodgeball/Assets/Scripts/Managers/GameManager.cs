@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
     public SwitchMaterialDoor changeMaterial;
     public SpawnerEnemy[] spawnersEnemy;
     public StaticShooter[] turrets;
+    public GameObject[] staticShooter;
     public SpawnerTrap[] traps;
     private bool start;
     public static GameManager instanceGameManager;
@@ -77,13 +78,20 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-        if (turrets != null)
+        if (turrets != null && staticShooter != null)
         {
             for(int i = 0; i<turrets.Length; i++)
             {
                 if(turrets[i] != null)
                 {
                     turrets[i].gameObject.SetActive(false);
+                }
+            }
+            for(int i = 0; i< staticShooter.Length; i++)
+            {
+                if(staticShooter[i] != null)
+                {
+                    staticShooter[i].SetActive(false);
                 }
             }
         }
@@ -213,11 +221,17 @@ public class GameManager : MonoBehaviour {
     {
         if (Round == 3)
         {
+            staticShooter[0].gameObject.SetActive(true);
+            staticShooter[1].gameObject.SetActive(true);
             turrets[0].gameObject.SetActive(true);
             turrets[1].gameObject.SetActive(true);
         }
         if (Round == 4)
         {
+            staticShooter[0].gameObject.SetActive(true);
+            staticShooter[1].gameObject.SetActive(true);
+            staticShooter[2].gameObject.SetActive(true);
+            staticShooter[3].gameObject.SetActive(true);
             turrets[0].gameObject.SetActive(true);
             turrets[1].gameObject.SetActive(true);
             turrets[2].gameObject.SetActive(true);
@@ -225,6 +239,14 @@ public class GameManager : MonoBehaviour {
         }
         if (Round == 5)
         {
+            staticShooter[4].gameObject.SetActive(true);
+            staticShooter[5].gameObject.SetActive(true);
+            staticShooter[6].gameObject.SetActive(true);
+            staticShooter[7].gameObject.SetActive(true);
+            staticShooter[8].gameObject.SetActive(true);
+            staticShooter[9].gameObject.SetActive(true);
+            staticShooter[10].gameObject.SetActive(true);
+            staticShooter[11].gameObject.SetActive(true);
             turrets[4].gameObject.SetActive(true);
             turrets[5].gameObject.SetActive(true);
             turrets[6].gameObject.SetActive(true);
@@ -236,6 +258,18 @@ public class GameManager : MonoBehaviour {
         }
         if (Round >= 6)
         {
+            staticShooter[0].gameObject.SetActive(true);
+            staticShooter[1].gameObject.SetActive(true);
+            staticShooter[2].gameObject.SetActive(true);
+            staticShooter[3].gameObject.SetActive(true);
+            staticShooter[4].gameObject.SetActive(true);
+            staticShooter[5].gameObject.SetActive(true);
+            staticShooter[6].gameObject.SetActive(true);
+            staticShooter[7].gameObject.SetActive(true);
+            staticShooter[8].gameObject.SetActive(true);
+            staticShooter[9].gameObject.SetActive(true);
+            staticShooter[10].gameObject.SetActive(true);
+            staticShooter[11].gameObject.SetActive(true);
             turrets[0].gameObject.SetActive(true);
             turrets[1].gameObject.SetActive(true);
             turrets[2].gameObject.SetActive(true);
@@ -276,14 +310,14 @@ public class GameManager : MonoBehaviour {
     }
     public void CheckTurrets()
     {
-        if (turrets != null)
+        if (staticShooter != null)
         {
-            turretsAmountOnScreen = turrets.Length;
+            turretsAmountOnScreen = staticShooter.Length;
             for (int i = 0; i < turrets.Length; i++)
             {
-                if (turrets[i] != null)
+                if (staticShooter[i] != null)
                 {
-                    if (turrets[i].gameObject.activeSelf == false && turretsAmountOnScreen > 0)
+                    if (staticShooter[i].gameObject.activeSelf == false && turretsAmountOnScreen > 0)
                     {
                         turretsAmountOnScreen--;
                     }
