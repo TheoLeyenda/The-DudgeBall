@@ -8,6 +8,8 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class Player : MonoBehaviour {
 
     // Use this for initialization
+    public AudioSource audioSource2;
+    public AudioClip soundDamageMe;
     public GameObject CamvasDeath;
     public GameObject[] ObjectsOtherCamvas;
     public Text textVidasRestantes;
@@ -38,7 +40,7 @@ public class Player : MonoBehaviour {
     public AudioClip clipPickUpVida;
     public AudioClip clipPickUpArmor;
     public AudioClip clipPowerUp;
-   
+
 
     [HideInInspector]
     public int countKilled = 0;
@@ -97,6 +99,7 @@ public class Player : MonoBehaviour {
     private bool InstaKill;
     private bool activeInstaKill;
     //private float auxContInmune;
+    
     private float countImmune;
     private float countDoblePoints;
     private float countInstaKill;
@@ -129,6 +132,11 @@ public class Player : MonoBehaviour {
     {
         score = score - _score;
     }
+    public void DamageMeSound()
+    {
+        audioSource2.PlayOneShot(soundDamageMe);
+    }
+        
     void Start() {
         
         inStore = false;
@@ -202,7 +210,7 @@ public class Player : MonoBehaviour {
         {
             logoDoblePoints.SetActive(false);
         }
-        if (Immune == true)
+        if (Immune == true )
         {
             logoImulnerability.SetActive(true);
             countImmune = countImmune - Time.deltaTime;
@@ -525,6 +533,7 @@ public class Player : MonoBehaviour {
         {
             if (collision.gameObject.tag == "Corredor")
             {
+                DamageMeSound();
                 if (armor > 0)
                 {
                     armor = armor - 1;
@@ -548,6 +557,7 @@ public class Player : MonoBehaviour {
         {
             if (other.tag == "Pinchos")
             {
+                DamageMeSound();
                 if (armor > 0)
                 {
                     armor = armor - skewers.damage;
@@ -559,6 +569,7 @@ public class Player : MonoBehaviour {
             }
             if (other.gameObject.tag == "Corredor")
             {
+                //DamageMeSound();
                 if (armor > 0)
                 {
                     armor = armor - 1;

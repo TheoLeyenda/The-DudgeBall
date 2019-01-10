@@ -14,12 +14,12 @@ public class SpawnerPlayer : MonoBehaviour {
             Instantiate(player_Windows, this.transform.position, Quaternion.identity);
         }
 #elif UNITY_STANDALOVE
-        if (Jugador_Windows != null)
+        if (player_Windows != null)
         {
             Instantiate(player_Windows, this.transform.position, Quaternion.identity);
         }
 #elif UNITY_ANDROID
-        if(Jugador_Android != null)
+        if(player_Android != null)
         {
             Instantiate(player_Android, this.transform.position, Quaternion.identity);
         }

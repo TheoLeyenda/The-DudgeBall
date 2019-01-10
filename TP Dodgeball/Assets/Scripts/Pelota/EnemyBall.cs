@@ -123,6 +123,7 @@ public class EnemyBall : MonoBehaviour {
         {
             if (other.gameObject.tag == "Player")
             {
+                Player.InstancePlayer.DamageMeSound();
                 if (!player.GetImmune())
                 {
                     if (player.armor > 0)
