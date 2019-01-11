@@ -15,6 +15,9 @@ public class BarsDoor : MonoBehaviour {
     private bool openDoor;
     private float y;
     private float auxTimeMov;
+    public GameObject Activator;
+    public float objetiveY;
+    public bool isObjetive;
     public GameObject[] ActivateObjects;
     void Start ()
     {
@@ -86,6 +89,10 @@ public class BarsDoor : MonoBehaviour {
         {
             timeMov = auxTimeMov;
             openDoor = false;
+            if (Activator != null)
+            {
+                //Activator.SetActive(false);
+            }
         }
         if (!ActivateOnce)
         {
@@ -101,16 +108,25 @@ public class BarsDoor : MonoBehaviour {
     }
     public void CloseDoor()
     {
-        if(timeMov > 0)
+        if(timeMov > 0 && Activator == null && !isObjetive)
         {
             timeMov = timeMov - Time.deltaTime;
             y = y + Time.deltaTime * speed;
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
         }
+        if(timeMov > 0 && Activator != null && isObjetive)
+        {
+            transform.position = new Vector3(transform.position.x, -51.69804F, transform.position.z);
+            //Activator.SetActive(false);
+        }
         if(timeMov <= 0)
         {
             timeMov = auxTimeMov;
             closeDoor = false;
+            if (Activator != null && transform.position.y >= objetiveY)
+            {
+                Activator.SetActive(false);
+            }
         }
     }
 }

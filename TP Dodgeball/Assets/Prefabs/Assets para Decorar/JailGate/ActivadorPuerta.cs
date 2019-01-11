@@ -25,7 +25,8 @@ public class ActivadorPuerta : MonoBehaviour {
                 if (Door != null)
                 {
                     Door.SetCloseDoor(true);
-                    Door.SetOpenDoor(false);
+                    Door.SetOpenDoor(false);                   
+
                 }
             }
             if(open)

@@ -24,6 +24,9 @@ public class ResetAll : MonoBehaviour {
             structure.playerData.powerUpAddLife = false;
             structure.playerData.powerUpChalecoAntiGolpes = false;
             structure.playerData.powerUpDobleDamage = false;
+            structure.playerData.countDoblePoints = 0;
+            structure.playerData.countImmune = 0;
+            structure.playerData.countInstaKill = 0;
             structure.playerData.armor = 0;
             structure.playerData.downcastEnemies = 0;
             structure.playerData.ammoDanceBall = 0;
