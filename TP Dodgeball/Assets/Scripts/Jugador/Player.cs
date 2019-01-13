@@ -8,6 +8,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class Player : MonoBehaviour {
 
     // Use this for initialization
+    public VolumeController effectsVolumeController;
     public AudioSource audioSource2;
     public AudioClip soundDamageMe;
     public GameObject CamvasDeath;
@@ -138,7 +139,7 @@ public class Player : MonoBehaviour {
     }
         
     void Start() {
-        
+        effectsVolumeController.volume = 1;
         inStore = false;
         countImmune = 0;
         AdditionalDamageCommonBall = 0;

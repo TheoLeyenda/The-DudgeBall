@@ -22,10 +22,18 @@ public class TurretSubmarine : MonoBehaviour {
         }
         auxDilay = dilay;
         shooting = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    public void CheckVolume()
+    {
+        if (Player.InstancePlayer != null)
+        {
+            Audio.volume = Player.InstancePlayer.effectsVolumeController.volume;
+        }
+    }
+void Update () {
+        CheckVolume();
         Movement();
         CheckShooting();
     }

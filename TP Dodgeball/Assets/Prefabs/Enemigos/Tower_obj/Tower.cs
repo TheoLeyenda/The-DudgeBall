@@ -28,7 +28,15 @@ public class Tower : Enemy {
     }
 
     // Update is called once per frame
+    public void CheckVolume()
+    {
+        if (Player.InstancePlayer != null)
+        {
+            Audio.volume = Player.InstancePlayer.effectsVolumeController.volume;
+        }
+    }
     void Update() {
+        CheckVolume();
         UpdateHP();
         
         if (GetDead())

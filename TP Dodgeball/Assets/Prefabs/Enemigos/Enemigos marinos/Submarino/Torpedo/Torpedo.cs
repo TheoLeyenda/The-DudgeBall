@@ -48,8 +48,16 @@ public class Torpedo : Enemy {
         timeState = 0;
     }
     // Update is called once per frame
+    public void CheckVolume()
+    {
+        if (Player.InstancePlayer != null)
+        {
+            Audio.volume = Player.InstancePlayer.effectsVolumeController.volume;
+        }
+    }
     void Update()
     {
+        CheckVolume();
         Move();
         CheckDead();
         if (timeState > 0)

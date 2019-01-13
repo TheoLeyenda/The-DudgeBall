@@ -73,7 +73,15 @@ public class Shooter : Enemy {
         poolObject = GetComponent<PoolObject>();
     }
     // Update is called once per frame
+    public void CheckVolume()
+    {
+        if (Player.InstancePlayer != null)
+        {
+            Audio.volume = Player.InstancePlayer.effectsVolumeController.volume;
+        }
+    }
     void Update () {
+        CheckVolume();
         if (player != null)
         {
             if (player.GetInstaKill())

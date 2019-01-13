@@ -60,8 +60,16 @@ public class ExplociveBall : MonoBehaviour {
 
     }
     // Update is called once per frame
+    public void CheckVolume()
+    {
+        if (Player.InstancePlayer != null)
+        {
+            sound.volume = Player.InstancePlayer.effectsVolumeController.volume;
+        }
+    }
     void Update()
     {
+        CheckVolume();
         lifeTime = lifeTime - Time.deltaTime;
         if (lifeTime <= 0)
         {

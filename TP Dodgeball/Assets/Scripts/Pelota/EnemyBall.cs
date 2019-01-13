@@ -97,9 +97,17 @@ public class EnemyBall : MonoBehaviour {
             }
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    public void CheckVolume()
+    {
+        if (Player.InstancePlayer != null && Audio != null)
+        {
+            Audio.volume = Player.InstancePlayer.effectsVolumeController.volume;
+        }
+    }
+    void Update () {
+        CheckVolume();
         timeLife = timeLife - Time.deltaTime;
         if(timeLife <= 0)
         {
