@@ -282,6 +282,7 @@ public class GameManager : MonoBehaviour {
             turrets[9].gameObject.SetActive(true);
             turrets[10].gameObject.SetActive(true);
             turrets[11].gameObject.SetActive(true);
+            
         }
     }
     public bool GetVictory()
@@ -303,9 +304,17 @@ public class GameManager : MonoBehaviour {
                     spawnersEnemy[i].gameObject.SetActive(false);
                 }
             }
+            for(int i = 0; i< staticShooter.Length; i++)
+            {
+                if(staticShooter[i] != null)
+                {
+                    staticShooter[i].SetActive(false);
+                }
+            }
             changeMaterial.SwitchMaterial();
             door.GetComponent<BoxCollider>().enabled = true;
             checkPoint.SetActive(true);
+            Round = RoundVictory;
         }
     }
     public void CheckTurrets()

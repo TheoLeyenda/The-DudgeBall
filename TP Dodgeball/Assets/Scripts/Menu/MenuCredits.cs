@@ -7,18 +7,26 @@ public class MenuCredits : MonoBehaviour {
     // Use this for initialization
     public GameObject completedGame;
     public GameObject credits;
+    public GameObject buttonPinUp;
     public float speed;
     private float y;
-    public float riseTime;
+    private float yButtonPinUp;
+    public float limit;
+    //public float riseTime;
     void Start() {
         y = credits.transform.position.y;
+        yButtonPinUp = buttonPinUp.transform.position.y;
     }
 
     // Update is called once per frame
     void Update() {
-        if (credits.activeSelf == true)
+        Debug.Log(buttonPinUp.transform.position.y);
+        if (buttonPinUp.transform.position.y < limit)
         {
-            MoveVertical();
+            if (credits.activeSelf == true)
+            {
+                MoveVertical();
+            }
         }
     }
     public void CreditsMenu()
@@ -28,11 +36,9 @@ public class MenuCredits : MonoBehaviour {
     }
     public void MoveVertical()
     {
-        if (riseTime > 0)
-        {
-            y = y + Time.deltaTime * speed;
-            credits.transform.position = new Vector3(credits.transform.position.x, y, credits.transform.position.z);
-            riseTime = riseTime - Time.deltaTime;
-        }
+        y = y + Time.deltaTime * speed;
+        yButtonPinUp = yButtonPinUp + Time.deltaTime * speed;
+        credits.transform.position = new Vector3(credits.transform.position.x, y, credits.transform.position.z);
+        buttonPinUp.transform.position = new Vector3(buttonPinUp.transform.position.x, yButtonPinUp, buttonPinUp.transform.position.z);
     }
 }
