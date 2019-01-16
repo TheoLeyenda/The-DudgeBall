@@ -16,15 +16,29 @@ public class Tower : Enemy {
     public AudioSource Audio;
     public AudioClip clip;
     public GameObject generatorBall;
+    public float range;
+    private bool shooting;
+    public SphereCollider sphere;
+    public GameObject tower;
 
     private Rigidbody rig;
     void Start () {
+        range = 10;
         auxDilayShoot = dilayShoot;
         timeState = 0;
         SetEnemyState(EstadoEnemigo.normal);
         effectFire = 0;
         effectFrozen.SetActive(false);
         rig = GetComponent<Rigidbody>();
+        shooting = false;
+        if (sphere != null)
+        {
+            //sphere.radius = range;
+            if (range <= 1)
+            {
+                //sphere.enabled = false;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -38,7 +52,10 @@ public class Tower : Enemy {
     void Update() {
         CheckVolume();
         UpdateHP();
-        
+        if(life <= 0)
+        {
+            tower.SetActive(false);
+        }
         if (GetDead())
         {
             if (!i_AmInPool)
@@ -47,8 +64,23 @@ public class Tower : Enemy {
             }
         }
         CheckStateTower();
-        CheckShoot();
+        if (shooting)
+        {
+            if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
+            {
+                Debug.Log("entre");
+                CheckShoot();
+            }
+        }
         
+    }
+    public void SetShooting(bool _shooting)
+    {
+        shooting = _shooting;
+    }
+    public bool GetShooting()
+    {
+        return shooting;
     }
     public void CheckShoot()
     {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LabyrinthManager : MonoBehaviour
 {
-
+    private int dificulty;
     public int[] SpawnersQuantityByArea;
     public int[] SpawnersDestroyedByArea;
     public GameObject[] doors;
@@ -15,6 +15,9 @@ public class LabyrinthManager : MonoBehaviour
     public Text objetiveAndroid;
     public GameObject imageShooterAndroid;
     public GameObject imageRunnerAndroid;
+    public SpawnerEnemy[] spawners;
+    public TimeOnPlay timeGameAndroid;
+    public TimeOnPlay timeGameWindows;
     public int currentZone;
 
     public static LabyrinthManager instanceLabyrinthManager;
@@ -41,6 +44,62 @@ public class LabyrinthManager : MonoBehaviour
     void Start()
     {
         SpawnersDestroyedByArea = new int[SpawnersQuantityByArea.Length];
+
+        dificulty = DataStructure.auxiliaryDataStructure.dificulty;
+        if (timeGameAndroid != null && Player.InstancePlayer.playerAndroid)
+        {
+            switch (dificulty)
+            {
+                case 1:
+                    for (int i = 0; i < spawners.Length; i++)
+                    {
+                        spawners[i].dileyCreation = 50;
+                    }
+                    timeGameAndroid.minutes = 30f;
+                    break;
+                case 2:
+                    for (int i = 0; i < spawners.Length; i++)
+                    {
+                        spawners[i].dileyCreation = 40;
+                    }
+                    timeGameAndroid.minutes = 20f;
+                    break;
+                case 3:
+                    for (int i = 0; i < spawners.Length; i++)
+                    {
+                        spawners[i].dileyCreation = 30;
+                    }
+                    timeGameAndroid.minutes = 10f;
+                    break;
+            }
+        }
+        if (timeGameWindows != null && Player.InstancePlayer.playerWindows)
+        {
+            switch (dificulty)
+            {
+                case 1:
+                    for (int i = 0; i < spawners.Length; i++)
+                    {
+                        spawners[i].dileyCreation = 50;
+                    }
+                    timeGameWindows.minutes = 30f;
+                    break;
+                case 2:
+                    for (int i = 0; i < spawners.Length; i++)
+                    {
+                        spawners[i].dileyCreation = 40;
+                    }
+                    timeGameWindows.minutes = 20f;
+                    break;
+                case 3:
+                    for (int i = 0; i < spawners.Length; i++)
+                    {
+                        spawners[i].dileyCreation = 30;
+                    }
+                    timeGameWindows.minutes = 10f;
+                    break;
+            }
+        }
     }
 
     // Update is called once per frame

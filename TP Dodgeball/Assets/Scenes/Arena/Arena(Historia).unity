@@ -852,6 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 377642783}
+  tower: {fileID: 0}
 --- !u!114 &448665032 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114897506513325788, guid: 97a54456be54db846acac64e3d3ccfdd,
@@ -1098,7 +1099,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 6bec6b51ae3f681459c6a0fbb4dbc10c, type: 2}
     - target: {fileID: 1363934583790008, guid: 41cda1ae51cbd36489338f57488d7dc4, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114986838167858726, guid: 41cda1ae51cbd36489338f57488d7dc4,
         type: 2}
@@ -3490,6 +3491,47 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4876985335499178, guid: c2d359284f512a0449e4b7b8ba4f10ac,
     type: 2}
   m_PrefabInternal: {fileID: 656958056}
+--- !u!1 &752435903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 752435905}
+  - component: {fileID: 752435904}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: RompeObjetos
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &752435904
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 752435903}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &752435905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 752435903}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -88.875175, y: -100, z: 50.516342}
+  m_LocalScale: {x: 1000, y: 1, z: 1000}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &752839126
 Prefab:
   m_ObjectHideFlags: 0
@@ -4174,6 +4216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 895733696}
+  tower: {fileID: 0}
 --- !u!1 &960018025
 GameObject:
   m_ObjectHideFlags: 0
@@ -4308,7 +4351,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1470205743444268, guid: c7315278db52f9a42a0a2eef308e8161, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 23635303002638638, guid: c7315278db52f9a42a0a2eef308e8161,
         type: 2}
@@ -5266,12 +5309,12 @@ Prefab:
     - target: {fileID: 224344849367996006, guid: c7315278db52f9a42a0a2eef308e8161,
         type: 2}
       propertyPath: m_RootOrder
-      value: 27
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 224821637019425028, guid: c7315278db52f9a42a0a2eef308e8161,
         type: 2}
       propertyPath: m_RootOrder
-      value: 28
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 224831534221920886, guid: c7315278db52f9a42a0a2eef308e8161,
         type: 2}
@@ -6877,6 +6920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 998125552}
+  tower: {fileID: 0}
 --- !u!1001 &1043707488
 Prefab:
   m_ObjectHideFlags: 0
@@ -6931,9 +6975,27 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7eb1b07d9006b38429a8237f609e8faf, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 64152069199018958, guid: fd2058729e7a69145b26dda787fd78ed, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: fd2058729e7a69145b26dda787fd78ed, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1043707489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1115486811906582, guid: fd2058729e7a69145b26dda787fd78ed,
+    type: 2}
+  m_PrefabInternal: {fileID: 1043707488}
+--- !u!65 &1043707490
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1043707489}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 9.999999}
+  m_Center: {x: -0.000000029802322, y: 0, z: 0}
 --- !u!1001 &1068728765
 Prefab:
   m_ObjectHideFlags: 0
@@ -7242,6 +7304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 1068728780}
+  tower: {fileID: 0}
 --- !u!1001 &1161048809
 Prefab:
   m_ObjectHideFlags: 0
@@ -7643,7 +7706,7 @@ Prefab:
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
       propertyPath: RoundVictory
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114547877316753814, guid: 22be2c205a3338845af4b2ce9ae257b7,
         type: 2}
@@ -8152,6 +8215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 1217845066}
+  tower: {fileID: 0}
 --- !u!1 &1241129817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1106023386979080, guid: 2e312acda719e55479750221f63f795f,
@@ -9222,6 +9286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 1527210828}
+  tower: {fileID: 0}
 --- !u!1 &1557914463
 GameObject:
   m_ObjectHideFlags: 0
@@ -9856,6 +9921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 1758683725}
+  tower: {fileID: 0}
 --- !u!1001 &1766761962
 Prefab:
   m_ObjectHideFlags: 0
@@ -10374,6 +10440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 1804275117}
+  tower: {fileID: 0}
 --- !u!1 &1825339056 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1751281483334126, guid: fd2058729e7a69145b26dda787fd78ed,
@@ -10784,6 +10851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 1890727148}
+  tower: {fileID: 0}
 --- !u!1001 &1902504545
 Prefab:
   m_ObjectHideFlags: 0
@@ -11092,6 +11160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 1902504560}
+  tower: {fileID: 0}
 --- !u!1 &1905129188 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1106023386979080, guid: 2e312acda719e55479750221f63f795f,
@@ -11121,6 +11190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsActived: []
   objectsDisable: []
+  dontDisableMe: 0
 --- !u!1001 &1990041201
 Prefab:
   m_ObjectHideFlags: 0
@@ -11526,6 +11596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 2004321744}
+  tower: {fileID: 0}
 --- !u!1 &2013737826
 GameObject:
   m_ObjectHideFlags: 0
@@ -12166,3 +12237,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticTurret: {fileID: 2133391009}
+  tower: {fileID: 0}

@@ -14,6 +14,8 @@ public class DataStructure : MonoBehaviour {
     public bool save;
     [HideInInspector]
     public bool once= true;
+    [HideInInspector]
+    public int dificulty;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);

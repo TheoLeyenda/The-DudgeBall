@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     // Use this for initialization
+    [HideInInspector]
+    public int dificulty;
     public Text TextRoundWindows;
     public Text TextRoundAndroid;
     [HideInInspector]
@@ -18,9 +20,10 @@ public class GameManager : MonoBehaviour {
     public StaticShooter[] turrets;
     public GameObject[] staticShooter;
     public SpawnerTrap[] traps;
+    public Tower[] rangeTowers;
     private bool start;
     public static GameManager instanceGameManager;
-    private int Round;
+    public int Round;
     public bool survival;
     public bool history;
     public bool checkRound;
@@ -61,9 +64,52 @@ public class GameManager : MonoBehaviour {
         {
             this.gameObject.SetActive(false);            
         }
+        
     }
     private void Start()
     {
+        dificulty = DataStructure.auxiliaryDataStructure.dificulty;
+        switch (dificulty)
+        {
+            case 1:
+                RoundVictory = 5;
+                break;
+            case 2:
+                RoundVictory = 6;
+                break;
+            case 3:
+                RoundVictory = 7;
+                break;
+        }
+        if(currentMap == "Aguas_Infectadas")
+        {
+            switch (dificulty)
+            {
+                case 1:
+                    for(int i = 0; i < rangeTowers.Length; i++)
+                    {
+                        rangeTowers[i].sphere.radius = 17;
+                        rangeTowers[i].dilayShoot = 1f;
+                    }
+                    break;
+                case 2:
+                    RoundVictory = 6;
+                    for(int i = 0; i< rangeTowers.Length; i++)
+                    {
+                        rangeTowers[i].sphere.radius = 19f;
+                        rangeTowers[i].dilayShoot = 0.75f;
+                    }
+                    break;
+                case 3:
+                    RoundVictory = 7;
+                    for(int i = 0; i<rangeTowers.Length; i++)
+                    {
+                        rangeTowers[i].sphere.radius = 50;
+                        rangeTowers[i].dilayShoot = 0.5f;
+                    }
+                    break;
+            }
+        }
         enemyAmountOnScreen = 0;
         if (!history && survival)
         {

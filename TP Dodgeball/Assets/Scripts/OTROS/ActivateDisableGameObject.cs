@@ -8,6 +8,7 @@ public class ActivateDisableGameObject : MonoBehaviour {
     // Use this for initialization
     public GameObject[] objectsActived;
     public GameObject[] objectsDisable;
+    public bool dontDisableMe;
     public void Actived()
     {
         for (int i = 0; i < objectsActived.Length; i++)
@@ -24,7 +25,10 @@ public class ActivateDisableGameObject : MonoBehaviour {
                 objectsDisable[i].SetActive(false);
             }
         }
-        gameObject.SetActive(false);
+        if (!dontDisableMe)
+        {
+            gameObject.SetActive(false);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
