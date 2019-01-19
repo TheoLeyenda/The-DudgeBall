@@ -136,7 +136,7 @@ public class EnemyBall : MonoBehaviour {
                 {
                     if (player.armor > 0)
                     {
-                        player.armor = player.armor - damage;
+                        player.armor = player.armor - (damage/2);
                     }
                     else
                     {
@@ -163,7 +163,7 @@ public class EnemyBall : MonoBehaviour {
                 {
                     if (player.armor > 0)
                     {
-                        player.armor = player.armor - damage;
+                        player.armor = player.armor - (damage / 2);
                     }
                     else
                     {

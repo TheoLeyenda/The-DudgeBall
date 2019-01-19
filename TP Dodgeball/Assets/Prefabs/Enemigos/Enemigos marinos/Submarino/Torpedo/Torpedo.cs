@@ -259,7 +259,7 @@ public class Torpedo : Enemy {
                 Player.InstancePlayer.DamageMeSound();
                 if (Player.InstancePlayer.armor > 0)
                 {
-                    Player.InstancePlayer.armor = Player.InstancePlayer.armor - damage;
+                    Player.InstancePlayer.armor = Player.InstancePlayer.armor - (damage/2);
                 }
                 else
                 {

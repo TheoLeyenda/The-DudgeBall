@@ -8,6 +8,10 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class Player : MonoBehaviour {
 
     // Use this for initialization
+
+    public GameObject ARMOR;
+    public Scrollbar armorBar;
+    public Scrollbar lifeBar;
     public VolumeController effectsVolumeController;
     public AudioSource audioSource2;
     public AudioClip soundDamageMe;
@@ -21,6 +25,7 @@ public class Player : MonoBehaviour {
     public float life;
     public float maxLife;
     public float armor;
+    public float maxArmor;
     [HideInInspector]
     public int ballType;
     private int score;
@@ -196,8 +201,26 @@ public class Player : MonoBehaviour {
             Cursor.lockState = CursorLockMode.None;
         }
     }
+    public void ArmorUpdate()
+    {
+        if (armor > 0)
+        {
+            
+            armorBar.size = armor / maxArmor;
+        }
+        else
+        {
+            ARMOR.SetActive(false);
+            
+        }
+    }
+    public void HpUpdate()
+    {
+       lifeBar.size = life / maxLife;
+    }
     void Update() {
-      
+        HpUpdate();
+        ArmorUpdate();
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
@@ -286,16 +309,17 @@ public class Player : MonoBehaviour {
         }
         if(powerUpArmor)
         {
+            ARMOR.SetActive(true);
             logoArmor.SetActive(true);
-            textArmor.gameObject.SetActive(true);
-            armor = 100;
+            //textArmor.gameObject.SetActive(true);
+            armor = maxArmor;
             powerUpArmor = false;
         }
         if(powerUpDobleDamage)
         {
             //definido en enemigo
         }
-        textLife.text = "" + (int)life;
+        //textLife.text = "" + (int)life;
         textScore.text = "" + score;
         if (opportunities > -1 && TextOpportunities != null)
         {
@@ -537,7 +561,7 @@ public class Player : MonoBehaviour {
                 DamageMeSound();
                 if (armor > 0)
                 {
-                    armor = armor - 1;
+                    armor = armor - 0.5f;
                 }
                 else
                 {
@@ -561,7 +585,7 @@ public class Player : MonoBehaviour {
                 DamageMeSound();
                 if (armor > 0)
                 {
-                    armor = armor - skewers.damage;
+                    armor = armor - (skewers.damage/2);
                 }
                 else
                 {
@@ -573,7 +597,7 @@ public class Player : MonoBehaviour {
                 //DamageMeSound();
                 if (armor > 0)
                 {
-                    armor = armor - 1;
+                    armor = armor - 0.5f;
                 }
                 else
                 {

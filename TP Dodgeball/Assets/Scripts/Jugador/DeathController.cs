@@ -12,10 +12,12 @@ public class DeathController : MonoBehaviour
         }
         Player.InstancePlayer.CamvasDeath.SetActive(false);
         Player.InstancePlayer.transform.position =  Player.InstancePlayer.posRespawn.position;
-        Player.InstancePlayer.life = 100;
+        Player.InstancePlayer.life = Player.InstancePlayer.maxLife;
         GameManager.instanceGameManager.pause = false;
         Player.InstancePlayer.pause = false;
         Player.InstancePlayer.SetImmune(true);
         Player.InstancePlayer.SetCountImmune(3.7f);
+        Player.InstancePlayer.armorBar.size = 1;
+        Player.InstancePlayer.lifeBar.size = 1;
     }
 }

@@ -72,12 +72,21 @@ public class GameManager : MonoBehaviour {
         switch (dificulty)
         {
             case 1:
+                Player.InstancePlayer.life = 300;
+                Player.InstancePlayer.maxLife = Player.InstancePlayer.life;
+                Player.InstancePlayer.maxArmor = 200;
                 RoundVictory = 5;
                 break;
             case 2:
+                Player.InstancePlayer.life = 200;
+                Player.InstancePlayer.maxLife = Player.InstancePlayer.life;
+                Player.InstancePlayer.maxArmor = 150;
                 RoundVictory = 6;
                 break;
             case 3:
+                Player.InstancePlayer.life = 100;
+                Player.InstancePlayer.maxLife = Player.InstancePlayer.life;
+                Player.InstancePlayer.maxArmor = 100;
                 RoundVictory = 7;
                 break;
         }
