@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 //TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)
 
 public class GameManager : MonoBehaviour {
 
+    
     // Use this for initialization
     [HideInInspector]
     public int dificulty;
