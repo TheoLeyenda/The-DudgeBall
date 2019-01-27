@@ -29,7 +29,6 @@ public class PassageLevel : MonoBehaviour {
                 {
                     DataStructure.GetAuxiliaryDataStructure().playerData.armor = player.armor;
                     player.logoArmor.SetActive(true);
-                    player.textArmor.gameObject.SetActive(true);
                 }
             }
             if (level != null && !levelByNumber)

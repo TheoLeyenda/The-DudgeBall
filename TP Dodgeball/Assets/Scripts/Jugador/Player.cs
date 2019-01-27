@@ -160,7 +160,6 @@ public class Player : MonoBehaviour {
         Immune = false;
         count = true;
         score = 0;
-        textLife.text = ""+((int)life);
         InstancePlayer = this;
         ballType = 1;
         AmmoIceBall = 0;
@@ -406,7 +405,6 @@ public class Player : MonoBehaviour {
                 {
                     DataStructure.GetAuxiliaryDataStructure().playerData.armor = armor;
                     logoArmor.SetActive(true);
-                    textArmor.gameObject.SetActive(true);
                 }
             }
             posRespawn = other.gameObject.transform;
@@ -443,11 +441,7 @@ public class Player : MonoBehaviour {
         if (other.tag == "PickUpVida")
         {
             audioSource.PlayOneShot(clipPickUpVida);
-            life = life + 100;
-            if (life > maxLife)
-            {
-                life = maxLife;
-            }
+            life = maxLife;
             other.gameObject.SetActive(false);
         }
         if (other.tag == "PickUpHielo")

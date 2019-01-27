@@ -34,6 +34,7 @@ public class ShootBall : MonoBehaviour {
         if(Player.InstancePlayer != null)
         {
             instancePlayer = Player.InstancePlayer;
+            instancePlayer.ballType = 1;
         }
         counter = 0;
         delay = 0f;
@@ -72,7 +73,6 @@ public class ShootBall : MonoBehaviour {
         
         if (Time.timeScale > 0)
         {
-
             if (instancePlayer.ballType == 1 && generator != null && CommonBall != null)
             {
                 is_Shooting = true;

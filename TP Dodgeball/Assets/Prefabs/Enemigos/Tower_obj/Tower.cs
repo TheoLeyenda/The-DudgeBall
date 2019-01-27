@@ -68,7 +68,6 @@ public class Tower : Enemy {
         {
             if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
             {
-                Debug.Log("entre");
                 CheckShoot();
             }
         }
