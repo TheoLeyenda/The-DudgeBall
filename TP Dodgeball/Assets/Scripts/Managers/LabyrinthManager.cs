@@ -16,8 +16,11 @@ public class LabyrinthManager : MonoBehaviour
     public GameObject imageShooterAndroid;
     public GameObject imageRunnerAndroid;
     public SpawnerEnemy[] spawners;
+    public SpawnerEnemy[] spawnerRunner;
+    public SpawnerEnemy[] spawnerShooter;
     public TimeOnPlay timeGameAndroid;
     public TimeOnPlay timeGameWindows;
+    public Pool[] poolSpawners;
     public int currentZone;
 
     public static LabyrinthManager instanceLabyrinthManager;
@@ -39,8 +42,6 @@ public class LabyrinthManager : MonoBehaviour
     {
         return instanceLabyrinthManager;
     }
-
-
     void Start()
     {
         SpawnersDestroyedByArea = new int[SpawnersQuantityByArea.Length];
@@ -48,12 +49,24 @@ public class LabyrinthManager : MonoBehaviour
         dificulty = DataStructure.auxiliaryDataStructure.dificulty;
         if (timeGameAndroid != null && Player.InstancePlayer.playerAndroid)
         {
+            for (int i = 0; i < spawnerRunner.Length; i++)
+            {
+                spawnerRunner[i].enemySpeed = 3;
+            }
+            for (int i = 0; i < spawnerShooter.Length; i++)
+            {
+                spawnerShooter[i].enemySpeed = 2;
+            }
             switch (dificulty)
             {
                 case 1:
                     for (int i = 0; i < spawners.Length; i++)
                     {
                         spawners[i].dileyCreation = 50;
+                    }
+                    for (int i = 0; i < poolSpawners.Length; i++)
+                    {
+                        poolSpawners[i].count = 10;
                     }
                     timeGameAndroid.minutes = 30f;
                     break;
@@ -62,12 +75,20 @@ public class LabyrinthManager : MonoBehaviour
                     {
                         spawners[i].dileyCreation = 40;
                     }
+                    for (int i = 0; i < poolSpawners.Length; i++)
+                    {
+                        poolSpawners[i].count = 15;
+                    }
                     timeGameAndroid.minutes = 20f;
                     break;
                 case 3:
                     for (int i = 0; i < spawners.Length; i++)
                     {
-                        spawners[i].dileyCreation = 30;
+                        spawners[i].dileyCreation = 25;
+                    }
+                    for (int i = 0; i < poolSpawners.Length; i++)
+                    {
+                        poolSpawners[i].count = 20;
                     }
                     timeGameAndroid.minutes = 10f;
                     break;
@@ -75,6 +96,14 @@ public class LabyrinthManager : MonoBehaviour
         }
         if (timeGameWindows != null && Player.InstancePlayer.playerWindows)
         {
+            for (int i = 0; i < spawnerRunner.Length; i++)
+            {
+                spawnerRunner[i].enemySpeed = 4;
+            }
+            for (int i = 0; i < spawnerShooter.Length; i++)
+            {
+                spawnerShooter[i].enemySpeed = 2.5f;
+            }
             switch (dificulty)
             {
                 case 1:

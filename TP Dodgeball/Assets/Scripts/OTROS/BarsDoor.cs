@@ -116,7 +116,7 @@ public class BarsDoor : MonoBehaviour {
         }
         if(timeMov > 0 && Activator != null && isObjetive)
         {
-            transform.position = new Vector3(transform.position.x, -51.69804F, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -61.4425f, transform.position.z);
             //Activator.SetActive(false);
         }
         if(timeMov <= 0)

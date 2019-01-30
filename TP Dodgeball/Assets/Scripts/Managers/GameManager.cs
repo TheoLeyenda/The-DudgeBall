@@ -159,6 +159,11 @@ public class GameManager : MonoBehaviour {
         //VerificarVictoria();
         if (pause)
         {
+            if (Player.InstancePlayer.playerWindows)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
             Time.timeScale = 0;
         }
         if(!pause)

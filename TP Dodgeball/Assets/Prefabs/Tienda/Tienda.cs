@@ -91,7 +91,7 @@ public class Tienda : MonoBehaviour
         }
         else
         {
-            //GameManager.GetGameManager().pausa = false;
+            GameManager.GetGameManager().pause = false;
         }
        
     }
@@ -113,6 +113,10 @@ public class Tienda : MonoBehaviour
                 boton.SetActive(true);
                 //al apretar el boton en pantalla prende la tienda
             }
+        }
+        if (GameManager.GetGameManager() != null)
+        {
+            GameManager.GetGameManager().pause = true;
         }
     }
     public void OpeningCamvasStore()
@@ -138,10 +142,7 @@ public class Tienda : MonoBehaviour
             }
 
         }
-        if (GameManager.GetGameManager() != null)
-        {
-            GameManager.GetGameManager().pause = true;
-        }
+        
     }
     public void ClosingStore()
     {

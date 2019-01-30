@@ -218,13 +218,14 @@ public class Player : MonoBehaviour {
        lifeBar.size = life / maxLife;
     }
     void Update() {
+        ControlCursor();
         HpUpdate();
         ArmorUpdate();
+       
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
         }
-        ControlCursor();
         if(DoblePoints)
         {
             logoDoblePoints.SetActive(true);
