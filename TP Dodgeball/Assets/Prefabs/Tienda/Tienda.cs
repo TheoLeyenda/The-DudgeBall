@@ -85,15 +85,7 @@ public class Tienda : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(camvasStoreAndroid.activeSelf == true || camvasStoreWindows.activeSelf == true && GameManager.GetGameManager() != null)
-        {
-            GameManager.GetGameManager().pause = true;
-        }
-        else
-        {
-            GameManager.GetGameManager().pause = false;
-        }
-       
+        
     }
     public void OpeningStore()
     {
@@ -114,13 +106,10 @@ public class Tienda : MonoBehaviour
                 //al apretar el boton en pantalla prende la tienda
             }
         }
-        if (GameManager.GetGameManager() != null)
-        {
-            GameManager.GetGameManager().pause = true;
-        }
     }
     public void OpeningCamvasStore()
     {
+        GameManager.instanceGameManager.pause = true;
         if(Player.GetPlayer() != null)
         {
             Player.GetPlayer().inStore = true;

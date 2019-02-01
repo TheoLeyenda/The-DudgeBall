@@ -221,7 +221,6 @@ public class Player : MonoBehaviour {
         ControlCursor();
         HpUpdate();
         ArmorUpdate();
-       
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
