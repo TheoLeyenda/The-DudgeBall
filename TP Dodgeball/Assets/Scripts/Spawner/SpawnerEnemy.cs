@@ -65,7 +65,7 @@ public class SpawnerEnemy : MonoBehaviour {
                 {
                     GameObject go = poolEnemigo.GetObject();
                     Runner runner = go.GetComponent<Runner>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX),0, Random.Range(0, rangeZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0.5f, Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
                     runner.On();
                     runner.rangeEnemyVision = enemyVisionRange;
@@ -79,7 +79,7 @@ public class SpawnerEnemy : MonoBehaviour {
                 {
                     GameObject go = poolEnemigo.GetObject();
                     Shooter shooter = go.GetComponent<Shooter>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0, Random.Range(0, rangeZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0.5f, Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
                     if (DileyShooter > 0)
                     {
@@ -124,7 +124,7 @@ public class SpawnerEnemy : MonoBehaviour {
 
                     GameObject go = poolEnemigo.GetObject();
                     Runner runner = go.GetComponent<Runner>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0, Random.Range(0, rangeZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0.5f, Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
                     runner.On();
                     runner.speed = enemySpeed;
@@ -138,7 +138,7 @@ public class SpawnerEnemy : MonoBehaviour {
                 {
                     GameObject go = poolEnemigo.GetObject();
                     Shooter shooter = go.GetComponent<Shooter>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0, Random.Range(0, rangeZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0.5f, Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
                     if (damageShooter > 0)
                     {
