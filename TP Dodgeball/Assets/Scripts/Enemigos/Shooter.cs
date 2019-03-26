@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Shooter : Enemy {
 
@@ -143,7 +141,7 @@ public class Shooter : Enemy {
                 if (go != null)
                 {
                     poolPoderInmune.SubstractId();
-                    go.transform.position = transform.position;
+                    go.transform.position =  new Vector3 (transform.position.x,transform.position.y+0.8f,transform.position.z);
                     go.transform.rotation = transform.rotation;
                 }
             }
@@ -154,7 +152,7 @@ public class Shooter : Enemy {
                 if (go != null)
                 {
                     poolDoblePuntuacion.SubstractId();
-                    go.transform.position = transform.position;
+                    go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
                     go.transform.rotation = transform.rotation;
                 }
             }
@@ -164,7 +162,7 @@ public class Shooter : Enemy {
                 if (go != null)
                 {
                     poolInstaKill.SubstractId();
-                    go.transform.position = transform.position;
+                    go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
                     go.transform.rotation = transform.rotation;
                 }
             }
@@ -298,6 +296,10 @@ public class Shooter : Enemy {
             rig.velocity = Vector3.zero;
             rig.angularVelocity = Vector3.zero;
             transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+            animator.SetBool("Runing", false);
+            animator.SetBool("idle", true);
+            animator.SetBool("Attacking", false);
+            
         }
     }
     public void ThrowBall()
@@ -319,6 +321,7 @@ public class Shooter : Enemy {
         {
             Ball.power = powerShoot;
         }
+        animator.Play("UD_archer_07_attack_A");
         Ball.Shoot();
     }
     
