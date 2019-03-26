@@ -5,21 +5,29 @@ using UnityEngine;
 public class Shooter : Enemy {
 
     // Use this for initialization
-    private Player player;
+    [HideInInspector]
+    public Player player;
     public float auxLife;
     public Pool poolShooter;
     public Pool rugbyBalls;
     private PoolObject poolObject;
-    private float auxLifeTime;
+    [HideInInspector]
+    public float auxLifeTime;
     public float speed;
     public float dilay;
-    private float auxDilay;
+    [HideInInspector]
+    public float auxDilay;
+    [HideInInspector]
+    public bool aviableShoot;
     public GameObject ball;
     public GameObject generatorBall;
     public GameObject shooter;
-    private float timeState;
-    private float auxSpeed;
-    private float effectFire;
+    [HideInInspector]
+    public float timeState;
+    [HideInInspector]
+    public float auxSpeed;
+    [HideInInspector]
+    public float effectFire;
     private Rigidbody rig;
     private float dileyInsta;
     public float rangeDouble;
@@ -28,6 +36,7 @@ public class Shooter : Enemy {
     public float powerShoot;
     public AudioSource Audio;
     public AudioClip clip;
+    public Animator animator;
 
     public Pool poolPoderInmune;
     public Pool poolDoblePuntuacion;
@@ -35,7 +44,10 @@ public class Shooter : Enemy {
 
     public int patternType;
 
+   
+
     void Start () {
+        aviableShoot = false;
         if(Player.InstancePlayer != null)
         {
             player = Player.InstancePlayer;
@@ -108,15 +120,19 @@ public class Shooter : Enemy {
         {
             Movement();
         }
-        if(dilay <= 0)
+        if(aviableShoot)
         {
-            dilay = auxDilay;
-            ThrowBall();
+            if (dilay <= 0)
+            {
+                dilay = auxDilay;
+                ThrowBall();
+            }
+            if (dilay > 0)
+            {
+                dilay = dilay - Time.deltaTime;
+            }
         }
-        if (dilay > 0)
-        {
-            dilay = dilay - Time.deltaTime;
-        }
+        
         if(GetDead())
         {
             // Seguir configurando la probabilidad de aparicion de los powers ups
@@ -234,37 +250,54 @@ public class Shooter : Enemy {
     }
     public void Movement()
     {
-        if (patternType == 0)
+        //Debug.Log(aviableShoot);
+        if (!aviableShoot)
         {
-            if (player != null)
+            if (patternType == 0)
+            {
+                if (player != null)
+                {
+                    rig.velocity = Vector3.zero;
+                    rig.angularVelocity = Vector3.zero;
+                    transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+                    transform.position += transform.forward * Time.deltaTime * speed; //si comento esto es una torreta y sino es un jugador de rugby
+                    animator.SetBool("Runing", true);
+                    animator.SetBool("idle", false);
+                    animator.SetBool("Attacking", false);
+                }
+            }
+            if (patternType == 1)
             {
                 rig.velocity = Vector3.zero;
                 rig.angularVelocity = Vector3.zero;
-                transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
-                transform.position += transform.forward * Time.deltaTime * speed; //si comento esto es una torreta y sino es un jugador de rugby
+                transform.position += transform.forward * Time.deltaTime * speed;
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, rangeDouble))
+                {
+                    if (hit.collider.gameObject.tag != "PoderInmune" && hit.collider.gameObject.tag != "DoblePuntuacion" && hit.collider.gameObject.tag != "InstaKill" && hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.tag != "PelotaComun" && hit.collider.gameObject.tag != "MiniPelota" && hit.collider.gameObject.tag != "PelotaDeHielo" && hit.collider.gameObject.tag != "PelotaDeFuego" && hit.collider.gameObject.tag != "PelotaDanzarina" && hit.collider.gameObject.tag != "SpawnerEnemigo")
+                    {
+                        float opcion;
+                        opcion = Random.Range(0, 2);
+                        if (opcion >= 1)
+                        {
+                            transform.Rotate(0, 90, 0);
+                        }
+                        else
+                        {
+                            transform.Rotate(0, -90, 0);
+                        }
+                    }
+                }
+                animator.SetBool("Runing", true);
+                animator.SetBool("idle", false);
+                animator.SetBool("Attacking", false);
             }
         }
-        if(patternType == 1)
+        else if(aviableShoot)
         {
             rig.velocity = Vector3.zero;
             rig.angularVelocity = Vector3.zero;
-            transform.position += transform.forward * Time.deltaTime * speed;
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, rangeDouble))
-            {
-                if (hit.collider.gameObject.tag != "PoderInmune" && hit.collider.gameObject.tag != "DoblePuntuacion" && hit.collider.gameObject.tag != "InstaKill" && hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.tag != "PelotaComun" && hit.collider.gameObject.tag != "MiniPelota" && hit.collider.gameObject.tag != "PelotaDeHielo" && hit.collider.gameObject.tag != "PelotaDeFuego" && hit.collider.gameObject.tag != "PelotaDanzarina" && hit.collider.gameObject.tag != "SpawnerEnemigo")
-                {
-                    float opcion = Random.Range(0, 2);
-                    if (opcion >= 1)
-                    {
-                        transform.Rotate(0, 90, 0);
-                    }
-                    else
-                    {
-                        transform.Rotate(0, -90, 0);
-                    }
-                }
-            }
+            transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
         }
     }
     public void ThrowBall()
@@ -288,17 +321,39 @@ public class Shooter : Enemy {
         }
         Ball.Shoot();
     }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Corredor" || collision.gameObject.tag == "Tirador" && patternType == 1)
+        {
+            collision.gameObject.transform.Rotate(0, 180, 0);
+        }
+        if (collision.gameObject.tag == "Pared")
+        {
+            float opcion = Random.Range(0, 2);
+            if (opcion >= 1)
+            {
+                transform.Rotate(0, 90, 0);
+            }
+            else
+            {
+                transform.Rotate(0, -90, 0);
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "PelotaComun")
+        if (other.gameObject.tag == "PelotaComun" && gameObject.tag == "Tirador")
         {
+            //Debug.Log("ENTRE");
             if (player != null)
             {
                 life = life - (GetDamageCommonBall() + player.GetAdditionalDamageCommonBall());
+                //Debug.Log("Hize Daño");
                 IsDead();
                 if (player.GetDoblePoints())
                 {
-                    player.AddScore(10* 2);
+                    player.AddScore(10 * 2);
                 }
                 else
                 {
@@ -306,13 +361,13 @@ public class Shooter : Enemy {
                 }
             }
         }
-        if (other.gameObject.tag == "PelotaDeHielo")
+        if (other.gameObject.tag == "PelotaDeHielo" && gameObject.tag == "Tirador")
         {
             if (player != null)
             {
                 if (player.GetDoblePoints())
                 {
-                    player.AddScore(10*2);
+                    player.AddScore(10 * 2);
                 }
                 else
                 {
@@ -337,7 +392,7 @@ public class Shooter : Enemy {
                 effectFrozen.SetActive(true);
             }
         }
-        if (other.gameObject.tag == "MiniPelota")
+        if (other.gameObject.tag == "MiniPelota" && gameObject.tag == "Tirador")
         {
             if (player != null)
             {
@@ -353,9 +408,9 @@ public class Shooter : Enemy {
                 IsDead();
             }
         }
-        if (other.gameObject.tag == "PelotaDanzarina")
+        if (other.gameObject.tag == "PelotaDanzarina" && gameObject.tag == "Tirador")
         {
-           
+
             if (GetEnemyState() != EstadoEnemigo.dance)
             {
                 timeState = 7;//tiempo por el cual el enemigo estara bailando
@@ -366,16 +421,16 @@ public class Shooter : Enemy {
             IsDead();
             if (player.GetDoblePoints())
             {
-                player.AddScore(5*2);
+                player.AddScore(5 * 2);
             }
             else
             {
                 player.AddScore(5);
             }
         }
-        if (other.gameObject.tag == "PelotaDeFuego")
+        if (other.gameObject.tag == "PelotaDeFuego" && gameObject.tag == "Tirador")
         {
-            
+
             if (GetEnemyState() != EstadoEnemigo.Burned)
             {
                 timeState = 7;
@@ -388,14 +443,14 @@ public class Shooter : Enemy {
             speed = auxSpeed;
             dilay = auxDilay;
         }
-        if(other.gameObject.tag == "PelotaExplociva")
+        if (other.gameObject.tag == "PelotaExplociva" && gameObject.tag == "Tirador")
         {
-            
+
             if (player != null)
             {
                 if (player.GetDoblePoints())
                 {
-                    player.AddScore(20*2);
+                    player.AddScore(20 * 2);
                 }
                 else
                 {
@@ -405,25 +460,6 @@ public class Shooter : Enemy {
                 IsDead();
             }
 
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Corredor" || collision.gameObject.tag == "Tirador" && patternType == 1)
-        {
-            collision.gameObject.transform.Rotate(0, 180, 0);
-        }
-        if (collision.gameObject.tag == "Pared")
-        {
-            float opcion = Random.Range(0, 2);
-            if (opcion >= 1)
-            {
-                transform.Rotate(0, 90, 0);
-            }
-            else
-            {
-                transform.Rotate(0, -90, 0);
-            }
         }
     }
     public void SetSpeed(float _speed)
