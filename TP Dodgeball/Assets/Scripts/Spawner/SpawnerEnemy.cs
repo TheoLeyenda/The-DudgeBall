@@ -27,6 +27,8 @@ public class SpawnerEnemy : MonoBehaviour {
     public bool avoidInstantCreation;
     public bool activedInstantCreation;
     public float DileyShooter;
+    public float substractHeigtEnemy1;
+    public float substractHeigtEnemy2;
     void Start() {
         auxDileyCreation = dileyCreation;
         TOP_CREATION = initialEnemyAmount;
@@ -65,7 +67,7 @@ public class SpawnerEnemy : MonoBehaviour {
                 {
                     GameObject go = poolEnemigo.GetObject();
                     Runner runner = go.GetComponent<Runner>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0.5f, Random.Range(0, rangeZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), (transform.position.y - substractHeigtEnemy1), Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
                     runner.On();
                     runner.rangeEnemyVision = enemyVisionRange;
@@ -79,7 +81,7 @@ public class SpawnerEnemy : MonoBehaviour {
                 {
                     GameObject go = poolEnemigo.GetObject();
                     Shooter shooter = go.GetComponent<Shooter>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0.5f, Random.Range(0, rangeZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), (transform.position.y - substractHeigtEnemy2), Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
                     if (DileyShooter > 0)
                     {
@@ -124,7 +126,7 @@ public class SpawnerEnemy : MonoBehaviour {
 
                     GameObject go = poolEnemigo.GetObject();
                     Runner runner = go.GetComponent<Runner>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0.5f, Random.Range(0, rangeZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), transform.position.y - substractHeigtEnemy1, Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
                     runner.On();
                     runner.speed = enemySpeed;
@@ -138,7 +140,7 @@ public class SpawnerEnemy : MonoBehaviour {
                 {
                     GameObject go = poolEnemigo.GetObject();
                     Shooter shooter = go.GetComponent<Shooter>();
-                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), 0.5f, Random.Range(0, rangeZ));
+                    go.transform.position = transform.position + new Vector3(Random.Range(0, rangeX), transform.position.y - substractHeigtEnemy2, Random.Range(0, rangeZ));
                     go.transform.rotation = transform.rotation;
                     if (damageShooter > 0)
                     {

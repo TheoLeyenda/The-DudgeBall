@@ -39,7 +39,6 @@ public class Shooter : Enemy {
     public Pool poolPoderInmune;
     public Pool poolDoblePuntuacion;
     public Pool poolInstaKill;
-
     public int patternType;
 
    
@@ -275,6 +274,7 @@ public class Shooter : Enemy {
                     if (hit.collider.gameObject.tag != "PoderInmune" && hit.collider.gameObject.tag != "DoblePuntuacion" && hit.collider.gameObject.tag != "InstaKill" && hit.collider.gameObject.tag != "Player" && hit.collider.gameObject.tag != "PelotaComun" && hit.collider.gameObject.tag != "MiniPelota" && hit.collider.gameObject.tag != "PelotaDeHielo" && hit.collider.gameObject.tag != "PelotaDeFuego" && hit.collider.gameObject.tag != "PelotaDanzarina" && hit.collider.gameObject.tag != "SpawnerEnemigo")
                     {
                         float opcion;
+                        
                         opcion = Random.Range(0, 2);
                         if (opcion >= 1)
                         {
@@ -293,12 +293,23 @@ public class Shooter : Enemy {
         }
         else if(aviableShoot)
         {
-            rig.velocity = Vector3.zero;
-            rig.angularVelocity = Vector3.zero;
-            transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
-            animator.SetBool("Runing", false);
-            animator.SetBool("idle", true);
-            animator.SetBool("Attacking", false);
+            if (patternType == 0)
+            {
+                rig.velocity = Vector3.zero;
+                rig.angularVelocity = Vector3.zero;
+                transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+                animator.SetBool("Runing", false);
+                animator.SetBool("idle", true);
+                animator.SetBool("Attacking", false);
+            }
+            else
+            {
+                rig.velocity = Vector3.zero;
+                rig.angularVelocity = Vector3.zero;
+                animator.SetBool("Runing", false);
+                animator.SetBool("idle", true);
+                animator.SetBool("Attacking", false);
+            }
             
         }
     }
@@ -344,6 +355,7 @@ public class Shooter : Enemy {
             }
         }
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PelotaComun" && gameObject.tag == "Tirador")
