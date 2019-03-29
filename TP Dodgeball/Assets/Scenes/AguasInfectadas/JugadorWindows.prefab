@@ -8227,14 +8227,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1a86d5621525749ab99db402431e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ARMOR: {fileID: 0}
+  armorBar: {fileID: 0}
+  lifeBar: {fileID: 0}
+  effectsVolumeController: {fileID: 0}
+  audioSource2: {fileID: 0}
+  soundDamageMe: {fileID: 0}
+  CamvasDeath: {fileID: 0}
+  ObjectsOtherCamvas: []
+  textVidasRestantes: {fileID: 0}
   pause: 0
   life: 100
   maxLife: 100
   armor: 0
+  maxArmor: 0
   ballType: 0
   count: 0
   runner: {fileID: 114956403617915710, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
-  shooter: {fileID: 114942627227381640, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
+  shooter: {fileID: 0}
   staticShooter: {fileID: 114599259994121654, guid: b08e617dcde083244bf92f3e57c089d3,
     type: 2}
   skewers: {fileID: 114374035735643230, guid: f9120bdba750d49478b8738d20c8ca17, type: 2}
@@ -8243,6 +8253,11 @@ MonoBehaviour:
   rigJugador: {fileID: 54155911931235646}
   opportunities: 50
   posRespawn: {fileID: 4288575298471362}
+  audioSource: {fileID: 0}
+  clipPickUpAmmo: {fileID: 0}
+  clipPickUpVida: {fileID: 0}
+  clipPickUpArmor: {fileID: 0}
+  clipPowerUp: {fileID: 0}
   countKilled: 0
   textLife: {fileID: 114846582189781358}
   textScore: {fileID: 114202625754552626}
@@ -9054,6 +9069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsActived: []
   objectsDisable: []
+  dontDisableMe: 0
 --- !u!114 &114616718848416260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11191,7 +11207,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.8
+  m_Height: 2
   m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
