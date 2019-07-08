@@ -17,12 +17,14 @@ public class EnemyBall : MonoBehaviour {
     public GameObject generator;
     public bool tinteBall;
     public bool arrow;
+    public bool TowerArena;
     private Player player;
     public AudioSource Audio;
     public AudioClip clipTinteBall;
     public AudioClip clipBullet;
     public AudioClip clipRugbyBall;
     public AudioClip clipArrow;
+
     private void Start()
     {
         if(Player.InstancePlayer != null)
@@ -31,7 +33,7 @@ public class EnemyBall : MonoBehaviour {
         }
     }
     public void Shoot() {
-        if (!tinteBall && !arrow)
+        if (!tinteBall && !arrow && !TowerArena)
         {
             if (Audio != null && clipRugbyBall != null)
             {
@@ -53,16 +55,16 @@ public class EnemyBall : MonoBehaviour {
                 timeLife = auxTimeLife;
             }
         }
-        if(arrow)
+        else if (arrow)
         {
-            if(Audio != null && clipArrow != null)
+            if (Audio != null && clipArrow != null)
             {
                 Audio.PlayOneShot(clipArrow);
             }
             rigBall = GetComponent<Rigidbody>();
             rigBall.velocity = Vector3.zero;
             rigBall.angularVelocity = Vector3.zero;
-            
+
             rigBall.AddRelativeForce(generator.transform.up * power, ForceMode.Impulse);
             poolObject = GetComponent<PoolObject>();
             if (!auxiliaryTimeEnabled)
@@ -75,7 +77,7 @@ public class EnemyBall : MonoBehaviour {
                 timeLife = auxTimeLife;
             }
         }
-        if(tinteBall)
+        else if (tinteBall)
         {
             if (Audio != null && clipTinteBall != null)
             {
@@ -85,6 +87,27 @@ public class EnemyBall : MonoBehaviour {
             rigBall.velocity = Vector3.zero;
             rigBall.angularVelocity = Vector3.zero;
             rigBall.AddRelativeForce(-generator.transform.up * power, ForceMode.Impulse);
+            poolObject = GetComponent<PoolObject>();
+            if (!auxiliaryTimeEnabled)
+            {
+                auxiliaryTimeEnabled = true;
+                auxTimeLife = timeLife;
+            }
+            if (timeLife <= 0)
+            {
+                timeLife = auxTimeLife;
+            }
+        }
+        else if (TowerArena) {
+            if (Audio != null && clipRugbyBall != null)
+            {
+                Audio.clip = clipRugbyBall;
+                Audio.Play();
+            }
+            rigBall = GetComponent<Rigidbody>();
+            rigBall.velocity = Vector3.zero;
+            rigBall.angularVelocity = Vector3.zero;
+            rigBall.AddRelativeForce(-generator.transform.forward * power, ForceMode.Impulse);
             poolObject = GetComponent<PoolObject>();
             if (!auxiliaryTimeEnabled)
             {

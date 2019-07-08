@@ -28,6 +28,7 @@ public class StaticShooter : Enemy
     public AudioSource Audio;
     public AudioClip clip;
     public GameObject turret;
+    public bool TowerArena;
     void Start()
     {
         if (sphere != null)
@@ -222,7 +223,15 @@ public class StaticShooter : Enemy
         EnemyBall ball = go.GetComponent<EnemyBall>();
         go.transform.position = generatorBalls.transform.position;
         go.transform.rotation = generatorBalls.transform.rotation;
-        ball.Shoot();
+        if (TowerArena)
+        {
+            ball.TowerArena = true;
+            ball.Shoot();
+        }
+        else
+        {
+            ball.Shoot();
+        }
         if (damage > 0)
         {
             ball.damage = damage;

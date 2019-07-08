@@ -722,7 +722,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135894897581532700, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
@@ -853,6 +853,7 @@ MonoBehaviour:
   Audio: {fileID: 377642770}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 377642778}
+  TowerArena: 1
 --- !u!54 &377642784
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2088,7 +2089,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135894897581532700, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
@@ -2219,6 +2220,7 @@ MonoBehaviour:
   Audio: {fileID: 895733683}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 895733691}
+  TowerArena: 1
 --- !u!54 &895733697
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4830,7 +4832,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135894897581532700, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
@@ -4961,6 +4963,7 @@ MonoBehaviour:
   Audio: {fileID: 998125539}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 998125547}
+  TowerArena: 1
 --- !u!54 &998125553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5260,7 +5263,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135894897581532700, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
@@ -5391,6 +5394,7 @@ MonoBehaviour:
   Audio: {fileID: 1068728767}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 1068728775}
+  TowerArena: 1
 --- !u!54 &1068728781
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6189,7 +6193,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135894897581532700, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
@@ -6320,6 +6324,7 @@ MonoBehaviour:
   Audio: {fileID: 1217845053}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 1217845061}
+  TowerArena: 1
 --- !u!54 &1217845067
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7089,6 +7094,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247548056467156, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247548056467156, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247548056467156, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -7220,6 +7237,7 @@ MonoBehaviour:
   Audio: {fileID: 1527210815}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 1527210823}
+  TowerArena: 1
 --- !u!54 &1527210829
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7343,16 +7361,16 @@ Prefab:
     - target: {fileID: 224985093240375868, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4072165781920632, guid: b57976f56dc390447b6743333dce4438, type: 2}
       propertyPath: m_RootOrder
-      value: 20
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 224881773466407684, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 224987194677489664, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
@@ -7362,22 +7380,22 @@ Prefab:
     - target: {fileID: 224796529516543188, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 224097802491665910, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224189786447318920, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 224974150194822536, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224297445860790990, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
@@ -7392,17 +7410,17 @@ Prefab:
     - target: {fileID: 224762003501323540, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 224709462189610846, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 224898990066237466, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 114905355118552430, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
@@ -7417,12 +7435,12 @@ Prefab:
     - target: {fileID: 224236448003795426, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224441074841760186, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224910159701703402, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
@@ -7437,7 +7455,7 @@ Prefab:
     - target: {fileID: 224944361366924352, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224834994797424498, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
@@ -7456,7 +7474,7 @@ Prefab:
     - target: {fileID: 224771861819196296, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 143533505001038494, guid: b57976f56dc390447b6743333dce4438,
         type: 2}
@@ -7779,7 +7797,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 23819483539579550, guid: cc3b4c5d665194e45a49a2a27591f6f6,
         type: 2}
@@ -7920,6 +7938,7 @@ MonoBehaviour:
   Audio: {fileID: 1758683712}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 1758683720}
+  TowerArena: 1
 --- !u!54 &1758683726
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8212,7 +8231,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135894897581532700, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
@@ -8343,6 +8362,7 @@ MonoBehaviour:
   Audio: {fileID: 1804275104}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 1804275112}
+  TowerArena: 1
 --- !u!54 &1804275118
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8627,7 +8647,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135894897581532700, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
@@ -8758,6 +8778,7 @@ MonoBehaviour:
   Audio: {fileID: 1890727135}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 1890727143}
+  TowerArena: 1
 --- !u!54 &1890727149
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8940,7 +8961,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135894897581532700, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
@@ -9071,6 +9092,7 @@ MonoBehaviour:
   Audio: {fileID: 1902504547}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 1902504555}
+  TowerArena: 1
 --- !u!54 &1902504561
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9270,6 +9292,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247548056467156, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247548056467156, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247548056467156, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -9401,6 +9435,7 @@ MonoBehaviour:
   Audio: {fileID: 2004321731}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 2004321739}
+  TowerArena: 1
 --- !u!54 &2004321745
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9783,7 +9818,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1277086309877968, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 135894897581532700, guid: cc3b4c5d665194e45a49a2a27591f6f6, type: 2}
@@ -9914,6 +9949,7 @@ MonoBehaviour:
   Audio: {fileID: 2133390996}
   clip: {fileID: 8300000, guid: 6d9e33428d9d07941860923303d999b9, type: 3}
   turret: {fileID: 2133391004}
+  TowerArena: 1
 --- !u!54 &2133391010
 Rigidbody:
   m_ObjectHideFlags: 0
