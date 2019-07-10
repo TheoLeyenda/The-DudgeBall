@@ -21,17 +21,26 @@ public class Runner : Enemy
     public float rangeBend;
     public float rangeEnemyVision;
     private Player player;
+    private bool EnColicionConJuagador;
+    public Animator animator;
+    public BoxCollider colliderEspada;
+    private float timerAttack;
+    private float auxTimerAttack;
 
     public Pool poolPowerImmune;
     public Pool poolDoblePoints;
     public Pool poolInstaKill;
 
+    //private float dilAnimation;
+    //private float auxDilAnimation;
     void Start()
     {
         if (Player.InstancePlayer != null)
         {
             player = Player.InstancePlayer;
         }
+        timerAttack = 10000;
+        auxTimerAttack = timerAttack;
         dileyInsta = 1;
         SetDodge(false);
         SetEnemyState(EstadoEnemigo.normal);
@@ -43,6 +52,12 @@ public class Runner : Enemy
         effectFrozen.SetActive(false);
         effectBurned.SetActive(false);
         effectMusic.SetActive(false);
+        animator.SetBool("Idle", true);
+        animator.SetBool("Run", false);
+        animator.SetBool("Attack", false);
+        animator.SetBool("Death", false);
+        EnColicionConJuagador = false;
+        //colliderEspada.enabled = false;
     }
 
     // Update is called once per frame
@@ -250,6 +265,9 @@ public class Runner : Enemy
             if (player != null)
             {
                 life = life - (GetDamageCommonBall() + player.GetAdditionalDamageCommonBall());
+                if (life <= 0) {
+                    
+                }
                 IsDead();
                 if (player.GetDoblePoints())
                 {
@@ -359,6 +377,26 @@ public class Runner : Enemy
         }
 
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            EnColicionConJuagador = true;
+            animator.SetBool("Run", false);
+            animator.SetBool("Attack", true);
+            animator.SetBool("Idle", true);
+            animator.SetBool("Death", false);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player") {
+            EnColicionConJuagador = false;
+        }
+    }
+    
+
     public void SetSpeed(float _speed)
     {
         speed = _speed;
@@ -392,11 +430,16 @@ public class Runner : Enemy
                 rig.velocity = Vector3.zero;
                 rig.angularVelocity = Vector3.zero;
 
-                transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                
                 // si no esta colicionando con el piso que esto no se ejecute
-                if (!GetTouchFloor())
+                if (!GetTouchFloor() && !EnColicionConJuagador)
                 {
+                    transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
                     transform.position += transform.forward * Time.deltaTime * speed;
+                    animator.SetBool("Idle", false);
+                    animator.SetBool("Run", true);
+                    animator.SetBool("Attack", false);
+                    animator.SetBool("Death", false);
                 }
             }
         }
@@ -404,8 +447,14 @@ public class Runner : Enemy
         {
             rig.velocity = Vector3.zero;
             rig.angularVelocity = Vector3.zero;
-            transform.position += transform.forward * Time.deltaTime * speed;
-
+            if (!EnColicionConJuagador)
+            {
+                transform.position += transform.forward * Time.deltaTime * speed;
+                animator.SetBool("Idle", false);
+                animator.SetBool("Run", true);
+                animator.SetBool("Attack", false);
+                animator.SetBool("Death", false);
+            }
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, rangeBend))
             {

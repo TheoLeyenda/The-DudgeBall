@@ -544,27 +544,6 @@ public class Player : MonoBehaviour {
         }
         
     }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        
-        if (!Immune)
-        {
-            if (collision.gameObject.tag == "Corredor")
-            {
-                DamageMeSound();
-                if (armor > 0)
-                {
-                    armor = armor - 0.5f;
-                }
-                else
-                {
-                    life = life - 1;
-                }
-            }
-        }
-        
-    }
     private void OnTriggerStay(Collider other)
     {
         
@@ -591,11 +570,11 @@ public class Player : MonoBehaviour {
                 //DamageMeSound();
                 if (armor > 0)
                 {
-                    armor = armor - 0.5f;
+                    //armor = armor - 0.5f;
                 }
                 else
                 {
-                    life = life - 1;
+                    //life = life - 1;
                 }
             }
         }
