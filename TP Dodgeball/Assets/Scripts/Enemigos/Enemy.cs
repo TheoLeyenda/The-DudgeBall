@@ -84,6 +84,13 @@ public class Enemy : MonoBehaviour {
         if (lifeBar != null)
         {
             float z = (float)life / (float)maxLife;
+            if (z < 0)
+            {
+                z = 0;
+            }
+            if (z > maxLife) {
+                z = maxLife;
+            }
             Vector3 ScaleBar = new Vector3(1, 1, z);
             lifeBar.transform.localScale = ScaleBar;
         }

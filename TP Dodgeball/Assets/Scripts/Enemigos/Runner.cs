@@ -26,6 +26,16 @@ public class Runner : Enemy
     public BoxCollider colliderEspada;
     private float timerAttack;
     private float auxTimerAttack;
+    private bool enableMovement;
+    
+    private float timerDeath;
+    private float auxTimerDeath;
+    private float timerDamage;
+    private bool enableTimerDamage;
+    private float auxTimerIdle;
+    private float auxTimerDamage;
+    private bool enablePowerUp;
+    
 
     public Pool poolPowerImmune;
     public Pool poolDoblePoints;
@@ -39,6 +49,7 @@ public class Runner : Enemy
         {
             player = Player.InstancePlayer;
         }
+        enableMovement = true;
         timerAttack = 10000;
         auxTimerAttack = timerAttack;
         dileyInsta = 1;
@@ -56,7 +67,16 @@ public class Runner : Enemy
         animator.SetBool("Run", false);
         animator.SetBool("Attack", false);
         animator.SetBool("Death", false);
+        animator.SetBool("Damage", false);
         EnColicionConJuagador = false;
+        enablePowerUp = true;
+
+        timerDeath = 5f;
+        auxTimerDeath = timerDeath;
+        timerDamage = 1f;
+        enableTimerDamage = false;
+
+        auxTimerDamage = timerDamage;
         //colliderEspada.enabled = false;
     }
 
@@ -67,6 +87,9 @@ public class Runner : Enemy
         {
             player = Player.InstancePlayer;
         }
+        GetComponent<BoxCollider>().enabled = true;
+        lifeBar.SetActive(true);
+        framework.SetActive(true);
         dileyInsta = 1;
         SetDodge(false);
         SetEnemyState(EstadoEnemigo.normal);
@@ -82,9 +105,36 @@ public class Runner : Enemy
         effectBurned.SetActive(false);
         effectMusic.SetActive(false);
         poolObject = GetComponent<PoolObject>();
+        animator.SetBool("Idle", true);
+        animator.SetBool("Run", false);
+        animator.SetBool("Attack", false);
+        animator.SetBool("Death", false);
+        animator.SetBool("Damage", false);
+        EnColicionConJuagador = false;
+        enablePowerUp = true;
+
+        timerDeath = 3f;
+        auxTimerDeath = timerDeath;
+        timerDamage = 1f;
+        enableTimerDamage = false;
+
+        auxTimerDamage = timerDamage;
     }
     void Update()
     {
+        //ANIMACION DE DAMAGE DE ENEMIGO
+        if (timerDamage > 0 && enableTimerDamage) {
+            timerDamage = timerDamage - Time.deltaTime;
+        }
+        if (timerDamage <= 0)
+        {
+            animator.SetBool("Damage", false);
+            animator.SetBool("Run", true);
+            timerDamage = auxTimerDamage;
+            enableTimerDamage = false;
+
+        }
+        //--------------------------------
         if (Player.GetPlayer() != null)
         {
             if (!player.GetActiveInstaKill())
@@ -113,66 +163,93 @@ public class Runner : Enemy
         UpdateHP();
         if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
         {
-            Movement();
+            if (!animator.GetBool("Damage") && enableMovement)
+            {
+                Movement();
+            }
         }
         if (GetDead())
         {
-            // Seguir configurando la probabilidad de aparicion de los powers ups
-            float assistant = Random.Range(1, 100);
-            if (assistant > 90 && assistant <= 94)
+            GetComponent<BoxCollider>().enabled = false;
+            enableMovement = false;
+            lifeBar.SetActive(false);
+            framework.SetActive(false);
+            animator.SetBool("Run", false);
+            animator.SetBool("Damage", false);
+            animator.SetBool("Attack", false);
+            animator.SetBool("Death", true);
+
+            if (enablePowerUp)
             {
-                GameObject go = poolPowerImmune.GetObject();
-                if (go != null)
+                enablePowerUp = false;
+                float assistant = Random.Range(1, 100);
+                if (assistant > 90 && assistant <= 94)
                 {
-                    poolPowerImmune.SubstractId();
-                    go.transform.position = transform.position;
-                    go.transform.rotation = transform.rotation;
+                    GameObject go = poolPowerImmune.GetObject();
+                    if (go != null)
+                    {
+                        poolPowerImmune.SubstractId();
+                        go.transform.position = transform.position;
+                        go.transform.rotation = transform.rotation;
+                    }
+                }
+                if (assistant > 12 && assistant <= 25)
+                {
+                    GameObject go = poolDoblePoints.GetObject();
+                    if (go != null)
+                    {
+                        poolDoblePoints.SubstractId();
+                        go.transform.position = transform.position;
+                        go.transform.rotation = transform.rotation;
+                    }
+                }
+                if (assistant > 30 && assistant <= 35)
+                {
+                    GameObject go = poolInstaKill.GetObject();
+                    if (go != null)
+                    {
+                        poolInstaKill.SubstractId();
+                        go.transform.position = transform.position;
+                        go.transform.rotation = transform.rotation;
+                    }
+                }
+                if (player.GetDoblePoints())
+                {
+                    player.AddScore(50 * 2);
+                }
+                else
+                {
+                    player.AddScore(50);
+                }
+                if (GameManager.GetGameManager() != null)
+                {
+                    GameManager.GetGameManager().AddDeath();
+                }
+                if (GameManager.GetGameManager() != null && i_AmInPool)
+                {
+                    GameManager.GetGameManager().SubstractEnemyAmountOnScreen();
                 }
             }
-            if (assistant > 12 && assistant <= 25)
+            
+            //-----------------------------------
+
+            if (timerDeath > 0) {
+                timerDeath = timerDeath - Time.deltaTime;
+            }
+            if (timerDeath <= 0)
             {
-                GameObject go = poolDoblePoints.GetObject();
-                if (go != null)
+                timerDeath = auxTimerDeath;
+                // Seguir configurando la probabilidad de aparicion de los powers ups
+                
+                SetDead(false);
+                if (!i_AmInPool)
                 {
-                    poolDoblePoints.SubstractId();
-                    go.transform.position = transform.position;
-                    go.transform.rotation = transform.rotation;
+                    gameObject.SetActive(false);
                 }
-            }
-            if (assistant > 30 && assistant <= 35)
-            {
-                GameObject go = poolInstaKill.GetObject();
-                if (go != null)
+                if (i_AmInPool)
                 {
-                    poolInstaKill.SubstractId();
-                    go.transform.position = transform.position;
-                    go.transform.rotation = transform.rotation;
+                    poolObject.Recycle();
                 }
-            }
-            if (player.GetDoblePoints())
-            {
-                player.AddScore(50 * 2);
-            }
-            else
-            {
-                player.AddScore(50);
-            }
-            if (GameManager.GetGameManager() != null)
-            {
-                GameManager.GetGameManager().AddDeath();
-            }
-            if (GameManager.GetGameManager() != null && i_AmInPool)
-            {
-                GameManager.GetGameManager().SubstractEnemyAmountOnScreen();
-            }
-            SetDead(false);
-            if (!i_AmInPool)
-            {
-                gameObject.SetActive(false);
-            }
-            if (i_AmInPool)
-            {
-                poolObject.Recycle();
             }
         }
         if (timeState > 0)
@@ -262,6 +339,12 @@ public class Runner : Enemy
         }
         if (other.gameObject.tag == "PelotaComun")
         {
+            //ANIMACION DE DAMAGE
+            enableTimerDamage = true;
+            animator.SetBool("Damage", true);
+            animator.SetBool("Run", false);
+            //---------------------------------------
+
             if (player != null)
             {
                 life = life - (GetDamageCommonBall() + player.GetAdditionalDamageCommonBall());
@@ -281,6 +364,7 @@ public class Runner : Enemy
         }
         if (other.gameObject.tag == "PelotaDeHielo")
         {
+
             if (player != null)
             {
                 if (player.GetDoblePoints())
@@ -308,6 +392,11 @@ public class Runner : Enemy
         }
         if (other.gameObject.tag == "MiniPelota")
         {
+            //ANIMACION DE DAMAGE
+            enableTimerDamage = true;
+            animator.SetBool("Damage", true);
+            animator.SetBool("Run", false);
+            //---------------------------------------
             if (player != null)
             {
                 if (player.GetDoblePoints())
@@ -360,6 +449,12 @@ public class Runner : Enemy
         }
         if (other.gameObject.tag == "PelotaExplociva")
         {
+            //ANIMACION DE DAMAGE
+            enableTimerDamage = true;
+            animator.SetBool("Damage", true);
+            animator.SetBool("Run", false);
+            //---------------------------------------
+
             if (player != null)
             {
                 if (player.GetDoblePoints())
@@ -387,6 +482,7 @@ public class Runner : Enemy
             animator.SetBool("Attack", true);
             animator.SetBool("Idle", true);
             animator.SetBool("Death", false);
+            animator.SetBool("Damage", false);
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -434,12 +530,14 @@ public class Runner : Enemy
                 // si no esta colicionando con el piso que esto no se ejecute
                 if (!GetTouchFloor() && !EnColicionConJuagador)
                 {
+                    
                     transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
                     transform.position += transform.forward * Time.deltaTime * speed;
                     animator.SetBool("Idle", false);
                     animator.SetBool("Run", true);
                     animator.SetBool("Attack", false);
                     animator.SetBool("Death", false);
+                    animator.SetBool("Damage", false);
                 }
             }
         }
@@ -454,6 +552,7 @@ public class Runner : Enemy
                 animator.SetBool("Run", true);
                 animator.SetBool("Attack", false);
                 animator.SetBool("Death", false);
+                animator.SetBool("Damage", false);
             }
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, rangeBend))
