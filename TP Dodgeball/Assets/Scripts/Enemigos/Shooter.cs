@@ -165,9 +165,12 @@ public class Shooter : Enemy {
         UpdateHP();
         if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
         {
-            if (enableMovement)
+            if (enableMovement && speed > 0 || aviableShoot)
             {
-                Movement();//
+                Movement();
+            }
+            else {
+                animator.SetBool("Idle", true);
             }
         }
         if(aviableShoot && enableShoot)

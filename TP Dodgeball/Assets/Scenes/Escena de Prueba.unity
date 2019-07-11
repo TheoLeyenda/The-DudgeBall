@@ -161,6 +161,11 @@ Prefab:
       propertyPath: i_AmInPool
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114235467758512482, guid: b8b2ce07bbaaf8b49a4ac176f448eba0,
+        type: 2}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
   m_IsPrefabAsset: 0
@@ -992,6 +997,11 @@ Prefab:
     - target: {fileID: 1287565174351690, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114235467758512482, guid: b8b2ce07bbaaf8b49a4ac176f448eba0,
+        type: 2}
+      propertyPath: speed
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
