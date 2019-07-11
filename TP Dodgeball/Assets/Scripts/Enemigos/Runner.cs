@@ -401,9 +401,13 @@ public class Runner : Enemy
         if (other.gameObject.tag == "MiniPelota")
         {
             //ANIMACION DE DAMAGE
+
+            animator.Play("UD_infantry_09_take_damage");
             enableTimerDamage = true;
-            animator.SetBool("Damage", true);
+            enableMovement = false;
             animator.SetBool("Run", false);
+
+
             //---------------------------------------
             if (player != null)
             {
@@ -458,9 +462,13 @@ public class Runner : Enemy
         if (other.gameObject.tag == "PelotaExplociva")
         {
             //ANIMACION DE DAMAGE
+
+            animator.Play("UD_infantry_09_take_damage");
             enableTimerDamage = true;
-            animator.SetBool("Damage", true);
+            enableMovement = false;
             animator.SetBool("Run", false);
+
+
             //---------------------------------------
 
             if (player != null)
