@@ -8,6 +8,7 @@ public class Sword : MonoBehaviour {
     private Player player;
     public float damage;
     private bool firstPuch;
+    public Runner runner;
     void Start () {
         firstPuch = false;
         if (Player.InstancePlayer != null)
@@ -18,7 +19,13 @@ public class Sword : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (runner.life <= 0)
+        {
+            GetComponent<BoxCollider>().enabled = false;
+        }
+        else if(runner.life > 0){
+            GetComponent<BoxCollider>().enabled = true;
+        }
 	}
     private void OnTriggerEnter(Collider other)
     {

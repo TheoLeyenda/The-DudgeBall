@@ -35,16 +35,25 @@ public class Shooter : Enemy {
     public AudioSource Audio;
     public AudioClip clip;
     public Animator animator;
+    private float timerDamage;
+    private float auxTimerDamage;
+    private bool enableTimerDamage;
+    private bool enableMovement;
+    private float timerDeath;
+    private float auxTimerDeath;
+    private bool enablePowerUp;
 
     public Pool poolPoderInmune;
     public Pool poolDoblePuntuacion;
     public Pool poolInstaKill;
     public int patternType;
+    private bool enableShoot;
 
    
 
     void Start () {
         aviableShoot = false;
+        enableShoot = true;
         if(Player.InstancePlayer != null)
         {
             player = Player.InstancePlayer;
@@ -67,13 +76,21 @@ public class Shooter : Enemy {
         animator.SetBool("Death_A", false);
         animator.SetBool("Death_B", false);
         animator.SetBool("Damage", false);
-    }
+        timerDamage = 0.4f;
+        enableTimerDamage = false;
+        enableMovement = true;
+        auxTimerDamage = timerDamage;
+        timerDeath = 5f;
+        auxTimerDeath = timerDeath;
+        enablePowerUp = true;
+}
     public void On()
     {
         if (Player.InstancePlayer != null)
         {
             player = Player.InstancePlayer;
         }
+        enableShoot = true;
         dileyInsta = 1;
         SetEnemyState(EstadoEnemigo.normal);
         life = auxLife;
@@ -92,6 +109,13 @@ public class Shooter : Enemy {
         animator.SetBool("Death_A", false);
         animator.SetBool("Death_B", false);
         animator.SetBool("Damage", false);
+        timerDamage = 0.4f;
+        enableTimerDamage = false;
+        enableMovement = true;
+        timerDeath = 5f;
+        auxTimerDeath = timerDeath;
+        auxTimerDamage = timerDamage;
+        enablePowerUp = true;
     }
     // Update is called once per frame
     public void CheckVolume()
@@ -102,6 +126,20 @@ public class Shooter : Enemy {
         }
     }
     void Update () {
+        //ANIMACION DE DAMAGE DE ENEMIGO
+        if (timerDamage > 0 && enableTimerDamage)
+        {
+            animator.SetBool("Run", false);
+            timerDamage = timerDamage - Time.deltaTime;
+        }
+        if (timerDamage <= 0)
+        {
+            timerDamage = auxTimerDamage;
+            enableTimerDamage = false;
+            enableMovement = true;
+
+        }
+        //--------------------------------
         CheckVolume();
         if (player != null)
         {
@@ -127,9 +165,12 @@ public class Shooter : Enemy {
         UpdateHP();
         if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
         {
-            Movement();
+            if (enableMovement)
+            {
+                Movement();
+            }
         }
-        if(aviableShoot)
+        if(aviableShoot && enableShoot)
         {
             if (dilay <= 0)
             {
@@ -144,57 +185,89 @@ public class Shooter : Enemy {
         
         if(GetDead())
         {
-            // Seguir configurando la probabilidad de aparicion de los powers ups
-            float auxiliar = Random.Range(1, 100);
-            if (auxiliar > 90 && auxiliar <= 94)
-            {
-                GameObject go = poolPoderInmune.GetObject();
-                if (go != null)
-                {
-                    poolPoderInmune.SubstractId();
-                    go.transform.position =  new Vector3 (transform.position.x,transform.position.y+0.8f,transform.position.z);
-                    go.transform.rotation = transform.rotation;
-                }
-            }
-            if (auxiliar > 12 && auxiliar <= 25)
-            {
+            enableShoot = false;
+            GetComponent<BoxCollider>().enabled = false;
+            enableMovement = false;
+            lifeBar.SetActive(false);
+            framework.SetActive(false);
+            animator.SetBool("Run", false);
+            animator.SetBool("Damage", false);
+            animator.SetBool("Attack", false);
+            animator.SetBool("Idle", false);
+            animator.SetBool("Death_B", false);
+            animator.SetBool("Death_A", false);
+            
 
-                GameObject go = poolDoblePuntuacion.GetObject();
-                if (go != null)
+            if (enablePowerUp)
+            {
+                //Animacion de muerte opcion 1
+                animator.Play("UD_archer_10_death_B");
+
+                //Animacion de muerte opcion 2
+                //animator.Play("UD_archer_10_death_A");
+
+                enablePowerUp = false;
+                // Seguir configurando la probabilidad de aparicion de los powers ups
+                float auxiliar = Random.Range(1, 100);
+                if (auxiliar > 90 && auxiliar <= 94)
                 {
-                    poolDoblePuntuacion.SubstractId();
-                    go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
-                    go.transform.rotation = transform.rotation;
+                    GameObject go = poolPoderInmune.GetObject();
+                    if (go != null)
+                    {
+                        poolPoderInmune.SubstractId();
+                        go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+                        go.transform.rotation = transform.rotation;
+                    }
+                }
+                if (auxiliar > 12 && auxiliar <= 25)
+                {
+
+                    GameObject go = poolDoblePuntuacion.GetObject();
+                    if (go != null)
+                    {
+                        poolDoblePuntuacion.SubstractId();
+                        go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+                        go.transform.rotation = transform.rotation;
+                    }
+                }
+                if (auxiliar > 30 && auxiliar <= 35)
+                {
+                    GameObject go = poolInstaKill.GetObject();
+                    if (go != null)
+                    {
+                        poolInstaKill.SubstractId();
+                        go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+                        go.transform.rotation = transform.rotation;
+                    }
+                }
+                player.AddScore(60);
+                GameManager.GetGameManager().AddDeath();
+                if (GameManager.GetGameManager() != null && i_AmInPool)
+                {
+                    GameManager.GetGameManager().SubstractEnemyAmountOnScreen();
                 }
             }
-            if (auxiliar > 30 && auxiliar <= 35)
+            if (timerDeath > 0)
             {
-                GameObject go = poolInstaKill.GetObject();
-                if (go != null)
+                timerDeath = timerDeath - Time.deltaTime;
+            }
+            if (timerDeath <= 0)
+            {
+                
+                SetDead(false);
+                if (!i_AmInPool)
                 {
-                    poolInstaKill.SubstractId();
-                    go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
-                    go.transform.rotation = transform.rotation;
+                    gameObject.SetActive(false);
+                }
+                if (i_AmInPool)
+                {
+                    if (poolObject != null)
+                    {
+                        poolObject.Recycle();
+                    }
                 }
             }
-            player.AddScore(60);
-            GameManager.GetGameManager().AddDeath();
-            if (GameManager.GetGameManager() != null && i_AmInPool)
-            {
-                GameManager.GetGameManager().SubstractEnemyAmountOnScreen();
-            }
-            SetDead(false);
-            if (!i_AmInPool)
-            {
-                gameObject.SetActive(false);
-            }
-            if (i_AmInPool)
-            {
-                if (poolObject != null)
-                {
-                    poolObject.Recycle();
-                }
-            }
+            
         }
         if(timeState > 0)
         {
@@ -359,7 +432,8 @@ public class Shooter : Enemy {
         {
             Ball.power = powerShoot;
         }
-        animator.Play("UD_archer_07_attack_A");
+        //animator.Play("UD_archer_07_attack_A");
+        animator.Play("WK_archer_07_attack_A");
         Ball.Shoot();
     }
     
@@ -387,7 +461,15 @@ public class Shooter : Enemy {
     {
         if (other.gameObject.tag == "PelotaComun" && gameObject.tag == "Tirador")
         {
-            //Debug.Log("ENTRE");
+            //ANIMACION DE DAMAGE
+
+            animator.Play("UD_archer_09_take_damage");
+            enableTimerDamage = true;
+            enableMovement = false;
+            animator.SetBool("Run", false);
+
+
+            //---------------------------------------
             if (player != null)
             {
                 life = life - (GetDamageCommonBall() + player.GetAdditionalDamageCommonBall());
@@ -436,6 +518,15 @@ public class Shooter : Enemy {
         }
         if (other.gameObject.tag == "MiniPelota" && gameObject.tag == "Tirador")
         {
+            //ANIMACION DE DAMAGE
+
+            animator.Play("UD_archer_09_take_damage");
+            enableTimerDamage = true;
+            enableMovement = false;
+            animator.SetBool("Run", false);
+
+
+            //---------------------------------------
             if (player != null)
             {
                 if (player.GetDoblePoints())
@@ -487,7 +578,15 @@ public class Shooter : Enemy {
         }
         if (other.gameObject.tag == "PelotaExplociva" && gameObject.tag == "Tirador")
         {
+            //ANIMACION DE DAMAGE
 
+            animator.Play("UD_archer_09_take_damage");
+            enableTimerDamage = true;
+            enableMovement = false;
+            animator.SetBool("Run", false);
+
+
+            //---------------------------------------
             if (player != null)
             {
                 if (player.GetDoblePoints())

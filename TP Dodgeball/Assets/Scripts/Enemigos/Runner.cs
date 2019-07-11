@@ -72,6 +72,7 @@ public class Runner : Enemy
         animator.SetBool("Damage", false);
         EnColicionConJuagador = false;
         enablePowerUp = true;
+        
 
         timerDeath = 5f;
         auxTimerDeath = timerDeath;
@@ -80,6 +81,7 @@ public class Runner : Enemy
 
         auxTimerDamage = timerDamage;
         //colliderEspada.enabled = false;
+        
     }
 
     // Update is called once per frame
@@ -115,7 +117,7 @@ public class Runner : Enemy
         EnColicionConJuagador = false;
         enablePowerUp = true;
 
-        timerDeath = 3f;
+        timerDeath = 5f;
         auxTimerDeath = timerDeath;
         timerDamage = 0.4f;
         enableTimerDamage = false;
@@ -180,10 +182,17 @@ public class Runner : Enemy
             animator.SetBool("Damage", false);
             animator.SetBool("Attack", false);
             animator.SetBool("Idle",false);
-            animator.SetBool("Death_B", true);
+            animator.SetBool("Death_B", false);
+
+            //Animacion de muerte opcion 1
+            animator.Play("WK_heavy_infantry_10_death_B");
+
+            //Animacion de muerte opcion 2
+            //animator.Play("UD_infantry_10_death_A");
 
             if (enablePowerUp)
             {
+                
                 enablePowerUp = false;
                 float assistant = Random.Range(1, 100);
                 if (assistant > 90 && assistant <= 94)
