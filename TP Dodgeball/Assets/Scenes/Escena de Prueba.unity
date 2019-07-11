@@ -206,6 +206,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f3868e96ab38e947b3e5f3b718db7e8, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &97489379 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453,
+    type: 2}
+  m_PrefabInternal: {fileID: 810339660}
 --- !u!1001 &205623443
 Prefab:
   m_ObjectHideFlags: 0
@@ -262,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 346551473}
   m_Layer: 0
-  m_Name: TIRADORES
+  m_Name: TIRADORES(PREFAB GUARDADO Y LISTO)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,7 +383,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4823033776372722, guid: 943a40e468ecda94892b582662be26fb, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1592068924066118, guid: 943a40e468ecda94892b582662be26fb, type: 2}
       propertyPath: m_Name
@@ -424,10 +429,62 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4823033776372722, guid: 943a40e468ecda94892b582662be26fb, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943a40e468ecda94892b582662be26fb, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!4 &699575428 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453,
+    type: 2}
+  m_PrefabInternal: {fileID: 983822579}
+--- !u!1001 &810339660
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1587606696}
+    m_Modifications:
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.1723633
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.7837219
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 4.073284
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114165747298397280, guid: 019ca776b74b03a41bc47728dcd66453,
+        type: 2}
+      propertyPath: i_AmInPool
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &916084564
 GameObject:
@@ -588,7 +645,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4823033776372722, guid: 943a40e468ecda94892b582662be26fb, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1592068924066118, guid: 943a40e468ecda94892b582662be26fb, type: 2}
       propertyPath: m_Name
@@ -596,6 +653,57 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 943a40e468ecda94892b582662be26fb, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1001 &983822579
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1587606696}
+    m_Modifications:
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -31.331268
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.7837219
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 4.073284
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262307968674770, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
+      propertyPath: m_Name
+      value: TiradorLaberinto (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114165747298397280, guid: 019ca776b74b03a41bc47728dcd66453,
+        type: 2}
+      propertyPath: i_AmInPool
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 019ca776b74b03a41bc47728dcd66453, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &998938305 stripped
 Transform:
@@ -700,7 +808,7 @@ Transform:
   m_LocalScale: {x: 1000, y: 1, z: 1000}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1417290385 stripped
 Transform:
@@ -716,7 +824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1456242989}
   m_Layer: 0
-  m_Name: ESQUELETOS_ATAQUE_FRONTAL
+  m_Name: ESQUELETOS_ATAQUE_FRONTAL(PREFAB GUARDADO Y LISTO)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -732,11 +840,41 @@ Transform:
   m_LocalPosition: {x: 335.57, y: 231.51662, z: -11.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 917027435}
   - {fileID: 1092492282}
   - {fileID: 1417290385}
+  - {fileID: 917027435}
   m_Father: {fileID: 0}
   m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1587606695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1587606696}
+  m_Layer: 0
+  m_Name: TIRADORES LABERINTO(PREFAB GUARDADO Y LISTO)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1587606696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1587606695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 355.00128, y: 227.15628, z: -24.472164}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 97489379}
+  - {fileID: 699575428}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1590220278
 Prefab:
@@ -780,7 +918,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4159275932243670, guid: b57976f56dc390447b6743333dce4438, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1637703172250808, guid: b57976f56dc390447b6743333dce4438, type: 2}
       propertyPath: m_IsActive

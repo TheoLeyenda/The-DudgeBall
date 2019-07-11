@@ -80,10 +80,10 @@ public class Shooter : Enemy {
         enableTimerDamage = false;
         enableMovement = true;
         auxTimerDamage = timerDamage;
-        timerDeath = 5f;
+        timerDeath = 3f;
         auxTimerDeath = timerDeath;
         enablePowerUp = true;
-}
+    }
     public void On()
     {
         if (Player.InstancePlayer != null)
@@ -112,7 +112,7 @@ public class Shooter : Enemy {
         timerDamage = 0.4f;
         enableTimerDamage = false;
         enableMovement = true;
-        timerDeath = 5f;
+        timerDeath = 3f;
         auxTimerDeath = timerDeath;
         auxTimerDamage = timerDamage;
         enablePowerUp = true;
@@ -167,7 +167,7 @@ public class Shooter : Enemy {
         {
             if (enableMovement)
             {
-                Movement();
+                Movement();//
             }
         }
         if(aviableShoot && enableShoot)
@@ -462,7 +462,7 @@ public class Shooter : Enemy {
         if (other.gameObject.tag == "PelotaComun" && gameObject.tag == "Tirador")
         {
             //ANIMACION DE DAMAGE
-
+            
             animator.Play("UD_archer_09_take_damage");
             enableTimerDamage = true;
             enableMovement = false;
