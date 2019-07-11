@@ -35,6 +35,7 @@ public class Runner : Enemy
     private float auxTimerIdle;
     private float auxTimerDamage;
     private bool enablePowerUp;
+
     
 
     public Pool poolPowerImmune;
@@ -45,6 +46,7 @@ public class Runner : Enemy
     //private float auxDilAnimation;
     void Start()
     {
+        
         if (Player.InstancePlayer != null)
         {
             player = Player.InstancePlayer;
@@ -66,14 +68,14 @@ public class Runner : Enemy
         animator.SetBool("Idle", true);
         animator.SetBool("Run", false);
         animator.SetBool("Attack", false);
-        animator.SetBool("Death", false);
+        animator.SetBool("Death_B", false);
         animator.SetBool("Damage", false);
         EnColicionConJuagador = false;
         enablePowerUp = true;
 
         timerDeath = 5f;
         auxTimerDeath = timerDeath;
-        timerDamage = 1f;
+        timerDamage = 0.4f;
         enableTimerDamage = false;
 
         auxTimerDamage = timerDamage;
@@ -108,14 +110,14 @@ public class Runner : Enemy
         animator.SetBool("Idle", true);
         animator.SetBool("Run", false);
         animator.SetBool("Attack", false);
-        animator.SetBool("Death", false);
+        animator.SetBool("Death_B", false);
         animator.SetBool("Damage", false);
         EnColicionConJuagador = false;
         enablePowerUp = true;
 
         timerDeath = 3f;
         auxTimerDeath = timerDeath;
-        timerDamage = 1f;
+        timerDamage = 0.4f;
         enableTimerDamage = false;
 
         auxTimerDamage = timerDamage;
@@ -124,14 +126,14 @@ public class Runner : Enemy
     {
         //ANIMACION DE DAMAGE DE ENEMIGO
         if (timerDamage > 0 && enableTimerDamage) {
+            animator.SetBool("Run", false);
             timerDamage = timerDamage - Time.deltaTime;
         }
         if (timerDamage <= 0)
         {
-            animator.SetBool("Damage", false);
-            animator.SetBool("Run", true);
             timerDamage = auxTimerDamage;
             enableTimerDamage = false;
+            enableMovement = true;
 
         }
         //--------------------------------
@@ -177,7 +179,8 @@ public class Runner : Enemy
             animator.SetBool("Run", false);
             animator.SetBool("Damage", false);
             animator.SetBool("Attack", false);
-            animator.SetBool("Death", true);
+            animator.SetBool("Idle",false);
+            animator.SetBool("Death_B", true);
 
             if (enablePowerUp)
             {
@@ -234,6 +237,7 @@ public class Runner : Enemy
             //-----------------------------------
 
             if (timerDeath > 0) {
+                
                 timerDeath = timerDeath - Time.deltaTime;
             }
             if (timerDeath <= 0)
@@ -340,9 +344,13 @@ public class Runner : Enemy
         if (other.gameObject.tag == "PelotaComun")
         {
             //ANIMACION DE DAMAGE
+
+            animator.Play("UD_infantry_09_take_damage");
             enableTimerDamage = true;
-            animator.SetBool("Damage", true);
+            enableMovement = false;
             animator.SetBool("Run", false);
+            
+
             //---------------------------------------
 
             if (player != null)
@@ -481,7 +489,7 @@ public class Runner : Enemy
             animator.SetBool("Run", false);
             animator.SetBool("Attack", true);
             animator.SetBool("Idle", true);
-            animator.SetBool("Death", false);
+            animator.SetBool("Death_B", false);
             animator.SetBool("Damage", false);
         }
     }
@@ -536,7 +544,7 @@ public class Runner : Enemy
                     animator.SetBool("Idle", false);
                     animator.SetBool("Run", true);
                     animator.SetBool("Attack", false);
-                    animator.SetBool("Death", false);
+                    animator.SetBool("Death_B", false);
                     animator.SetBool("Damage", false);
                 }
             }
@@ -551,7 +559,7 @@ public class Runner : Enemy
                 animator.SetBool("Idle", false);
                 animator.SetBool("Run", true);
                 animator.SetBool("Attack", false);
-                animator.SetBool("Death", false);
+                animator.SetBool("Death_B", false);
                 animator.SetBool("Damage", false);
             }
             RaycastHit hit;

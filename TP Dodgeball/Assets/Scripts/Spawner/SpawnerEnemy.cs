@@ -87,7 +87,7 @@ public class SpawnerEnemy : MonoBehaviour {
                     {
                         shooter.dilay = DileyShooter;
                     }
-                    shooter.Prendido();
+                    shooter.On();
                     shooter.enemyVisionRange = enemyVisionRange;
                     shooter.patternType = enemyPattern;
                     if (damageShooter > 0)
@@ -150,7 +150,7 @@ public class SpawnerEnemy : MonoBehaviour {
                     {
                         shooter.powerShoot = powerShooter;
                     }
-                    shooter.Prendido();
+                    shooter.On();
                     shooter.speed = enemySpeed;
                     shooter.patternType = enemyPattern;
                     if (DileyShooter > 0)

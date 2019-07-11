@@ -61,8 +61,14 @@ public class Shooter : Enemy {
         effectFrozen.SetActive(false);
         effectMusic.SetActive(false);
         effectBurned.SetActive(false);
+        animator.SetBool("Idle", true);
+        animator.SetBool("Run", false);
+        animator.SetBool("Attack", false);
+        animator.SetBool("Death_A", false);
+        animator.SetBool("Death_B", false);
+        animator.SetBool("Damage", false);
     }
-    public void Prendido()
+    public void On()
     {
         if (Player.InstancePlayer != null)
         {
@@ -80,6 +86,12 @@ public class Shooter : Enemy {
         effectBurned.SetActive(false);
         effectMusic.SetActive(false);
         poolObject = GetComponent<PoolObject>();
+        animator.SetBool("Idle", true);
+        animator.SetBool("Run", false);
+        animator.SetBool("Attack", false);
+        animator.SetBool("Death_A", false);
+        animator.SetBool("Death_B", false);
+        animator.SetBool("Damage", false);
     }
     // Update is called once per frame
     public void CheckVolume()
@@ -258,9 +270,13 @@ public class Shooter : Enemy {
                     rig.angularVelocity = Vector3.zero;
                     transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
                     transform.position += transform.forward * Time.deltaTime * speed; //si comento esto es una torreta y sino es un jugador de rugby
-                    animator.SetBool("Runing", true);
-                    animator.SetBool("idle", false);
-                    animator.SetBool("Attacking", false);
+                    animator.SetBool("Idle", false);
+                    animator.SetBool("Run", true);
+                    animator.SetBool("Attack", false);
+                    animator.SetBool("Death_A", false);
+                    animator.SetBool("Death_B", false);
+                    animator.SetBool("Damage", false);
+
                 }
             }
             if (patternType == 1)
@@ -286,9 +302,13 @@ public class Shooter : Enemy {
                         }
                     }
                 }
-                animator.SetBool("Runing", true);
-                animator.SetBool("idle", false);
-                animator.SetBool("Attacking", false);
+
+                animator.SetBool("Idle", false);
+                animator.SetBool("Run", true);
+                animator.SetBool("Attack", false);
+                animator.SetBool("Death_A", false);
+                animator.SetBool("Death_B", false);
+                animator.SetBool("Damage", false);
             }
         }
         else if(aviableShoot)
@@ -298,17 +318,24 @@ public class Shooter : Enemy {
                 rig.velocity = Vector3.zero;
                 rig.angularVelocity = Vector3.zero;
                 transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
-                animator.SetBool("Runing", false);
-                animator.SetBool("idle", true);
-                animator.SetBool("Attacking", false);
+
+                animator.SetBool("Run", false);
+                animator.SetBool("Idle", true);
+                animator.SetBool("Attack", false);
+                animator.SetBool("Death_A", false);
+                animator.SetBool("Death_B", false);
+                animator.SetBool("Damage", false);
             }
             else
             {
                 rig.velocity = Vector3.zero;
                 rig.angularVelocity = Vector3.zero;
-                animator.SetBool("Runing", false);
-                animator.SetBool("idle", true);
-                animator.SetBool("Attacking", false);
+                animator.SetBool("Run", false);
+                animator.SetBool("Idle", true);
+                animator.SetBool("Attack", false);
+                animator.SetBool("Death_A", false);
+                animator.SetBool("Death_B", false);
+                animator.SetBool("Damage", false);
             }
             
         }
