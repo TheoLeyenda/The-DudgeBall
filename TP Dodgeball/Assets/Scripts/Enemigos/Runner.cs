@@ -27,6 +27,8 @@ public class Runner : Enemy
     private float timerAttack;
     private float auxTimerAttack;
     private bool enableMovement;
+    public bool ataqueFrontal;
+    public bool ataqueHorizontal;
     
     private float timerDeath;
     private float auxTimerDeath;
@@ -68,6 +70,7 @@ public class Runner : Enemy
         animator.SetBool("Idle", true);
         animator.SetBool("Run", false);
         animator.SetBool("Attack", false);
+        animator.SetBool("Attack_B", false);
         animator.SetBool("Death_B", false);
         animator.SetBool("Damage", false);
         EnColicionConJuagador = false;
@@ -112,6 +115,7 @@ public class Runner : Enemy
         animator.SetBool("Idle", true);
         animator.SetBool("Run", false);
         animator.SetBool("Attack", false);
+        animator.SetBool("Attack_B", false);
         animator.SetBool("Death_B", false);
         animator.SetBool("Damage", false);
         EnColicionConJuagador = false;
@@ -181,6 +185,7 @@ public class Runner : Enemy
             animator.SetBool("Run", false);
             animator.SetBool("Damage", false);
             animator.SetBool("Attack", false);
+            animator.SetBool("Attack_B", false);
             animator.SetBool("Idle",false);
             animator.SetBool("Death_B", false);
 
@@ -504,7 +509,16 @@ public class Runner : Enemy
         {
             EnColicionConJuagador = true;
             animator.SetBool("Run", false);
-            animator.SetBool("Attack", true);
+            animator.SetBool("Attack_B", false);
+            animator.SetBool("Attack", false);
+            
+            if (ataqueFrontal)
+            {
+                animator.Play("WK_heavy_infantry_07_attack_A");
+            }
+            else if (ataqueHorizontal) {
+                animator.Play("UD_infantry_08_attack_B");
+            }
             animator.SetBool("Idle", true);
             animator.SetBool("Death_B", false);
             animator.SetBool("Damage", false);
@@ -561,6 +575,7 @@ public class Runner : Enemy
                     animator.SetBool("Idle", false);
                     animator.SetBool("Run", true);
                     animator.SetBool("Attack", false);
+                    animator.SetBool("Attack_B", false);
                     animator.SetBool("Death_B", false);
                     animator.SetBool("Damage", false);
                 }
@@ -576,6 +591,7 @@ public class Runner : Enemy
                 animator.SetBool("Idle", false);
                 animator.SetBool("Run", true);
                 animator.SetBool("Attack", false);
+                animator.SetBool("Attack_B", false);
                 animator.SetBool("Death_B", false);
                 animator.SetBool("Damage", false);
             }

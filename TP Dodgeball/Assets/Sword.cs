@@ -30,12 +30,16 @@ public class Sword : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") {
-            if (firstPuch)
+            if (!player.GetImmune())
             {
-                player.life = player.life - damage;
-            }
-            else {
-                firstPuch = true;
+                if (firstPuch)
+                {
+                    player.life = player.life - damage;
+                }
+                else
+                {
+                    firstPuch = true;
+                }
             }
         }
     }
