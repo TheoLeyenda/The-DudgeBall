@@ -18,6 +18,7 @@ public class EnemyBall : MonoBehaviour {
     public bool tinteBall;
     public bool arrow;
     public bool TowerArena;
+    public bool Magican;
     private Player player;
     public AudioSource Audio;
     public AudioClip clipTinteBall;
@@ -33,7 +34,7 @@ public class EnemyBall : MonoBehaviour {
         }
     }
     public void Shoot() {
-        if (!tinteBall && !arrow && !TowerArena)
+        if (!tinteBall && !arrow && !TowerArena && !Magican)
         {
             if (Audio != null && clipRugbyBall != null)
             {
@@ -44,6 +45,23 @@ public class EnemyBall : MonoBehaviour {
             rigBall.velocity = Vector3.zero;
             rigBall.angularVelocity = Vector3.zero;
             rigBall.AddRelativeForce(generator.transform.right * power, ForceMode.Impulse);
+            poolObject = GetComponent<PoolObject>();
+            if (!auxiliaryTimeEnabled)
+            {
+                auxiliaryTimeEnabled = true;
+                auxTimeLife = timeLife;
+            }
+            if (timeLife <= 0)
+            {
+                timeLife = auxTimeLife;
+            }
+        }
+        else if (Magican)
+        {
+            rigBall = GetComponent<Rigidbody>();
+            rigBall.velocity = Vector3.zero;
+            rigBall.angularVelocity = Vector3.zero;
+            rigBall.AddRelativeForce(-generator.transform.forward * power, ForceMode.Impulse);
             poolObject = GetComponent<PoolObject>();
             if (!auxiliaryTimeEnabled)
             {
@@ -98,7 +116,8 @@ public class EnemyBall : MonoBehaviour {
                 timeLife = auxTimeLife;
             }
         }
-        else if (TowerArena) {
+        else if (TowerArena)
+        {
             if (Audio != null && clipRugbyBall != null)
             {
                 Audio.clip = clipRugbyBall;
@@ -143,13 +162,7 @@ public class EnemyBall : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "Player" && other.tag != "GeneradorPelotaEnemigo" && other.tag != "Tirador" && other.tag != "Corredor" && other.tag != "PelotaDeTinta" && other.tag != "Kraken" && other.tag != "TraspasablePorPelotaTinta" && other.tag != "PelotaEnemigoComun")
-        {
-            if (poolObject != null)
-            {
-                poolObject.Recycle();
-            }
-        }
+        
         if (player != null)
         {
             if (other.gameObject.tag == "Player")
@@ -168,16 +181,17 @@ public class EnemyBall : MonoBehaviour {
                 }
             }
         }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "GeneradorPelotaEnemigo" && collision.gameObject.tag != "Tirador" && collision.gameObject.tag != "Corredor" && collision.gameObject.tag != "PelotaDeTinta" && collision.gameObject.tag != "Kraken" && collision.gameObject.tag != "TraspasablePorPelotaTinta")
+        if (other.tag != "Generador" && other.tag != "HechizoDeFuego" && other.tag != "HechizoDeHielo" && other.tag != "Player" && other.tag != "GeneradorPelotaEnemigo" && other.tag != "Tirador" && other.tag != "Corredor" && other.tag != "PelotaDeTinta" && other.tag != "Kraken" && other.tag != "TraspasablePorPelotaTinta" && other.tag != "PelotaEnemigoComun")
         {
             if (poolObject != null)
             {
-                timeLife = 0.1f;
+                poolObject.Recycle();
             }
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+ 
         if (player != null)
         {
             if (collision.gameObject.tag == "Player")
@@ -195,6 +209,12 @@ public class EnemyBall : MonoBehaviour {
                 }
             }
         }
+        if (collision.gameObject.tag != "Generador" && collision.gameObject.tag != "HechizoDeFuego" && collision.gameObject.tag != "HechizoDeHielo" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "GeneradorPelotaEnemigo" && collision.gameObject.tag != "Tirador" && collision.gameObject.tag != "Corredor" && collision.gameObject.tag != "PelotaDeTinta" && collision.gameObject.tag != "Kraken" && collision.gameObject.tag != "TraspasablePorPelotaTinta")
+        {
+            if (poolObject != null)
+            {
+                timeLife = 0.1f;
+            }
+        }
     }
 }
-//TRADUCIDO(FALTA TRADUCIR EL NOMBRE DE LA CLASE)

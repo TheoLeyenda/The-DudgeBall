@@ -8,7 +8,8 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class Player : MonoBehaviour {
 
     // Use this for initialization
-
+    [HideInInspector]
+    public FirstPersonController fpc;
     public GameObject ARMOR;
     public Scrollbar armorBar;
     public Scrollbar lifeBar;
@@ -31,9 +32,6 @@ public class Player : MonoBehaviour {
     private int score;
     [HideInInspector]
     public bool count;
-    public Enemy runner;
-    public Enemy shooter;
-    public Enemy staticShooter;
     //public Enemigo Danio;
     public Skewers skewers;
     public bool playerWindows;
@@ -46,7 +44,8 @@ public class Player : MonoBehaviour {
     public AudioClip clipPickUpVida;
     public AudioClip clipPickUpArmor;
     public AudioClip clipPowerUp;
-
+    public GameObject effectBurned;
+    public GameObject effectFrozen;
 
     [HideInInspector]
     public int countKilled = 0;
@@ -144,6 +143,10 @@ public class Player : MonoBehaviour {
     }
         
     void Start() {
+        fpc = GetComponent<FirstPersonController>();
+        fpc.update = true;
+        effectBurned.SetActive(false);
+        effectFrozen.SetActive(false);
         effectsVolumeController.volume = 1;
         inStore = false;
         countImmune = 0;
@@ -152,7 +155,6 @@ public class Player : MonoBehaviour {
         AdditionalDamageExplociveBall = 0;
         AdditionalDamageFireBall = 0;
         AdditionalDamageIceBall = 0;
-        //blindaje = 0;
         if (textArmor != null)
         {
             textArmor.gameObject.SetActive(false);
@@ -384,6 +386,12 @@ public class Player : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "HechizoDeFuego") {
+            effectBurned.SetActive(true);
+        }
+        if (other.tag == "HechizoDeHielo") {
+            effectFrozen.SetActive(true);
+        }
         if (other.gameObject.tag == "TESORO")
         {
             SceneManager.LoadScene("JUEGO COMPLETADO");
@@ -565,18 +573,7 @@ public class Player : MonoBehaviour {
                     life = life - skewers.damage;
                 }
             }
-            if (other.gameObject.tag == "Corredor")
-            {
-                //DamageMeSound();
-                if (armor > 0)
-                {
-                    //armor = armor - 0.5f;
-                }
-                else
-                {
-                    //life = life - 1;
-                }
-            }
+            
         }
     }
     public void AddAmmoFireBall(int ammo)

@@ -2956,7 +2956,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363934583790008}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 50.31, y: 60.61, z: 53.383965}
+  m_LocalPosition: {x: 435, y: 283.8, z: 53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224247643875102954}
@@ -4503,8 +4503,8 @@ MonoBehaviour:
   maxArmor: 160
   ballType: 0
   count: 0
-  runner: {fileID: 114956403617915710, guid: 9b529a79b6af3324683107efd71756e3, type: 2}
-  shooter: {fileID: 114942627227381640, guid: b8b2ce07bbaaf8b49a4ac176f448eba0, type: 2}
+  runner: {fileID: 0}
+  shooter: {fileID: 0}
   staticShooter: {fileID: 114599259994121654, guid: b08e617dcde083244bf92f3e57c089d3,
     type: 2}
   skewers: {fileID: 114374035735643230, guid: f9120bdba750d49478b8738d20c8ca17, type: 2}
@@ -4513,7 +4513,7 @@ MonoBehaviour:
   rigJugador: {fileID: 54174228304250180}
   opportunities: 10
   posRespawn: {fileID: 4159275932243670}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 82783581041920138}
   clipPickUpAmmo: {fileID: 8300000, guid: f76040de9dcf8df449e5632df27d4de6, type: 3}
   clipPickUpVida: {fileID: 8300000, guid: 54472f57315c83440a0257cc56d35624, type: 3}
   clipPickUpArmor: {fileID: 8300000, guid: 631d2d4bd8533d74caebc3c619df1a1f, type: 3}
