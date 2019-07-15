@@ -717,7 +717,7 @@ public class Wizard : Enemy {
     public void InvokeEnemys()
     { 
         //Basandome en la funcion ThrowBall desarrollar esta funcion que invoca enemigos.
-
+        //Solo falta completar esto la funcion ya esta llamada.
 
     }
     public void ThrowBall()
