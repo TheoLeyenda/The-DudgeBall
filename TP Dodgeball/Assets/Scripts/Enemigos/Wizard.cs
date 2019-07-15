@@ -5,6 +5,8 @@ using UnityEngine;
 public class Wizard : Enemy {
 
     // Use this for initialization
+    public bool WizardElemental;
+    public bool WizardInvocador;
     [HideInInspector]
     public Player player;
     public float auxLife;
@@ -58,13 +60,17 @@ public class Wizard : Enemy {
     public Pool poolInstaKill;
     public int patternType;
     private bool enableShoot;
-    private float damageEffectBurned;
+    public float damageEffectBurned;
     private float auxDamageEffectBurned;
     public float timeEffect;
     private float auxTimeEffect;
+
+    public Pool poolEsqueletosArqueros;
+    public Pool poolEsqueletosAtaqueFrontal;
+    public Pool poolEsqueletosAtaqueHorizontal;
     void Start()
     {
-        damageEffectBurned = 0.5f;
+        
         auxDamageEffectBurned = damageEffectBurned;
         auxTimeEffect = timeEffect;
         aviableShoot = false;
@@ -182,213 +188,426 @@ public class Wizard : Enemy {
     }
     void Update()
     {
-        CheckMagicalEffect();
-        //ANIMACION DE DAMAGE DE ENEMIGO
-        if (timerDamage > 0 && enableTimerDamage)
+        if (WizardElemental)
         {
-            animator.SetBool("Run", false);
-            timerDamage = timerDamage - Time.deltaTime;
-        }
-        if (timerDamage <= 0)
-        {
-            timerDamage = auxTimerDamage;
-            enableTimerDamage = false;
-            enableMovement = true;
+            CheckMagicalEffect();
+            //ANIMACION DE DAMAGE DE ENEMIGO
+            if (timerDamage > 0 && enableTimerDamage)
+            {
+                //animator.SetBool("Run", false);
+                timerDamage = timerDamage - Time.deltaTime;
+            }
+            if (timerDamage <= 0)
+            {
+                timerDamage = auxTimerDamage;
+                enableTimerDamage = false;
+                enableMovement = true;
 
-        }
-        //--------------------------------
-        CheckVolume();
-        if (player != null)
-        {
-            if (player.GetInstaKill())
-            {
-                life = 1;
             }
-            if (!player.GetInstaKill() && player.GetActiveInstaKill())
+            //--------------------------------
+            CheckVolume();
+            if (player != null)
             {
-                life = auxLife;
-                if (dileyInsta > 0)
+                if (player.GetInstaKill())
                 {
-                    dileyInsta = dileyInsta - Time.deltaTime;
+                    life = 1;
                 }
-                if (dileyInsta <= 0)
+                if (!player.GetInstaKill() && player.GetActiveInstaKill())
                 {
-                    player.SetActiveInstaKill(false);
-                    dileyInsta = 1;
+                    life = auxLife;
+                    if (dileyInsta > 0)
+                    {
+                        dileyInsta = dileyInsta - Time.deltaTime;
+                    }
+                    if (dileyInsta <= 0)
+                    {
+                        player.SetActiveInstaKill(false);
+                        dileyInsta = 1;
+                    }
                 }
             }
-        }
-        //EstaMuerto();
-        UpdateHP();
-        if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
-        {
-            if (enableMovement && speed > 0 || aviableShoot)
+            //EstaMuerto();
+            UpdateHP();
+            if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
             {
-                Movement();
+                if (enableMovement && speed > 0 || aviableShoot)
+                {
+                    Movement();
+                }
+                else
+                {
+                    animator.SetBool("Idle", true);
+                }
             }
-            else
+            if (aviableShoot && enableShoot)
             {
-                animator.SetBool("Idle", true);
+                if (dilay <= 0)
+                {
+                    dilay = auxDilay;
+                    ThrowBall();
+                }
+                if (dilay > 0)
+                {
+                    dilay = dilay - Time.deltaTime;
+                }
             }
-        }
-        if (aviableShoot && enableShoot)
-        {
-            if (dilay <= 0)
+
+            if (GetDead())
             {
+                enableShoot = false;
+                GetComponent<BoxCollider>().enabled = false;
+                enableMovement = false;
+                lifeBar.SetActive(false);
+                framework.SetActive(false);
+                /*animator.SetBool("Run", false);
+                animator.SetBool("Damage", false);
+                animator.SetBool("Attack", false);
+                animator.SetBool("Idle", false);
+                animator.SetBool("Death_B", false);
+                animator.SetBool("Death_A", false);*/
+
+
+                if (enablePowerUp)
+                {
+                    //Animacion de muerte opcion 1
+                    animator.Play("UD_archer_10_death_B");
+
+                    //Animacion de muerte opcion 2
+                    //animator.Play("UD_archer_10_death_A");
+
+                    enablePowerUp = false;
+                    // Seguir configurando la probabilidad de aparicion de los powers ups
+                    float auxiliar = Random.Range(1, 100);
+                    if (auxiliar > 90 && auxiliar <= 94)
+                    {
+                        GameObject go = poolPoderInmune.GetObject();
+                        if (go != null)
+                        {
+                            poolPoderInmune.SubstractId();
+                            go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+                            go.transform.rotation = transform.rotation;
+                        }
+                    }
+                    if (auxiliar > 12 && auxiliar <= 25)
+                    {
+
+                        GameObject go = poolDoblePuntuacion.GetObject();
+                        if (go != null)
+                        {
+                            poolDoblePuntuacion.SubstractId();
+                            go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+                            go.transform.rotation = transform.rotation;
+                        }
+                    }
+                    if (auxiliar > 30 && auxiliar <= 35)
+                    {
+                        GameObject go = poolInstaKill.GetObject();
+                        if (go != null)
+                        {
+                            poolInstaKill.SubstractId();
+                            go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+                            go.transform.rotation = transform.rotation;
+                        }
+                    }
+                    player.AddScore(60);
+                    GameManager.GetGameManager().AddDeath();
+                    if (GameManager.GetGameManager() != null && i_AmInPool)
+                    {
+                        GameManager.GetGameManager().SubstractEnemyAmountOnScreen();
+                    }
+                }
+                if (timerDeath > 0)
+                {
+                    timerDeath = timerDeath - Time.deltaTime;
+                }
+                if (timerDeath <= 0)
+                {
+
+                    SetDead(false);
+                    if (!i_AmInPool)
+                    {
+                        gameObject.SetActive(false);
+                    }
+                    if (i_AmInPool)
+                    {
+                        if (poolObject != null)
+                        {
+                            poolObject.Recycle();
+                        }
+                    }
+                }
+
+            }
+            if (timeState > 0)
+            {
+                timeState = timeState - Time.deltaTime;
+                if (GetEnemyState() == EstadoEnemigo.frozen)
+                {
+                    dilay = 1000000000;
+                }
+                if (GetEnemyState() == EstadoEnemigo.dance)
+                {
+                    SetRotateY(20);
+                    Rotate();
+                }
+                if (timeState <= 0 && GetEnemyState() == EstadoEnemigo.dance)
+                {
+                    SetEnemyState(EstadoEnemigo.normal);
+                }
+                if (GetEnemyState() == EstadoEnemigo.Burned || effectBurned.activeSelf)
+                {
+                    effectFire = effectFire + Time.deltaTime;
+                    if (effectFire >= 1)
+                    {
+                        if (player != null)
+                        {
+                            if (player.GetDoblePoints())
+                            {
+                                player.AddScore(5 * 2);
+                            }
+                            else
+                            {
+                                player.AddScore(5);
+                            }
+                            life = life - (GetDamageFireBall() + player.GetAdditionalDamageFireBall());
+                            IsDead();
+                        }
+                        effectFire = 0;
+                    }
+                }
+            }
+            if (timeState <= 0 && GetEnemyState() == EstadoEnemigo.frozen)
+            {
+                speed = auxSpeed;
                 dilay = auxDilay;
-                ThrowBall();
+                SetEnemyState(EstadoEnemigo.normal);
             }
-            if (dilay > 0)
-            {
-                dilay = dilay - Time.deltaTime;
-            }
-        }
-
-        if (GetDead())
-        {
-            enableShoot = false;
-            GetComponent<BoxCollider>().enabled = false;
-            enableMovement = false;
-            lifeBar.SetActive(false);
-            framework.SetActive(false);
-            /*animator.SetBool("Run", false);
-            animator.SetBool("Damage", false);
-            animator.SetBool("Attack", false);
-            animator.SetBool("Idle", false);
-            animator.SetBool("Death_B", false);
-            animator.SetBool("Death_A", false);*/
-
-
-            if (enablePowerUp)
-            {
-                //Animacion de muerte opcion 1
-                animator.Play("UD_archer_10_death_B");
-
-                //Animacion de muerte opcion 2
-                //animator.Play("UD_archer_10_death_A");
-
-                enablePowerUp = false;
-                // Seguir configurando la probabilidad de aparicion de los powers ups
-                float auxiliar = Random.Range(1, 100);
-                if (auxiliar > 90 && auxiliar <= 94)
-                {
-                    GameObject go = poolPoderInmune.GetObject();
-                    if (go != null)
-                    {
-                        poolPoderInmune.SubstractId();
-                        go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
-                        go.transform.rotation = transform.rotation;
-                    }
-                }
-                if (auxiliar > 12 && auxiliar <= 25)
-                {
-
-                    GameObject go = poolDoblePuntuacion.GetObject();
-                    if (go != null)
-                    {
-                        poolDoblePuntuacion.SubstractId();
-                        go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
-                        go.transform.rotation = transform.rotation;
-                    }
-                }
-                if (auxiliar > 30 && auxiliar <= 35)
-                {
-                    GameObject go = poolInstaKill.GetObject();
-                    if (go != null)
-                    {
-                        poolInstaKill.SubstractId();
-                        go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
-                        go.transform.rotation = transform.rotation;
-                    }
-                }
-                player.AddScore(60);
-                GameManager.GetGameManager().AddDeath();
-                if (GameManager.GetGameManager() != null && i_AmInPool)
-                {
-                    GameManager.GetGameManager().SubstractEnemyAmountOnScreen();
-                }
-            }
-            if (timerDeath > 0)
-            {
-                timerDeath = timerDeath - Time.deltaTime;
-            }
-            if (timerDeath <= 0)
-            {
-
-                SetDead(false);
-                if (!i_AmInPool)
-                {
-                    gameObject.SetActive(false);
-                }
-                if (i_AmInPool)
-                {
-                    if (poolObject != null)
-                    {
-                        poolObject.Recycle();
-                    }
-                }
-            }
-
-        }
-        if (timeState > 0)
-        {
-            timeState = timeState - Time.deltaTime;
-            if (GetEnemyState() == EstadoEnemigo.frozen)
-            {
-                dilay = 1000000000;
-            }
-            if (GetEnemyState() == EstadoEnemigo.dance)
-            {
-                SetRotateY(20);
-                Rotate();
-            }
-            if (timeState <= 0 && GetEnemyState() == EstadoEnemigo.dance)
+            if (timeState <= 0 && GetEnemyState() == EstadoEnemigo.Burned)
             {
                 SetEnemyState(EstadoEnemigo.normal);
             }
-            if (GetEnemyState() == EstadoEnemigo.Burned || effectBurned.activeSelf)
+            if (GetEnemyState() != EstadoEnemigo.Burned && GetEnemyState() != EstadoEnemigo.dance)
             {
-                effectFire = effectFire + Time.deltaTime;
-                if (effectFire >= 1)
-                {
-                    if (player != null)
-                    {
-                        if (player.GetDoblePoints())
-                        {
-                            player.AddScore(5 * 2);
-                        }
-                        else
-                        {
-                            player.AddScore(5);
-                        }
-                        life = life - (GetDamageFireBall() + player.GetAdditionalDamageFireBall());
-                        IsDead();
-                    }
-                    effectFire = 0;
-                }
+                effectBurned.SetActive(false);
+            }
+            if (GetEnemyState() != EstadoEnemigo.frozen)
+            {
+                effectFrozen.SetActive(false);
+            }
+            if (GetEnemyState() != EstadoEnemigo.dance)
+            {
+                effectMusic.SetActive(false);
             }
         }
-        if (timeState <= 0 && GetEnemyState() == EstadoEnemigo.frozen)
+        else if (WizardInvocador)
         {
-            speed = auxSpeed;
-            dilay = auxDilay;
-            SetEnemyState(EstadoEnemigo.normal);
-        }
-        if (timeState <= 0 && GetEnemyState() == EstadoEnemigo.Burned)
-        {
-            SetEnemyState(EstadoEnemigo.normal);
-        }
-        if (GetEnemyState() != EstadoEnemigo.Burned && GetEnemyState() != EstadoEnemigo.dance)
-        {
-            effectBurned.SetActive(false);
-        }
-        if (GetEnemyState() != EstadoEnemigo.frozen)
-        {
-            effectFrozen.SetActive(false);
-        }
-        if (GetEnemyState() != EstadoEnemigo.dance)
-        {
-            effectMusic.SetActive(false);
+            //ANIMACION DE DAMAGE DE ENEMIGO
+            if (timerDamage > 0 && enableTimerDamage)
+            {
+                //animator.SetBool("Run", false);
+                timerDamage = timerDamage - Time.deltaTime;
+            }
+            if (timerDamage <= 0)
+            {
+                timerDamage = auxTimerDamage;
+                enableTimerDamage = false;
+                enableMovement = true;
+
+            }
+            //--------------------------------
+            CheckVolume();
+            if (player != null)
+            {
+                if (player.GetInstaKill())
+                {
+                    life = 1;
+                }
+                if (!player.GetInstaKill() && player.GetActiveInstaKill())
+                {
+                    life = auxLife;
+                    if (dileyInsta > 0)
+                    {
+                        dileyInsta = dileyInsta - Time.deltaTime;
+                    }
+                    if (dileyInsta <= 0)
+                    {
+                        player.SetActiveInstaKill(false);
+                        dileyInsta = 1;
+                    }
+                }
+            }
+            //EstaMuerto();
+            UpdateHP();
+            if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
+            {
+                if (enableMovement && speed > 0 || aviableShoot)
+                {
+                    Movement();
+                }
+                else
+                {
+                    animator.SetBool("Idle", true);
+                }
+            }
+            if (aviableShoot && enableShoot)
+            {
+                if (dilay <= 0)
+                {
+                    dilay = auxDilay;
+                    ThrowBall();//Aca ponemos que invoque mayonesos(Esqueletos)
+                }
+                if (dilay > 0)
+                {
+                    dilay = dilay - Time.deltaTime;
+                }
+            }
+
+            if (GetDead())
+            {
+                enableShoot = false;
+                GetComponent<BoxCollider>().enabled = false;
+                enableMovement = false;
+                lifeBar.SetActive(false);
+                framework.SetActive(false);
+                /*animator.SetBool("Run", false);
+                animator.SetBool("Damage", false);
+                animator.SetBool("Attack", false);
+                animator.SetBool("Idle", false);
+                animator.SetBool("Death_B", false);
+                animator.SetBool("Death_A", false);*/
+
+
+                if (enablePowerUp)
+                {
+                    //Animacion de muerte opcion 1
+                    animator.Play("UD_archer_10_death_B");
+
+                    //Animacion de muerte opcion 2
+                    //animator.Play("UD_archer_10_death_A");
+
+                    enablePowerUp = false;
+                    // Seguir configurando la probabilidad de aparicion de los powers ups
+                    float auxiliar = Random.Range(1, 100);
+                    if (auxiliar > 90 && auxiliar <= 94)
+                    {
+                        GameObject go = poolPoderInmune.GetObject();
+                        if (go != null)
+                        {
+                            poolPoderInmune.SubstractId();
+                            go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+                            go.transform.rotation = transform.rotation;
+                        }
+                    }
+                    if (auxiliar > 12 && auxiliar <= 25)
+                    {
+
+                        GameObject go = poolDoblePuntuacion.GetObject();
+                        if (go != null)
+                        {
+                            poolDoblePuntuacion.SubstractId();
+                            go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+                            go.transform.rotation = transform.rotation;
+                        }
+                    }
+                    if (auxiliar > 30 && auxiliar <= 35)
+                    {
+                        GameObject go = poolInstaKill.GetObject();
+                        if (go != null)
+                        {
+                            poolInstaKill.SubstractId();
+                            go.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+                            go.transform.rotation = transform.rotation;
+                        }
+                    }
+                    player.AddScore(60);
+                    GameManager.GetGameManager().AddDeath();
+                    if (GameManager.GetGameManager() != null && i_AmInPool)
+                    {
+                        GameManager.GetGameManager().SubstractEnemyAmountOnScreen();
+                    }
+                }
+                if (timerDeath > 0)
+                {
+                    timerDeath = timerDeath - Time.deltaTime;
+                }
+                if (timerDeath <= 0)
+                {
+
+                    SetDead(false);
+                    if (!i_AmInPool)
+                    {
+                        gameObject.SetActive(false);
+                    }
+                    if (i_AmInPool)
+                    {
+                        if (poolObject != null)
+                        {
+                            poolObject.Recycle();
+                        }
+                    }
+                }
+
+            }
+            if (timeState > 0)
+            {
+                timeState = timeState - Time.deltaTime;
+                if (GetEnemyState() == EstadoEnemigo.frozen)
+                {
+                    dilay = 1000000000;
+                }
+                if (GetEnemyState() == EstadoEnemigo.dance)
+                {
+                    SetRotateY(20);
+                    Rotate();
+                }
+                if (timeState <= 0 && GetEnemyState() == EstadoEnemigo.dance)
+                {
+                    SetEnemyState(EstadoEnemigo.normal);
+                }
+                if (GetEnemyState() == EstadoEnemigo.Burned || effectBurned.activeSelf)
+                {
+                    effectFire = effectFire + Time.deltaTime;
+                    if (effectFire >= 1)
+                    {
+                        if (player != null)
+                        {
+                            if (player.GetDoblePoints())
+                            {
+                                player.AddScore(5 * 2);
+                            }
+                            else
+                            {
+                                player.AddScore(5);
+                            }
+                            life = life - (GetDamageFireBall() + player.GetAdditionalDamageFireBall());
+                            IsDead();
+                        }
+                        effectFire = 0;
+                    }
+                }
+            }
+            if (timeState <= 0 && GetEnemyState() == EstadoEnemigo.frozen)
+            {
+                speed = auxSpeed;
+                dilay = auxDilay;
+                SetEnemyState(EstadoEnemigo.normal);
+            }
+            if (timeState <= 0 && GetEnemyState() == EstadoEnemigo.Burned)
+            {
+                SetEnemyState(EstadoEnemigo.normal);
+            }
+            if (GetEnemyState() != EstadoEnemigo.Burned && GetEnemyState() != EstadoEnemigo.dance)
+            {
+                effectBurned.SetActive(false);
+            }
+            if (GetEnemyState() != EstadoEnemigo.frozen)
+            {
+                effectFrozen.SetActive(false);
+            }
+            if (GetEnemyState() != EstadoEnemigo.dance)
+            {
+                effectMusic.SetActive(false);
+            }
         }
     }
     public void Movement()
@@ -473,6 +692,10 @@ public class Wizard : Enemy {
             }
 
         }
+    }
+    public void InvokeEnemys()
+    { 
+        //Basandome en la funcion ThrowBall desarrollar esta funcion que invoca enemigos.
     }
     public void ThrowBall()
     {

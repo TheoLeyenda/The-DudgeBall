@@ -10,11 +10,14 @@ public class Sword : MonoBehaviour {
     private bool firstPuch;
     public Runner runner;
     void Start () {
+        
         firstPuch = false;
         if (Player.InstancePlayer != null)
         {
             player = Player.InstancePlayer;
         }
+            
+
     }
 	
 	// Update is called once per frame
@@ -34,7 +37,15 @@ public class Sword : MonoBehaviour {
             {
                 if (firstPuch)
                 {
-                    player.life = player.life - damage;
+                    player.audioSource2.PlayOneShot(player.soundDamageMe);
+                    if (player.armor > 0)
+                    {
+                        player.armor = player.armor - damage;
+                    }
+                    else
+                    {
+                        player.life = player.life - damage;
+                    }
                 }
                 else
                 {

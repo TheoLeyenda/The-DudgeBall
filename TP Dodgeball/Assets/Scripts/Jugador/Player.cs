@@ -527,9 +527,8 @@ public class Player : MonoBehaviour {
             }
             other.gameObject.SetActive(false);
         }
-        
-        //AQUI RESIVO DAÑO
-        
+
+
     }
     //COMENTARLO
     public static Player GetPlayer()

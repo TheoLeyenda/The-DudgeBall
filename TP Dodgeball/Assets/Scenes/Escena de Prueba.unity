@@ -199,19 +199,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114851014865894166, guid: 60d8763d49d36a542a18d65df1b2cf9b,
-        type: 2}
-      propertyPath: clipImpactSpell.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 2ac6f9382af2a9740bbfc84e0796fc8f, type: 3}
-    - target: {fileID: 1286215491906806, guid: 60d8763d49d36a542a18d65df1b2cf9b, type: 2}
+    - target: {fileID: 1974048155200314, guid: 60d8763d49d36a542a18d65df1b2cf9b, type: 2}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114851014865894166, guid: 60d8763d49d36a542a18d65df1b2cf9b,
-        type: 2}
-      propertyPath: timeEffect
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60d8763d49d36a542a18d65df1b2cf9b, type: 2}
@@ -10115,12 +10105,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!4 &1437846092 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4159275932243670, guid: b57976f56dc390447b6743333dce4438,
-    type: 2}
-  m_PrefabInternal: {fileID: 1760945606}
---- !u!1001 &1568755038
+--- !u!1001 &1419291038
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10129,7 +10114,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 344.62
+      value: 347.2
       objectReference: {fileID: 0}
     - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
       propertyPath: m_LocalPosition.y
@@ -10160,12 +10145,21 @@ Prefab:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1652724385271830, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+      propertyPath: m_Name
+      value: Mago_Humano_Esqueleto
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652724385271830, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &1437846092 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4159275932243670, guid: b57976f56dc390447b6743333dce4438,
+    type: 2}
+  m_PrefabInternal: {fileID: 1760945606}
 --- !u!1 &1587606695
 GameObject:
   m_ObjectHideFlags: 0
