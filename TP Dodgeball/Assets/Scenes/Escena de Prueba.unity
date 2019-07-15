@@ -201,7 +201,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1974048155200314, guid: 60d8763d49d36a542a18d65df1b2cf9b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60d8763d49d36a542a18d65df1b2cf9b, type: 2}
@@ -5162,6 +5162,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4841471047608160, guid: 019ca776b74b03a41bc47728dcd66453,
     type: 2}
   m_PrefabInternal: {fileID: 983822579}
+--- !u!1001 &760346464
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 347.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 228.9479
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -23.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1652724385271830, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+      propertyPath: m_Name
+      value: Mago_Humano_Esqueleto
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &810339660
 Prefab:
   m_ObjectHideFlags: 0
@@ -10105,56 +10151,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1001 &1419291038
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 347.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 228.9479
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -23.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4703511649999560, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1652724385271830, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-      propertyPath: m_Name
-      value: Mago_Humano_Esqueleto
-      objectReference: {fileID: 0}
-    - target: {fileID: 1652724385271830, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2f31d2b94e439ee48a503e343ee8f3c6, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!4 &1437846092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4159275932243670, guid: b57976f56dc390447b6743333dce4438,

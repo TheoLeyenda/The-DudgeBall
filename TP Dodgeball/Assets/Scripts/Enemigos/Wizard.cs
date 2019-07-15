@@ -66,11 +66,26 @@ public class Wizard : Enemy {
     private float auxTimeEffect;
 
     public Pool poolEsqueletosArqueros;
+    private int contEsqueletosArqueros;
+
     public Pool poolEsqueletosAtaqueFrontal;
+    private int contEsqueletosAtaqueFrontal;
+
     public Pool poolEsqueletosAtaqueHorizontal;
+    private int contEsqueletosAtaqueHorizontal;
+
+    public Pool poolEsqueletosRapidosFrontal;
+    private int contEsqueletosRapidosFrontal;
+
+    public Pool poolEsqueletosRapidosHorizontal;
+    private int contEsqueletosRapidosHorizontal;
     void Start()
     {
-        
+        contEsqueletosArqueros = 0;
+        contEsqueletosAtaqueFrontal = 0;
+        contEsqueletosAtaqueHorizontal = 0;
+        contEsqueletosRapidosFrontal = 0;
+        contEsqueletosRapidosHorizontal = 0;
         auxDamageEffectBurned = damageEffectBurned;
         auxTimeEffect = timeEffect;
         aviableShoot = false;
@@ -107,6 +122,11 @@ public class Wizard : Enemy {
     }
     public void On()
     {
+        contEsqueletosArqueros = 0;
+        contEsqueletosAtaqueFrontal = 0;
+        contEsqueletosAtaqueHorizontal = 0;
+        contEsqueletosRapidosFrontal = 0;
+        contEsqueletosRapidosHorizontal = 0;
         damageEffectBurned = 0.5f;
         auxDamageEffectBurned = damageEffectBurned;
         auxTimeEffect = timeEffect;
@@ -454,7 +474,8 @@ public class Wizard : Enemy {
                 if (dilay <= 0)
                 {
                     dilay = auxDilay;
-                    ThrowBall();//Aca ponemos que invoque mayonesos(Esqueletos)
+                    InvokeEnemys();//Aca ponemos que invoque mayonesos(Esqueletos)
+
                 }
                 if (dilay > 0)
                 {
@@ -696,6 +717,8 @@ public class Wizard : Enemy {
     public void InvokeEnemys()
     { 
         //Basandome en la funcion ThrowBall desarrollar esta funcion que invoca enemigos.
+
+
     }
     public void ThrowBall()
     {
