@@ -5,6 +5,9 @@ using UnityEngine;
 public class Wizard : Enemy {
 
     // Use this for initialization
+    public bool randomInvoke;
+    public bool formationInvoke;
+    public int countInvoke;
     public bool WizardElemental;
     public bool WizardInvocador;
     [HideInInspector]
@@ -79,8 +82,17 @@ public class Wizard : Enemy {
 
     public Pool poolEsqueletosRapidosHorizontal;
     private int contEsqueletosRapidosHorizontal;
+
+    private bool oneOnce;
     void Start()
     {
+        if (WizardInvocador)
+        {
+            oneOnce = true;
+        }
+        else {
+            oneOnce = false;
+        }
         contEsqueletosArqueros = 0;
         contEsqueletosAtaqueFrontal = 0;
         contEsqueletosAtaqueHorizontal = 0;
@@ -119,9 +131,18 @@ public class Wizard : Enemy {
         timerDeath = 3f;
         auxTimerDeath = timerDeath;
         enablePowerUp = true;
+
     }
     public void On()
     {
+        if (WizardInvocador)
+        {
+            oneOnce = true;
+        }
+        else
+        {
+            oneOnce = false;
+        }
         contEsqueletosArqueros = 0;
         contEsqueletosAtaqueFrontal = 0;
         contEsqueletosAtaqueHorizontal = 0;
@@ -163,6 +184,7 @@ public class Wizard : Enemy {
         auxTimerDeath = timerDeath;
         auxTimerDamage = timerDamage;
         enablePowerUp = true;
+
     }
     // Update is called once per frame
     public void CheckVolume()
@@ -290,7 +312,7 @@ public class Wizard : Enemy {
                 if (enablePowerUp)
                 {
                     //Animacion de muerte opcion 1
-                    animator.Play("UD_archer_10_death_B");
+                    //animator.Play("UD_archer_10_death_B");
 
                     //Animacion de muerte opcion 2
                     //animator.Play("UD_archer_10_death_A");
@@ -469,13 +491,23 @@ public class Wizard : Enemy {
                     animator.SetBool("Idle", true);
                 }
             }
-            if (aviableShoot && enableShoot)
+            if ((aviableShoot && enableShoot) || (oneOnce && aviableShoot))
             {
+                if (oneOnce) {
+                    dilay = 0;
+                }
                 if (dilay <= 0)
                 {
+                    if (contEsqueletosArqueros < poolEsqueletosArqueros.count 
+                        && contEsqueletosAtaqueFrontal < poolEsqueletosAtaqueFrontal.count 
+                        && contEsqueletosAtaqueHorizontal < poolEsqueletosAtaqueHorizontal.count
+                        && contEsqueletosRapidosFrontal < poolEsqueletosRapidosFrontal.count
+                        && contEsqueletosRapidosHorizontal < poolEsqueletosRapidosHorizontal.count)
+                    {
+                        InvokeEnemys();//Aca ponemos que invoque mayonesos(Esqueletos)
+                    }
                     dilay = auxDilay;
-                    InvokeEnemys();//Aca ponemos que invoque mayonesos(Esqueletos)
-
+                    oneOnce = false;
                 }
                 if (dilay > 0)
                 {
@@ -501,7 +533,7 @@ public class Wizard : Enemy {
                 if (enablePowerUp)
                 {
                     //Animacion de muerte opcion 1
-                    animator.Play("UD_archer_10_death_B");
+                    //animator.Play("UD_archer_10_death_B");
 
                     //Animacion de muerte opcion 2
                     //animator.Play("UD_archer_10_death_A");
@@ -715,9 +747,95 @@ public class Wizard : Enemy {
         }
     }
     public void InvokeEnemys()
-    { 
+    {
         //Basandome en la funcion ThrowBall desarrollar esta funcion que invoca enemigos.
         //Solo falta completar esto la funcion ya esta llamada.
+        if (randomInvoke)
+        {
+
+            float x = 5;
+            float z = 5;
+            int randomEnemy;
+            GameObject go;
+            
+            for (int i = 0; i < countInvoke; i++)
+            {
+                
+                randomEnemy = Random.Range(0, 5);
+                x = Random.Range(-x, x);
+                z = Random.Range(-z,z);
+                if (x < 1 && x > 0)
+                {
+                    x = 1;
+                }
+                if (z < 1 && z > 0)
+                {
+                    z = 1;
+                }
+                if (x < 0 && x > -1)
+                {
+                    x = -1;
+                }
+                if (z < 0 && z > -1)
+                {
+                    z = -1;
+                }
+                switch (randomEnemy) {
+                    case 0:
+                        contEsqueletosArqueros++;
+                        go = poolEsqueletosArqueros.GetObject();
+                        Shooter shooter = go.GetComponent<Shooter>();
+                        if (x < 0)
+                        {
+                            go.transform.position = transform.position + new Vector3(x - 1, 0, -6.5f);
+                        }
+                        else {
+                            go.transform.position = transform.position + new Vector3(x + 1, 0, -6.5f);
+                        }
+                        go.transform.rotation = transform.rotation;
+                        shooter.On();
+                        break;
+                    case 1:
+                        contEsqueletosAtaqueFrontal++;
+                        go = poolEsqueletosAtaqueFrontal.GetObject();
+                        Runner runner1 = go.GetComponent<Runner>();
+                        go.transform.position = transform.position + new Vector3(x, 1.5f, z);
+                        go.transform.rotation = transform.rotation;
+                        runner1.On();
+                        break;
+                    case 2:
+                        contEsqueletosAtaqueHorizontal++;
+                        go = poolEsqueletosAtaqueHorizontal.GetObject();
+                        Runner runner2 = go.GetComponent<Runner>();
+                        go.transform.position = transform.position + new Vector3(x, 1.5f, z);
+                        go.transform.rotation = transform.rotation;
+                        runner2.On();
+                        break;
+                    case 3:
+                        contEsqueletosRapidosFrontal++;
+                        go = poolEsqueletosRapidosFrontal.GetObject();
+                        Runner runner3 = go.GetComponent<Runner>();
+                        go.transform.position = transform.position + new Vector3(x, 1.55f, z);
+                        go.transform.rotation = transform.rotation;
+                        runner3.On();
+                        break;
+                    case 4:
+
+                        contEsqueletosRapidosHorizontal++;
+                        go = poolEsqueletosRapidosHorizontal.GetObject();
+                        Runner runner4 = go.GetComponent<Runner>();
+                        go.transform.position = transform.position + new Vector3(x, 1.55f, z);
+                        go.transform.rotation = transform.rotation;
+                        runner4.On();
+                        break;
+                }
+                
+            }
+        }
+        else if(formationInvoke){
+
+        }
+        
 
     }
     public void ThrowBall()

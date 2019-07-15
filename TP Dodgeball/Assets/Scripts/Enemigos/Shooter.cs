@@ -116,6 +116,18 @@ public class Shooter : Enemy {
         auxTimerDeath = timerDeath;
         auxTimerDamage = timerDamage;
         enablePowerUp = true;
+
+        enableShoot = true;
+        GetComponent<BoxCollider>().enabled = true;
+        enableMovement = true;
+        lifeBar.SetActive(true);
+        framework.SetActive(true);
+        animator.SetBool("Run", false);
+        animator.SetBool("Damage", false);
+        animator.SetBool("Attack", false);
+        animator.SetBool("Idle", true);
+        animator.SetBool("Death_B", false);
+        animator.SetBool("Death_A", false);
     }
     // Update is called once per frame
     public void CheckVolume()
@@ -167,7 +179,10 @@ public class Shooter : Enemy {
         {
             if (enableMovement && speed > 0 || aviableShoot)
             {
-                Movement();
+                if (GetDead() == false)
+                {
+                    Movement();
+                }
             }
             else {
                 animator.SetBool("Idle", true);

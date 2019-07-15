@@ -127,6 +127,16 @@ public class Runner : Enemy
         enableTimerDamage = false;
 
         auxTimerDamage = timerDamage;
+        GetComponent<BoxCollider>().enabled = true;
+        enableMovement = true;
+        lifeBar.SetActive(true);
+        framework.SetActive(true);
+        animator.SetBool("Run", false);
+        animator.SetBool("Damage", false);
+        animator.SetBool("Attack", false);
+        animator.SetBool("Attack_B", false);
+        animator.SetBool("Idle", true);
+        animator.SetBool("Death_B", false);
     }
     void Update()
     {

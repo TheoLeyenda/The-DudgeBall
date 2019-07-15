@@ -1976,7 +1976,7 @@ MonoBehaviour:
   effectBurned: {fileID: 1286215491906806}
   effectFrozen: {fileID: 1749632726947880}
   effectMusic: {fileID: 1034989415917876}
-  i_AmInPool: 0
+  i_AmInPool: 1
   WizardElemental: 1
   WizardInvocador: 0
   player: {fileID: 0}
@@ -2023,6 +2023,11 @@ MonoBehaviour:
   patternType: 0
   damageEffectBurned: 0.5
   timeEffect: 5
+  poolEsqueletosArqueros: {fileID: 0}
+  poolEsqueletosAtaqueFrontal: {fileID: 0}
+  poolEsqueletosAtaqueHorizontal: {fileID: 0}
+  poolEsqueletosRapidosFrontal: {fileID: 0}
+  poolEsqueletosRapidosHorizontal: {fileID: 0}
 --- !u!135 &135893562074702122
 SphereCollider:
   m_ObjectHideFlags: 1
