@@ -183,7 +183,11 @@ public class Runner : Enemy
         {
             if (!animator.GetBool("Damage") && enableMovement)
             {
-                Movement();
+                if (!GetDead())
+                {
+                    Movement();
+                    transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+                }
             }
         }
         if (GetDead())

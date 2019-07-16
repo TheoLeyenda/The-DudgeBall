@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerTarget : MonoBehaviour {
     public float elevateSight;
     private Player player;
+    public bool targetModel;
     private void Start()
     {
         if(Player.InstancePlayer != null)
@@ -13,7 +14,13 @@ public class PlayerTarget : MonoBehaviour {
         }
     }
     void Update () {
-        TargetPlayer();
+        if (targetModel == false)
+        {
+            TargetPlayer();
+        }
+        else if (targetModel) {
+            transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+        }
 	}
     public void TargetPlayer()
     {

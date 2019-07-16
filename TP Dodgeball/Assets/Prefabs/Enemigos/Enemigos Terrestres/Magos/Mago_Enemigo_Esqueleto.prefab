@@ -771,8 +771,8 @@ GameObject:
   - component: {fileID: 33139604035963208}
   - component: {fileID: 54596751669810110}
   - component: {fileID: 82076646196448932}
-  - component: {fileID: 65957979592918788}
   - component: {fileID: 114851014865894166}
+  - component: {fileID: 136503600063512124}
   m_Layer: 0
   m_Name: Mago_Enemigo_Esqueleto
   m_TagString: Tirador
@@ -1743,18 +1743,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9456029, y: 1, z: 1.0621873}
   m_Center: {x: -0.028406143, y: -3.9034602e-11, z: 0.010617614}
---- !u!65 &65957979592918788
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1974048155200314}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2.0100403, z: 0.6395588}
-  m_Center: {x: 0, y: 1.1958618, z: -0.059588432}
 --- !u!82 &82076646196448932
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1977,6 +1965,9 @@ MonoBehaviour:
   effectFrozen: {fileID: 1749632726947880}
   effectMusic: {fileID: 1034989415917876}
   i_AmInPool: 1
+  randomInvoke: 0
+  formationInvoke: 0
+  countInvoke: 0
   WizardElemental: 1
   WizardInvocador: 0
   player: {fileID: 0}
@@ -2040,6 +2031,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136503600063512124
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1974048155200314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.2136688
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.0784378, z: 0}
 --- !u!137 &137290282680726550
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

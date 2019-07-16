@@ -118,7 +118,7 @@ public class Shooter : Enemy {
         enablePowerUp = true;
 
         enableShoot = true;
-        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<CapsuleCollider>().enabled = true;
         enableMovement = true;
         lifeBar.SetActive(true);
         framework.SetActive(true);
@@ -182,6 +182,7 @@ public class Shooter : Enemy {
                 if (GetDead() == false)
                 {
                     Movement();
+                    transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
                 }
             }
             else {
@@ -204,7 +205,7 @@ public class Shooter : Enemy {
         if(GetDead())
         {
             enableShoot = false;
-            GetComponent<BoxCollider>().enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;
             enableMovement = false;
             lifeBar.SetActive(false);
             framework.SetActive(false);

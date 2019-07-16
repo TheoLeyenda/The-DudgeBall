@@ -44,7 +44,7 @@ public class EnemyBall : MonoBehaviour {
             rigBall = GetComponent<Rigidbody>();
             rigBall.velocity = Vector3.zero;
             rigBall.angularVelocity = Vector3.zero;
-            rigBall.AddRelativeForce(generator.transform.right * power, ForceMode.Impulse);
+            rigBall.AddRelativeForce(-generator.transform.forward * power, ForceMode.Impulse);
             poolObject = GetComponent<PoolObject>();
             if (!auxiliaryTimeEnabled)
             {

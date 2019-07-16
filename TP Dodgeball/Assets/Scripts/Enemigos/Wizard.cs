@@ -132,6 +132,13 @@ public class Wizard : Enemy {
         auxTimerDeath = timerDeath;
         enablePowerUp = true;
 
+        enableShoot = true;
+        GetComponent<CapsuleCollider>().enabled = true;
+        enableMovement = true;
+        lifeBar.SetActive(true);
+        framework.SetActive(true);
+        //FALTA AGREGAR EL TEMA DE ANIMACIONES
+
     }
     public void On()
     {
@@ -184,6 +191,14 @@ public class Wizard : Enemy {
         auxTimerDeath = timerDeath;
         auxTimerDamage = timerDamage;
         enablePowerUp = true;
+
+        enableShoot = true;
+        GetComponent<CapsuleCollider>().enabled = true;
+        enableMovement = true;
+        lifeBar.SetActive(true);
+        framework.SetActive(true);
+        //FALTA AGREGAR EL TEMA DE ANIMACIONES
+
 
     }
     // Update is called once per frame
@@ -274,7 +289,11 @@ public class Wizard : Enemy {
             {
                 if (enableMovement && speed > 0 || aviableShoot)
                 {
-                    Movement();
+                    if (GetDead() == false)
+                    {
+                        Movement();
+                        transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+                    }
                 }
                 else
                 {
@@ -296,8 +315,9 @@ public class Wizard : Enemy {
 
             if (GetDead())
             {
+                timeEffect = 0;
                 enableShoot = false;
-                GetComponent<BoxCollider>().enabled = false;
+                GetComponent<CapsuleCollider>().enabled = false;
                 enableMovement = false;
                 lifeBar.SetActive(false);
                 framework.SetActive(false);
@@ -491,7 +511,7 @@ public class Wizard : Enemy {
                     animator.SetBool("Idle", true);
                 }
             }
-            if ((aviableShoot && enableShoot) || (oneOnce && aviableShoot))
+            if (((aviableShoot && enableShoot) || (oneOnce && aviableShoot)) && (GetDead() == false))
             {
                 if (oneOnce) {
                     dilay = 0;
@@ -518,7 +538,7 @@ public class Wizard : Enemy {
             if (GetDead())
             {
                 enableShoot = false;
-                GetComponent<BoxCollider>().enabled = false;
+                GetComponent<CapsuleCollider>().enabled = false;
                 enableMovement = false;
                 lifeBar.SetActive(false);
                 framework.SetActive(false);
