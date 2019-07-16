@@ -853,7 +853,41 @@ public class Wizard : Enemy {
             }
         }
         else if(formationInvoke){
-
+            GameObject go;
+            if (countInvoke <= 3)
+            {
+                //Formacion de tres esqueletos
+                //  *
+                //*   *
+            }
+            else if (countInvoke > 3 && countInvoke <= 4)
+            {
+                //Formacion de cuatro esqueletos
+                //* *
+                //* *
+            }
+            else if (countInvoke >= 5 && countInvoke < 6)
+            {
+                //Formacion de cinco esqueletos
+                //   *
+                // *    *
+                //  *  *
+            }
+            else if (countInvoke >= 6 && countInvoke < 8)
+            {
+                //Formacion de seis esqueletos
+                //      * *
+                //   *       *
+                //    *     *
+            }
+            else if (countInvoke >= 8)
+            {
+                //Formacion de ocho esqueletos
+                //     *   *
+                //  *         *
+                //*             *
+                //    *     *
+            }
         }
         
 
