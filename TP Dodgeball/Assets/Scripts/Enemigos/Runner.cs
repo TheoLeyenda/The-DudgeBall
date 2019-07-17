@@ -44,8 +44,7 @@ public class Runner : Enemy
     public Pool poolDoblePoints;
     public Pool poolInstaKill;
 
-    //private float dilAnimation;
-    //private float auxDilAnimation;
+
     void Start()
     {
         

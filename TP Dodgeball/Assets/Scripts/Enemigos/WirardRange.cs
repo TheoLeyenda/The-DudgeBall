@@ -6,20 +6,33 @@ public class WirardRange : MonoBehaviour {
 
     // Use this for initialization
     public Wizard wizard;
-    private void OnTriggerEnter(Collider other)
+
+   
+    private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Player")
+        if (GetComponent<SphereCollider>() != null && this.gameObject.tag == "GeneradorPelotaEnemigo" && gameObject.tag != "Mano" && gameObject.tag != "Tirador")
         {
-            wizard.aviableShoot = true;
-            wizard.dilay = wizard.auxDilay;
+            if (other.tag == "Player")
+            {
+                wizard.aviableShoot = true;
+                wizard.Attaking = false;
+                //wizard.dilay = wizard.auxDilay;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        
+        if (GetComponent<SphereCollider>() != null && this.gameObject.tag == "GeneradorPelotaEnemigo" && gameObject.tag != "Mano" && gameObject.tag != "Tirador")
         {
-            wizard.aviableShoot = false;
-            //wizard.dilay = wizard.auxDilay;
+            if (other.tag == "Player")
+            {
+                wizard.aviableShoot = false;
+                wizard.Attaking = false;
+                
+            }
         }
+        
     }
+
 }

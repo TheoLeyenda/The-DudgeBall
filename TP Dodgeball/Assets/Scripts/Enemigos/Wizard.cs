@@ -5,6 +5,8 @@ using UnityEngine;
 public class Wizard : Enemy {
 
     // Use this for initialization
+    public bool ataqueFrontal;
+    public bool ataqueHorizontal;
     public bool randomInvoke;
     public bool formationInvoke;
     public int countInvoke;
@@ -53,6 +55,8 @@ public class Wizard : Enemy {
     private float timerDamage;
     private float auxTimerDamage;
     private bool enableTimerDamage;
+    [HideInInspector]
+    public bool Attaking;
     private bool enableMovement;
     private float timerDeath;
     private float auxTimerDeath;
@@ -120,14 +124,22 @@ public class Wizard : Enemy {
         effectBurned.SetActive(false);
         animator.SetBool("Attack_A", false);
         animator.SetBool("Attack_B", false);
-        animator.SetBool("Idle", true);
+        animator.SetBool("Idle", false);
         animator.SetBool("Cast_A", false);
         animator.SetBool("Cast_B", false);
-        animator.SetBool("Run", false);
+        if (WizardElemental)
+        {
+            animator.Play("UD_mage_03_run");
+            animator.SetBool("Run", true);
+        }
         animator.SetBool("Death_A", false);
         animator.SetBool("Death_B", false);
         animator.SetBool("Damage", false);
-        animator.SetBool("Walk", false);
+        if (WizardInvocador)
+        {
+            animator.Play("UD_mage_06_combat_walk");
+            animator.SetBool("Walk", true);
+        }
         timerDamage = 0.4f;
         enableTimerDamage = false;
         enableMovement = true;
@@ -137,7 +149,6 @@ public class Wizard : Enemy {
         enablePowerUp = true;
 
         enableShoot = true;
-        GetComponent<CapsuleCollider>().enabled = true;
         enableMovement = true;
         lifeBar.SetActive(true);
         framework.SetActive(true);
@@ -184,14 +195,22 @@ public class Wizard : Enemy {
         poolObject = GetComponent<PoolObject>();
         animator.SetBool("Attack_A", false);
         animator.SetBool("Attack_B", false);
-        animator.SetBool("Idle", true);
+        animator.SetBool("Idle", false);
         animator.SetBool("Cast_A", false);
         animator.SetBool("Cast_B", false);
-        animator.SetBool("Run", false);
+        if (WizardElemental)
+        {
+            animator.Play("UD_mage_03_run");
+            animator.SetBool("Run", true);
+        }
         animator.SetBool("Death_A", false);
         animator.SetBool("Death_B", false);
         animator.SetBool("Damage", false);
-        animator.SetBool("Walk", false);
+        if (WizardInvocador)
+        {
+            animator.Play("UD_mage_06_combat_walk");
+            animator.SetBool("Walk", true);
+        }
         timerDamage = 0.4f;
         enableTimerDamage = false;
         enableMovement = true;
@@ -201,7 +220,6 @@ public class Wizard : Enemy {
         enablePowerUp = true;
 
         enableShoot = true;
-        GetComponent<CapsuleCollider>().enabled = true;
         enableMovement = true;
         lifeBar.SetActive(true);
         framework.SetActive(true);
@@ -295,17 +313,21 @@ public class Wizard : Enemy {
             UpdateHP();
             if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
             {
-                if (enableMovement && speed > 0 || aviableShoot)
+                    if (enableMovement && speed > 0 || aviableShoot)
+                    {
+                        if (GetDead() == false && Attaking == false)
+                        {
+                            Movement();
+                            transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+                        }
+                    }
+                else
                 {
                     if (GetDead() == false)
                     {
-                        Movement();
-                        transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+                        animator.SetBool("Idle", true);
                     }
-                }
-                else
-                {
-                    animator.SetBool("Idle", true);
+
                 }
             }
             if (aviableShoot && enableShoot)
@@ -325,14 +347,13 @@ public class Wizard : Enemy {
             {
                 timeEffect = 0;
                 enableShoot = false;
-                GetComponent<CapsuleCollider>().enabled = false;
                 enableMovement = false;
                 lifeBar.SetActive(false);
                 framework.SetActive(false);
 
+                animator.SetBool("Idle", false);
                 animator.SetBool("Attack_A", false);
                 animator.SetBool("Attack_B", false);
-                animator.SetBool("Idle", false);
                 animator.SetBool("Cast_A", false);
                 animator.SetBool("Cast_B", false);
                 animator.SetBool("Run", false);
@@ -517,7 +538,7 @@ public class Wizard : Enemy {
             {
                 if (enableMovement && speed > 0 || aviableShoot)
                 {
-                    if (GetDead() == false)
+                    if (GetDead() == false && Attaking == false)
                     {
                         Movement();
                     }
@@ -554,13 +575,12 @@ public class Wizard : Enemy {
             if (GetDead())
             {
                 enableShoot = false;
-                GetComponent<CapsuleCollider>().enabled = false;
                 enableMovement = false;
                 lifeBar.SetActive(false);
                 framework.SetActive(false);
+                animator.SetBool("Idle", false);
                 animator.SetBool("Attack_A", false);
                 animator.SetBool("Attack_B", false);
-                animator.SetBool("Idle", false);
                 animator.SetBool("Cast_A", false);
                 animator.SetBool("Cast_B", false);
                 animator.SetBool("Run", false);
@@ -1374,6 +1394,9 @@ public class Wizard : Enemy {
         
     }
 
+ 
+
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Corredor" || collision.gameObject.tag == "Tirador" && patternType == 1)
@@ -1392,172 +1415,175 @@ public class Wizard : Enemy {
                 transform.Rotate(0, -90, 0);
             }
         }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "PelotaComun" && gameObject.tag == "Tirador")
+        if (GetDead() == false)
         {
-            //ANIMACION DE DAMAGE
-
-            animator.Play("UD_mage_09_take_damage");
-            enableTimerDamage = true;
-            enableMovement = false;
-            if (WizardInvocador)
+            if (other.gameObject.tag == "PelotaComun" && gameObject.tag == "Tirador")
             {
-                animator.SetBool("Walk", false);
+                //ANIMACION DE DAMAGE
+                animator.Play("UD_mage_09_take_damage");
+                enableTimerDamage = true;
+                enableMovement = false;
+                if (WizardInvocador)
+                {
+                    animator.SetBool("Walk", false);
+                }
+                else if (WizardElemental)
+                {
+                    animator.SetBool("Run", false);
+                }
+
+
+                //---------------------------------------
+                if (player != null)
+                {
+                    life = life - (GetDamageCommonBall() + player.GetAdditionalDamageCommonBall());
+                    IsDead();
+                    if (player.GetDoblePoints())
+                    {
+                        player.AddScore(10 * 2);
+                    }
+                    else
+                    {
+                        player.AddScore(10);
+                    }
+                }
             }
-            else if (WizardElemental)
+            if (other.gameObject.tag == "PelotaDeHielo" && gameObject.tag == "Tirador")
             {
-                animator.SetBool("Run", false);
+                if (player != null)
+                {
+                    if (player.GetDoblePoints())
+                    {
+                        player.AddScore(10 * 2);
+                    }
+                    else
+                    {
+                        player.AddScore(10);
+                    }
+                    life = life - (GetDamageIceBall() + player.GetAdditionalDamageIceBall());
+                }
+                IsDead();
+                if (speed > 0)
+                {
+                    //velocidad = velocidad - 0.2f;
+                    speed = 0;
+                }
+                if (speed <= 0)
+                {
+
+                    if (GetEnemyState() != EstadoEnemigo.frozen)
+                    {
+                        timeState = 5;//tiempo por el cual el enemigo "Corredor" estara congelado
+                    }
+                    SetEnemyState(EstadoEnemigo.frozen);
+                    effectFrozen.SetActive(true);
+                }
             }
-
-
-            //---------------------------------------
-            if (player != null)
+            if (other.gameObject.tag == "MiniPelota" && gameObject.tag == "Tirador")
             {
-                life = life - (GetDamageCommonBall() + player.GetAdditionalDamageCommonBall());
+                //ANIMACION DE DAMAGE
+
+                animator.Play("UD_mage_09_take_damage");
+                enableTimerDamage = true;
+                enableMovement = false;
+                if (WizardInvocador)
+                {
+                    animator.SetBool("Walk", false);
+                }
+                else if (WizardElemental)
+                {
+                    animator.SetBool("Run", false);
+                }
+
+
+                //---------------------------------------
+                if (player != null)
+                {
+                    if (player.GetDoblePoints())
+                    {
+                        player.AddScore(10 * 2);
+                    }
+                    else
+                    {
+                        player.AddScore(10);
+                    }
+                    life = life - (GetDamageMiniBall() + player.GetAditionalDamageMiniBalls());
+                    IsDead();
+                }
+            }
+            if (other.gameObject.tag == "PelotaDanzarina" && gameObject.tag == "Tirador")
+            {
+
+                if (GetEnemyState() != EstadoEnemigo.dance)
+                {
+                    timeState = 7;//tiempo por el cual el enemigo estara bailando
+                }
+                SetEnemyState(EstadoEnemigo.dance);
+                effectMusic.SetActive(true);
+                life = life - GetDamageDanceBall();
                 IsDead();
                 if (player.GetDoblePoints())
                 {
-                    player.AddScore(10 * 2);
+                    player.AddScore(5 * 2);
                 }
                 else
                 {
-                    player.AddScore(10);
+                    player.AddScore(5);
                 }
             }
-        }
-        if (other.gameObject.tag == "PelotaDeHielo" && gameObject.tag == "Tirador")
-        {
-            if (player != null)
+            if (other.gameObject.tag == "PelotaDeFuego" && gameObject.tag == "Tirador")
             {
-                if (player.GetDoblePoints())
+
+                if (GetEnemyState() != EstadoEnemigo.Burned)
                 {
-                    player.AddScore(10 * 2);
+                    timeState = 7;
                 }
-                else
+                if (GetEnemyState() != EstadoEnemigo.dance)
                 {
-                    player.AddScore(10);
+                    SetEnemyState(EstadoEnemigo.Burned);
                 }
-                life = life - (GetDamageIceBall() + player.GetAdditionalDamageIceBall());
+                effectBurned.SetActive(true);
+                speed = auxSpeed;
+                dilay = auxDilay;
             }
-            IsDead();
-            if (speed > 0)
+            if (other.gameObject.tag == "PelotaExplociva" && gameObject.tag == "Tirador")
             {
-                //velocidad = velocidad - 0.2f;
-                speed = 0;
-            }
-            if (speed <= 0)
-            {
+                //ANIMACION DE DAMAGE
 
-                if (GetEnemyState() != EstadoEnemigo.frozen)
+                animator.Play("UD_mage_09_take_damage");
+                enableTimerDamage = true;
+                enableMovement = false;
+                if (WizardInvocador)
                 {
-                    timeState = 5;//tiempo por el cual el enemigo "Corredor" estara congelado
+                    animator.SetBool("Walk", false);
                 }
-                SetEnemyState(EstadoEnemigo.frozen);
-                effectFrozen.SetActive(true);
-            }
-        }
-        if (other.gameObject.tag == "MiniPelota" && gameObject.tag == "Tirador")
-        {
-            //ANIMACION DE DAMAGE
-
-            animator.Play("UD_mage_09_take_damage");
-            enableTimerDamage = true;
-            enableMovement = false;
-            if (WizardInvocador)
-            {
-                animator.SetBool("Walk", false);
-            }
-            else if (WizardElemental)
-            {
-                animator.SetBool("Run", false);
-            }
-
-
-            //---------------------------------------
-            if (player != null)
-            {
-                if (player.GetDoblePoints())
+                else if (WizardElemental)
                 {
-                    player.AddScore(10 * 2);
+                    animator.SetBool("Run", false);
                 }
-                else
+
+
+                //---------------------------------------
+                if (player != null)
                 {
-                    player.AddScore(10);
+                    if (player.GetDoblePoints())
+                    {
+                        player.AddScore(20 * 2);
+                    }
+                    else
+                    {
+                        player.AddScore(10);
+                    }
+                    life = life - (GetDamageExplociveBall() + player.GetAdditionalDamageExplociveBall());
+                    IsDead();
                 }
-                life = life - (GetDamageMiniBall() + player.GetAditionalDamageMiniBalls());
-                IsDead();
-            }
-        }
-        if (other.gameObject.tag == "PelotaDanzarina" && gameObject.tag == "Tirador")
-        {
 
-            if (GetEnemyState() != EstadoEnemigo.dance)
-            {
-                timeState = 7;//tiempo por el cual el enemigo estara bailando
             }
-            SetEnemyState(EstadoEnemigo.dance);
-            effectMusic.SetActive(true);
-            life = life - GetDamageDanceBall();
-            IsDead();
-            if (player.GetDoblePoints())
-            {
-                player.AddScore(5 * 2);
-            }
-            else
-            {
-                player.AddScore(5);
-            }
-        }
-        if (other.gameObject.tag == "PelotaDeFuego" && gameObject.tag == "Tirador")
-        {
-
-            if (GetEnemyState() != EstadoEnemigo.Burned)
-            {
-                timeState = 7;
-            }
-            if (GetEnemyState() != EstadoEnemigo.dance)
-            {
-                SetEnemyState(EstadoEnemigo.Burned);
-            }
-            effectBurned.SetActive(true);
-            speed = auxSpeed;
-            dilay = auxDilay;
-        }
-        if (other.gameObject.tag == "PelotaExplociva" && gameObject.tag == "Tirador")
-        {
-            //ANIMACION DE DAMAGE
-
-            animator.Play("UD_mage_09_take_damage");
-            enableTimerDamage = true;
-            enableMovement = false;
-            if (WizardInvocador)
-            {
-                animator.SetBool("Walk", false);
-            }
-            else if (WizardElemental)
-            {
-                animator.SetBool("Run", false);
-            }
-
-
-            //---------------------------------------
-            if (player != null)
-            {
-                if (player.GetDoblePoints())
-                {
-                    player.AddScore(20 * 2);
-                }
-                else
-                {
-                    player.AddScore(10);
-                }
-                life = life - (GetDamageExplociveBall() + player.GetAdditionalDamageExplociveBall());
-                IsDead();
-            }
-
         }
     }
     public void SetSpeed(float _speed)

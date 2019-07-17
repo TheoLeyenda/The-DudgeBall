@@ -9,6 +9,7 @@ public class Sword : MonoBehaviour {
     public float damage;
     private bool firstPuch;
     public Runner runner;
+    public Wizard wizard;
     void Start () {
         
         firstPuch = false;
@@ -22,12 +23,27 @@ public class Sword : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (runner.life <= 0)
+        if (runner != null)
         {
-            GetComponent<BoxCollider>().enabled = false;
+            
+            if (runner.life <= 0)
+            {
+                GetComponent<BoxCollider>().enabled = false;
+            }
+            else if (runner.life > 0)
+            {
+                GetComponent<BoxCollider>().enabled = true;
+            }
         }
-        else if(runner.life > 0){
-            GetComponent<BoxCollider>().enabled = true;
+        else if (wizard != null) {
+            if (wizard.life <= 0)
+            {
+                GetComponent<BoxCollider>().enabled = false;
+            }
+            else if (wizard.life > 0)
+            {
+                GetComponent<BoxCollider>().enabled = true;
+            }
         }
 	}
     private void OnTriggerEnter(Collider other)
@@ -35,30 +51,63 @@ public class Sword : MonoBehaviour {
         if (other.tag == "Player") {
             if (!player.GetImmune())
             {
-                if (firstPuch)
+                if (wizard != null)
                 {
-                    player.audioSource2.PlayOneShot(player.soundDamageMe);
-                    if (player.armor > 0)
+                    if (wizard.GetDead() == false)
                     {
-                        player.armor = player.armor - damage;
-                    }
-                    else
-                    {
-                        player.life = player.life - damage;
+                        if (firstPuch)
+                        {
+                            player.audioSource2.PlayOneShot(player.soundDamageMe);
+                            if (player.armor > 0)
+                            {
+                                player.armor = player.armor - damage;
+                            }
+                            else
+                            {
+                                player.life = player.life - damage;
+                            }
+                        }
+                        else
+                        {
+                            firstPuch = true;
+                        }
                     }
                 }
-                else
+                else if (runner != null)
                 {
-                    firstPuch = true;
+                    if (runner.GetDead() == false)
+                    {
+                        if (firstPuch)
+                        {
+                            player.audioSource2.PlayOneShot(player.soundDamageMe);
+                            if (player.armor > 0)
+                            {
+                                player.armor = player.armor - damage;
+                            }
+                            else
+                            {
+                                player.life = player.life - damage;
+                            }
+                        }
+                        else
+                        {
+                            firstPuch = true;
+                        }
+                    }
                 }
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
         {
             firstPuch = true;
+            if (wizard != null) {
+                wizard.aviableShoot = true;
+            }
         }
+       
     }
 }
