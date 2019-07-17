@@ -504,7 +504,10 @@ public class Wizard : Enemy {
             {
                 if (enableMovement && speed > 0 || aviableShoot)
                 {
-                    Movement();
+                    if (GetDead() == false)
+                    {
+                        Movement();
+                    }
                 }
                 else
                 {
@@ -859,12 +862,104 @@ public class Wizard : Enemy {
                 //Formacion de tres esqueletos
                 //  *
                 //*   *
+                //Fijarme via rotacion para donde esta rotando
+                if (contEsqueletosAtaqueFrontal < poolEsqueletosAtaqueFrontal.count)
+                {
+                    contEsqueletosAtaqueFrontal++;
+                    go = poolEsqueletosAtaqueFrontal.GetObject();
+                    Runner runner1 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.5f, 0);
+                    go.transform.position = go.transform.position + (go.transform.forward * 4);
+                    runner1.On();
+                }
+
+                if (contEsqueletosAtaqueHorizontal < poolEsqueletosAtaqueHorizontal.count)
+                {
+                    contEsqueletosAtaqueHorizontal++;
+                    go = poolEsqueletosAtaqueHorizontal.GetObject();
+                    Runner runner2 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.5f, 0);
+                    go.transform.position = go.transform.position + (-go.transform.forward * 4);
+                    go.transform.position = go.transform.position + (go.transform.right * 4);
+                    runner2.On();
+                }
+
+                if (contEsqueletosAtaqueHorizontal < poolEsqueletosAtaqueHorizontal.count)
+                {
+                    contEsqueletosAtaqueHorizontal++;
+                    go = poolEsqueletosAtaqueHorizontal.GetObject();
+                    Runner runner3 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.5f, 0);
+                    go.transform.position = go.transform.position + (-go.transform.forward * 4);
+                    go.transform.position = go.transform.position + (-go.transform.right * 4);
+                    runner3.On();
+                }
             }
             else if (countInvoke > 3 && countInvoke <= 4)
             {
                 //Formacion de cuatro esqueletos
                 //* *
                 //* *
+                if (contEsqueletosAtaqueFrontal < poolEsqueletosAtaqueFrontal.count)
+                {
+                    contEsqueletosAtaqueFrontal++;
+                    go = poolEsqueletosAtaqueFrontal.GetObject();
+                    Runner runner1 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.5f, 0);
+                    go.transform.position = go.transform.position + (go.transform.forward * 4);
+                    go.transform.position = go.transform.position + (-go.transform.right * 4);
+                    runner1.On();
+                }
+                if (contEsqueletosAtaqueFrontal < poolEsqueletosAtaqueFrontal.count)
+                {
+                    contEsqueletosAtaqueFrontal++;
+                    go = poolEsqueletosAtaqueFrontal.GetObject();
+                    Runner runner2 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.5f, 0);
+                    go.transform.position = go.transform.position + (go.transform.forward * 4);
+                    go.transform.position = go.transform.position + (go.transform.right * 4);
+                    runner2.On();
+                }
+                if (contEsqueletosArqueros < poolEsqueletosArqueros.count) {
+                    contEsqueletosArqueros++;
+                    go = poolEsqueletosArqueros.GetObject();
+                    Shooter shooter = go.GetComponent<Shooter>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 0, 0);
+                    go.transform.position = go.transform.position + (-go.transform.forward * 4);
+                    go.transform.position = go.transform.position + (go.transform.right * 4);
+                    shooter.On();
+                }
+                if (contEsqueletosArqueros < poolEsqueletosArqueros.count)
+                {
+                    contEsqueletosArqueros++;
+                    go = poolEsqueletosArqueros.GetObject();
+                    Shooter shooter2 = go.GetComponent<Shooter>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 0, 0);
+                    go.transform.position = go.transform.position + (-go.transform.forward * 4);
+                    go.transform.position = go.transform.position + (-go.transform.right * 4);
+                    shooter2.On();
+                }
             }
             else if (countInvoke >= 5 && countInvoke < 6)
             {
@@ -872,6 +967,68 @@ public class Wizard : Enemy {
                 //   *
                 // *    *
                 //  *  *
+                if (contEsqueletosAtaqueFrontal < poolEsqueletosAtaqueFrontal.count)
+                {
+                    contEsqueletosAtaqueFrontal++;
+                    go = poolEsqueletosAtaqueFrontal.GetObject();
+                    Runner runner1 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.5f, 0);
+                    go.transform.position = go.transform.position + (go.transform.forward * 4);
+                    runner1.On();
+                }
+                if (contEsqueletosRapidosHorizontal < poolEsqueletosRapidosHorizontal.count)
+                {
+                    contEsqueletosRapidosHorizontal++;
+                    go = poolEsqueletosRapidosHorizontal.GetObject();
+                    Runner runner2 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.55f, 0);
+                    go.transform.position = go.transform.position + (go.transform.right * 4);
+                    runner2.On();
+                }
+                if (contEsqueletosRapidosHorizontal < poolEsqueletosRapidosHorizontal.count)
+                {
+                    contEsqueletosRapidosHorizontal++;
+                    go = poolEsqueletosRapidosHorizontal.GetObject();
+                    Runner runner2 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.55f, 0);
+                    go.transform.position = go.transform.position + (-go.transform.right * 4);
+                    runner2.On();
+                }
+                
+                if (contEsqueletosArqueros < poolEsqueletosArqueros.count) {
+                    contEsqueletosArqueros++;
+                    go = poolEsqueletosArqueros.GetObject();
+                    Shooter shooter1 = go.GetComponent<Shooter>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 0, 0);
+                    go.transform.position = go.transform.position + (-go.transform.forward * 4);
+                    go.transform.position = go.transform.position + (go.transform.right * 2);
+                    shooter1.On();
+                }
+                if (contEsqueletosArqueros < poolEsqueletosArqueros.count)
+                {
+                    contEsqueletosArqueros++;
+                    go = poolEsqueletosArqueros.GetObject();
+                    Shooter shooter2 = go.GetComponent<Shooter>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 0, 0);
+                    go.transform.position = go.transform.position + (-go.transform.forward * 4);
+                    go.transform.position = go.transform.position + (-go.transform.right * 2);
+                    shooter2.On();
+                }
             }
             else if (countInvoke >= 6 && countInvoke < 8)
             {
@@ -879,6 +1036,83 @@ public class Wizard : Enemy {
                 //      * *
                 //   *       *
                 //    *     *
+                if (contEsqueletosRapidosFrontal < poolEsqueletosRapidosFrontal.count)
+                {
+                    contEsqueletosRapidosFrontal++;
+                    go = poolEsqueletosRapidosFrontal.GetObject();
+                    Runner runner1 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.55f, 0);
+                    go.transform.position = go.transform.position + (go.transform.right * 2);
+                    go.transform.position = go.transform.position + (go.transform.forward * 4);
+                    runner1.On();
+                }
+                if (contEsqueletosRapidosFrontal < poolEsqueletosRapidosFrontal.count)
+                {
+                    contEsqueletosRapidosFrontal++;
+                    go = poolEsqueletosRapidosFrontal.GetObject();
+                    Runner runner2 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.55f, 0);
+                    go.transform.position = go.transform.position + (-go.transform.right * 2);
+                    go.transform.position = go.transform.position + (go.transform.forward * 4);
+                    runner2.On();
+                }
+                if (contEsqueletosAtaqueHorizontal < poolEsqueletosAtaqueHorizontal.count)
+                {
+                    contEsqueletosAtaqueHorizontal++;
+                    go = poolEsqueletosAtaqueHorizontal.GetObject();
+                    Runner runner = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.5f, 0);
+                    go.transform.position = go.transform.position + (-go.transform.right * 5f);
+                    runner.On();
+                }
+                if (contEsqueletosAtaqueHorizontal < poolEsqueletosAtaqueHorizontal.count)
+                {
+                    contEsqueletosAtaqueHorizontal++;
+                    go = poolEsqueletosAtaqueHorizontal.GetObject();
+                    Runner runner = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.5f, 0);
+                    go.transform.position = go.transform.position + (go.transform.right * 5f);
+                    runner.On();
+                }
+                if (contEsqueletosArqueros < poolEsqueletosArqueros.count)
+                {
+                    contEsqueletosArqueros++;
+                    go = poolEsqueletosArqueros.GetObject();
+                    Shooter shooter2 = go.GetComponent<Shooter>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 0, 0);
+                    go.transform.position = go.transform.position + (-go.transform.forward * 4);
+                    go.transform.position = go.transform.position + (-go.transform.right * 3.5f);
+                    shooter2.On();
+                }
+                if (contEsqueletosArqueros < poolEsqueletosArqueros.count)
+                {
+                    contEsqueletosArqueros++;
+                    go = poolEsqueletosArqueros.GetObject();
+                    Shooter shooter2 = go.GetComponent<Shooter>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 0, 0);
+                    go.transform.position = go.transform.position + (-go.transform.forward * 4);
+                    go.transform.position = go.transform.position + (go.transform.right * 3.5f);
+                    shooter2.On();
+                }
+
             }
             else if (countInvoke >= 8)
             {
@@ -887,6 +1121,108 @@ public class Wizard : Enemy {
                 //  *         *
                 //*             *
                 //    *     *
+                if (contEsqueletosAtaqueFrontal < poolEsqueletosAtaqueFrontal.count)
+                {
+                    contEsqueletosAtaqueFrontal++;
+                    go = poolEsqueletosAtaqueFrontal.GetObject();
+                    Runner runner = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.5f, 0);
+                    go.transform.position = go.transform.position + (-go.transform.right * 2f);
+                    go.transform.position = go.transform.position + (go.transform.forward * 7);
+                    runner.On();
+                }
+                if (contEsqueletosAtaqueFrontal < poolEsqueletosAtaqueFrontal.count)
+                {
+                    contEsqueletosAtaqueFrontal++;
+                    go = poolEsqueletosAtaqueFrontal.GetObject();
+                    Runner runner = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.5f, 0);
+                    go.transform.position = go.transform.position + (go.transform.right * 2f);
+                    go.transform.position = go.transform.position + (go.transform.forward * 7);
+                    runner.On();
+                }
+                if (contEsqueletosRapidosHorizontal < poolEsqueletosRapidosHorizontal.count)
+                {
+                    contEsqueletosRapidosHorizontal++;
+                    go = poolEsqueletosRapidosHorizontal.GetObject();
+                    Runner runner1 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.55f, 0);
+                    go.transform.position = go.transform.position + (go.transform.right * 4f);
+                    go.transform.position = go.transform.position + (go.transform.forward * 4);
+                    runner1.On();
+                }
+                if (contEsqueletosRapidosHorizontal < poolEsqueletosRapidosHorizontal.count)
+                {
+                    contEsqueletosRapidosHorizontal++;
+                    go = poolEsqueletosRapidosHorizontal.GetObject();
+                    Runner runner2 = go.GetComponent<Runner>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 1.55f, 0);
+                    go.transform.position = go.transform.position + (-go.transform.right * 4f);
+                    go.transform.position = go.transform.position + (go.transform.forward * 4);
+                    runner2.On();
+                }
+                if (contEsqueletosArqueros < poolEsqueletosArqueros.count)
+                {
+                    contEsqueletosArqueros++;
+                    go = poolEsqueletosArqueros.GetObject();
+                    Shooter shooter2 = go.GetComponent<Shooter>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 0, 0);
+                    go.transform.position = go.transform.position + (go.transform.right * 6f);
+                    shooter2.On();
+                }
+                if (contEsqueletosArqueros < poolEsqueletosArqueros.count)
+                {
+                    contEsqueletosArqueros++;
+                    go = poolEsqueletosArqueros.GetObject();
+                    Shooter shooter2 = go.GetComponent<Shooter>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 0, 0);
+                    go.transform.position = go.transform.position + (-go.transform.right * 6f);
+                    shooter2.On();
+                }
+                if (contEsqueletosArqueros < poolEsqueletosArqueros.count)
+                {
+                    contEsqueletosArqueros++;
+                    go = poolEsqueletosArqueros.GetObject();
+                    Shooter shooter2 = go.GetComponent<Shooter>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 0, 0);
+                    go.transform.position = go.transform.position + (go.transform.right * 3.2f);
+                    go.transform.position = go.transform.position + (-go.transform.forward * 4f);
+                    shooter2.On();
+                }
+                if (contEsqueletosArqueros < poolEsqueletosArqueros.count)
+                {
+                    contEsqueletosArqueros++;
+                    go = poolEsqueletosArqueros.GetObject();
+                    Shooter shooter2 = go.GetComponent<Shooter>();
+                    go.transform.position = transform.position;
+                    go.transform.rotation = transform.rotation;
+                    go.transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    go.transform.position = go.transform.position + new Vector3(0, 0, 0);
+                    go.transform.position = go.transform.position + (-go.transform.right * 3.2f);
+                    go.transform.position = go.transform.position + (-go.transform.forward * 4f);
+                    shooter2.On();
+                }
             }
         }
         

@@ -6,8 +6,10 @@ public class PlayerTarget : MonoBehaviour {
     public float elevateSight;
     private Player player;
     public bool targetModel;
+    public Enemy enemy;
     private void Start()
     {
+
         if(Player.InstancePlayer != null)
         {
             player = Player.InstancePlayer;
@@ -18,8 +20,10 @@ public class PlayerTarget : MonoBehaviour {
         {
             TargetPlayer();
         }
-        else if (targetModel) {
-            transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+        if (enemy.GetDead() == false) { 
+            if (targetModel) {
+                    transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+                }
         }
 	}
     public void TargetPlayer()

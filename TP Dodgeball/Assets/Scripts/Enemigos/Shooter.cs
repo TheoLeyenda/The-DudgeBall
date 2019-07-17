@@ -481,11 +481,13 @@ public class Shooter : Enemy {
         if (other.gameObject.tag == "PelotaComun" && gameObject.tag == "Tirador")
         {
             //ANIMACION DE DAMAGE
-            
-            animator.Play("UD_archer_09_take_damage");
-            enableTimerDamage = true;
-            enableMovement = false;
-            animator.SetBool("Run", false);
+            if (GetDead() == false)
+            {
+                animator.Play("UD_archer_09_take_damage");
+                enableTimerDamage = true;
+                enableMovement = false;
+                animator.SetBool("Run", false);
+            }
 
 
             //---------------------------------------
