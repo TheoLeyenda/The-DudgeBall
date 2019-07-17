@@ -118,12 +118,16 @@ public class Wizard : Enemy {
         effectFrozen.SetActive(false);
         effectMusic.SetActive(false);
         effectBurned.SetActive(false);
-        /*animator.SetBool("Idle", true);
+        animator.SetBool("Attack_A", false);
+        animator.SetBool("Attack_B", false);
+        animator.SetBool("Idle", true);
+        animator.SetBool("Cast_A", false);
+        animator.SetBool("Cast_B", false);
         animator.SetBool("Run", false);
-        animator.SetBool("Attack", false);
         animator.SetBool("Death_A", false);
         animator.SetBool("Death_B", false);
-        animator.SetBool("Damage", false);*/
+        animator.SetBool("Damage", false);
+        animator.SetBool("Walk", false);
         timerDamage = 0.4f;
         enableTimerDamage = false;
         enableMovement = true;
@@ -178,12 +182,16 @@ public class Wizard : Enemy {
         effectBurned.SetActive(false);
         effectMusic.SetActive(false);
         poolObject = GetComponent<PoolObject>();
-        /*animator.SetBool("Idle", true);
+        animator.SetBool("Attack_A", false);
+        animator.SetBool("Attack_B", false);
+        animator.SetBool("Idle", true);
+        animator.SetBool("Cast_A", false);
+        animator.SetBool("Cast_B", false);
         animator.SetBool("Run", false);
-        animator.SetBool("Attack", false);
         animator.SetBool("Death_A", false);
         animator.SetBool("Death_B", false);
-        animator.SetBool("Damage", false);*/
+        animator.SetBool("Damage", false);
+        animator.SetBool("Walk", false);
         timerDamage = 0.4f;
         enableTimerDamage = false;
         enableMovement = true;
@@ -251,7 +259,7 @@ public class Wizard : Enemy {
             //ANIMACION DE DAMAGE DE ENEMIGO
             if (timerDamage > 0 && enableTimerDamage)
             {
-                //animator.SetBool("Run", false);
+                animator.SetBool("Run", false);
                 timerDamage = timerDamage - Time.deltaTime;
             }
             if (timerDamage <= 0)
@@ -283,7 +291,7 @@ public class Wizard : Enemy {
                     }
                 }
             }
-            //EstaMuerto();
+
             UpdateHP();
             if (GetEnemyState() != EstadoEnemigo.frozen && GetEnemyState() != EstadoEnemigo.dance)
             {
@@ -321,21 +329,25 @@ public class Wizard : Enemy {
                 enableMovement = false;
                 lifeBar.SetActive(false);
                 framework.SetActive(false);
-                /*animator.SetBool("Run", false);
-                animator.SetBool("Damage", false);
-                animator.SetBool("Attack", false);
-                animator.SetBool("Idle", false);
-                animator.SetBool("Death_B", false);
-                animator.SetBool("Death_A", false);*/
 
+                animator.SetBool("Attack_A", false);
+                animator.SetBool("Attack_B", false);
+                animator.SetBool("Idle", false);
+                animator.SetBool("Cast_A", false);
+                animator.SetBool("Cast_B", false);
+                animator.SetBool("Run", false);
+                animator.SetBool("Death_A", false);
+                animator.SetBool("Death_B", false);
+                animator.SetBool("Damage", false);
+                animator.SetBool("Walk", false);
 
                 if (enablePowerUp)
                 {
                     //Animacion de muerte opcion 1
-                    //animator.Play("UD_archer_10_death_B");
+                    animator.Play("UD_mage_10_death_A");
 
                     //Animacion de muerte opcion 2
-                    //animator.Play("UD_archer_10_death_A");
+                    //animator.Play("UD_mage_10_death_B");
 
                     enablePowerUp = false;
                     // Seguir configurando la probabilidad de aparicion de los powers ups
@@ -467,6 +479,7 @@ public class Wizard : Enemy {
             if (timerDamage > 0 && enableTimerDamage)
             {
                 //animator.SetBool("Run", false);
+                animator.SetBool("Walk", false);
                 timerDamage = timerDamage - Time.deltaTime;
             }
             if (timerDamage <= 0)
@@ -545,21 +558,24 @@ public class Wizard : Enemy {
                 enableMovement = false;
                 lifeBar.SetActive(false);
                 framework.SetActive(false);
-                /*animator.SetBool("Run", false);
-                animator.SetBool("Damage", false);
-                animator.SetBool("Attack", false);
+                animator.SetBool("Attack_A", false);
+                animator.SetBool("Attack_B", false);
                 animator.SetBool("Idle", false);
+                animator.SetBool("Cast_A", false);
+                animator.SetBool("Cast_B", false);
+                animator.SetBool("Run", false);
+                animator.SetBool("Death_A", false);
                 animator.SetBool("Death_B", false);
-                animator.SetBool("Death_A", false);*/
-
+                animator.SetBool("Damage", false);
+                animator.SetBool("Walk", false);
 
                 if (enablePowerUp)
                 {
                     //Animacion de muerte opcion 1
-                    //animator.Play("UD_archer_10_death_B");
+                    animator.Play("UD_mage_10_death_A");
 
                     //Animacion de muerte opcion 2
-                    //animator.Play("UD_archer_10_death_A");
+                    //animator.Play("UD_mage_10_death_B");
 
                     enablePowerUp = false;
                     // Seguir configurando la probabilidad de aparicion de los powers ups
@@ -688,7 +704,7 @@ public class Wizard : Enemy {
     }
     public void Movement()
     {
-        //Debug.Log(aviableShoot);
+        
         if (!aviableShoot)
         {
             if (patternType == 0)
@@ -699,12 +715,32 @@ public class Wizard : Enemy {
                     rig.angularVelocity = Vector3.zero;
                     transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
                     transform.position += transform.forward * Time.deltaTime * speed; //si comento esto es una torreta y sino es un jugador de rugby
-                    /*animator.SetBool("Idle", false);
-                    animator.SetBool("Run", true);
-                    animator.SetBool("Attack", false);
-                    animator.SetBool("Death_A", false);
-                    animator.SetBool("Death_B", false);
-                    animator.SetBool("Damage", false);*/
+                    if (WizardElemental)
+                    {
+                        animator.SetBool("Attack_A", false);
+                        animator.SetBool("Attack_B", false);
+                        animator.SetBool("Idle", false);
+                        animator.SetBool("Cast_A", false);
+                        animator.SetBool("Cast_B", false);
+                        animator.SetBool("Run", true);
+                        animator.SetBool("Death_A", false);
+                        animator.SetBool("Death_B", false);
+                        animator.SetBool("Damage", false);
+                        animator.SetBool("Walk", false);
+                    }
+                    else if (WizardInvocador) {
+                        animator.SetBool("Attack_A", false);
+                        animator.SetBool("Attack_B", false);
+                        animator.SetBool("Idle", false);
+                        animator.SetBool("Cast_A", false);
+                        animator.SetBool("Cast_B", false);
+                        animator.SetBool("Run", false);
+                        animator.SetBool("Death_A", false);
+                        animator.SetBool("Death_B", false);
+                        animator.SetBool("Damage", false);
+                        animator.SetBool("Walk", true);
+                    }
+
 
                 }
             }
@@ -732,12 +768,32 @@ public class Wizard : Enemy {
                     }
                 }
 
-                /*animator.SetBool("Idle", false);
-                animator.SetBool("Run", true);
-                animator.SetBool("Attack", false);
-                animator.SetBool("Death_A", false);
-                animator.SetBool("Death_B", false);
-                animator.SetBool("Damage", false);*/
+                if (WizardElemental)
+                {
+                    animator.SetBool("Attack_A", false);
+                    animator.SetBool("Attack_B", false);
+                    animator.SetBool("Idle", false);
+                    animator.SetBool("Cast_A", false);
+                    animator.SetBool("Cast_B", false);
+                    animator.SetBool("Run", true);
+                    animator.SetBool("Death_A", false);
+                    animator.SetBool("Death_B", false);
+                    animator.SetBool("Damage", false);
+                    animator.SetBool("Walk", false);
+                }
+                else if (WizardInvocador)
+                {
+                    animator.SetBool("Attack_A", false);
+                    animator.SetBool("Attack_B", false);
+                    animator.SetBool("Idle", false);
+                    animator.SetBool("Cast_A", false);
+                    animator.SetBool("Cast_B", false);
+                    animator.SetBool("Run", false);
+                    animator.SetBool("Death_A", false);
+                    animator.SetBool("Death_B", false);
+                    animator.SetBool("Damage", false);
+                    animator.SetBool("Walk", true);
+                }
             }
         }
         else if (aviableShoot)
@@ -748,23 +804,32 @@ public class Wizard : Enemy {
                 rig.angularVelocity = Vector3.zero;
                 transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
 
-                /*animator.SetBool("Run", false);
+                animator.SetBool("Attack_A", false);
+                animator.SetBool("Attack_B", false);
                 animator.SetBool("Idle", true);
-                animator.SetBool("Attack", false);
+                animator.SetBool("Cast_A", false);
+                animator.SetBool("Cast_B", false);
+                animator.SetBool("Run", false);
                 animator.SetBool("Death_A", false);
                 animator.SetBool("Death_B", false);
-                animator.SetBool("Damage", false);*/
+                animator.SetBool("Damage", false);
+                animator.SetBool("Walk", false);
             }
             else
             {
                 rig.velocity = Vector3.zero;
                 rig.angularVelocity = Vector3.zero;
-                /*animator.SetBool("Run", false);
+
+                animator.SetBool("Attack_A", false);
+                animator.SetBool("Attack_B", false);
                 animator.SetBool("Idle", true);
-                animator.SetBool("Attack", false);
+                animator.SetBool("Cast_A", false);
+                animator.SetBool("Cast_B", false);
+                animator.SetBool("Run", false);
                 animator.SetBool("Death_A", false);
                 animator.SetBool("Death_B", false);
-                animator.SetBool("Damage", false);*/
+                animator.SetBool("Damage", false);
+                animator.SetBool("Walk", false);
             }
 
         }
@@ -773,6 +838,7 @@ public class Wizard : Enemy {
     {
         //Basandome en la funcion ThrowBall desarrollar esta funcion que invoca enemigos.
         //Solo falta completar esto la funcion ya esta llamada.
+        animator.Play("UD_mage_11_cast_B");
         if (randomInvoke)
         {
 
@@ -1232,7 +1298,7 @@ public class Wizard : Enemy {
     {
         GameObject go;
         EnemyBall Spell;
-       
+        animator.Play("UD_mage_11_cast_A");
         int randomAttack = Random.Range(0,3);
         switch (randomAttack)
         {
@@ -1334,17 +1400,23 @@ public class Wizard : Enemy {
         {
             //ANIMACION DE DAMAGE
 
-            //animator.Play("UD_archer_09_take_damage");
+            animator.Play("UD_mage_09_take_damage");
             enableTimerDamage = true;
             enableMovement = false;
-            //animator.SetBool("Run", false);
+            if (WizardInvocador)
+            {
+                animator.SetBool("Walk", false);
+            }
+            else if (WizardElemental)
+            {
+                animator.SetBool("Run", false);
+            }
 
 
             //---------------------------------------
             if (player != null)
             {
                 life = life - (GetDamageCommonBall() + player.GetAdditionalDamageCommonBall());
-                //Debug.Log("Hize Daño");
                 IsDead();
                 if (player.GetDoblePoints())
                 {
@@ -1391,10 +1463,17 @@ public class Wizard : Enemy {
         {
             //ANIMACION DE DAMAGE
 
-            //animator.Play("UD_archer_09_take_damage");
+            animator.Play("UD_mage_09_take_damage");
             enableTimerDamage = true;
             enableMovement = false;
-            animator.SetBool("Run", false);
+            if (WizardInvocador)
+            {
+                animator.SetBool("Walk", false);
+            }
+            else if (WizardElemental)
+            {
+                animator.SetBool("Run", false);
+            }
 
 
             //---------------------------------------
@@ -1451,10 +1530,17 @@ public class Wizard : Enemy {
         {
             //ANIMACION DE DAMAGE
 
-            //animator.Play("UD_archer_09_take_damage");
+            animator.Play("UD_mage_09_take_damage");
             enableTimerDamage = true;
             enableMovement = false;
-            animator.SetBool("Run", false);
+            if (WizardInvocador)
+            {
+                animator.SetBool("Walk", false);
+            }
+            else if (WizardElemental)
+            {
+                animator.SetBool("Run", false);
+            }
 
 
             //---------------------------------------

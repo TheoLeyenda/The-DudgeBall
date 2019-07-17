@@ -19,7 +19,7 @@ public class WirardRange : MonoBehaviour {
         if (other.tag == "Player")
         {
             wizard.aviableShoot = false;
-            wizard.dilay = wizard.auxDilay;
+            //wizard.dilay = wizard.auxDilay;
         }
     }
 }
