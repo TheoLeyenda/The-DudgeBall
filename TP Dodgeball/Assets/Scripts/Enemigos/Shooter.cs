@@ -118,7 +118,14 @@ public class Shooter : Enemy {
         enablePowerUp = true;
 
         enableShoot = true;
-        GetComponent<CapsuleCollider>().enabled = true;
+        if (patternType == 0)
+        {
+            GetComponent<CapsuleCollider>().enabled = true;
+        }
+        else if (patternType == 1) {
+            GetComponent<BoxCollider>().enabled = true;
+        }
+
         enableMovement = true;
         lifeBar.SetActive(true);
         framework.SetActive(true);
@@ -182,7 +189,10 @@ public class Shooter : Enemy {
                 if (GetDead() == false)
                 {
                     Movement();
-                    transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+                    if (patternType != 1)
+                    {
+                        transform.LookAt(new Vector3(Player.GetPlayer().transform.position.x, transform.position.y, Player.GetPlayer().transform.position.z));
+                    }
                 }
             }
             else {
@@ -205,7 +215,13 @@ public class Shooter : Enemy {
         if(GetDead())
         {
             enableShoot = false;
-            GetComponent<CapsuleCollider>().enabled = false;
+            if (patternType == 0)
+            {
+                GetComponent<CapsuleCollider>().enabled = false;
+            }
+            else if (patternType == 1) {
+                GetComponent<BoxCollider>().enabled = false;
+            }
             enableMovement = false;
             lifeBar.SetActive(false);
             framework.SetActive(false);
@@ -351,7 +367,6 @@ public class Shooter : Enemy {
     }
     public void Movement()
     {
-        //Debug.Log(aviableShoot);
         if (!aviableShoot)
         {
             if (patternType == 0)
@@ -418,7 +433,7 @@ public class Shooter : Enemy {
                 animator.SetBool("Death_B", false);
                 animator.SetBool("Damage", false);
             }
-            else
+            else if(patternType == 1)
             {
                 rig.velocity = Vector3.zero;
                 rig.angularVelocity = Vector3.zero;
