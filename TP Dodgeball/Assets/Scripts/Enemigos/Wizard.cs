@@ -152,6 +152,7 @@ public class Wizard : Enemy {
         enableMovement = true;
         lifeBar.SetActive(true);
         framework.SetActive(true);
+        dilay = 0;
         //FALTA AGREGAR EL TEMA DE ANIMACIONES
 
     }
@@ -223,7 +224,7 @@ public class Wizard : Enemy {
         enableMovement = true;
         lifeBar.SetActive(true);
         framework.SetActive(true);
-        //FALTA AGREGAR EL TEMA DE ANIMACIONES
+        dilay = 0;
 
 
     }
